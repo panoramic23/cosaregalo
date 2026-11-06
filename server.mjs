@@ -64,7 +64,16 @@ async function staticFile(req,res,pathname){
     // Shared header text is removed from every HTML page at the server level.
     // Keep the informative affiliate notice in the footer and dedicated pages.
     if(extname(file).toLowerCase()==='.html'){
-      const html=bytes.toString('utf8').replace(/<span>Scopri il nostro metodo\s*·\s*<a\s+href="[^"]*">Come funziona<\/a><\/span>/g,'');
+      const prefix=parts.length?'../'.repeat(parts.at(-1)==='index.html'?parts.length-1:parts.length):'';
+      let html=bytes.toString('utf8')
+       .replace(/<span>Scopri il nostro metodo\s*·\s*<a\s+href="[^"]*">Come funziona<\/a><\/span>/g,'')
+       .replace(/<div class="demo-notice">[\s\S]*?<\/div><\/div>/g,'')
+       .replace(/<span>© 2026 CosaRegalo · Anteprima HTML, non negozio online\.<\/span>/g,'<span>© 2026 CosaRegalo</span>')
+       .replace(/<span>Pubblicazione automatica e prezzi live non ancora attivi\.<\/span>/g,'<span>Powered by <a href="https://www.panoramicweb.it/" target="_blank" rel="noopener noreferrer">Panoramic</a></span>')
+       .replace(/GUIDE UTILI, PREZZI DA VERIFICARE/g,'GUIDE, IDEE REGALO E CONFRONTI');
+      if(!html.includes('href="'+prefix+'privacy-policy/index.html"') && !html.includes('href="/privacy-policy/"')){
+        html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/, '$1<a href="'+prefix+'privacy-policy/index.html">Privacy policy</a><a href="'+prefix+'cookie-policy/index.html">Cookie policy</a><a href="#" data-cookie-settings>Preferenze cookie</a>');
+      }
       bytes=Buffer.from(html,'utf8');
     }
     res.statusCode=200;
