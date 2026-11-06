@@ -1,33 +1,22 @@
 # CosaRegalo
 
-Sito editoriale italiano per idee regalo, confronti e super offerte Amazon.
+Repository per il sito **CosaRegalo**. Hosting previsto: **SiteGround GoGeek** e dominio **cosa-regalo.it**.
 
-**Sorgente approvato:** CosaRegalo V6, archivio `CosaRegalo_V6_SUPER_OFFERTE_50.zip` (6 novembre 2026).
+## Stato dell'importazione
 
-**Attenzione:** questo repository è in fase di importazione. La presenza del README **non** significa che l'intera V6 sia stata trasferita o sia online. Il pacchetto di rilascio contiene 59 file, con sito statico, 24 pagine HTML, asset e funzioni serverless. L'importazione completa richiede il caricamento degli effettivi contenuti del pacchetto.
+⚠️ **Il codice della V6 non è ancora nel repository.** È stato predisposto un pacchetto completo pronto per il push: `CosaRegalo_V6_PRONTO_GITHUB.zip` nella conversazione ChatGPT. Contiene 24 pagine HTML, asset, pannello admin e funzioni API.
 
-## Stack previsto
-- HTML, CSS, JavaScript statici
-- Vercel per funzioni Node `/api/*.mjs`
-- Amazon Creators API (EU, credenziali 3.2, Amazon.it)
-- Keepa API per verifica super offerte: sconto >=50%, risparmio >=15€, osservazione <=24 ore, soli prodotti fisici e pertinenti
-- Redis REST compatibile Upstash per statistiche e gestionale
-- Tracking ID Amazon: `230b7-21`
+L'interfaccia di GitHub collegata a questa conversazione consente operazioni sui file di testo, ma non permette di trasferire direttamente gli asset binari dello ZIP dalla sessione locale. Il pacchetto include `PUSH_COSAREGALO_GITHUB.command`, script per macOS che, dopo autenticazione GitHub locale, effettua il push di tutti i file sul ramo `main`.
 
-## Credenziali (soltanto variabili d'ambiente di Vercel)
-```env
-AMAZON_CREATORS_CLIENT_ID=
-AMAZON_CREATORS_CLIENT_SECRET=
-AMAZON_CREATORS_VERSION=3.2
-AMAZON_PARTNER_TAG=230b7-21
-KV_REST_API_URL=
-KV_REST_API_TOKEN=
-ADMIN_DASHBOARD_TOKEN=
-```
-Non inserire segreti nel repository. Non esporre il gestionale senza autenticazione robusta.
+## Hosting
 
-## Dominio
-Dominio previsto: `cosa-regalo.it`. GitHub ospita il codice; Vercel il sito e le API. Aggiungere il dominio al progetto Vercel e configurare i DNS secondo i valori indicati nella dashboard.
+Il frontend è HTML/CSS/JS statico; le funzioni serverless `/api/*.mjs` presenti nel pacchetto seguono l'API delle funzioni Vercel e **richiedono adattamento** al runtime Node.js SiteGround prima del deploy completo. Nessun deploy o dominio è stato configurato.
 
-## Stato
-Nessun deploy autorizzato; non mostrare sconti e prezzi non verificati.
+## Integrazioni future
+
+- Amazon Creators API, tracking ID `230b7-21` (chiavi solo lato server)
+- Fonte storica affidabile, per pubblicare super offerte reali con sconti verificati >=50%
+- Database/Redis REST per statistiche e gestionale
+- Autenticazione e protezione admin, conformità privacy, automazione editoriale
+
+Non salvare credenziali nel repository. Non presentare prezzi o ribassi non verificati.
