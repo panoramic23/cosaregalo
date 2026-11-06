@@ -54,11 +54,13 @@
    if(name&&!sent.has(name)){sent.add(name);send('product_view',name.slice(0,140));}observer.unobserve(el);}
  },{threshold:.6}):null;
  function scan(){
-  if(!observer)return;
+  // Do not mark products as already viewed while tracking consent is absent.
+  if(!observer||!allowed())return;
   document.querySelectorAll('.amazon-product,.verified-deal').forEach(el=>{if(!observed.has(el)){observed.add(el);observer.observe(el);}});
  }
  function setup(){
   banner();if(allowed())send('page_view');scan();
+  window.addEventListener('cr:consentchange',()=>{if(allowed())scan();});
   if(observer&&'MutationObserver' in window)new MutationObserver(scan).observe(document.body,{childList:true,subtree:true});
   document.addEventListener('click',e=>{
    const open=e.target.closest('[data-cookie-settings]');if(open){e.preventDefault();banner(true);return;}
