@@ -52,6 +52,20 @@ const publicAds={
 };
 const publicAdsJson=JSON.stringify(publicAds).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');
 
+const publicSiteUrl=String(process.env.SITE_PUBLIC_URL||'').trim().replace(/\/$/,'');
+const canonicalSite=/^https:\/\/(?:www\.)?cosa-regalo\.it$/i.test(publicSiteUrl)?publicSiteUrl:'';
+const indexable=process.env.SITE_INDEXABLE==='true' && !!canonicalSite;
+const indexPaths=[
+ '/', '/offerte/', '/confronti/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/',
+ '/guide/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
+ '/guide/lettura/', '/guide/cuffie/', '/tipologie/speaker-bluetooth/',
+ '/tipologie/giochi-costruzioni/', '/tipologie/cofanetti-benessere/',
+ '/tipologie/kit-trucchi/', '/tipologie/cuffie-wireless/', '/tipologie/e-reader/',
+ '/tipologie/accessori-scrivania/', '/tipologie/microfoni-karaoke/'
+];
+function serveText(res,content,type='text/plain; charset=utf-8'){
+ res.statusCode=200;res.setHeader('Content-Type',type);res.setHeader('Cache-Control','public, max-age=300');res.end(content);
+}
 function reply(res,status,data){res.statusCode=status;res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');res.end(JSON.stringify(data));}
 async function receiveJSON(req){
   let size=0;const pieces=[];
@@ -145,6 +159,25 @@ const server=http.createServer(async(req,res)=>{
   let url;
   try{url=new URL(req.url||'/', 'http://localhost');}catch{return reply(res,400,{error:'INVALID_URL'});}
   const pathname=url.pathname.replace(/\/$/,'')||'/';
+  // Staging stays out of search indexes until the official domain is ready.
+  if(!indexable||pathname.startsWith('/admin')||pathname.startsWith('/calendario')){
+    res.setHeader('X-Robots-Tag','noindex, nofollow');
+  }
+  if(pathname==='/robots.txt'){
+    return serveText(res,indexable
+      ?'User-agent: *\\nDisallow: /admin/\\nDisallow: /api/\\nDisallow: /calendario/\\nSitemap: '+canonicalSite+'/sitemap.xml\\n'
+      :'User-agent: *\\nDisallow: /\\n');
+  }
+  if(pathname==='/sitemap.xml'){
+    if(!indexable)return reply(res,404,{error:'SITEMAP_NOT_PUBLISHED'});
+    const locations=indexPaths.map(p=>'  <url><loc>'+canonicalSite+p+'</loc></url>').join('\\n');
+    return serveText(res,'<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n'+locations+'\\n</urlset>\\n','application/xml; charset=utf-8');
+  }
+  if(pathname==='/ads.txt'){
+    const id=/^ca-pub-(\\d{8,22})$/.exec(process.env.ADSENSE_CLIENT||'');
+    if(!indexable||process.env.ADS_MODE!=='adsense'||!id)return reply(res,404,{error:'ADS_TXT_NOT_CONFIGURED'});
+    return serveText(res,'google.com, pub-'+id[1]+', DIRECT, f08c47fec0942fa0\\n');
+  }
   if(pathname==='/health')return reply(res,200,{ok:true,service:'cosaregalo',environment:process.env.NODE_ENV||'development'});
   if(handlers.has(pathname))return api(req,res,pathname,url.searchParams);
   if(pathname.startsWith('/api/'))return reply(res,404,{error:'UNKNOWN_API'});
