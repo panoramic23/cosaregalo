@@ -43,13 +43,18 @@ async function staticFile(req,res,pathname){
   if(decoded.includes('\\')||decoded.includes('\0')||decoded.split('/').some(part=>part==='..'||part.startsWith('.')))return reply(res,403,{error:'FORBIDDEN'});
   const parts=decoded.split('/').filter(Boolean);
   if(parts.length&&blocked.has(parts[0]))return reply(res,404,{error:'NOT_FOUND'});
-  // Serve only public document routes and public assets, not operational files.
-  if(parts.length&&parts[0]==='assets'){
-    if(parts.length<2)return reply(res,404,{error:'NOT_FOUND'});
-  }else if(parts.length&&(!parts.every(part=>/^[a-z0-9_-]+(?:\.[a-z0-9]+)?$/i.test(part))||parts.some(part=>part.includes('.')))){
-    return reply(res,404,{error:'NOT_FOUND'});
+  let relative;
+  if(parts[0]==='assets'){
+    // Public CSS, JavaScript and images: assets are restricted to known extensions.
+    if(parts.length<2||parts.some(part=>part.startsWith('.'))||!['.css','.js','.svg','.webp','.png','.jpg','.jpeg','.ico'].includes(extname(parts.at(-1)).toLowerCase()))return reply(res,404,{error:'NOT_FOUND'});
+    relative=parts.join('/');
+  }else{
+    // Both /guide/ and /guide/index.html must resolve to guide/index.html.
+    // Explicit file paths other than index.html are never publicly served.
+    if(parts.at(-1)==='index.html')parts.pop();
+    if(parts.some(part=>!/^[a-z0-9_-]+$/i.test(part)))return reply(res,404,{error:'NOT_FOUND'});
+    relative=parts.concat('index.html').join('/');
   }
-  const relative=parts[0]==='assets'?parts.join('/'):parts.concat('index.html').join('/');
   const file=resolve(root,relative||'index.html');
   if(!file.startsWith(root+sep))return reply(res,403,{error:'FORBIDDEN'});
   try{
