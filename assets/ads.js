@@ -5,6 +5,8 @@
  if(!cfg.adsense?.client&&!cfg.cj?.image)return;
  const isHome=location.pathname==='/'||location.pathname==='/index.html';
  const placements=[];
+ const googleCmp=cfg.cmpProvider==='google'&&cfg.mode==='adsense';
+ let tcfResolved=false,googleSlotsInitialized=false;
  function add(position,after,anchor){
   if(!anchor)return;
   placements.push({position,after,anchor});
@@ -34,6 +36,7 @@
   placements.forEach(p=>p.el=placement(p.position,p.anchor,p.after));
  }
  function marketingAllowed(){
+  if(googleCmp)return tcfResolved; // Actual ad eligibility is decided by Google's certified TCF integration.
   try{return JSON.parse(localStorage.getItem('cosaregalo-consent-v2')||'{}').marketing===true;}catch{return false;}
  }
  function clear(){
@@ -41,6 +44,8 @@
  }
  let scriptPending=null;
  function loadGoogle(){
+  // Official Google CMP mode loads this exact AdSense tag in <head>.
+  if(googleCmp)return Promise.resolve();
   if(scriptPending)return scriptPending;
   const client=String(cfg.adsense?.client||'');
   if(!/^ca-pub-\d{8,22}$/.test(client))return Promise.reject(new Error('Invalid AdSense client ID'));
@@ -62,6 +67,7 @@
   anchor.appendChild(pic);el.appendChild(anchor);return true;
  }
  async function render(){
+  if(googleCmp&&googleSlotsInitialized)return;
   clear();if(!marketingAllowed())return;
   const chosen=String(cfg.mode||'off');
   for(const p of placements){
@@ -78,12 +84,30 @@
   if(chosen==='adsense'&&marketingAllowed()){
    try{await loadGoogle();if(!marketingAllowed()){clear();return;}
     for(const p of placements){if(!p.el.hidden&&p.el.querySelector('ins.adsbygoogle'))(window.adsbygoogle=window.adsbygoogle||[]).push({});}
+    if(googleCmp)googleSlotsInitialized=true;
    }catch(e){console.warn('CosaRegalo ad service unavailable');clear();}
   }
  }
  function setup(){
-  place();render();
-  window.addEventListener('cr:consentchange',render);
+  place();
+  if(googleCmp){
+   // Wait for IAB TCF CMP readiness. After a decision, Google's AdSense
+   // integration interprets the TC string and decides ad eligibility/types.
+   window.googlefc=window.googlefc||{};
+   window.googlefc.callbackQueue=window.googlefc.callbackQueue||[];
+   window.googlefc.callbackQueue.push({'CONSENT_API_READY':()=>{
+    if(typeof window.__tcfapi!=='function')return;
+    window.__tcfapi('addEventListener',2,(data,success)=>{
+     if(!success||!data)return;
+     if(data.eventStatus==='tcloaded'||data.eventStatus==='useractioncomplete'){
+      tcfResolved=true;render();
+     }
+    });
+   }});
+  }else{
+   render();
+   window.addEventListener('cr:consentchange',render);
+  }
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);
  else setup();
