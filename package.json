@@ -1,0 +1,13 @@
+{
+  "name": "cosaregalo",
+  "version": "6.1.0",
+  "private": true,
+  "type": "module",
+  "description": "CosaRegalo HTML and Node.js application on SiteGround GoGeek",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
