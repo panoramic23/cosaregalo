@@ -196,3 +196,36 @@
   box-shadow:0 5px 18px rgba(28,52,77,.035);
 }
 .disclosure-box strong,.reading-copy .takeaway strong,.reading-copy .article-conclusion strong{color:var(--navy)}
+
+/* CosaRegalo v6.3: accessible contrast and improved reading sizes */
+:root{--muted:#4b6074}
+body{font-size:16px;color:#24394e}
+.section-title p,.page-head p,.type-card-info p,.type-page-hero-copy p,.category-highlight-text p,.buying-group-head p,.reading-copy,.product-excerpt,.guide-copy p,.amazon-product-desc p,.model-row p,.type-legend,.deals-method,.footer-grid p,.footnote{color:#40566b}
+.section-title p,.type-card-info p,.amazon-product-desc p,.guide-copy p,.model-row p,.type-legend,.reading-copy,.category-highlight-text p{font-size:clamp(13px,1.15vw,15px);line-height:1.65}
+.eyebrow,.micro,.amazon-timestamp,.product-origin,.model-num,.type-meta,.footer-grid a,.site-footer p{font-size:12px}
+.nav-menu a,.header-actions a{font-size:13px}
+.reading-copy{font-size:16px;line-height:1.85}
+.type-model-preview span,.type-preview-qa,.model-notice,.deals-method,.amazon-api-note{font-size:13px;color:#3f556a}
+.amazon-price.not-live{color:#344c62}
+.site-footer{color:#f0f5f9}
+.site-footer p,.footer-bottom{color:#e0e9f2}
+.privacy-article{max-width:860px;margin:0 auto;padding:55px 0 75px}
+.privacy-article h1{font-size:clamp(39px,5vw,58px)}
+.privacy-article h2{font-size:26px;margin:35px 0 12px}
+.privacy-article p,.privacy-article li{font-size:16px;line-height:1.8;color:#344c62}
+.privacy-article a{text-decoration:underline;text-underline-offset:3px}
+.privacy-pending{background:#f2f5f8;border:1px solid #ccd9e4;border-radius:10px;padding:18px;color:#344c62}
+.cr-cookie-banner{position:fixed;z-index:9999;bottom:16px;left:16px;right:16px;max-width:1000px;margin:auto;background:#fff;color:#263e53;border:1px solid #cfdae4;box-shadow:0 18px 65px #12233848;border-radius:15px;padding:23px 26px;display:grid;gap:14px}
+.cr-cookie-banner h2{font-size:23px;line-height:1.2;margin:0}
+.cr-cookie-banner p{font-size:14px;line-height:1.6;color:#344d62;margin:0}
+.cr-cookie-banner a{color:#1b4667;text-decoration:underline;text-underline-offset:3px;font-weight:800}
+.cr-cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
+.cr-cookie-actions button{border:1px solid #284d68;border-radius:8px;padding:11px 18px;font-weight:800;font-size:14px;min-height:44px;color:#213950;background:#fff}
+.cr-cookie-actions button[data-choice="yes"]{background:#213950;color:#fff}
+.cr-cookie-actions button:focus-visible,.cr-cookie-close:focus-visible{outline:3px solid #b47d00;outline-offset:2px}
+.cr-cookie-close{position:absolute;right:12px;top:11px;border:0;background:transparent;color:#213950;font-size:23px;width:36px;height:36px}
+.cr-cookie-settings{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px;background:#f0f4f7;border-radius:8px;font-size:14px}
+.cr-cookie-settings input{width:18px;height:18px;accent-color:#213950}
+.cr-cookie-settings small{display:block;color:#506478;font-size:12px}
+.site-footer a[data-cookie-settings]{cursor:pointer}
+@media(max-width:540px){.cr-cookie-banner{left:8px;right:8px;bottom:8px;padding:19px 15px}.cr-cookie-actions button{flex:1 1 100%}.privacy-article{padding-top:30px}}
