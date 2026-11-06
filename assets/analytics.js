@@ -2,6 +2,10 @@
    No ad script is loaded by CosaRegalo until an explicit marketing opt-in. */
 (function(){
  if(location.protocol==='file:'||window.COSAREGALO_OFFLINE||location.pathname.startsWith('/admin'))return;
+ // Google Privacy & Messaging is the only consent UI when enabled.
+ // The site's optional first-party event counters remain off in this mode
+ // until they are explicitly integrated with that CMP's own-use consent.
+ if(window.CR_CMP_PROVIDER==='google')return;
  const key='cosaregalo-consent-v2',legacy='cosaregalo-analytics-consent';
  function read(){
   try{const v=JSON.parse(localStorage.getItem(key)||'null');
