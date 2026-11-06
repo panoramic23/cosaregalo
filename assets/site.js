@@ -64,12 +64,12 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 /* Amazon Creators API catalog enrichment. No credentials in browser. */
 (function(){
  function e(tag,cl,txt){const x=document.createElement(tag);if(cl)x.className=cl;if(txt!==undefined)x.textContent=txt;return x}
- function validUrl(url,kind){try{const u=new URL(url);if(u.protocol!=='https:')return false;if(kind==='link')return /(^|\.)amazon\.it$/.test(u.hostname);return /(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
+ function validUrl(url,kind){try{const u=new URL(url);if(u.protocol!=='https:'||u.username||u.password||u.port)return false;if(kind==='link')return /(^|\.)amazon\.it$/.test(u.hostname);return /(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
  function paint(root,items,checkedAt){const list=e('div','amazon-list');
   items.forEach(p=>{if(!validUrl(p.url,'link'))return;
    const card=e('article','amazon-product'), frame=e('div','amazon-product-image');
    if(validUrl(p.image,'image')){const img=e('img');img.src=p.image;img.loading='lazy';img.alt=p.title;frame.append(img)}else frame.append(e('span','product-origin','Immagine non disponibile'));
-   const info=e('div','amazon-product-desc');info.append(e('span','product-origin','PRODOTTO AMAZON · ASIN '+p.asin));info.append(e('h3','',p.title));
+   const info=e('div','amazon-product-desc');info.append(e('span','product-origin',(p.source==='sitestripe'?'LINK SITESTRIPE · ASIN ':'PRODOTTO AMAZON · ASIN ')+p.asin));info.append(e('h3','',p.title));
    const buy=e('div','amazon-product-buy');buy.append(e('strong','amazon-price'+(p.price?'':' not-live'),p.price||'Prezzo su Amazon'));
    const time=e('span','amazon-timestamp',p.price?'Prezzo rilevato '+new Date(checkedAt).toLocaleString('it-IT'):'Prezzo consultabile su Amazon');buy.append(time);
    const a=e('a','amazon-btn','Acquista su Amazon ↗');a.href=p.url;a.target='_blank';a.rel='sponsored nofollow noopener';buy.append(a);
@@ -79,15 +79,18 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  async function hydrate(){if(location.protocol==='file:'||window.COSAREGALO_OFFLINE)return;
   await Promise.all(Array.from(document.querySelectorAll('.amazon-group')).map(async sec=>{
    const root=sec.querySelector('.amazon-products'),status=sec.querySelector('.amazon-api-note');if(!root)return;
+   if(!root.dataset.editorial)root.dataset.editorial=root.innerHTML;
+   root.innerHTML=root.dataset.editorial;
    try{const url='/api/products?type='+encodeURIComponent(sec.dataset.slug)+'&group='+encodeURIComponent(sec.dataset.group);
     const resp=await fetch(url,{headers:{Accept:'application/json'}});
     if(!resp.ok)return;
-    const data=await resp.json();if(Array.isArray(data.items)&&paint(root,data.items,data.checkedAt)){
-     if(status)status.textContent='Prezzi e immagini provengono da Amazon; verifica l’offerta al momento dell’acquisto.';
-    }else if(status)status.textContent='Nessun prodotto con dati verificati disponibile in questa selezione.';
+    const data=await resp.json();sec.querySelector('[data-sitestripe-group]')?.remove();if(data.groupLink&&validUrl(data.groupLink,'link')){const a=e('a','amazon-btn','Esplora la selezione su Amazon ↗');a.dataset.sitestripeGroup='1';a.href=data.groupLink;a.target='_blank';a.rel='sponsored nofollow noopener';sec.append(a);}if(Array.isArray(data.items)&&paint(root,data.items,data.checkedAt)){
+     if(status)status.textContent=data.source==='sitestripe'?'Link affiliati SiteStripe verificati manualmente. Prezzo e disponibilità da consultare su Amazon.':'Prezzi e immagini provengono da Amazon; verifica l’offerta al momento dell’acquisto.';
+    }else if(status)status.textContent='Selezione editoriale: nessun link prodotto verificato. Fasce di budget indicative, non prezzi o disponibilità attuali.';
    }catch{/* Present clear editorial fallback; never fabricate price. */}
   }));
  }
  document.addEventListener('DOMContentLoaded',hydrate);
  window.addEventListener('hashchange',()=>setTimeout(hydrate,0));
 })();
+
