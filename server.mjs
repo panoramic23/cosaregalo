@@ -27,7 +27,6 @@ function adapt(res){
 }
 async function api(req,res,pathname,searchParams){
   res.setHeader('X-Content-Type-Options','nosniff');
-  res.setHeader('Access-Control-Allow-Origin','same-origin');
   req.query=Object.fromEntries(searchParams.entries());
   if(req.method==='POST'){
     if(!String(req.headers['content-type']||'').toLowerCase().startsWith('application/json'))return reply(res,415,{error:'JSON_REQUIRED'});
