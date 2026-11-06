@@ -1,7 +1,8 @@
 /** Amazon Creators API product data (server-side only). Vercel Node function. */
 import { catalog } from './catalog.mjs';
+import {readConfig,selection} from '../lib/sitestripe.mjs';
 const MARKET='www.amazon.it';
-const PARTNER=process.env.AMAZON_PARTNER_TAG || '230b7-21';
+
 let cachedToken=null,tokenExpiry=0;
 const cache=new Map();
 const time=()=>Date.now();
@@ -42,10 +43,14 @@ function normalize(item){
 export default async function handler(req,res){
  if(req.method!=='GET')return res.status(405).json({error:'METHOD_NOT_ALLOWED'});
  const {type,group}=req.query||{};
- const spec=catalog?.[String(type)]?.[String(group)];
+ const spec=Object.hasOwn(catalog,String(type))&&Object.hasOwn(catalog[String(type)],String(group))?catalog[String(type)][String(group)]:null;
  if(!spec)return res.status(400).json({error:'UNKNOWN_SELECTION'});
- if(!process.env.AMAZON_CREATORS_CLIENT_ID||!process.env.AMAZON_CREATORS_CLIENT_SECRET)
-  return res.status(503).json({error:'API_NOT_CONFIGURED',message:'Collegare le credenziali Amazon Creators API al server.'});
+ const PARTNER=process.env.AMAZON_PARTNER_TAG;
+ const config=await readConfig();
+ res.setHeader('Cache-Control','no-store');
+ if(config.mode!=='api')return res.status(200).json(selection(config,type,group));
+ if(!PARTNER||!process.env.AMAZON_CREATORS_CLIENT_ID||!process.env.AMAZON_CREATORS_CLIENT_SECRET)
+  return res.status(200).json({...selection({...config,mode:'sitestripe'},type,group),fallback:true,reason:'API_NOT_CONFIGURED'});
  const key=String(type)+':'+String(group),prev=cache.get(key);
  if(prev&&time()-prev.time<30*60*1000)return res.status(200).setHeader('Cache-Control','public, s-maxage=1800').json(prev.data);
  try{
@@ -74,7 +79,7 @@ export default async function handler(req,res){
    const safeType=new Set(['AccessDeniedException','ValidationException','UnauthorizedException','ThrottleException']);
    const amazonType=safeType.has(detail?.type)?detail.type:'NotProvided';
    console.warn('Amazon Creators API rejected request',response.status,amazonType,reason);
-   return res.status(502).json({error:'AMAZON_API_ERROR',status:response.status,amazonType,reason});
+   return res.status(200).json({...selection({...config,mode:'sitestripe'},type,group),fallback:true,reason});
   }
   const json=await response.json();
   const items=(json.searchResult?.items ||json.searchItemsResult?.items ||[]).map(normalize).filter(Boolean);
@@ -83,6 +88,7 @@ export default async function handler(req,res){
   return res.status(200).setHeader('Cache-Control','public, s-maxage=1800').json(data);
  }catch(err){
   const status=err.message==='API_NOT_CONFIGURED'?503:502;
-  return res.status(status).json({error:'AMAZON_UNAVAILABLE',message:'Dati Amazon temporaneamente non disponibili.'});
+  return res.status(200).json({...selection({...config,mode:'sitestripe'},type,group),fallback:true,reason:'AMAZON_UNAVAILABLE'});
  }
 }
+
