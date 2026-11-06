@@ -34,6 +34,18 @@ function start(){
   const counter=$('#typeResultsCount');if(counter)counter.textContent=num+' tipologie disponibili';
  }
  [keyword,cat,budget,age,festival,occasion].forEach(n=>n&&n.addEventListener(n===keyword?'input':'change',filterTypes));
+ const reset=$('#filterReset');
+ if(reset)reset.addEventListener('click',()=>{
+  if(keyword)keyword.value='';
+  if(cat)cat.value='all';
+  if(budget)budget.value='999999';
+  if(age)age.value='all';
+  if(festival)festival.value='all';
+  if(occasion)occasion.value='all';
+  if(window.history?.replaceState)window.history.replaceState(null,'',location.pathname);
+  filterTypes();
+  keyword?.focus();
+ });
  filterTypes();
  const ca=$('#compareTypeA'),cb=$('#compareTypeB'),pane=$('#comparePanes');
  if(ca&&cb&&pane){ca.value='speaker-bluetooth';cb.value='microfoni-karaoke';
