@@ -165,18 +165,18 @@ const server=http.createServer(async(req,res)=>{
   }
   if(pathname==='/robots.txt'){
     return serveText(res,indexable
-      ?'User-agent: *\\nDisallow: /admin/\\nDisallow: /api/\\nDisallow: /calendario/\\nSitemap: '+canonicalSite+'/sitemap.xml\\n'
-      :'User-agent: *\\nDisallow: /\\n');
+      ?'User-agent: *\nDisallow: /admin/\nDisallow: /api/\nDisallow: /calendario/\nSitemap: '+canonicalSite+'/sitemap.xml\n'
+      :'User-agent: *\nDisallow: /\n');
   }
   if(pathname==='/sitemap.xml'){
     if(!indexable)return reply(res,404,{error:'SITEMAP_NOT_PUBLISHED'});
-    const locations=indexPaths.map(p=>'  <url><loc>'+canonicalSite+p+'</loc></url>').join('\\n');
-    return serveText(res,'<?xml version="1.0" encoding="UTF-8"?>\\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\\n'+locations+'\\n</urlset>\\n','application/xml; charset=utf-8');
+    const locations=indexPaths.map(p=>'  <url><loc>'+canonicalSite+p+'</loc></url>').join('\n');
+    return serveText(res,'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+locations+'\n</urlset>\n','application/xml; charset=utf-8');
   }
   if(pathname==='/ads.txt'){
-    const id=/^ca-pub-(\\d{8,22})$/.exec(process.env.ADSENSE_CLIENT||'');
+    const id=/^ca-pub-(\d{8,22})$/.exec(process.env.ADSENSE_CLIENT||'');
     if(!indexable||process.env.ADS_MODE!=='adsense'||!id)return reply(res,404,{error:'ADS_TXT_NOT_CONFIGURED'});
-    return serveText(res,'google.com, pub-'+id[1]+', DIRECT, f08c47fec0942fa0\\n');
+    return serveText(res,'google.com, pub-'+id[1]+', DIRECT, f08c47fec0942fa0\n');
   }
   if(pathname==='/health')return reply(res,200,{ok:true,service:'cosaregalo',environment:process.env.NODE_ENV||'development'});
   if(handlers.has(pathname))return api(req,res,pathname,url.searchParams);
