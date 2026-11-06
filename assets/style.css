@@ -364,3 +364,76 @@ body{font-size:16px;color:#24394e}
  .cr-social-link{width:30px;height:30px}
 }
 .home-category-section{margin-top:34px}
+
+/* CosaRegalo v6.7 — readability first; remove yellow editorial panels. */
+:root{
+ --title:'Nunito Sans',Arial,Helvetica,sans-serif;
+ --text:Arial,Helvetica,sans-serif;
+ --muted:#40576d;
+ --ink:#23384b;
+}
+body{font-family:var(--text);font-size:16px;line-height:1.7;color:var(--ink);font-weight:400}
+h1,h2,h3{font-family:var(--title);letter-spacing:-.018em;line-height:1.17}
+p,li,dd,dt{line-height:1.7}
+.page-head p,.section-title p,.guide-copy p,.type-card-info p,
+.product-excerpt,.category-grid p,.occasion-grid p,
+.reading-copy p,.type-page-hero-copy p,.category-highlight-text p,
+.amazon-product-desc p,.model-row p,.type-legend,
+.compare-feature-copy p,.compare-intro p,.deals-method,
+.disclosure-box p,.guide-callout p,.takeaway p,.article-conclusion p,
+.article-body p,.footer-grid p{font-size:15px;line-height:1.7}
+.eyebrow,.micro,.article-meta,.sort-label,.crumb,.type-meta,
+.product-sub,.price-label,.product-origin,.amazon-timestamp,
+.image-label,.model-notice,.type-preview-qa,.tiny-note,.aside-note,
+.category-grid span,.occasion-grid span,.footer-grid a,
+.footer-bottom,.underlink,.text-arrow,.nav-end{font-size:12px;line-height:1.5;letter-spacing:.01em}
+.nav-menu a,.header-actions a{font-size:14px}
+.announcement,.announcement .container>span:first-child{font-size:12px}
+.top-search input,.hero-search input,.catalog-controls input,
+.catalog-controls select,.gift-filter-panel .filter-field input,
+.gift-filter-panel .filter-field select{font-size:16px}
+.hero-left>p{font-size:16px;line-height:1.75}
+.reading-copy{font-size:16px;line-height:1.8}
+.reading-copy p,.reading-copy li{font-size:16px;line-height:1.8}
+.guide-copy p,.type-card-info p,.home-category-description,
+.home-category-header p,.home-category-section p{color:#344c62}
+.eyebrow,.micro,.crumb,.article-meta,.type-meta,.type-legend,
+.tiny-note,.aside-note,.image-label{color:#425a70}
+.hero .eyebrow.light,.hero .micro{color:#f1f6fb}
+.category-grid span,.occasion-grid span{color:#344a60}
+.price-label,.demo-price small{color:#485c70}
+.hero-feature-label{font-size:12px}
+.footer-grid p,.footer-grid a,.footer-bottom{color:#eff4f8}
+.site-footer .footer-bottom{font-size:12px}
+
+/* Neutral content cards, no yellow filled boxes or vertical accent bars. */
+.disclosure-box,.reading-copy .takeaway,.reading-copy .article-conclusion,
+.guide-callout,.type-preview-qa,.tone-yellow,.category-grid a:nth-child(2),
+.occasion-grid a:nth-child(3n+2),.model-num,.price-cap,
+.type-page-note,.editorial-note,.tip-box,.help-box{
+ background:#fff!important;
+ color:#263f55;
+ border:1px solid #dce5ed!important;
+ border-left:1px solid #dce5ed!important;
+ border-radius:12px;
+ box-shadow:0 4px 15px rgba(31,56,77,.035);
+}
+.type-preview-qa{padding:14px 16px;font-size:13px}
+.reading-copy .takeaway,.reading-copy .article-conclusion,.guide-callout,
+.disclosure-box{padding:22px 24px}
+.reading-copy .takeaway>span,.reading-copy .article-section-index{
+ color:#365b78;font-size:12px
+}
+.budget-links a:hover,.category-grid a:hover,.occasion-grid a:hover{
+ background:#f1f5f9!important
+}
+.hero-search button,.top-search button,.reset-btn,.yellow-btn,
+.product-cta:hover,.amazon-btn,.type-open,.home-finder-controls button{
+ /* Yellow is intentionally reserved for interactions. */
+ color:#1b3347
+}
+@media(max-width:760px){
+ body{font-size:16px}
+ .section-title p,.type-card-info p,.guide-copy p,.home-category-description{font-size:14px}
+ .footer-grid p,.footer-grid a{font-size:14px}
+}
