@@ -5,9 +5,11 @@
   "type": "module",
   "description": "CosaRegalo HTML and Node.js application on SiteGround GoGeek",
   "scripts": {
-    "start": "node server.mjs"
+    "start": "node server.mjs",
+    "test": "node --test"
   },
   "engines": {
     "node": ">=20"
   }
 }
+
