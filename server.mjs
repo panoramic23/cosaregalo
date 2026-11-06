@@ -13,6 +13,45 @@ const port=Number(process.env.PORT||3000);
 const handlers=new Map([['/api/products',products],['/api/deals',deals],['/api/track',track],['/api/admin',admin]]);
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.ico':'image/x-icon','.txt':'text/plain; charset=utf-8','.xml':'application/xml; charset=utf-8','.csv':'text/csv; charset=utf-8'};
 const blocked=new Set(['api','lib','content','node_modules','.git']);
+
+const socialProfiles=[
+ ['instagram','Instagram','SOCIAL_INSTAGRAM_URL','instagram.com','<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/>'],
+ ['tiktok','TikTok','SOCIAL_TIKTOK_URL','tiktok.com','<path d="M14 3c.4 3.1 1.8 4.7 5 5v3.2c-2.1-.1-3.7-.8-5-1.9V16a5 5 0 1 1-5-5h1v3.3a2 2 0 1 0 1 1.7V3z"/>'],
+ ['pinterest','Pinterest','SOCIAL_PINTEREST_URL','pinterest.com','<circle cx="12" cy="12" r="9"/><path d="M9 20l2-8c-.5-1.6 0-4 2.4-4 3.8 0 2.7 5.5-.3 5.5-.7 0-1.2-.3-1.5-.9M9.3 10a4.8 4.8 0 0 1 4-3"/>']
+];
+function safeSocialUrl(value,domain){
+ try{const u=new URL(value);if(u.protocol!=='https:'||u.username||u.password)return '';
+  if(u.hostname!==domain&&!u.hostname.endsWith('.'+domain)&&!(domain==='pinterest.com'&&(u.hostname==='pinterest.it'||u.hostname.endsWith('.pinterest.it'))))return '';
+  return u.href;
+ }catch{return '';}
+}
+const escapeAttr=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+function socialBlock(){
+ const links=socialProfiles.map(([id,label,env,domain,svg])=>{
+  const url=safeSocialUrl(process.env[env]||'',domain);
+  const image='<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+svg+'</svg>';
+  return url?'<a class="cr-social-link" href="'+escapeAttr(url)+'" aria-label="'+label+'" target="_blank" rel="noopener noreferrer">'+image+'</a>':
+   '<span class="cr-social-link is-inactive" role="img" aria-label="'+label+' (profilo da collegare)" title="'+label+' — profilo da collegare">'+image+'</span>';
+ }).join('');
+ return '<div class="cr-socials" aria-label="Seguici sui social"><span class="cr-social-label">Seguici</span>'+links+'</div>';
+}
+const publicAds={
+ mode:['adsense','cj'].includes(process.env.ADS_MODE)?process.env.ADS_MODE:'off',
+ adsense:{
+  client:/^ca-pub-\d{8,22}$/.test(process.env.ADSENSE_CLIENT||'')?process.env.ADSENSE_CLIENT:'',
+  slots:Object.fromEntries([
+   ['home-top','ADSENSE_SLOT_HOME_TOP'],['home-middle','ADSENSE_SLOT_HOME_MIDDLE'],
+   ['article-inline','ADSENSE_SLOT_ARTICLE_INLINE'],['site-bottom','ADSENSE_SLOT_SITE_BOTTOM']
+  ].map(([k,v])=>[k,/^\d{8,20}$/.test(process.env[v]||'')?process.env[v]:'']))
+ },
+ cj:{
+  link:/^https:\/\//i.test(process.env.CJ_BANNER_LINK||'')?process.env.CJ_BANNER_LINK:'',
+  image:/^https:\/\//i.test(process.env.CJ_BANNER_IMAGE||'')?process.env.CJ_BANNER_IMAGE:'',
+  alt:(process.env.CJ_BANNER_ALT||'Banner pubblicitario').slice(0,100)
+ }
+};
+const publicAdsJson=JSON.stringify(publicAds).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');
+
 function reply(res,status,data){res.statusCode=status;res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');res.end(JSON.stringify(data));}
 async function receiveJSON(req){
   let size=0;const pieces=[];
@@ -76,6 +115,15 @@ async function staticFile(req,res,pathname){
        .replace(/Le schede della preview e i prezzi sono dimostrativi\. Il progetto definitivo non deve inventare recensioni, test o prezzi\./g,'I prezzi e le offerte vengono mostrati solo quando verificabili; non pubblichiamo recensioni, test o sconti inventati.');
       if(!html.includes('href="'+prefix+'privacy-policy/index.html"') && !html.includes('href="/privacy-policy/"')){
         html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/, '$1<a href="'+prefix+'privacy-policy/index.html">Privacy policy</a><a href="'+prefix+'cookie-policy/index.html">Cookie policy</a><a href="#" data-cookie-settings>Preferenze cookie</a>');
+      }
+      if(html.includes('class="announcement"')&&!html.includes('class="cr-socials"')){
+        html=html.replace(/(<div class="announcement"><div class="container">)([\s\S]*?)(<\/div><\/div>)/,
+          (match,start,inside,end)=>start+inside+socialBlock()+end);
+      }
+      // The configuration contains only public publisher IDs / banner URLs; never secrets.
+      if(!html.includes('/assets/ads.js')){
+        html=html.replace('</body>',
+          '<script>window.CR_ADS_CONFIG='+publicAdsJson+';</script><script defer src="/assets/ads.js"></script></body>');
       }
       bytes=Buffer.from(html,'utf8');
     }
