@@ -116,6 +116,13 @@ async function staticFile(req,res,pathname){
       if(!html.includes('href="'+prefix+'privacy-policy/index.html"') && !html.includes('href="/privacy-policy/"')){
         html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/, '$1<a href="'+prefix+'privacy-policy/index.html">Privacy policy</a><a href="'+prefix+'cookie-policy/index.html">Cookie policy</a><a href="#" data-cookie-settings>Preferenze cookie</a>');
       }
+      // Single footer navigation across original pages and new legal pages.
+      // The editorial calendar is internal, not a public navigation item.
+      html=html.replace(/<a href="[^"]*calendario\/index\.html">Piano editoriale<\/a>/g,'');
+      if(html.includes('<footer class="site-footer">')&&!html.includes('>Amministrazione</a>')){
+        const adminHref=prefix+'admin/index.html';
+        html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/,'$1<a href="'+adminHref+'" rel="nofollow">Amministrazione</a>');
+      }
       if(html.includes('class="announcement"')&&!html.includes('class="cr-socials"')){
         html=html.replace(/(<div class="announcement"><div class="container">)([\s\S]*?)(<\/div><\/div>)/,
           (match,start,inside,end)=>start+inside+socialBlock()+end);
