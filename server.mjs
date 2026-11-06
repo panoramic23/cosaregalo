@@ -70,7 +70,10 @@ async function staticFile(req,res,pathname){
        .replace(/<div class="demo-notice">[\s\S]*?<\/div><\/div>/g,'')
        .replace(/<span>© 2026 CosaRegalo · Anteprima HTML, non negozio online\.<\/span>/g,'<span>© 2026 CosaRegalo</span>')
        .replace(/<span>Pubblicazione automatica e prezzi live non ancora attivi\.<\/span>/g,'<span>Powered by <a href="https://www.panoramicweb.it/" target="_blank" rel="noopener noreferrer">Panoramic</a></span>')
-       .replace(/GUIDE UTILI, PREZZI DA VERIFICARE/g,'GUIDE, IDEE REGALO E CONFRONTI');
+       .replace(/GUIDE UTILI, PREZZI DA VERIFICARE/g,'GUIDE, IDEE REGALO E CONFRONTI')
+       .replace(/<span class="image-label">ANTEPRIMA<\/span>/g,'<span class="image-label">IMMAGINE ILLUSTRATIVA</span>')
+       .replace(/Anteprima dimostrativa\./g,'Guide e confronti di CosaRegalo.')
+       .replace(/Le schede della preview e i prezzi sono dimostrativi\. Il progetto definitivo non deve inventare recensioni, test o prezzi\./g,'I prezzi e le offerte vengono mostrati solo quando verificabili; non pubblichiamo recensioni, test o sconti inventati.');
       if(!html.includes('href="'+prefix+'privacy-policy/index.html"') && !html.includes('href="/privacy-policy/"')){
         html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/, '$1<a href="'+prefix+'privacy-policy/index.html">Privacy policy</a><a href="'+prefix+'cookie-policy/index.html">Cookie policy</a><a href="#" data-cookie-settings>Preferenze cookie</a>');
       }
