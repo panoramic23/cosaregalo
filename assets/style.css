@@ -180,3 +180,19 @@
 
 /* Super offerte: percentuale di risparmio in evidenza */
 .verified-deal-badge{display:inline-block;background:#ffdb53;color:#172535;border-radius:7px;padding:7px 13px;margin:0 0 12px;font:900 26px/1.2 var(--title);box-shadow:0 2px 0 #c69b20}.deal-metrics b{font-size:clamp(74px,9vw,106px);letter-spacing:-.055em;text-shadow:0 3px 20px rgba(0,0,0,.12)}
+
+/* CosaRegalo v6.2 — editorial callouts without yellow left borders.
+   Yellow remains an accent on CTAs, badges and highlighted discounts. */
+.disclosure-box,
+.reading-copy .takeaway,
+.reading-copy .article-conclusion,
+.guide-callout,
+.notice {
+  background:#fff;
+  color:var(--ink);
+  border:1px solid var(--line);
+  border-left:1px solid var(--line);
+  border-radius:12px;
+  box-shadow:0 5px 18px rgba(28,52,77,.035);
+}
+.disclosure-box strong,.reading-copy .takeaway strong,.reading-copy .article-conclusion strong{color:var(--navy)}
