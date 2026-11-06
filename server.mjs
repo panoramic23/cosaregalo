@@ -60,7 +60,13 @@ async function staticFile(req,res,pathname){
   try{
     const info=await stat(file);
     if(!info.isFile())return reply(res,404,{error:'NOT_FOUND'});
-    const bytes=await readFile(file);
+    let bytes=await readFile(file);
+    // Shared header text is removed from every HTML page at the server level.
+    // Keep the informative affiliate notice in the footer and dedicated pages.
+    if(extname(file).toLowerCase()==='.html'){
+      const html=bytes.toString('utf8').replace(/<span>Scopri il nostro metodo\s*·\s*<a\s+href="[^"]*">Come funziona<\/a><\/span>/g,'');
+      bytes=Buffer.from(html,'utf8');
+    }
     res.statusCode=200;
     res.setHeader('Content-Type',mime[extname(file).toLowerCase()]||'application/octet-stream');
     res.setHeader('X-Content-Type-Options','nosniff');
