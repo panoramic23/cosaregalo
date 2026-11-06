@@ -58,7 +58,24 @@ export default async function handler(req,res){
   const response=await fetch('https://creatorsapi.amazon/catalog/v1/searchItems',{
    method:'POST',headers:{'Authorization':auth,'Content-Type':'application/json','x-marketplace':MARKET},
    body:JSON.stringify(payload),signal:AbortSignal.timeout(15000)});
-  if(!response.ok){res.status(502).json({error:'AMAZON_API_ERROR',status:response.status});return;}
+  if(!response.ok){
+   // Amazon returns a machine-readable 'reason' for denied requests.
+   // Expose only documented, whitelisted reason codes. Never expose tokens,
+   // credentials, request headers, or unfiltered remote error messages.
+   let detail={};
+   try{detail=await response.json();}catch{}
+   const allowedReasons=new Set([
+    'AssociateNotEligible','AuthorizationFailed','InvalidAssociate',
+    'InvalidPartnerTag','FieldValidationFailed','UnauthorizedException',
+    'TokenExpired','InvalidToken','InvalidIssuer','UnsupportedClient',
+    'InvalidClient','MissingCredential','Other'
+   ]);
+   const reason=typeof detail?.reason==='string'&&allowedReasons.has(detail.reason)?detail.reason:'NotProvided';
+   const safeType=new Set(['AccessDeniedException','ValidationException','UnauthorizedException','ThrottleException']);
+   const amazonType=safeType.has(detail?.type)?detail.type:'NotProvided';
+   console.warn('Amazon Creators API rejected request',response.status,amazonType,reason);
+   return res.status(502).json({error:'AMAZON_API_ERROR',status:response.status,amazonType,reason});
+  }
   const json=await response.json();
   const items=(json.searchResult?.items ||json.searchItemsResult?.items ||[]).map(normalize).filter(Boolean);
   const data={source:'amazon-creators-api',type,group,items,checkedAt:new Date().toISOString()};
