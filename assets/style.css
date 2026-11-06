@@ -229,3 +229,31 @@ body{font-size:16px;color:#24394e}
 .cr-cookie-settings small{display:block;color:#506478;font-size:12px}
 .site-footer a[data-cookie-settings]{cursor:pointer}
 @media(max-width:540px){.cr-cookie-banner{left:8px;right:8px;bottom:8px;padding:19px 15px}.cr-cookie-actions button{flex:1 1 100%}.privacy-article{padding-top:30px}}
+
+/* CosaRegalo v6.4 — centered header search + multi-facet homepage selector */
+@media(min-width:1081px){
+ .top-inner{position:relative;justify-content:space-between}
+ .top-inner .top-search{position:absolute;left:50%;transform:translateX(-50%);margin:0;width:min(540px,42vw);max-width:none;flex:none}
+ .top-inner .header-actions{margin-left:auto}
+}
+@media(min-width:761px) and (max-width:1080px){
+ .top-inner{display:grid;grid-template-columns:minmax(150px,1fr) minmax(230px,1.35fr) minmax(145px,1fr);column-gap:18px}
+ .top-inner .top-search{margin:0;width:100%;max-width:none}
+ .top-inner .header-actions{justify-content:flex-end;margin-left:0}
+}
+@media(max-width:760px){.top-inner .top-search{position:static;transform:none;width:100%;max-width:none}}
+.home-finder{margin:32px 0 30px;padding:27px 28px;background:#fff;border:1px solid #dce4ec;border-radius:15px;box-shadow:0 4px 15px rgba(23,50,76,.04)}
+.home-finder-intro h2{font:800 clamp(25px,2.7vw,35px)/1.15 var(--title);margin:8px 0}
+.home-finder-intro p{color:#40566b;font-size:15px;margin:0 0 21px}
+.home-finder-controls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr)) auto;gap:11px;align-items:end}
+.home-finder-controls label{display:grid;gap:7px;font-weight:900;color:#243e56;font-size:13px;min-width:0}
+.home-finder-controls select{width:100%;min-width:0;height:44px;border:1px solid #bdcedd;border-radius:8px;padding:0 10px;background:#fff;color:#263d54;font-size:14px}
+.home-finder-controls button{background:var(--yellow);color:var(--navy);border:0;border-radius:8px;padding:10px 17px;height:44px;font-weight:900;white-space:nowrap}
+.home-finder-controls button:hover{background:#f3c725}
+.catalog-controls{background:#fff;border:1px solid #dce4ec;border-radius:12px;padding:19px;gap:12px}
+.catalog-controls label{color:#2b435a;font-size:13px}
+.catalog-controls input,.catalog-controls select{font-size:14px;color:#253e55;border-color:#bdcedd}
+.type-results-count{font-size:14px;color:#344d63;font-weight:800;margin-top:15px}
+@media(max-width:1180px){.home-finder-controls{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.home-finder{padding:21px 16px}.home-finder-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.home-finder-controls button{grid-column:1/-1}.catalog-controls{display:grid;grid-template-columns:1fr 1fr}.catalog-controls label{grid-column:auto}.catalog-controls input,.catalog-controls select{min-width:0}}
+@media(max-width:460px){.home-finder-controls,.catalog-controls{grid-template-columns:1fr}}
