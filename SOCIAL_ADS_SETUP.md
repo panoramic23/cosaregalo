@@ -28,6 +28,9 @@ Spazi predisposti:
 Gli spazi rimangono **completamente invisibili** se il sistema pubblicitario è disattivato o non configurato.
 
 ### Google AdSense
+
+**Aggiornamento:** è ora disponibile l'integrazione con la CMP ufficiale Google Privacy & Messaging. Per attivarla, seguire **[GOOGLE_CMP_SETUP.md](GOOGLE_CMP_SETUP.md)**. In modalità Google CMP il tag AdSense può essere caricato per visualizzare il messaggio di consenso, anche quando gli spazi pubblicitari sono spenti; il precedente banner personalizzato viene disabilitato.
+
 Configura solo identificativi pubblici ricevuti da AdSense, non password o chiavi segrete.
 
 ```env
@@ -39,9 +42,9 @@ ADSENSE_SLOT_ARTICLE_INLINE=3456789012
 ADSENSE_SLOT_SITE_BOTTOM=4567890123
 ```
 
-I numeri sono **esempi**. Ogni slot deve essere creato e approvato nel proprio account. Il codice Google viene caricato dal browser solo dopo il consenso separato alla pubblicità.
+I numeri sono **esempi**. Ogni slot deve essere creato e approvato nel proprio account. In modalità personalizzata precedente, gli spazi vengono avviati dopo consenso locale; in modalità CMP Google il tag necessario al messaggio è caricato prima, e la CMP gestisce i segnali IAB TCF per AdSense.
 
-**IMPORTANTE (UE/SEE):** Prima di attivare AdSense per visitatori dello Spazio economico europeo, del Regno Unito o della Svizzera, integrare una CMP certificata da Google, compatibile con le sue esigenze di raccolta del consenso (incluso IAB TCF, quando richiesto). Il banner custom attuale è una base tecnica e **non equivale a una CMP Google certificata**. Per questa ragione lasciare `ADS_MODE=off` fino al collaudo della soluzione CMP e delle policy aggiornate.
+**IMPORTANTE (UE/SEE):** Prima di attivare AdSense per visitatori dello Spazio economico europeo, del Regno Unito o della Svizzera, integrare una CMP certificata da Google, compatibile con le sue esigenze di raccolta del consenso (incluso IAB TCF, quando richiesto). Il banner custom attuale è una base tecnica e **non equivale a una CMP Google certificata**. L'integrazione certificata è descritta in `GOOGLE_CMP_SETUP.md`. Lasciare `ADS_MODE=off` finché il messaggio Google non è stato pubblicato e il consenso non è stato collaudato.
 
 ### CJ (Commission Junction)
 Carica un creativo HTML/image approvato dalla campagna CJ e ricava i suoi veri URL (landing/tracking e immagine).
