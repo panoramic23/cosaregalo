@@ -7,10 +7,14 @@ Sito editoriale per idee regalo e super offerte Amazon. Origine: pacchetto HTML 
 - `assets/`: CSS, JS, immagini
 - `content/`: piano editoriale e cataloghi
 - `admin/`: pannello gestionale, da proteggere prima della pubblicazione
-- `api/`, `lib/`: funzioni Node progettate per runtime Vercel; **richiedono un adattamento a un server Node persistente su SiteGround** prima di poterle attivare
+- `api/`, `lib/`: handler Node esposti dall’adapter HTTP `server.mjs` su SiteGround
 
 ## Hosting previsto
 SiteGround GoGeek, dominio `cosa-regalo.it`. Il deposito del codice GitHub **non pubblica il sito**. Prima di andare online configurare deploy, Node runtime, HTTPS, accesso admin, Redis e credenziali Amazon.
+
+## Modalità provvisoria SiteStripe
+
+Catalogo predefinito senza chiamate Amazon e senza link non verificati. Configurazione da admin con Redis oppure da `content/sitestripe.json`; istruzioni, verifica manuale e ritorno alla futura API in [SITESTRIPE.md](SITESTRIPE.md). Eseguire `npm test` per il collaudo automatico.
 
 ## Amazon
 Creators API (EU) con ID/Secret/Version; partner tag `230b7-21`. Keepa o fonte storica verificabile richiesta per dichiarare sconti >=50%; non pubblicare offerte fittizie. I report Amazon Associates non sono esposti da Creators API.
@@ -34,3 +38,4 @@ Il sito usa il runtime Node.js nativo e **non richiede Vercel**. Il server HTTP 
 - La dashboard usa un token server-side: configurare un token casuale robusto, accesso HTTPS e ulteriori protezioni prima della produzione.
 - Nessuna offerta viene pubblicata senza verifica di prezzo, evidenza storica e soglia minima −50%.
 - Test end-to-end di deploy e API non ancora eseguiti sul runtime SiteGround.
+
