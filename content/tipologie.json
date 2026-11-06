@@ -1,0 +1,557 @@
+{
+  "affiliate_tag": "230b7-21",
+  "status": "preview editorial no live Amazon data",
+  "categories": [
+    {
+      "slug": "speaker-bluetooth",
+      "title": "Speaker Bluetooth",
+      "label": "Audio da portare ovunque",
+      "desc": "Le casse portatili sono un regalo versatile per casa, viaggi e tempo libero. Confronta autonomia, dimensioni e resistenza all’acqua prima di scegliere.",
+      "cat": "tech",
+      "budget": "25–150 €",
+      "min": 25,
+      "tag": "AUDIO & TECNOLOGIA",
+      "image": "speaker.webp",
+      "cover": "audio",
+      "models": [
+        {
+          "name": "JBL Go 4",
+          "why": "Compatto per zaino, viaggio e piccoli spazi.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=JBL+Go+4&tag=230b7-21"
+        },
+        {
+          "name": "JBL Flip 7",
+          "why": "Da valutare per un ascolto più pieno e un uso frequente.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=JBL+Flip+7&tag=230b7-21"
+        },
+        {
+          "name": "soundcore Boom 2",
+          "why": "Alternativa orientata a feste e utilizzo all’aperto.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=soundcore+Boom+2&tag=230b7-21"
+        },
+        {
+          "name": "Bose SoundLink Flex",
+          "why": "Per chi dà priorità alla portabilità con una proposta di fascia superiore.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Bose+SoundLink+Flex&tag=230b7-21"
+        }
+      ],
+      "faq": [
+        {
+          "q": "Come scegliere uno speaker Bluetooth da regalare?",
+          "a": "Parti da dove verrà utilizzato: scrivania, cucina, viaggio o giardino. In seguito confronta dimensioni, autonomia dichiarata, facilità dei comandi e protezione da acqua e polvere. Il modello più potente non è sempre quello più adatto."
+        },
+        {
+          "q": "Quanti watt servono per uno speaker Bluetooth?",
+          "a": "Il numero di watt da solo non racconta tutta la qualità sonora: contano anche dimensioni, efficienza dei driver e distorsione ai volumi elevati. In un regalo è più utile abbinare la categoria di speaker all’uso previsto che inseguire il dato più alto."
+        },
+        {
+          "q": "Uno speaker Bluetooth può essere usato al mare o in piscina?",
+          "a": "Controlla la certificazione IP dichiarata dal modello. Le sigle differenziano la protezione contro polvere e acqua e non rendono automaticamente sicuro qualsiasi utilizzo. Verifica sempre le indicazioni del produttore."
+        },
+        {
+          "q": "Quanto dura davvero la batteria?",
+          "a": "L’autonomia dichiarata dipende dalle condizioni di prova. Volume elevato, bassi accentuati e luci possono ridurla. Se il destinatario ascolta musica molte ore lontano da una presa, prediligi modelli che dichiarano una buona riserva di autonomia."
+        },
+        {
+          "q": "Meglio uno speaker portatile o uno smart speaker?",
+          "a": "Uno speaker Bluetooth portatile è pensato per muoversi anche senza Wi-Fi. Uno smart speaker ha spesso senso soprattutto in casa, per comandi vocali e servizi collegati: prima di regalarlo considera privacy e compatibilità con l’ecosistema domestico."
+        }
+      ],
+      "tips": [
+        "Dove verrà usato: casa, viaggio o esterno",
+        "Autonomia e praticità della ricarica",
+        "Protezione contro acqua e polvere",
+        "Peso, ingombro e qualità dei comandi"
+      ],
+      "sources": [
+        "https://www.altroconsumo.it/hi-tech/dispositivi-audio/cassa-bluetooth-come-scegliere",
+        "https://www.yeppon.it/guide-acquisti/guida-alla-scelta-degli-altoparlanti-bluetooth-e-dei-diffusori-wireless/"
+      ]
+    },
+    {
+      "slug": "microfoni-karaoke",
+      "title": "Microfoni karaoke",
+      "label": "Il regalo per cantare insieme",
+      "desc": "Un microfono karaoke è perfetto per feste e serate in famiglia. Prima di acquistarlo valuta se ha un altoparlante integrato e come si collega a telefono o TV.",
+      "cat": "tech",
+      "budget": "20–120 €",
+      "min": 20,
+      "tag": "MUSICA & DIVERTIMENTO",
+      "image": "karaoke.svg",
+      "cover": "karaoke",
+      "models": [
+        {
+          "name": "Xiaomi Karaoke Microphone",
+          "why": "Microfono con collegamento Bluetooth: controlla i dispositivi supportati.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Xiaomi+Karaoke+Microphone&tag=230b7-21"
+        },
+        {
+          "name": "BONAOK Wireless Karaoke Microphone",
+          "why": "Formato tutto-in-uno da valutare per giochi e piccole feste.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=BONAOK+Wireless+Karaoke+Microphone&tag=230b7-21"
+        },
+        {
+          "name": "JBL Wireless Microphone Set",
+          "why": "Set da valutare se si possiede già un sistema audio compatibile.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=JBL+Wireless+Microphone+Set&tag=230b7-21"
+        },
+        {
+          "name": "VTech Kidi SuperStar",
+          "why": "Soluzione orientata ai più piccoli: verificare versione ed età indicata.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=VTech+Kidi+SuperStar&tag=230b7-21"
+        }
+      ],
+      "faq": [
+        {
+          "q": "Come funziona un microfono karaoke Bluetooth?",
+          "a": "Dipende dal modello: alcuni integrano altoparlante ed effetti vocali, altri inviano la voce a una cassa o richiedono un ricevitore dedicato. Prima di scegliere verifica il tipo di uscita audio, la presenza di batteria e le istruzioni di accoppiamento."
+        },
+        {
+          "q": "Si può collegare un microfono karaoke alla TV?",
+          "a": "Non sempre. La presenza del Bluetooth sul televisore non garantisce il supporto al microfono in ingresso. Servono una combinazione compatibile di TV, app e sistema audio oppure un collegamento dedicato previsto dal prodotto."
+        },
+        {
+          "q": "Microfono karaoke per bambini: quale scegliere?",
+          "a": "Controlla indicazioni d’età, dimensioni, volume regolabile, materiali e sicurezza della batteria. Per un regalo destinato a bambini piccoli evita prodotti con componenti non adatti alla loro fascia d’età."
+        },
+        {
+          "q": "Serve una cassa separata per il karaoke?",
+          "a": "I microfoni tutto-in-uno hanno un proprio altoparlante, ma i modelli professionali o i set senza speaker richiedono un diffusore esterno. Verifica cosa è incluso: microfono, ricevitore, cavi e alimentazione."
+        },
+        {
+          "q": "Il microfono si collega anche allo smartphone?",
+          "a": "Molti modelli permettono l’uso con telefoni, ma le modalità cambiano: streaming della base musicale, registrazione della voce o entrambi. Controlla sempre la scheda tecnica per le funzioni effettive."
+        }
+      ],
+      "tips": [
+        "Altoparlante integrato o collegamento esterno",
+        "Compatibilità con smartphone, TV e app",
+        "Effetti voce, eco e controllo volume",
+        "Età, sicurezza e semplicità di utilizzo"
+      ],
+      "sources": [
+        "https://www.mi.com/it/support/faq/details/KA-26675/",
+        "https://www.altroconsumo.it/vita-privata-famiglia/mamme-e-bimbi/news/sicurezza-giocattoli"
+      ]
+    },
+    {
+      "slug": "kit-trucchi",
+      "title": "Trucchi e set make-up",
+      "label": "Bellezza, senza scegliere a caso",
+      "desc": "Trousse, palette e piccoli kit sono regali apprezzati da chi ama il make-up. Scegli colori versatili e controlla ingredienti e preferenze personali.",
+      "cat": "benessere",
+      "budget": "15–90 €",
+      "min": 15,
+      "tag": "BELLEZZA & MAKE-UP",
+      "image": "beauty.webp",
+      "cover": "beauty",
+      "models": [
+        {
+          "name": "Deborah Milano Make Up Jewel Box",
+          "why": "Trousse con più prodotti: verifica il contenuto della versione acquistata.",
+          "asin": "B0DHL7V69S",
+          "url": "https://www.amazon.it/dp/B0DHL7V69S?tag=230b7-21"
+        },
+        {
+          "name": "Maybelline New York Lash Sensational Sky High",
+          "why": "Mascara da considerare per un piccolo regalo beauty.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Maybelline+New+York+Lash+Sensational+Sky+High&tag=230b7-21"
+        },
+        {
+          "name": "Pupa Vamp! Mascara",
+          "why": "Una proposta per chi apprezza il make-up occhi.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Pupa+Vamp%21+Mascara&tag=230b7-21"
+        },
+        {
+          "name": "NYX Professional Makeup Butter Gloss",
+          "why": "Gloss da valutare come pensiero beauty, scegliendo la tonalità.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=NYX+Professional+Makeup+Butter+Gloss&tag=230b7-21"
+        }
+      ],
+      "faq": [
+        {
+          "q": "Quali trucchi regalare a chi non conosco benissimo?",
+          "a": "Meglio partire da accessori o prodotti con scelte di colore meno vincolanti. Fondotinta e correttore richiedono una conoscenza precisa dell’incarnato e del tipo di pelle; una confezione bella non sostituisce la compatibilità personale."
+        },
+        {
+          "q": "Meglio una trousse completa o singoli prodotti?",
+          "a": "La trousse dà varietà ma può contenere tonalità non utilizzate. Pochi prodotti scelti bene sono spesso più facili da adattare ai gusti di chi riceve il regalo. Considera anche formati e scadenza."
+        },
+        {
+          "q": "Come capire se un cosmetico è adatto a una pelle sensibile?",
+          "a": "Leggi l’elenco INCI e presta attenzione agli ingredienti verso cui la persona è sensibile o allergica. Un’etichetta “delicato” o “naturale” non è una garanzia assoluta: se non conosci la situazione della persona, evita promesse sulla tollerabilità."
+        },
+        {
+          "q": "Si possono regalare cosmetici a una ragazza molto giovane?",
+          "a": "Controlla le indicazioni del produttore e l’età del destinatario. I trucchi destinati a bambini possono rientrare anche nelle norme sui giocattoli; per qualsiasi cosmetico è importante verificare ingredienti e provenienza."
+        },
+        {
+          "q": "Come si controlla la durata di un prodotto make-up?",
+          "a": "Sulle confezioni trovi la scadenza, quando prevista, o il simbolo PAO che indica il periodo di utilizzo dopo l’apertura. Prima di regalare un set controlla confezione integra, istruzioni e informazioni del produttore."
+        }
+      ],
+      "tips": [
+        "Tonalità adatte ai gusti della persona",
+        "Ingredienti INCI e possibili sensibilità",
+        "Confezione, provenienza e scadenza",
+        "Qualità d’uso prima della quantità di pezzi"
+      ],
+      "sources": [
+        "https://www.altroconsumo.it/salute/cura-della-persona/consigli/cosmetici-occhio-agli-allergeni",
+        "https://m.media-amazon.com/images/I/511eUk5zx2L.pdf"
+      ]
+    },
+    {
+      "slug": "giochi-costruzioni",
+      "title": "Giochi di costruzioni",
+      "label": "Creatività pezzo dopo pezzo",
+      "desc": "Costruzioni, mattoncini e percorsi creativi aiutano a trasformare un regalo in un’attività. Valuta età consigliata, livello di difficoltà e spazio disponibile.",
+      "cat": "gioco",
+      "budget": "15–120 €",
+      "min": 15,
+      "tag": "GIOCATTOLI & CREATIVITÀ",
+      "image": "building.webp",
+      "cover": "toys",
+      "models": [
+        {
+          "name": "LEGO Classic 10696",
+          "why": "Scatola creativa con assortimento di mattoncini.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=LEGO+Classic+10696&tag=230b7-21"
+        },
+        {
+          "name": "LEGO Classic 11035",
+          "why": "Set da valutare per attività di costruzione libera.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=LEGO+Classic+11035&tag=230b7-21"
+        },
+        {
+          "name": "LEGO DUPLO Classic 10913",
+          "why": "Formato da valutare per le fasce d’età previste dal produttore.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=LEGO+DUPLO+Classic+10913&tag=230b7-21"
+        },
+        {
+          "name": "Ravensburger GraviTrax Starter Set",
+          "why": "Percorsi e costruzioni per chi ama sperimentare.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Ravensburger+GraviTrax+Starter+Set&tag=230b7-21"
+        }
+      ],
+      "faq": [
+        {
+          "q": "Quali costruzioni sono adatte a ogni fascia d’età?",
+          "a": "Le indicazioni di età sono un primo filtro indispensabile. Per i più piccoli esistono formati con pezzi più grandi; con l’età diventano interessanti set con istruzioni e sfide complesse. Rispetta sempre le avvertenze del produttore."
+        },
+        {
+          "q": "Meglio costruzioni libere o set con un modello preciso?",
+          "a": "Le costruzioni libere invitano a inventare e riutilizzare i pezzi; un set guidato permette di seguire un progetto. La scelta dipende dal carattere del bambino e dal piacere di creare o completare un obiettivo."
+        },
+        {
+          "q": "Come scegliere costruzioni senza sbagliare regalo?",
+          "a": "Considera interessi, esperienza con il gioco, tempo richiesto e luogo dove verrà conservato. Un set enorme non è ideale se non c’è spazio o se la persona preferisce attività rapide."
+        },
+        {
+          "q": "I mattoncini sono adatti ai bambini piccoli?",
+          "a": "Verifica chiaramente l’età consigliata, la presenza di piccole parti e tutte le avvertenze. Per i minori di tre anni i rischi di ingestione richiedono particolare attenzione."
+        },
+        {
+          "q": "Quali segnali controllare per la sicurezza?",
+          "a": "Verifica marcatura CE, indicazioni in italiano, età, dati del produttore e integrità della confezione. In caso di dubbi privilegia canali di vendita affidabili."
+        }
+      ],
+      "tips": [
+        "Età e avvertenze di sicurezza",
+        "Costruzione libera oppure sfida guidata",
+        "Complessità, numero di pezzi e spazio",
+        "Interessi: città, veicoli, fantasia, scienza"
+      ],
+      "sources": [
+        "https://www.altroconsumo.it/vita-privata-famiglia/mamme-e-bimbi/news/sicurezza-giocattoli"
+      ]
+    },
+    {
+      "slug": "cuffie-wireless",
+      "title": "Cuffie wireless",
+      "label": "Ascolto, studio e viaggio",
+      "desc": "Over-ear e on-ear possono essere un buon regalo tech, ma comfort e utilizzo contano più dei numeri. Valuta peso, autonomia e cancellazione del rumore.",
+      "cat": "tech",
+      "budget": "25–250 €",
+      "min": 25,
+      "tag": "AUDIO & TECNOLOGIA",
+      "image": "tech.webp",
+      "cover": "audio",
+      "models": [
+        {
+          "name": "Sony WH-1000XM5",
+          "why": "Da prendere in considerazione per isolamento e uso prolungato.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Sony+WH-1000XM5&tag=230b7-21"
+        },
+        {
+          "name": "JBL Tune 520BT",
+          "why": "Formato on-ear da valutare con budget più contenuto.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=JBL+Tune+520BT&tag=230b7-21"
+        },
+        {
+          "name": "soundcore Q20i",
+          "why": "Alternativa da confrontare per funzioni e comfort.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=soundcore+Q20i&tag=230b7-21"
+        },
+        {
+          "name": "Bose QuietComfort Headphones",
+          "why": "Una proposta per chi cerca ascolto e isolamento in viaggio.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Bose+QuietComfort+Headphones&tag=230b7-21"
+        }
+      ],
+      "faq": [
+        {
+          "q": "Cuffie on-ear o over-ear: che differenza c’è?",
+          "a": "Le on-ear appoggiano sui padiglioni auricolari; le over-ear circondano l’orecchio. Le seconde possono risultare comode per sessioni lunghe, ma dimensioni, peso e calore percepito variano da persona a persona."
+        },
+        {
+          "q": "Vale la pena la cancellazione del rumore?",
+          "a": "Può essere utile in treno, aereo o ambienti affollati, ma non tutti i sistemi funzionano allo stesso modo. Se il destinatario usa le cuffie soprattutto a casa, l’isolamento attivo potrebbe non essere indispensabile."
+        },
+        {
+          "q": "Come valutare la qualità del microfono?",
+          "a": "Se il regalo serve anche per chiamate e videoriunioni, leggi test indipendenti specifici sulla voce: una cuffia che suona bene non è automaticamente ideale per le conversazioni."
+        },
+        {
+          "q": "Quanta autonomia serve?",
+          "a": "Dipende dalle abitudini: viaggi frequenti e lunghi periodi senza ricarica rendono importante la batteria. Verifica anche ricarica rapida, tipo di connettore e utilizzo con cavo."
+        },
+        {
+          "q": "Le cuffie sono un regalo adatto a chi porta gli occhiali?",
+          "a": "Dipende dalla pressione dell’archetto e dai cuscinetti. Se possibile scegli un rivenditore con condizioni di reso chiare perché la vestibilità è molto personale."
+        }
+      ],
+      "tips": [
+        "Over-ear o on-ear in base alla persona",
+        "Comfort e peso nei lunghi ascolti",
+        "ANC e qualità microfono, se necessarie",
+        "Autonomia e praticità di ricarica"
+      ],
+      "sources": [
+        "https://www.yeppon.it/guide-acquisti/guida-alla-scelta-degli-altoparlanti-bluetooth-e-dei-diffusori-wireless/"
+      ]
+    },
+    {
+      "slug": "e-reader",
+      "title": "E-reader e lettori digitali",
+      "label": "Un regalo per chi ama leggere",
+      "desc": "Schermi e-ink, autonomia e librerie digitali: l’e-reader è un regalo utile se si conoscono le abitudini di lettura e l’ecosistema preferito.",
+      "cat": "tech",
+      "budget": "90–250 €",
+      "min": 90,
+      "tag": "LIBRI & TECNOLOGIA",
+      "image": "reader.webp",
+      "cover": "books",
+      "models": [
+        {
+          "name": "Amazon Kindle",
+          "why": "Da valutare per chi legge già nell’ecosistema Kindle.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Amazon+Kindle&tag=230b7-21"
+        },
+        {
+          "name": "Kindle Paperwhite",
+          "why": "Alternativa per chi desidera uno schermo più grande.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Kindle+Paperwhite&tag=230b7-21"
+        },
+        {
+          "name": "Kobo Clara BW",
+          "why": "Da confrontare con Kindle per formati ed ecosistema.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Kobo+Clara+BW&tag=230b7-21"
+        },
+        {
+          "name": "Kobo Libra Colour",
+          "why": "Per chi cerca una soluzione con display a colori.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Kobo+Libra+Colour&tag=230b7-21"
+        }
+      ],
+      "faq": [
+        {
+          "q": "Meglio Kindle o Kobo?",
+          "a": "La decisione dipende dalla libreria digitale che il destinatario utilizza già e dai formati dei libri. Prima di comprare un lettore, chiediti dove acquista i titoli e quanto desidera spostare i contenuti fra dispositivi."
+        },
+        {
+          "q": "Un e-reader affatica gli occhi come il telefono?",
+          "a": "Gli schermi e-ink hanno un comportamento diverso dai display tradizionali, ma la percezione di comfort resta personale. Contano anche dimensione dei caratteri, illuminazione e durata della lettura."
+        },
+        {
+          "q": "Quanti libri contiene un lettore digitale?",
+          "a": "Dipende dalla memoria e dalla dimensione dei file: romanzi testuali pesano meno di fumetti o PDF ricchi d’immagini. Per la narrativa ordinaria molti lettori offrono spazio sufficiente per una biblioteca ampia."
+        },
+        {
+          "q": "Si possono leggere PDF e fumetti?",
+          "a": "Non tutti i modelli gestiscono nello stesso modo impaginazione fissa, zoom e file a colori. Se il regalo è per chi legge manuali o fumetti, controlla dimensioni dello schermo e compatibilità."
+        },
+        {
+          "q": "Serve un abbonamento?",
+          "a": "Non necessariamente: puoi acquistare singoli libri digitali. Abbonamenti e servizi sono facoltativi e cambiano secondo la piattaforma."
+        }
+      ],
+      "tips": [
+        "Ecosistema e libreria già utilizzata",
+        "Dimensioni e definizione del display",
+        "Compatibilità dei formati",
+        "Illuminazione e autonomia"
+      ],
+      "sources": []
+    },
+    {
+      "slug": "cofanetti-benessere",
+      "title": "Cofanetti benessere",
+      "label": "Piccoli rituali da regalare",
+      "desc": "Set per il corpo e piccoli accessori da relax sono regali facili da personalizzare. Conta più la pertinenza dei prodotti che il numero di flaconi.",
+      "cat": "benessere",
+      "budget": "15–80 €",
+      "min": 15,
+      "tag": "BENESSERE & CURA",
+      "image": "wellness.webp",
+      "cover": "beauty",
+      "models": [
+        {
+          "name": "L’Occitane Crema Mani Karité",
+          "why": "Un piccolo regalo legato alla cura delle mani.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=L%E2%80%99Occitane+Crema+Mani+Karit%C3%A9&tag=230b7-21"
+        },
+        {
+          "name": "NIVEA Soft",
+          "why": "Prodotto semplice da valutare per un kit personale.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=NIVEA+Soft&tag=230b7-21"
+        },
+        {
+          "name": "La Roche-Posay Lipikar Baume AP+M",
+          "why": "Per chi conosce già la linea e desidera riacquistarla.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=La+Roche-Posay+Lipikar+Baume+AP%2BM&tag=230b7-21"
+        },
+        {
+          "name": "Rituals The Ritual of Sakura Gift Set",
+          "why": "Set regalo: controlla formati e contenuto della versione proposta.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Rituals+The+Ritual+of+Sakura+Gift+Set&tag=230b7-21"
+        }
+      ],
+      "faq": [
+        {
+          "q": "Qual è un buon cofanetto benessere da regalare?",
+          "a": "Un buon set è coerente con i gusti della persona: profumazioni, abitudini e tipo di prodotti utilizzati. Meglio pochi articoli selezionati che una confezione grande ma poco pertinente."
+        },
+        {
+          "q": "Come scegliere la profumazione?",
+          "a": "Se non conosci le preferenze, evita fragranze particolarmente intense e considera prodotti neutri o accessori. Le profumazioni sono personali e non è possibile prevedere la reazione di chi riceve il regalo."
+        },
+        {
+          "q": "Un cosmetico “naturale” è sempre più delicato?",
+          "a": "No: anche sostanze di origine naturale possono causare reazioni in persone sensibili. È più utile leggere l’INCI e valutare gli ingredienti in relazione alle esigenze individuali."
+        },
+        {
+          "q": "Cosa valutare nel rapporto qualità-prezzo?",
+          "a": "Confronta formati reali, quantità utilizzabile, funzionalità e confezione. Il numero di prodotti non basta: a volte i kit contengono soprattutto campioncini."
+        },
+        {
+          "q": "Meglio un cofanetto o un’esperienza benessere?",
+          "a": "Dipende dal destinatario. Un cofanetto funziona bene quando si conoscono le abitudini; un’esperienza può essere più personale, ma richiede disponibilità di tempo e attenzione alle condizioni di utilizzo."
+        }
+      ],
+      "tips": [
+        "Preferenze su profumazioni e texture",
+        "Composizione e INCI",
+        "Quantità effettiva per ciascun prodotto",
+        "Confezione regalo e scadenze"
+      ],
+      "sources": [
+        "https://www.altroconsumo.it/salute/cura-della-persona/consigli/cosmetici-occhio-agli-allergeni"
+      ]
+    },
+    {
+      "slug": "accessori-scrivania",
+      "title": "Accessori per la scrivania",
+      "label": "Regali utili ogni giorno",
+      "desc": "Un accessorio ben scelto può migliorare la postazione di studio o lavoro. Pensa a spazio, ergonomia e compatibilità invece di comprare un gadget casuale.",
+      "cat": "casa",
+      "budget": "15–150 €",
+      "min": 15,
+      "tag": "CASA & ORGANIZZAZIONE",
+      "image": "home.webp",
+      "cover": "home",
+      "models": [
+        {
+          "name": "Logitech Pebble Mouse 2 M350s",
+          "why": "Mouse compatto, da valutare per chi cambia spesso postazione.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Logitech+Pebble+Mouse+2+M350s&tag=230b7-21"
+        },
+        {
+          "name": "Logitech MX Keys Mini",
+          "why": "Tastiera compatta per chi scrive molto.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Logitech+MX+Keys+Mini&tag=230b7-21"
+        },
+        {
+          "name": "BenQ ScreenBar Halo",
+          "why": "Lampada da monitor: verifica ingombri e compatibilità.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=BenQ+ScreenBar+Halo&tag=230b7-21"
+        },
+        {
+          "name": "Anker 735 Charger",
+          "why": "Caricatore multiporta da confrontare per potenza e connettori.",
+          "asin": null,
+          "url": "https://www.amazon.it/s?k=Anker+735+Charger&tag=230b7-21"
+        }
+      ],
+      "faq": [
+        {
+          "q": "Quale accessorio da scrivania regalare a chi lavora da casa?",
+          "a": "Parti dal problema concreto: poca luce, troppe prese, cavi disordinati o scomodità. Un accessorio che risolve un’esigenza evidente vale spesso più di un oggetto puramente decorativo."
+        },
+        {
+          "q": "Come scegliere una lampada da monitor?",
+          "a": "Verifica lo spessore del monitor, il sistema di fissaggio, le regolazioni e l’eventuale necessità di alimentazione esterna. Se la scrivania è piccola, l’ingombro è decisivo."
+        },
+        {
+          "q": "Un mouse compatto è adatto a tutti?",
+          "a": "Non sempre: forma della mano, postura e ore di utilizzo influenzano la comodità. Per chi lavora molte ore al computer può servire un modello ergonomico dedicato."
+        },
+        {
+          "q": "Che differenza c’è fra una tastiera compatta e una standard?",
+          "a": "Una compatta libera spazio ma può sacrificare tasti dedicati e tastierino numerico. Sceglila conoscendo il tipo di lavoro e il sistema operativo utilizzato."
+        },
+        {
+          "q": "Come verificare la compatibilità di un caricatore?",
+          "a": "Controlla porte, standard supportati e potenza richiesta dal dispositivo. Non basta la somiglianza del connettore: la capacità di alimentazione è determinante."
+        }
+      ],
+      "tips": [
+        "Esigenza concreta e spazio disponibile",
+        "Compatibilità con PC e dispositivi",
+        "Materiali, ingombro e comodità d’uso",
+        "Cavi, porte e alimentazione"
+      ],
+      "sources": []
+    }
+  ]
+}

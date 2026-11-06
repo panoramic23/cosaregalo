@@ -1,0 +1,29 @@
+{
+  "site": "CosaRegalo",
+  "platform": "HTML statico, nessun WordPress",
+  "timezone": "Europe/Rome",
+  "daily_articles": 2,
+  "slots": [
+    "09:00",
+    "17:00"
+  ],
+  "publication_mode": "automatic_after_checks",
+  "quality_gates": [
+    "query intent validated from source data",
+    "source evidence for factual claims",
+    "product ASIN and link verified through authorized feed",
+    "original value and duplicate check",
+    "correct affiliate disclosure",
+    "no expired offer claims",
+    "legal and image rights checks",
+    "metadata and structured data checks"
+  ],
+  "affiliate_tag": "230b7-21",
+  "ready_for_unattended_publication": false,
+  "blockers": [
+    "no live product API credentials",
+    "no Trends/GSC data credentials",
+    "no publication hosting or repository configured",
+    "no approved production editorial model"
+  ]
+}

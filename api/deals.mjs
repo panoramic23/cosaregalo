@@ -1,0 +1,3 @@
+import {passesDeal} from '../lib/deals-policy.mjs';
+import {redis,configured,respond} from '../lib/store.mjs';
+export default async function handler(req,res){if(req.method!=='GET')return respond(res,405,{error:'METHOD_NOT_ALLOWED'});if(!configured())return respond(res,200,{items:[],source:'not-configured'});try{const list=await redis(['HGETALL','cr:deals']);const items=[];for(let i=1;i<(list||[]).length;i+=2){try{const d=JSON.parse(list[i]);const discountPercent=Math.round((1-d.price/d.referencePrice)*100);if(passesDeal(d))items.push({...d,discountPercent});}catch{}}return respond(res,200,{items,source:'verified-manual-review',updatedAt:new Date().toISOString()});}catch{return respond(res,200,{items:[],source:'storage-unavailable'});}}

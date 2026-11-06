@@ -1,0 +1,10 @@
+{
+ "version":2,
+ "rewrites":[
+  {"source":"/api/products","destination":"/api/products.mjs"},
+  {"source":"/api/deals","destination":"/api/deals.mjs"},
+  {"source":"/api/track","destination":"/api/track.mjs"},
+  {"source":"/api/admin","destination":"/api/admin.mjs"},
+  {"source":"/outlet","destination":"/offerte/index.html"}
+ ]
+}

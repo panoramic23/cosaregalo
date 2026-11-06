@@ -1,0 +1,285 @@
+{
+  "tag": "230b7-21",
+  "groups": {
+    "microfoni-karaoke": [
+      {
+        "id": "bambini",
+        "title": "Microfoni karaoke per bambini",
+        "lead": "Modelli semplici, con volume regolabile e indicazioni di età chiare. Privilegia maneggevolezza e sicurezza.",
+        "keywords": "microfono karaoke bambini bluetooth altoparlante",
+        "examples": [
+          "VTech Kidi SuperStar",
+          "Microfono karaoke per bambini Bluetooth"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "sotto-50",
+        "title": "Microfoni karaoke sotto i 50 €",
+        "lead": "Per un regalo divertente senza esagerare: verifica connettività, qualità costruttiva e accessori inclusi.",
+        "keywords": "microfono karaoke wireless bluetooth altoparlante",
+        "examples": [
+          "BONAOK microfono karaoke",
+          "Microfono karaoke portatile"
+        ],
+        "maxPrice": 50
+      },
+      {
+        "id": "feste",
+        "title": "Karaoke e set per feste",
+        "lead": "Soluzioni per cantare in coppia o in gruppo, spesso con ricevitore o diffusore dedicato.",
+        "keywords": "kit karaoke due microfoni wireless cassa",
+        "examples": [
+          "JBL Wireless Microphone Set",
+          "Set karaoke con due microfoni"
+        ],
+        "maxPrice": null
+      }
+    ],
+    "speaker-bluetooth": [
+      {
+        "id": "portatili",
+        "title": "Speaker piccoli e portatili",
+        "lead": "Da portare nello zaino o usare sulla scrivania: cerca peso contenuto e comandi immediati.",
+        "keywords": "speaker bluetooth mini portatile",
+        "examples": [
+          "JBL Go 4",
+          "Anker soundcore Select"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "sotto-50",
+        "title": "Speaker Bluetooth sotto i 50 €",
+        "lead": "Per un regalo pratico: autonomia, certificazioni e qualità a volumi normali contano più del numero di watt.",
+        "keywords": "cassa bluetooth portatile",
+        "examples": [
+          "JBL Go 4",
+          "soundcore speaker portatile"
+        ],
+        "maxPrice": 50
+      },
+      {
+        "id": "feste",
+        "title": "Speaker per feste e all’aperto",
+        "lead": "Per picnic, terrazzi e occasioni con amici, valuta robustezza, ingombro e resa dei bassi.",
+        "keywords": "speaker bluetooth party outdoor",
+        "examples": [
+          "soundcore Boom 2",
+          "JBL Flip 7"
+        ],
+        "maxPrice": null
+      }
+    ],
+    "kit-trucchi": [
+      {
+        "id": "principianti",
+        "title": "Set make-up per principianti",
+        "lead": "Palette e cofanetti con una scelta versatile, evitando tonalità molto personali come il fondotinta.",
+        "keywords": "set trucchi make up principianti trousse",
+        "examples": [
+          "Deborah Milano Make Up Jewel Box",
+          "Trousse make-up"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "sotto-50",
+        "title": "Trucchi e beauty set sotto i 50 €",
+        "lead": "Piccoli kit e accessori utili, con attenzione alle preferenze e agli ingredienti.",
+        "keywords": "cofanetto trucchi regalo palette",
+        "examples": [
+          "Maybelline Sky High",
+          "NYX Butter Gloss"
+        ],
+        "maxPrice": 50
+      },
+      {
+        "id": "accessori",
+        "title": "Pennelli, organizer e accessori",
+        "lead": "Un’alternativa a un cosmetico quando non conosci colori o formulazioni preferite.",
+        "keywords": "set pennelli trucco organizer make up regalo",
+        "examples": [
+          "Set pennelli make-up",
+          "Organizer cosmetici"
+        ],
+        "maxPrice": null
+      }
+    ],
+    "giochi-costruzioni": [
+      {
+        "id": "piccoli",
+        "title": "Costruzioni per i più piccoli",
+        "lead": "Scegli sempre in base alle indicazioni di età e alle dimensioni dei componenti.",
+        "keywords": "costruzioni bambini grandi pezzi duplo",
+        "examples": [
+          "LEGO DUPLO Classic",
+          "Costruzioni grandi per bambini"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "sotto-50",
+        "title": "Costruzioni sotto i 50 €",
+        "lead": "Set creativi da completare in una o più sessioni, con un buon equilibrio tra pezzi e difficoltà.",
+        "keywords": "LEGO classic costruzioni scatola",
+        "examples": [
+          "LEGO Classic 10696",
+          "LEGO Classic 11035"
+        ],
+        "maxPrice": 50
+      },
+      {
+        "id": "creativi",
+        "title": "Percorsi e costruzioni creative",
+        "lead": "Piste, strutture e set che incoraggiano a sperimentare più soluzioni.",
+        "keywords": "GraviTrax starter set costruzioni creative",
+        "examples": [
+          "Ravensburger GraviTrax",
+          "Set costruzioni creative"
+        ],
+        "maxPrice": null
+      }
+    ],
+    "cuffie-wireless": [
+      {
+        "id": "quotidiano",
+        "title": "Cuffie per uso quotidiano",
+        "lead": "Leggerezza, comfort e facilità di connessione vengono prima delle specifiche più appariscenti.",
+        "keywords": "cuffie wireless bluetooth on ear",
+        "examples": [
+          "Sony WH-CH520",
+          "JBL Tune"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "sotto-50",
+        "title": "Cuffie wireless sotto i 50 €",
+        "lead": "Una fascia utile per chi cerca musica e chiamate, controllando microfono e autonomia.",
+        "keywords": "cuffie bluetooth wireless over ear",
+        "examples": [
+          "soundcore Q20i",
+          "JBL Tune 520BT"
+        ],
+        "maxPrice": 50
+      },
+      {
+        "id": "anc",
+        "title": "Cuffie con riduzione del rumore",
+        "lead": "Per studio, lavoro o viaggio: confronta comodità e modalità di cancellazione del rumore.",
+        "keywords": "cuffie bluetooth cancellazione rumore ANC",
+        "examples": [
+          "Sony WH-CH720N",
+          "soundcore Space One"
+        ],
+        "maxPrice": null
+      }
+    ],
+    "e-reader": [
+      {
+        "id": "essenziali",
+        "title": "E-reader per iniziare",
+        "lead": "Leggerezza, leggibilità e accesso alla libreria digitale: le funzioni chiave per chi legge spesso.",
+        "keywords": "ebook reader 6 pollici",
+        "examples": [
+          "Kindle base",
+          "Kobo Clara"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "luce",
+        "title": "E-reader con luce regolabile",
+        "lead": "Per leggere la sera o in viaggio, verifica la regolazione dell’illuminazione e la capacità dello schermo.",
+        "keywords": "ebook reader luce calda regolabile",
+        "examples": [
+          "Kindle Paperwhite",
+          "Kobo Clara Colour"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "accessori",
+        "title": "Custodie e accessori per e-reader",
+        "lead": "Un regalo più facile quando conosci già il modello posseduto dal destinatario.",
+        "keywords": "custodia supporto e reader kindle kobo",
+        "examples": [
+          "Custodia Kindle",
+          "Supporto lettura e-reader"
+        ],
+        "maxPrice": null
+      }
+    ],
+    "cofanetti-benessere": [
+      {
+        "id": "casa",
+        "title": "Kit relax per casa",
+        "lead": "Piccole idee per rendere piacevole una pausa, valutando profumazioni e preferenze individuali.",
+        "keywords": "set benessere relax casa regalo",
+        "examples": [
+          "Set spa casa",
+          "Cofanetto benessere"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "sotto-50",
+        "title": "Cofanetti benessere sotto i 50 €",
+        "lead": "Una selezione di piccoli rituali e accessori che non richiede una spesa elevata.",
+        "keywords": "set regalo benessere donna uomo",
+        "examples": [
+          "Set sali da bagno",
+          "Kit relax bagno"
+        ],
+        "maxPrice": 50
+      },
+      {
+        "id": "senza-profumo",
+        "title": "Benessere senza profumazioni intense",
+        "lead": "Per chi ha gusti delicati o preferisce regali non cosmetici, orientati su accessori pratici.",
+        "keywords": "regalo relax mascherina sonno cuscino cervicale",
+        "examples": [
+          "Mascherina sonno",
+          "Cuscino relax"
+        ],
+        "maxPrice": null
+      }
+    ],
+    "accessori-scrivania": [
+      {
+        "id": "studio",
+        "title": "Accessori per studio e lavoro",
+        "lead": "Oggetti che migliorano ordine, postura e illuminazione su una scrivania.",
+        "keywords": "accessori scrivania studio lavoro regalo",
+        "examples": [
+          "Supporto notebook",
+          "Lampada scrivania LED"
+        ],
+        "maxPrice": null
+      },
+      {
+        "id": "sotto-50",
+        "title": "Accessori scrivania sotto i 50 €",
+        "lead": "Soluzioni semplici per organizzare i cavi, sostenere il telefono o aggiungere luce.",
+        "keywords": "organizer scrivania accessori lavoro",
+        "examples": [
+          "Organizer da scrivania",
+          "Supporto smartphone"
+        ],
+        "maxPrice": 50
+      },
+      {
+        "id": "tecnologia",
+        "title": "Accessori tech per la postazione",
+        "lead": "Per chi usa quotidianamente un computer, verifica compatibilità delle prese e ingombro.",
+        "keywords": "hub usb c supporto laptop accessori scrivania",
+        "examples": [
+          "Hub USB-C",
+          "Stand portatile laptop"
+        ],
+        "maxPrice": null
+      }
+    ]
+  }
+}
