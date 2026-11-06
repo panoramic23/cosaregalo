@@ -1,3 +1,4 @@
+import {readConfig,validateConfig,storageKey} from '../lib/sitestripe.mjs';
 import {passesDeal, GIFT_CATEGORIES} from '../lib/deals-policy.mjs';
 import {calendar,settings} from '../lib/editorial.mjs';
 import {redis,configured,authenticated,respond} from '../lib/store.mjs';
@@ -6,17 +7,24 @@ export default async function handler(req,res){if(!authenticated(req))return res
 const mode=String(req.query?.mode||'dashboard');
 try{
  if(req.method==='GET'){
+  if(mode==='sitestripe')return respond(res,200,{config:await readConfig(),writable:configured()});
   let views=[],clicks=[],productViews=[],affiliate=null;
   if(configured()){const [v,c,pv,a]=await Promise.all([redis(['HGETALL','cr:views']),redis(['HGETALL','cr:clicks']),redis(['HGETALL','cr:product-views']),redis(['GET','cr:amazon-report'])]);views=rows(v);clicks=rows(c);productViews=rows(pv);if(a){try{affiliate=JSON.parse(a)}catch{}}}
   return respond(res,200,{status:{site:'static-export',analytics:configured()?'connected':'not-configured',amazonCreatorsApi:!!(process.env.AMAZON_CREATORS_CLIENT_ID&&process.env.AMAZON_CREATORS_CLIENT_SECRET),affiliateReport:affiliate?'imported':'not-imported',offerEngine:configured()?'manual-verified':'not-configured'},editorial:calendar,editorialSettings:settings,views,clicks,productViews,affiliate});
  }
  if(!configured())return respond(res,503,{error:'STORAGE_NOT_CONFIGURED'});
+ if(mode==='sitestripe'){
+  let config;try{config=validateConfig(req.body)}catch(e){return respond(res,400,{error:e.message});}
+  await redis(['SET',storageKey,JSON.stringify(config)]);
+  return respond(res,200,{ok:true,config});
+ }
  if(mode==='amazon-report'){
   const data=req.body||{};const obj={period:String(data.period||'').slice(0,100),clicks:Number(data.clicks)||0,orderedItems:Number(data.orderedItems)||0,shippedItems:Number(data.shippedItems)||0,earnings:Number(data.earnings)||0,currency:'EUR',source:'Amazon Associates — inserimento manuale',updatedAt:new Date().toISOString()};
   if([obj.clicks,obj.orderedItems,obj.shippedItems,obj.earnings].some(v=>!Number.isFinite(v)||v<0))return respond(res,400,{error:'INVALID_REPORT'});
   await redis(['SET','cr:amazon-report',JSON.stringify(obj)]);return respond(res,200,{ok:true,affiliate:obj});
  }
  if(mode==='deal'){
+  if((await readConfig()).mode!=='api')return respond(res,409,{error:'DEALS_DISABLED_IN_SITESTRIPE_MODE'});
   const data=req.body||{};
   const title=String(data.title||'').trim().slice(0,130),url=String(data.url||''),image=String(data.image||'').trim(),price=Number(data.price),referencePrice=Number(data.referencePrice),checkedAt=String(data.checkedAt||new Date().toISOString());
   const category=String(data.category||'').trim().toLowerCase(),productType='physical';
@@ -28,3 +36,4 @@ try{
  if(mode==='remove-deal'){const title=String(req.body?.title||'').toLowerCase();if(!title)return respond(res,400,{error:'TITLE_REQUIRED'});await redis(['HDEL','cr:deals',title]);return respond(res,200,{ok:true});}
  return respond(res,400,{error:'UNKNOWN_MODE'});
 }catch(e){return respond(res,503,{error:'ADMIN_BACKEND_UNAVAILABLE',detail:String(e.message).slice(0,120)});}}
+
