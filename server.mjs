@@ -35,7 +35,14 @@ function socialBlock(){
  }).join('');
  return '<div class="cr-socials" aria-label="Seguici sui social"><span class="cr-social-label">Seguici</span>'+links+'</div>';
 }
+// The Google CMP is supplied/certified by Google's AdSense Privacy & Messaging.
+// It must be published in the matching AdSense account before enabling this switch.
+const googleCmpEnabled=process.env.CMP_PROVIDER==='google'
+ && process.env.GOOGLE_CMP_PUBLISHED==='true'
+ && /^ca-pub-\d{8,22}$/.test(process.env.ADSENSE_CLIENT||'');
+
 const publicAds={
+ cmpProvider:googleCmpEnabled?'google':'custom',
  mode:['adsense','cj'].includes(process.env.ADS_MODE)?process.env.ADS_MODE:'off',
  adsense:{
   client:/^ca-pub-\d{8,22}$/.test(process.env.ADSENSE_CLIENT||'')?process.env.ADSENSE_CLIENT:'',
@@ -140,6 +147,15 @@ async function staticFile(req,res,pathname){
       if(html.includes('class="announcement"')&&!html.includes('class="cr-socials"')){
         html=html.replace(/(<div class="announcement"><div class="container">)([\s\S]*?)(<\/div><\/div>)/,
           (match,start,inside,end)=>start+inside+socialBlock()+end);
+      }
+      // Google's certified CMP owns the EU consent dialogue. The AdSense tag
+      // loads the published message; ad slots remain separately disabled by default.
+      if(googleCmpEnabled&&!html.includes('/assets/google-cmp.js')){
+        const client=process.env.ADSENSE_CLIENT;
+        const headTags='<script>window.CR_CMP_PROVIDER="google";window.googlefc=window.googlefc||{};window.googlefc.callbackQueue=window.googlefc.callbackQueue||[];</script>'
+          +'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(client)+'" crossorigin="anonymous"></script>'
+          +'<script defer src="/assets/google-cmp.js"></script>';
+        html=html.replace('</head>',headTags+'</head>');
       }
       // The configuration contains only public publisher IDs / banner URLs; never secrets.
       if(!html.includes('/assets/ads.js')){
