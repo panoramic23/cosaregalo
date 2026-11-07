@@ -58,6 +58,60 @@ function start(){
    closeCategoryBox(box);box.querySelector('.nav-categories-toggle')?.focus();
   });
  });
+ // Latest published articles: progressively enhanced scroll-snap carousel.
+ const latestTrack=selectOne('#latestNewsTrack');
+ if(latestTrack){
+  const prev=selectOne('#latestNewsPrev'),next=selectOne('#latestNewsNext');
+  function updateNewsArrows(){
+   const right=Math.max(0,latestTrack.scrollWidth-latestTrack.clientWidth);
+   if(prev)prev.disabled=latestTrack.scrollLeft<=2;
+   if(next)next.disabled=latestTrack.scrollLeft>=right-2;
+  }
+  function moveNews(direction){
+   const card=latestTrack.querySelector('.home-news-card');
+   const gap=Number.parseFloat(getComputedStyle(latestTrack).columnGap)||16;
+   const distance=card?card.getBoundingClientRect().width+gap:latestTrack.clientWidth*.8;
+   const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+   latestTrack.scrollBy({left:direction*distance,behavior:reduced?'auto':'smooth'});
+  }
+  if(prev)prev.addEventListener('click',()=>moveNews(-1));
+  if(next)next.addEventListener('click',()=>moveNews(1));
+  latestTrack.addEventListener('scroll',updateNewsArrows,{passive:true});
+  latestTrack.addEventListener('keydown',event=>{
+   if(event.key!=='ArrowRight'&&event.key!=='ArrowLeft')return;
+   event.preventDefault();moveNews(event.key==='ArrowRight'?1:-1);
+  });
+  window.addEventListener('resize',updateNewsArrows);
+  function makeNewsCard(item){
+   const article=document.createElement('article');article.className='home-news-card';
+   const link=document.createElement('a');link.className='home-news-card-link';link.href=item.path;
+   const media=document.createElement('div');media.className='home-news-card-image';
+   const img=document.createElement('img');img.loading='lazy';img.alt='Immagine illustrativa della guida '+item.category;img.src=item.image;media.append(img);
+   const body=document.createElement('div');body.className='home-news-card-body';
+   const category=document.createElement('span');category.className='eyebrow';category.textContent=item.category;
+   const title=document.createElement('h3');title.textContent=item.title;
+   const desc=document.createElement('p');desc.textContent=item.summary;
+   const action=document.createElement('span');action.className='home-news-card-action';action.textContent='Leggi la guida →';
+   body.append(category,title,desc,action);link.append(media,body);article.append(link);return article;
+  }
+  if(location.protocol!=='file:'){
+   fetch(latestTrack.dataset.feed||'assets/latest-news.json',{cache:'no-store'})
+    .then(resp=>{if(!resp.ok)throw Error('news feed unavailable');return resp.json();})
+    .then(feed=>{
+     if(!Array.isArray(feed.items))return;
+     const goodPath=/^guide\/[a-z0-9-]+\/index\.html$/;
+     const goodImage=/^assets\/[a-z0-9-]+\.(?:webp|png|svg)$/;
+     const articles=feed.items.filter(x=>x&&x.status==='published'
+      &&goodPath.test(x.path)&&goodImage.test(x.image)
+      &&typeof x.title==='string'&&typeof x.summary==='string'&&typeof x.category==='string');
+     if(!articles.length)return;
+     articles.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+     latestTrack.replaceChildren(...articles.slice(0,12).map(makeNewsCard));
+     latestTrack.scrollLeft=0;updateNewsArrows();
+    }).catch(()=>{}); // Static card links remain visible if the feed cannot load.
+  }
+  updateNewsArrows();
+ }
  const qs=new URLSearchParams((window.COSAREGALO_OFFLINE&&location.hash.includes('?'))?location.hash.split('?')[1]:location.search);
  const keyword=selectOne('#typeQuery'),cat=selectOne('#typeCategory'),budget=selectOne('#typeBudget'),age=selectOne('#typeAge'),festival=selectOne('#typeFestival'),occasion=selectOne('#typeOccasion');
  if(keyword){keyword.value=qs.get('q')||'';if(cat&&qs.get('category'))cat.value=qs.get('category');if(budget&&qs.get('budget'))budget.value=qs.get('budget');if(age&&qs.get('age'))age.value=qs.get('age');if(festival&&qs.get('festival'))festival.value=qs.get('festival');if(occasion&&qs.get('occasion'))occasion.value=qs.get('occasion');}
