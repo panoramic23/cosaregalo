@@ -497,3 +497,11 @@ h1,h2,h3,
 .seo-guide-section + .seo-guide-section{padding-top:15px;border-top:1px solid #edf1f4}
 .seo-guide-expanded h2{font-size:clamp(23px,2.6vw,30px)}
 @media(max-width:700px){.seo-intro{padding:21px 20px;margin:20px 0 28px}.seo-intro p,.seo-group-advice p,.seo-guide-expanded p{font-size:15px;line-height:1.75}}
+
+/* Editorial introductions for category, guide and comparison hubs. */
+.seo-hub-intro{padding:25px 31px;margin:25px 0 35px;background:#fff;border:1px solid #dfe7ef;border-radius:14px}
+.seo-hub-intro h2{font-family:var(--title);font-size:clamp(24px,2.7vw,32px);font-weight:800;color:#2c465f;margin-bottom:13px}
+.seo-hub-intro p{font-size:16px;line-height:1.8;color:#344d63;margin:0 0 13px}
+.seo-hub-intro p:last-child{margin-bottom:0}
+.seo-hub-intro a{font-weight:750;color:#20537e;text-decoration:underline;text-underline-offset:3px}
+@media(max-width:700px){.seo-hub-intro{padding:20px;margin:18px 0 26px}.seo-hub-intro p{font-size:15px}}
