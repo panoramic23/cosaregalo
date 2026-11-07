@@ -157,6 +157,37 @@ async function staticFile(req,res,pathname){
           +'<script defer src="/assets/google-cmp.js"></script>';
         html=html.replace('</head>',headTags+'</head>');
       }
+      // Search metadata on the verified production domain only, not staging.
+      const route='/'+parts.join('/')+(parts.length?'/':'');
+      if(indexable&&indexPaths.includes(route)){
+        const canonical=canonicalSite+route;
+        const pageTitle=(html.match(/<title>([^<]*)<\/title>/i)||[])[1]||'CosaRegalo';
+        const metaTag=(html.match(/<meta[^>]*name="description"[^>]*>/i)||[])[0]||'';
+        const metaDescription=(metaTag.match(/content="([^"]*)"/)||[])[1]||'Guide e idee regalo CosaRegalo';
+        const encode=v=>String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+        const crumbs=[{name:'Home',item:canonicalSite+'/'}];
+        let path='';
+        for(const part of parts){
+          path+='/'+part;
+          const name=({'tipologie':'Tipologie','guide':'Guide','offerte':'Super offerte','confronti':'Confronti','occasioni':'Occasioni','trova-regalo':'Trova un regalo','metodo':'Il nostro metodo'})[part]||part.replace(/-/g,' ').replace(/^./,c=>c.toUpperCase());
+          crumbs.push({name,item:canonicalSite+path+'/'});
+        }
+        const graph=[
+          {'@type':'WebSite','@id':canonicalSite+'/#website',url:canonicalSite+'/',name:'CosaRegalo',inLanguage:'it-IT'},
+          {'@type':'WebPage','@id':canonical+'#webpage',url:canonical,name:pageTitle,description:metaDescription,inLanguage:'it-IT',isPartOf:{'@id':canonicalSite+'/#website'}}
+        ];
+        if(crumbs.length>1)graph.push({'@type':'BreadcrumbList',itemListElement:crumbs.map((b,i)=>({'@type':'ListItem',position:i+1,name:b.name,item:b.item}))});
+        const json=JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c');
+        const cards='<link rel="canonical" href="'+encode(canonical)+'"/>'
+          +'<meta property="og:type" content="website"/><meta property="og:locale" content="it_IT"/>'
+          +'<meta property="og:site_name" content="CosaRegalo"/>'
+          +'<meta property="og:title" content="'+encode(pageTitle)+'"/>'
+          +'<meta property="og:description" content="'+encode(metaDescription)+'"/>'
+          +'<meta property="og:url" content="'+encode(canonical)+'"/>'
+          +'<meta name="twitter:card" content="summary"/>'
+          +'<script type="application/ld+json">'+json+'</script>';
+        html=html.replace('</head>',cards+'</head>');
+      }
       // The configuration contains only public publisher IDs / banner URLs; never secrets.
       if(!html.includes('/assets/ads.js')){
         html=html.replace('</body>',
