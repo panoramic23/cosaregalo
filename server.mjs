@@ -65,7 +65,8 @@ const indexable=process.env.SITE_INDEXABLE==='true' && !!canonicalSite;
 const indexPaths=[
  '/', '/offerte/', '/confronti/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/',
  '/guide/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
- '/guide/lettura/', '/guide/cuffie/', '/tipologie/speaker-bluetooth/',
+ '/guide/lettura/', '/guide/cuffie/', '/esplora/ricorrenze/', '/esplora/gusti/',
+ '/esplora/sport/', '/esplora/cartoni/', '/esplora/stagioni/', '/tipologie/speaker-bluetooth/',
  '/tipologie/giochi-costruzioni/', '/tipologie/cofanetti-benessere/',
  '/tipologie/kit-trucchi/', '/tipologie/cuffie-wireless/', '/tipologie/e-reader/',
  '/tipologie/accessori-scrivania/', '/tipologie/microfoni-karaoke/'
@@ -156,7 +157,14 @@ async function staticFile(req,res,pathname){
         const links=categories.map(([label,category])=>'<a href="'+prefix+'tipologie/index.html?category='+category+'">'+label+'</a>').join('');
         const categoryNav='<div class="nav-categories"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="crCategoryLinks">Categorie <span aria-hidden="true">⌄</span></button>'
           +'<div class="nav-category-panel" id="crCategoryLinks"><div class="nav-category-grid">'+links+'</div><a class="nav-all-categories" href="'+prefix+'tipologie/index.html">Tutte le categorie →</a></div></div>';
-        html=html.replace(/(<nav class="nav-menu"[^>]*>)/,'$1'+categoryNav);
+        const explore=[
+          ['Ricorrenze','ricorrenze'],['Gusti e passioni','gusti'],
+          ['Sport','sport'],['Cartoni e personaggi','cartoni'],['Stagioni','stagioni']
+        ];
+        const exploreLinks=explore.map(([label,slug])=>'<a href="'+prefix+'esplora/'+slug+'/index.html">'+label+'</a>').join('');
+        const exploreNav='<div class="nav-categories nav-explore"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="crExploreLinks">Esplora per <span aria-hidden="true">⌄</span></button>'
+          +'<div class="nav-category-panel" id="crExploreLinks"><div class="nav-category-grid">'+exploreLinks+'</div></div></div>';
+        html=html.replace(/(<nav class="nav-menu"[^>]*>)/,'$1'+categoryNav+exploreNav);
       }
       // Affiliate disclosure belongs with the brand description in footer column one.
       const disclosure='In qualità di Affiliato Amazon, possiamo ricevere una commissione sugli acquisti idonei.';
