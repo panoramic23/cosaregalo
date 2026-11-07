@@ -751,3 +751,7 @@ h1,h2,h3,
  .nav-category-grid a{font-size:14px!important;padding:10px 12px!important}
 }
 @media(prefers-reduced-motion:reduce){.nav-menu>a,.nav-menu .nav-categories-toggle{transition:none}}
+
+/* Prevent internal anchor targets and search headings from hiding behind sticky navigation. */
+html{scroll-padding-top:calc(var(--cr-header-height) + var(--cr-nav-height) + 18px)}
+[id]{scroll-margin-top:calc(var(--cr-header-height) + var(--cr-nav-height) + 18px)}
