@@ -1039,3 +1039,17 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
  .bf-pick-media{width:90px;height:89px}
  .bf-pick-retail .bf-shop-cta{padding:10px 11px;font-size:12px}
 }
+
+/* Guide: numbers in CosaRegalo yellow with a subtle shaded underline for legibility. */
+.bf-pick-index{
+ position:relative;isolation:isolate;display:inline-block;width:max-content;
+ color:#FFD43D!important;
+ text-shadow:0 1px 1px rgba(32,52,73,.62),0 2px 7px rgba(32,52,73,.18);
+ -webkit-text-stroke:0!important;
+}
+.bf-pick-index::after{
+ content:"";position:absolute;left:5%;right:5%;bottom:-2px;height:9px;z-index:-1;
+ background:radial-gradient(ellipse at center,rgba(38,61,82,.22) 0%,rgba(38,61,82,0) 76%);
+ pointer-events:none;
+}
+@media(prefers-contrast:more){.bf-pick-index{text-shadow:0 1px 0 #263f55,0 0 3px #263f55}}
