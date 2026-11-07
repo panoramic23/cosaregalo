@@ -26,28 +26,32 @@ function start(){
  if(brandHeader&&'ResizeObserver' in window)new ResizeObserver(measureHeader).observe(brandHeader);
  else window.addEventListener('resize',measureHeader);
  // Accessible category submenu; works on click, keyboard, and touch.
- const categoryButton=selectOne('.nav-categories-toggle');
- const categoryBox=selectOne('.nav-categories');
- function closeCategories(){
-  if(!categoryBox||!categoryButton)return;
-  categoryBox.classList.remove('is-open');
-  categoryButton.setAttribute('aria-expanded','false');
+ const categoryBoxes=selectAll('.nav-categories');
+ function closeCategoryBox(box){
+  box.classList.remove('is-open');
+  box.querySelector('.nav-categories-toggle')?.setAttribute('aria-expanded','false');
  }
- if(categoryButton&&categoryBox){
-  categoryButton.addEventListener('click',()=>{
-   const open=!categoryBox.classList.contains('is-open');
-   categoryBox.classList.toggle('is-open',open);
-   categoryButton.setAttribute('aria-expanded',String(open));
+ categoryBoxes.forEach(box=>{
+  const button=box.querySelector('.nav-categories-toggle');
+  if(!button)return;
+  button.addEventListener('click',()=>{
+   const open=!box.classList.contains('is-open');
+   categoryBoxes.forEach(closeCategoryBox);
+   box.classList.toggle('is-open',open);
+   button.setAttribute('aria-expanded',String(open));
   });
-  document.addEventListener('click',event=>{if(!categoryBox.contains(event.target))closeCategories();});
-  document.addEventListener('keydown',event=>{
-   if(event.key==='Escape'){
-    const wasOpen=categoryBox.classList.contains('is-open');
-    closeCategories();if(wasOpen)categoryButton.focus();
-   }
+  box.querySelectorAll('.nav-category-panel a').forEach(link=>link.addEventListener('click',()=>closeCategoryBox(box)));
+ });
+ document.addEventListener('click',event=>{
+  categoryBoxes.forEach(box=>{if(!box.contains(event.target))closeCategoryBox(box);});
+ });
+ document.addEventListener('keydown',event=>{
+  if(event.key!=='Escape')return;
+  categoryBoxes.forEach(box=>{
+   if(!box.classList.contains('is-open'))return;
+   closeCategoryBox(box);box.querySelector('.nav-categories-toggle')?.focus();
   });
-  selectAll('.nav-category-panel a').forEach(link=>link.addEventListener('click',closeCategories));
- }
+ });
  const qs=new URLSearchParams((window.COSAREGALO_OFFLINE&&location.hash.includes('?'))?location.hash.split('?')[1]:location.search);
  const keyword=selectOne('#typeQuery'),cat=selectOne('#typeCategory'),budget=selectOne('#typeBudget'),age=selectOne('#typeAge'),festival=selectOne('#typeFestival'),occasion=selectOne('#typeOccasion');
  if(keyword){keyword.value=qs.get('q')||'';if(cat&&qs.get('category'))cat.value=qs.get('category');if(budget&&qs.get('budget'))budget.value=qs.get('budget');if(age&&qs.get('age'))age.value=qs.get('age');if(festival&&qs.get('festival'))festival.value=qs.get('festival');if(occasion&&qs.get('occasion'))occasion.value=qs.get('occasion');}
