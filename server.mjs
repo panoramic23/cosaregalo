@@ -160,15 +160,26 @@ async function staticFile(req,res,pathname){
         const active=slug=>cur===slug||cur.startsWith(slug+'/');
         const catLinks=categories.map(([label,id])=>'<a href="'+prefix+'tipologie/index.html?category='+id+'">'+label+'</a>').join('');
         const themeLinks=themes.map(([label,id])=>'<a href="'+prefix+'esplora/'+id+'/index.html">'+label+'</a>').join('');
-        const drop=(label,id,items,extra,selected)=>'<div class="nav-categories'+(selected?' nav-current':'')+'"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="'+id+'" aria-haspopup="true">'+label+'<span class="nav-chevron" aria-hidden="true">⌄</span></button><div class="nav-category-panel" id="'+id+'"><div class="nav-category-grid">'+items+'</div>'+extra+'</div></div>';
-        const categoriesNav=drop('Categorie','crCategoryLinks',catLinks,'<a class="nav-all-categories" href="'+prefix+'tipologie/index.html">Tutte le categorie <span aria-hidden="true">→</span></a>',active('tipologie'));
-        const exploreNav=drop('Idee regalo','crExploreLinks',themeLinks,'',active('esplora')||active('occasioni'));
-        const navLink=(label,path)=>'<a'+(active(path.replace(/\/index\.html$/,''))?' class="active"':'')+' href="'+prefix+path+'">'+label+'</a>';
+        const icon=(name)=>{
+          const paths={
+            grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+            gift:'<rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z"/>',
+            search:'<circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/>',
+            book:'<path d="M12 7.5C9.5 5.8 6.4 5.8 3 7v13c3.4-1.2 6.5-1.2 9 .5m0-13c2.5-1.7 5.6-1.7 9-.5v13c-3.4-1.2-6.5-1.2-9 .5m0-13v13"/>',
+            compare:'<path d="M4 7h16M4 17h16m-5-5 5-5-5-5M9 12l-5 5 5 5"/>',
+            tag:'<path d="m20 13-7 7a2 2 0 0 1-2.8 0L3 12.8V4h8.8L20 12.2a1 1 0 0 1 0 .8Z"/><circle cx="7.8" cy="8" r="1"/>'
+          };
+          return '<svg class="nav-icon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+(paths[name]||paths.grid)+'</svg>';
+        };
+        const drop=(label,id,items,extra,selected,symbol)=>'<div class="nav-categories'+(selected?' nav-current':'')+'"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="'+id+'" aria-haspopup="true">'+icon(symbol)+'<span class="nav-label">'+label+'</span><span class="nav-chevron" aria-hidden="true">⌄</span></button><div class="nav-category-panel" id="'+id+'"><div class="nav-category-grid">'+items+'</div>'+extra+'</div></div>';
+        const categoriesNav=drop('Categorie','crCategoryLinks',catLinks,'<a class="nav-all-categories" href="'+prefix+'tipologie/index.html">Tutte le categorie <span aria-hidden="true">→</span></a>',active('tipologie'),'grid');
+        const exploreNav=drop('Idee regalo','crExploreLinks',themeLinks,'',active('esplora')||active('occasioni'),'gift');
+        const navLink=(label,path,symbol)=>'<a'+(active(path.replace(/\/index\.html$/,''))?' class="active"':'')+' href="'+prefix+path+'">'+icon(symbol)+'<span class="nav-label">'+label+'</span></a>';
         const nav=categoriesNav+exploreNav
-          +navLink('Trova un regalo','trova-regalo/index.html')
-          +navLink('Guide','guide/index.html')
-          +navLink('Confronti','confronti/index.html')
-          +navLink('Super offerte','offerte/index.html');
+          +navLink('Trova un regalo','trova-regalo/index.html','search')
+          +navLink('Guide','guide/index.html','book')
+          +navLink('Confronti','confronti/index.html','compare')
+          +navLink('Super offerte','offerte/index.html','tag');
         html=html.replace(/<nav class="nav-menu"[^>]*>[\s\S]*?<\/nav>/,
           '<nav class="nav-menu" id="navMenu" aria-label="Navigazione principale">'+nav+'</nav>');
         // The old long slogan crowded and visually competed with useful navigation.
