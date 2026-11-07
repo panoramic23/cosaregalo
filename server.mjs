@@ -165,6 +165,7 @@ async function staticFile(req,res,pathname){
         const icon=(name)=>{
           const paths={
             grid:'<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+            home:'<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V10z"/>',
             gift:'<rect x="3" y="9" width="18" height="12" rx="2"/><path d="M3 13h18M12 9v12M12 9H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z"/>',
             search:'<circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/>',
             book:'<path d="M12 7.5C9.5 5.8 6.4 5.8 3 7v13c3.4-1.2 6.5-1.2 9 .5m0-13c2.5-1.7 5.6-1.7 9-.5v13c-3.4-1.2-6.5-1.2-9 .5m0-13v13"/>',
@@ -176,8 +177,8 @@ async function staticFile(req,res,pathname){
         const drop=(label,id,items,extra,selected,symbol)=>'<div class="nav-categories'+(selected?' nav-current':'')+'"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="'+id+'" aria-haspopup="true">'+icon(symbol)+'<span class="nav-label">'+label+'</span><span class="nav-chevron" aria-hidden="true">⌄</span></button><div class="nav-category-panel" id="'+id+'"><div class="nav-category-grid">'+items+'</div>'+extra+'</div></div>';
         const categoriesNav=drop('Categorie','crCategoryLinks',catLinks,'<a class="nav-all-categories" href="'+prefix+'tipologie/index.html">Tutte le categorie <span aria-hidden="true">→</span></a>',active('tipologie'),'grid');
         const exploreNav=drop('Idee regalo','crExploreLinks',themeLinks,'',active('esplora')||active('occasioni'),'gift');
-        const navLink=(label,path,symbol)=>'<a'+(active(path.replace(/\/index\.html$/,''))?' class="active"':'')+' href="'+prefix+path+'">'+icon(symbol)+'<span class="nav-label">'+label+'</span></a>';
-        const nav=categoriesNav+exploreNav
+        const navLink=(label,path,symbol)=>'<a'+((path==='index.html'?parts.length===0:active(path.replace(/\/index\.html$/,'')))?' class="active"':'')+' href="'+prefix+path+'">'+icon(symbol)+'<span class="nav-label">'+label+'</span></a>';
+        const nav=navLink('Home','index.html','home')+categoriesNav+exploreNav
           +navLink('Trova un regalo','trova-regalo/index.html','search')
           +navLink('Guide','guide/index.html','book')
           +navLink('Confronti','confronti/index.html','compare')
