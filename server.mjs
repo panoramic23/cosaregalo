@@ -145,26 +145,34 @@ async function staticFile(req,res,pathname){
         const adminHref=prefix+'admin/index.html';
         html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/,'$1<a href="'+adminHref+'" rel="nofollow">Amministrazione</a>');
       }
-      // Keep the global navigation synchronized on every page.
-      // Category links are real crawlable anchors, not JavaScript-only links.
-      if(html.includes('class="nav-menu"')&&!html.includes('class="nav-categories"')){
+      // A unified, readable navigation on every public page.
+      // Keep real hrefs in the HTML for accessibility and search engines.
+      if(html.includes('class="nav-menu"')){
         const categories=[
-          ['Elettronica e tecnologia','tech'],
-          ['Casa e ufficio','casa'],
-          ['Giochi e bambini','gioco'],
-          ['Bellezza e benessere','benessere']
+          ['Elettronica','tech'],['Casa e ufficio','casa'],
+          ['Giochi','gioco'],['Bellezza e benessere','benessere']
         ];
-        const links=categories.map(([label,category])=>'<a href="'+prefix+'tipologie/index.html?category='+category+'">'+label+'</a>').join('');
-        const categoryNav='<div class="nav-categories"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="crCategoryLinks">Categorie <span aria-hidden="true">⌄</span></button>'
-          +'<div class="nav-category-panel" id="crCategoryLinks"><div class="nav-category-grid">'+links+'</div><a class="nav-all-categories" href="'+prefix+'tipologie/index.html">Tutte le categorie →</a></div></div>';
-        const explore=[
+        const themes=[
           ['Ricorrenze','ricorrenze'],['Gusti e passioni','gusti'],
-          ['Sport','sport'],['Cartoni e personaggi','cartoni'],['Stagioni','stagioni']
+          ['Sport','sport'],['Cartoni animati','cartoni'],['Stagioni','stagioni']
         ];
-        const exploreLinks=explore.map(([label,slug])=>'<a href="'+prefix+'esplora/'+slug+'/index.html">'+label+'</a>').join('');
-        const exploreNav='<div class="nav-categories nav-explore"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="crExploreLinks">Esplora per <span aria-hidden="true">⌄</span></button>'
-          +'<div class="nav-category-panel" id="crExploreLinks"><div class="nav-category-grid">'+exploreLinks+'</div></div></div>';
-        html=html.replace(/(<nav class="nav-menu"[^>]*>)/,'$1'+categoryNav+exploreNav);
+        const cur=parts.join('/');
+        const active=slug=>cur===slug||cur.startsWith(slug+'/');
+        const catLinks=categories.map(([label,id])=>'<a href="'+prefix+'tipologie/index.html?category='+id+'">'+label+'</a>').join('');
+        const themeLinks=themes.map(([label,id])=>'<a href="'+prefix+'esplora/'+id+'/index.html">'+label+'</a>').join('');
+        const drop=(label,id,items,extra,selected)=>'<div class="nav-categories'+(selected?' nav-current':'')+'"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="'+id+'" aria-haspopup="true">'+label+'<span class="nav-chevron" aria-hidden="true">⌄</span></button><div class="nav-category-panel" id="'+id+'"><div class="nav-category-grid">'+items+'</div>'+extra+'</div></div>';
+        const categoriesNav=drop('Categorie','crCategoryLinks',catLinks,'<a class="nav-all-categories" href="'+prefix+'tipologie/index.html">Tutte le categorie <span aria-hidden="true">→</span></a>',active('tipologie'));
+        const exploreNav=drop('Idee regalo','crExploreLinks',themeLinks,'',active('esplora')||active('occasioni'));
+        const navLink=(label,path)=>'<a'+(active(path.replace(/\/index\.html$/,''))?' class="active"':'')+' href="'+prefix+path+'">'+label+'</a>';
+        const nav=categoriesNav+exploreNav
+          +navLink('Trova un regalo','trova-regalo/index.html')
+          +navLink('Guide','guide/index.html')
+          +navLink('Confronti','confronti/index.html')
+          +navLink('Super offerte','offerte/index.html');
+        html=html.replace(/<nav class="nav-menu"[^>]*>[\s\S]*?<\/nav>/,
+          '<nav class="nav-menu" id="navMenu" aria-label="Navigazione principale">'+nav+'</nav>');
+        // The old long slogan crowded and visually competed with useful navigation.
+        html=html.replace(/<span class="nav-end">[\s\S]*?<\/span>/,'');
       }
       // Affiliate disclosure belongs with the brand description in footer column one.
       const disclosure='In qualità di Affiliato Amazon, possiamo ricevere una commissione sugli acquisti idonei.';
