@@ -144,6 +144,27 @@ async function staticFile(req,res,pathname){
         const adminHref=prefix+'admin/index.html';
         html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/,'$1<a href="'+adminHref+'" rel="nofollow">Amministrazione</a>');
       }
+      // Keep the global navigation synchronized on every page.
+      // Category links are real crawlable anchors, not JavaScript-only links.
+      if(html.includes('class="nav-menu"')&&!html.includes('class="nav-categories"')){
+        const categories=[
+          ['Speaker Bluetooth','speaker-bluetooth'],['Microfoni karaoke','microfoni-karaoke'],
+          ['Cuffie wireless','cuffie-wireless'],['E-reader','e-reader'],
+          ['Giochi di costruzioni','giochi-costruzioni'],['Kit trucchi','kit-trucchi'],
+          ['Cofanetti benessere','cofanetti-benessere'],['Accessori scrivania','accessori-scrivania']
+        ];
+        const links=categories.map(([label,slug])=>'<a href="'+prefix+'tipologie/'+slug+'/index.html">'+label+'</a>').join('');
+        const categoryNav='<div class="nav-categories"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="crCategoryLinks">Categorie <span aria-hidden="true">⌄</span></button>'
+          +'<div class="nav-category-panel" id="crCategoryLinks"><div class="nav-category-grid">'+links+'</div><a class="nav-all-categories" href="'+prefix+'tipologie/index.html">Tutte le categorie →</a></div></div>';
+        html=html.replace(/(<nav class="nav-menu"[^>]*>)/,'$1'+categoryNav);
+      }
+      // Affiliate disclosure belongs with the brand description in footer column one.
+      const disclosure='In qualità di Affiliato Amazon, possiamo ricevere una commissione sugli acquisti idonei.';
+      if(html.includes('class="footer-grid"')&&html.includes(disclosure)){
+        html=html.replace(/<p>\s*In qualità di Affiliato Amazon, possiamo ricevere una commissione sugli acquisti idonei\.\s*<\/p>/g,'');
+        html=html.replace(/(<div class="container footer-grid"><div>[\s\S]*?<\/p>)(<\/div>)/,
+          '$1<p class="footer-affiliate-disclosure">'+disclosure+'</p>$2');
+      }
       if(html.includes('class="announcement"')&&!html.includes('class="cr-socials"')){
         html=html.replace(/(<div class="announcement"><div class="container">)([\s\S]*?)(<\/div><\/div>)/,
           (match,start,inside,end)=>start+inside+socialBlock()+end);
