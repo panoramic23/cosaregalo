@@ -16,6 +16,27 @@ async function loadSiteStripe(){
  const data=await request('sitestripe');$('#sitestripeConfig').value=JSON.stringify(data.config,null,2);panel.querySelector('button').disabled=!data.writable;
  if(!data.writable)$('#sitestripeResult').textContent='Salvataggio admin richiede Redis REST. In alternativa aggiorna content/sitestripe.json nel repository.';
 }
+const apiTestButton=$('#amazonApiTest');
+if(apiTestButton)apiTestButton.onclick=async()=>{
+ const output=$('#amazonApiTestResult');
+ apiTestButton.disabled=true;output.textContent='Verifica Amazon in corso…';
+ try{
+  const data=await request('amazon-api-test');
+  const test=data.test||{};
+  const labels={
+   AUTHORIZED:'Accesso autorizzato: Amazon ha accettato la ricerca prodotti.',
+   AssociateNotEligible:'Account ancora non idoneo alla Creators API.',
+   API_NOT_CONFIGURED:'Credenziali o Partner Tag non configurati.',
+   AUTH_FAILED:'Autenticazione Amazon rifiutata.',
+   AUTH_UNAVAILABLE:'Autenticazione Amazon temporaneamente non disponibile.',
+   NETWORK_UNAVAILABLE:'Connessione ad Amazon non disponibile.',
+   InvalidPartnerTag:'Partner Tag non valido.',
+   AuthorizationFailed:'Autorizzazione Amazon negata.'
+  };
+  output.textContent=(test.ok?'✓ ':'✕ ')+(labels[test.reason]||('Risposta Amazon: '+(test.reason||'sconosciuta')))+' · HTTP '+(test.status||'n/d')+' · modalità catalogo: '+(data.catalogMode||'sconosciuta')+'.';
+ }catch(err){output.textContent='Test non riuscito: '+err.message}
+ finally{apiTestButton.disabled=false}
+};
 $('#loginForm').onsubmit=async e=>{e.preventDefault();token=$('#secret').value;try{await load();sessionStorage.setItem('cr-admin-token',token);$('#secret').value='';$('#loginMessage').textContent='';}catch(err){$('#loginMessage').textContent=err.message;token='';}};
 $('#logout').onclick=()=>{sessionStorage.removeItem('cr-admin-token');token='';$('#loginCard').hidden=false;$('#adminContent').hidden=true;$('#logout').hidden=true;};
 $('#reportForm').onsubmit=async e=>{e.preventDefault();const form=new FormData(e.target);const data=Object.fromEntries(form.entries());try{await request('amazon-report',data);await load();alert('Riepilogo Amazon salvato');}catch(err){alert(err.message)}};
