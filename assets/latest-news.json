@@ -1,0 +1,80 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "title": "12 idee per chi ama cucinare, anche con poco spazio",
+      "slug": "cucina-poco-spazio",
+      "path": "guide/cucina-poco-spazio/index.html",
+      "category": "Casa e cucina",
+      "summary": "Accessori quotidiani che meritano posto nei cassetti, senza gadget superflui.",
+      "image": "assets/cover.webp",
+      "date": "2026-11-07",
+      "status": "published"
+    },
+    {
+      "title": "10 idee regalo per rendere migliore la scrivania",
+      "slug": "scrivania-pratica",
+      "path": "guide/scrivania-pratica/index.html",
+      "category": "Casa e lavoro",
+      "summary": "Piccoli cambiamenti per studiare o lavorare con più ordine e comodità.",
+      "image": "assets/tech.webp",
+      "date": "2026-11-07",
+      "status": "published"
+    },
+    {
+      "title": "10 regali creativi per bambini che invitano a giocare",
+      "slug": "giochi-creativi-bambini",
+      "path": "guide/giochi-creativi-bambini/index.html",
+      "category": "Giochi e bambini",
+      "summary": "Idee da valutare per età, spazio e tempo da condividere.",
+      "image": "assets/building.webp",
+      "date": "2026-11-07",
+      "status": "published"
+    },
+    {
+      "title": "Cuffie wireless a confronto: cosa guardare",
+      "slug": "cuffie",
+      "path": "guide/cuffie/index.html",
+      "category": "Tecnologia",
+      "summary": "Comfort e utilizzo: da dove iniziare prima di scegliere il modello.",
+      "image": "assets/tech.webp",
+      "status": "published"
+    },
+    {
+      "title": "Regali sotto i 30 euro: idee ragionate",
+      "slug": "sotto-30",
+      "path": "guide/sotto-30/index.html",
+      "category": "Budget",
+      "summary": "Un budget piccolo può portare a regali azzeccati: ecco come.",
+      "image": "assets/budget.webp",
+      "status": "published"
+    },
+    {
+      "title": "Cosa regalare a chi ama leggere",
+      "slug": "lettura",
+      "path": "guide/lettura/index.html",
+      "category": "Lettura",
+      "summary": "Lettori digitali e accessori per chi legge tanto.",
+      "image": "assets/reader.webp",
+      "status": "published"
+    },
+    {
+      "title": "Idee regalo per il benessere quotidiano",
+      "slug": "benessere",
+      "path": "guide/benessere/index.html",
+      "category": "Benessere",
+      "summary": "Preferenze, sensibilità e piccoli rituali da considerare.",
+      "image": "assets/beauty.webp",
+      "status": "published"
+    },
+    {
+      "title": "Regali tecnologici davvero utili",
+      "slug": "tech",
+      "path": "guide/tech/index.html",
+      "category": "Tecnologia",
+      "summary": "Gadget o soluzione concreta? Le domande giuste.",
+      "image": "assets/tech.webp",
+      "status": "published"
+    }
+  ]
+}
