@@ -774,3 +774,25 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
 @media(prefers-reduced-motion:reduce){
  .nav-menu a,.nav-menu button{transition:none}
 }
+
+
+/* Cross-page CSS audit: keyboard focus, responsive readability and reduced motion. */
+:where(a,button,input,select,textarea,summary):focus-visible{
+ outline:2px solid #236b9c;
+ outline-offset:3px
+}
+:where(.site-footer a,.top-header a,.announcement a):focus-visible{
+ outline-color:#ffdf65
+}
+:where(.type-card-info h3,.amazon-product-desc h3,.guide-copy h3){
+ overflow-wrap:break-word;
+ hyphens:auto
+}
+@media(max-width:760px){
+ .type-card-top .type-tag{font-size:10px}
+ .amazon-product-desc p{font-size:13px;line-height:1.55}
+ .amazon-timestamp{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+}
