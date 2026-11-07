@@ -637,3 +637,25 @@ h1,h2,h3,
 @media(max-width:950px){.cr-discovery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:610px){.cr-discovery-grid{grid-template-columns:1fr;gap:12px}.cr-discovery-card{min-height:0;padding:22px}.cr-discovery-card-title{font-size:23px}}
 @media(prefers-reduced-motion:reduce){.cr-discovery-card{transition:none}.cr-discovery-card:hover{transform:none}}
+
+/* Homepage: quick routes by occasion, interest, sports, characters and season. */
+.home-discovery-section{margin:42px 0 36px}
+.home-discovery-section .home-category-header{margin-bottom:19px}
+.home-discovery-section .home-category-header em{color:#2a5977;font-style:normal}
+.home-discovery-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}
+.home-discovery-tile{
+ display:flex;flex-direction:column;align-items:flex-start;min-height:188px;
+ background:#fff;border:1px solid #dfe6ec;border-radius:13px;
+ padding:22px 19px;box-shadow:0 4px 14px rgba(27,51,74,.035);
+ transition:border-color .2s,box-shadow .2s,transform .2s
+}
+.home-discovery-tile:hover,.home-discovery-tile:focus-visible{
+ border-color:#b7ccdc;box-shadow:0 12px 24px rgba(27,51,74,.09);transform:translateY(-2px)
+}
+.home-discovery-name{font:800 23px/1.17 var(--title);letter-spacing:-.025em;color:#2a465d;margin-bottom:8px}
+.home-discovery-desc{font:400 14px/1.55 var(--text);color:#4b6274;flex:1}
+.home-discovery-link{font:800 13px/1.3 var(--text);color:#21577c;margin-top:16px}
+@media(max-width:1100px){.home-discovery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.home-discovery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-discovery-tile{min-height:165px}}
+@media(max-width:440px){.home-discovery-grid{grid-template-columns:1fr}.home-discovery-tile{min-height:0;padding:19px}.home-discovery-name{font-size:22px}}
+@media(prefers-reduced-motion:reduce){.home-discovery-tile{transition:none}.home-discovery-tile:hover{transform:none}}
