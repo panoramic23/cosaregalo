@@ -48,7 +48,7 @@ export async function testCreatorsAccess(){
   return {ok:false,status:0,reason:'API_NOT_CONFIGURED',requestedAt};
  let token;
  try{token=await getToken();}
- catch(err){const e=String(err?.message||'');return {ok:false,status:0,reason:/^AUTH_FAILED_\\d+$/.test(e)?'AUTH_FAILED':'AUTH_UNAVAILABLE',requestedAt};}
+ catch(err){const e=String(err?.message||'');return {ok:false,status:0,reason:/^AUTH_FAILED_\d+$/.test(e)?'AUTH_FAILED':'AUTH_UNAVAILABLE',requestedAt};}
  const spec=catalog['speaker-bluetooth']?.portatili;
  if(!spec)return {ok:false,status:0,reason:'CATALOG_NOT_CONFIGURED',requestedAt};
  const version=process.env.AMAZON_CREATORS_VERSION||'3.2';
