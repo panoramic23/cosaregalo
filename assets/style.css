@@ -441,3 +441,29 @@ p,li,dd,dt{line-height:1.7}
 /* Pending real account/favourites functionality: hide the inactive counter,
    keeping the working "Trova un regalo" navigation available. */
 .header-actions a:has(#favsBadge){display:none!important}
+
+/* CosaRegalo v6.8 — rounded logo-aligned headlines, selective yellow highlights. */
+:root{--title:'Baloo 2','Nunito Sans',Arial,sans-serif}
+h1,h2,h3,
+.hero h1,.page-head h1,.section-title h2,
+.home-category-header h2,.home-category-label,
+.type-card-info h3,.amazon-product-desc h3,
+.reading-copy h2,.reading-copy h3,
+.footer-grid b,.guide-copy h3,.compare-feature-copy h2{
+ font-family:var(--title);
+ font-weight:800;
+ letter-spacing:-.025em;
+}
+h1{line-height:1.08}
+h2{line-height:1.13}
+h3{line-height:1.19}
+.hero h1 em,.page-head.is-dark h1 em,.outlet-callout h1 em,
+.outlet-callout h2 em,.cr-title-yellow-on-dark{
+ color:#ffd43c!important;
+ font-style:normal;
+}
+.hero h1 .title-highlight,.outlet-callout .title-highlight,
+.dark-title .title-highlight{color:#ffd43c!important}
+.page-head:not(.is-dark) h1 em,.type-page-hero-copy h1 em{
+ color:inherit;
+}
