@@ -252,7 +252,7 @@ async function staticFile(req,res,pathname){
     res.statusCode=200;
     res.setHeader('Content-Type',mime[extname(file).toLowerCase()]||'application/octet-stream');
     res.setHeader('X-Content-Type-Options','nosniff');
-    res.setHeader('Cache-Control',parts[0]==='assets' ? (/\.(css|js)$/i.test(relative)?'no-cache, must-revalidate':'public, max-age=3600') : 'no-cache, must-revalidate');
+    res.setHeader('Cache-Control',parts[0]==='assets' ? (/\.(css|js)$/i.test(relative)?'no-cache, must-revalidate':'public, max-age=3600') : (indexable?'no-cache, must-revalidate':'no-store'));
     if(req.method==='HEAD')res.end();else res.end(bytes);
   }catch{return reply(res,404,{error:'NOT_FOUND'});}
 }
