@@ -179,7 +179,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     if(!resp.ok)return;
     const data=await resp.json();sec.querySelector('[data-sitestripe-group]')?.remove();if(data.groupLink&&validUrl(data.groupLink,'link')){const a=e('a','amazon-btn','Esplora la selezione su Amazon ↗');a.dataset.sitestripeGroup='1';a.href=data.groupLink;a.target='_blank';a.rel='sponsored nofollow noopener';sec.append(a);}if(Array.isArray(data.items)&&paint(root,data.items,data.checkedAt)){
      if(status)status.textContent=data.source==='sitestripe'?'Link affiliati SiteStripe verificati manualmente. Prezzo e disponibilità da consultare su Amazon.':'Prezzi e immagini provengono da Amazon; verifica l’offerta al momento dell’acquisto.';
-    }else if(status)status.textContent='Selezione editoriale: nessun link prodotto verificato. Fasce di budget indicative, non prezzi o disponibilità attuali.';
+    }else if(status)status.textContent=root.querySelector('a[data-affiliate-source="sitestripe"]')?'Link SiteStripe inseriti dal gestore. Prezzi e disponibilità da verificare su Amazon.':'Selezione editoriale: nessun link prodotto verificato. Fasce di budget indicative, non prezzi o disponibilità attuali.';
    }catch{/* Present clear editorial fallback; never fabricate price. */}
   }));
  }
