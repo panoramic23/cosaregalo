@@ -18,13 +18,19 @@ const FACETS={
 
 function start(){
  const menu=selectOne('#menuToggle'), nav=selectOne('#navMenu');
- if(menu&&nav&&!menu.dataset.bound){menu.dataset.bound='1';menu.addEventListener('click',()=>{let open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));});}
- // Sticky logo/navigation while the announcement strip scrolls away.
- const brandHeader=selectOne('.top-header');
- function measureHeader(){if(brandHeader)document.documentElement.style.setProperty('--cr-header-height',brandHeader.getBoundingClientRect().height+'px');}
- measureHeader();
- if(brandHeader&&'ResizeObserver' in window)new ResizeObserver(measureHeader).observe(brandHeader);
- else window.addEventListener('resize',measureHeader);
+ if(menu&&nav&&!menu.dataset.bound){
+  menu.dataset.bound='1';
+  menu.addEventListener('click',()=>{
+   const open=nav.classList.toggle('open');
+   menu.setAttribute('aria-expanded',String(open));
+   if(!open)selectAll('.nav-categories').forEach(box=>{
+    box.classList.remove('is-open');
+    box.querySelector('.nav-categories-toggle')?.setAttribute('aria-expanded','false');
+   });
+  });
+ }
+ // Only the white menu is sticky; the dark logo/search header scrolls with the page.
+ // No header-height measurements or scroll listeners are needed.
  // Accessible category submenu; works on click, keyboard, and touch.
  const categoryBoxes=selectAll('.nav-categories');
  function closeCategoryBox(box){
