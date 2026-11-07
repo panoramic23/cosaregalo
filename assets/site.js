@@ -187,3 +187,31 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  window.addEventListener('hashchange',()=>setTimeout(hydrate,0));
 })();
 
+
+
+/* Original shopping guide links: Amazon product/category search, no invented prices or ASINs.
+   The Associates tag is a public tracking identifier injected by the Node server. */
+(function(){
+ function initGuideShopping(){
+  const tag=document.querySelector('meta[name="cr-amazon-tag"]')?.getAttribute('content')||'';
+  if(!/^[a-zA-Z0-9-]{5,60}$/.test(tag))return;
+  document.querySelectorAll('.bf-shop-cta[data-amazon-search]').forEach(link=>{
+   try{
+    const query=decodeURIComponent(link.dataset.amazonSearch||'');
+    if(!query||query.length>125)return;
+    const url=new URL('https://www.amazon.it/s');
+    url.searchParams.set('k',query);
+    url.searchParams.set('tag',tag);
+    link.href=url.toString();
+    link.target='_blank';
+    link.rel='sponsored nofollow noopener';
+    link.textContent='Cerca prodotti su Amazon ↗';
+    link.setAttribute('aria-label','Cerca '+query+' su Amazon tramite link affiliato');
+    const note=link.closest('.bf-pick-retail')?.querySelector('.bf-pick-market-note');
+    if(note)note.textContent='Link affiliato · risultati di ricerca Amazon. Prezzi e disponibilità sul negozio.';
+   }catch{/* Keep the local editorial fallback link. */}
+  });
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initGuideShopping);
+ else initGuideShopping();
+})();
