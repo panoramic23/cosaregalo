@@ -10,6 +10,8 @@ import admin from './api/admin.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
 const port=Number(process.env.PORT||3000);
+// Bump public asset URLs whenever the Node deployment restarts to avoid mixed HTML/CSS versions.
+const assetRevision=Date.now().toString(36);
 const handlers=new Map([['/api/products',products],['/api/deals',deals],['/api/track',track],['/api/admin',admin]]);
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.ico':'image/x-icon','.txt':'text/plain; charset=utf-8','.xml':'application/xml; charset=utf-8','.csv':'text/csv; charset=utf-8'};
 const blocked=new Set(['api','lib','content','node_modules','.git']);
@@ -241,12 +243,16 @@ async function staticFile(req,res,pathname){
         html=html.replace('</body>',
           '<script>window.CR_ADS_CONFIG='+publicAdsJson+';</script><script defer src="/assets/ads.js"></script></body>');
       }
+      // HTML is revalidated; its CSS/JS references must point to the same deployment.
+      // This prevents old cached styles from rendering newly generated menu markup.
+      html=html.replace(/(\b(?:href|src)=")([^"]*?assets\/(?:style\.css|site\.js|admin\.js|analytics\.js|deals\.js|ads\.js|google-cmp\.js))"/g,
+        (_match,attr,path)=>attr+path+'?v='+assetRevision+'"');
       bytes=Buffer.from(html,'utf8');
     }
     res.statusCode=200;
     res.setHeader('Content-Type',mime[extname(file).toLowerCase()]||'application/octet-stream');
     res.setHeader('X-Content-Type-Options','nosniff');
-    res.setHeader('Cache-Control',parts[0]==='assets'?'public, max-age=3600':'no-cache');
+    res.setHeader('Cache-Control',parts[0]==='assets' ? (/\.(css|js)$/i.test(relative)?'no-cache, must-revalidate':'public, max-age=3600') : 'no-cache, must-revalidate');
     if(req.method==='HEAD')res.end();else res.end(bytes);
   }catch{return reply(res,404,{error:'NOT_FOUND'});}
 }
