@@ -148,12 +148,12 @@ async function staticFile(req,res,pathname){
       // Category links are real crawlable anchors, not JavaScript-only links.
       if(html.includes('class="nav-menu"')&&!html.includes('class="nav-categories"')){
         const categories=[
-          ['Speaker Bluetooth','speaker-bluetooth'],['Microfoni karaoke','microfoni-karaoke'],
-          ['Cuffie wireless','cuffie-wireless'],['E-reader','e-reader'],
-          ['Giochi di costruzioni','giochi-costruzioni'],['Kit trucchi','kit-trucchi'],
-          ['Cofanetti benessere','cofanetti-benessere'],['Accessori scrivania','accessori-scrivania']
+          ['Elettronica e tecnologia','tech'],
+          ['Casa e ufficio','casa'],
+          ['Giochi e bambini','gioco'],
+          ['Bellezza e benessere','benessere']
         ];
-        const links=categories.map(([label,slug])=>'<a href="'+prefix+'tipologie/'+slug+'/index.html">'+label+'</a>').join('');
+        const links=categories.map(([label,category])=>'<a href="'+prefix+'tipologie/index.html?category='+category+'">'+label+'</a>').join('');
         const categoryNav='<div class="nav-categories"><button class="nav-categories-toggle" type="button" aria-expanded="false" aria-controls="crCategoryLinks">Categorie <span aria-hidden="true">⌄</span></button>'
           +'<div class="nav-category-panel" id="crCategoryLinks"><div class="nav-category-grid">'+links+'</div><a class="nav-all-categories" href="'+prefix+'tipologie/index.html">Tutte le categorie →</a></div></div>';
         html=html.replace(/(<nav class="nav-menu"[^>]*>)/,'$1'+categoryNav);
