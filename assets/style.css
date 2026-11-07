@@ -483,3 +483,17 @@ h1,h2,h3,
 @media(max-width:620px){
  h1,h2,h3,.home-category-label{-webkit-text-stroke:.25px currentColor}
 }
+
+/* CosaRegalo SEO editorial sections — product guidance is visible in source HTML. */
+.seo-intro{margin:26px 0 36px;padding:28px 34px;background:#fff;border:1px solid #dbe5ee;border-radius:14px}
+.seo-intro h2,.seo-guide-expanded h2{font-family:var(--title);font-size:clamp(26px,3vw,35px);font-weight:800;line-height:1.14;margin:9px 0 17px;color:#263f55}
+.seo-intro p,.seo-group-advice p,.seo-guide-expanded p{font:400 16px/1.85 var(--text);color:#334e65;margin:0 0 14px}
+.seo-intro p:last-child,.seo-group-advice p:last-child,.seo-guide-section p:last-child{margin-bottom:0}
+.seo-intro a,.seo-guide-expanded a{color:#204e77;text-decoration:underline;text-underline-offset:3px;font-weight:700}
+.seo-group-advice{padding:5px 0 18px;max-width:900px}
+.seo-group-advice .seo-editorial-note{font-size:12px;color:#526b80;line-height:1.5;margin-top:8px}
+.seo-guide-expanded{margin:32px 0;padding:25px 0;border-block:1px solid #dce5ec}
+.seo-guide-section{margin-top:22px}
+.seo-guide-section + .seo-guide-section{padding-top:15px;border-top:1px solid #edf1f4}
+.seo-guide-expanded h2{font-size:clamp(23px,2.6vw,30px)}
+@media(max-width:700px){.seo-intro{padding:21px 20px;margin:20px 0 28px}.seo-intro p,.seo-group-advice p,.seo-guide-expanded p{font-size:15px;line-height:1.75}}
