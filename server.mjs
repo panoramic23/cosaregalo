@@ -279,7 +279,7 @@ const server=http.createServer(async(req,res)=>{
     if(!indexable||process.env.ADS_MODE!=='adsense'||!id)return reply(res,404,{error:'ADS_TXT_NOT_CONFIGURED'});
     return serveText(res,'google.com, pub-'+id[1]+', DIRECT, f08c47fec0942fa0\n');
   }
-  if(pathname==='/health')return reply(res,200,{ok:true,service:'cosaregalo',environment:process.env.NODE_ENV||'development'});
+  if(pathname==='/health')return reply(res,200,{ok:true,service:'cosaregalo',environment:process.env.NODE_ENV||'development',uiRelease:'css-debug-20261107',assetRevision});
   if(handlers.has(pathname))return api(req,res,pathname,url.searchParams);
   if(pathname.startsWith('/api/'))return reply(res,404,{error:'UNKNOWN_API'});
   return staticFile(req,res,url.pathname);
