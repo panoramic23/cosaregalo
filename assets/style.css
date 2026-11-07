@@ -467,3 +467,19 @@ h3{line-height:1.19}
 .page-head:not(.is-dark) h1 em,.type-page-hero-copy h1 em{
  color:inherit;
 }
+
+/* CosaRegalo v6.9 — slightly heavier Baloo 2 display lettering. */
+h1,h2,h3,
+.hero h1,.page-head h1,.section-title h2,
+.home-category-header h2,.home-category-label,
+.type-card-info h3,.amazon-product-desc h3,
+.reading-copy h2,.reading-copy h3,
+.guide-copy h3,.compare-feature-copy h2{
+ font-family:'Baloo 2','Nunito Sans',Arial,sans-serif;
+ font-weight:800;
+ -webkit-text-stroke:.4px currentColor;
+ paint-order:stroke fill;
+}
+@media(max-width:620px){
+ h1,h2,h3,.home-category-label{-webkit-text-stroke:.25px currentColor}
+}
