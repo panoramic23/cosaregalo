@@ -40,6 +40,30 @@ function normalize(item){
   availability:listing?.availability?.message ||null,
   url:link,observedAt:new Date().toISOString()};
 }
+// Admin-only diagnostic, invoked by /api/admin?mode=amazon-api-test.
+// Never reveal remote response bodies, bearer tokens or credentials.
+export async function testCreatorsAccess(){
+ const requestedAt=new Date().toISOString();
+ if(!process.env.AMAZON_CREATORS_CLIENT_ID||!process.env.AMAZON_CREATORS_CLIENT_SECRET||!process.env.AMAZON_PARTNER_TAG)
+  return {ok:false,status:0,reason:'API_NOT_CONFIGURED',requestedAt};
+ let token;
+ try{token=await getToken();}
+ catch(err){const e=String(err?.message||'');return {ok:false,status:0,reason:/^AUTH_FAILED_\\d+$/.test(e)?'AUTH_FAILED':'AUTH_UNAVAILABLE',requestedAt};}
+ const spec=catalog['speaker-bluetooth']?.portatili;
+ if(!spec)return {ok:false,status:0,reason:'CATALOG_NOT_CONFIGURED',requestedAt};
+ const version=process.env.AMAZON_CREATORS_VERSION||'3.2';
+ const payload={marketplace:MARKET,partnerTag:process.env.AMAZON_PARTNER_TAG,
+  keywords:spec.keywords,itemCount:1,searchIndex:'All',resources:['itemInfo.title']};
+ const reasons=new Set(['AssociateNotEligible','AuthorizationFailed','InvalidAssociate','InvalidPartnerTag','FieldValidationFailed','UnauthorizedException','TokenExpired','InvalidToken','InvalidIssuer','UnsupportedClient','InvalidClient','MissingCredential']);
+ try{
+  const response=await fetch('https://creatorsapi.amazon/catalog/v1/searchItems',{
+   method:'POST',headers:{Authorization:'Bearer '+token+(version.startsWith('2.')?', Version '+version:''),'Content-Type':'application/json','x-marketplace':MARKET},
+   body:JSON.stringify(payload),signal:AbortSignal.timeout(15000)});
+  if(response.ok)return {ok:true,status:response.status,reason:'AUTHORIZED',requestedAt};
+  let error={};try{error=await response.json()}catch{}
+  return {ok:false,status:response.status,reason:reasons.has(error?.reason)?error.reason:'REMOTE_REJECTED',requestedAt};
+ }catch{return {ok:false,status:0,reason:'NETWORK_UNAVAILABLE',requestedAt};}
+}
 export default async function handler(req,res){
  if(req.method!=='GET')return res.status(405).json({error:'METHOD_NOT_ALLOWED'});
  const {type,group}=req.query||{};
