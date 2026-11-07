@@ -244,6 +244,12 @@ async function staticFile(req,res,pathname){
         html=html.replace('</body>',
           '<script>window.CR_ADS_CONFIG='+publicAdsJson+';</script><script defer src="/assets/ads.js"></script></body>');
       }
+      // Public Amazon Associates tracking tag (never an API credential).
+      // Used only to turn article category searches into tagged Special Links.
+      const associateTag=String(process.env.AMAZON_PARTNER_TAG||'').trim();
+      if(/^[a-zA-Z0-9-]{5,60}$/.test(associateTag)){
+        html=html.replace('</head>','<meta name="cr-amazon-tag" content="'+associateTag+'"/></head>');
+      }
       // HTML is revalidated; its CSS/JS references must point to the same deployment.
       // This prevents old cached styles from rendering newly generated menu markup.
       html=html.replace(/(\b(?:href|src)=")([^"]*?assets\/(?:style\.css|site\.js|admin\.js|analytics\.js|deals\.js|ads\.js|google-cmp\.js))"/g,
