@@ -1,4 +1,5 @@
 import {readConfig,validateConfig,storageKey} from '../lib/sitestripe.mjs';
+import {testCreatorsAccess} from './products.mjs';
 import {passesDeal, GIFT_CATEGORIES} from '../lib/deals-policy.mjs';
 import {calendar,settings} from '../lib/editorial.mjs';
 import {redis,configured,authenticated,respond} from '../lib/store.mjs';
@@ -7,6 +8,7 @@ export default async function handler(req,res){if(!authenticated(req))return res
 const mode=String(req.query?.mode||'dashboard');
 try{
  if(req.method==='GET'){
+  if(mode==='amazon-api-test')return respond(res,200,{test:await testCreatorsAccess(),catalogMode:(await readConfig()).mode});
   if(mode==='sitestripe')return respond(res,200,{config:await readConfig(),writable:configured()});
   let views=[],clicks=[],productViews=[],affiliate=null;
   if(configured()){const [v,c,pv,a]=await Promise.all([redis(['HGETALL','cr:views']),redis(['HGETALL','cr:clicks']),redis(['HGETALL','cr:product-views']),redis(['GET','cr:amazon-report'])]);views=rows(v);clicks=rows(c);productViews=rows(pv);if(a){try{affiliate=JSON.parse(a)}catch{}}}
