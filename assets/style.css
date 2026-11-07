@@ -505,3 +505,36 @@ h1,h2,h3,
 .seo-hub-intro p:last-child{margin-bottom:0}
 .seo-hub-intro a{font-weight:750;color:#20537e;text-decoration:underline;text-underline-offset:3px}
 @media(max-width:700px){.seo-hub-intro{padding:20px;margin:18px 0 26px}.seo-hub-intro p{font-size:15px}}
+
+/* CosaRegalo v6.10 — fixed brand + navigation; announcement remains in normal flow. */
+:root{--cr-header-height:100px}
+.top-header{position:sticky;top:0;z-index:120;isolation:isolate}
+.nav-bar{position:sticky;top:var(--cr-header-height);z-index:119}
+.nav-inner{position:relative}
+.nav-menu{align-items:center}
+.nav-categories{position:relative;flex-shrink:0}
+.nav-categories-toggle{display:flex;align-items:center;gap:7px;border:0;background:transparent;color:#223e55;cursor:pointer;font-family:var(--text);font-size:14px;font-weight:800;line-height:1.5;padding:14px 5px}
+.nav-categories-toggle:hover,.nav-categories-toggle[aria-expanded="true"]{color:#9b7000}
+.nav-categories-toggle span{font-size:19px;transition:transform .15s;line-height:1}
+.nav-categories.is-open .nav-categories-toggle span{transform:rotate(180deg)}
+.nav-category-panel{position:absolute;top:100%;left:0;z-index:150;width:min(550px,calc(100vw - 32px));background:white;border:1px solid #dce6ee;border-radius:0 0 13px 13px;padding:17px;box-shadow:0 14px 32px rgba(25,47,70,.16);display:none}
+.nav-categories.is-open .nav-category-panel,.nav-categories:focus-within .nav-category-panel{display:block}
+.nav-category-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 12px}
+.nav-category-grid a{display:block!important;padding:10px 11px!important;font-size:13px!important;font-weight:700!important;border-radius:7px;color:#2a435a;white-space:normal!important;line-height:1.35}
+.nav-category-grid a:hover,.nav-category-grid a:focus-visible{background:#f0f5f9;color:#1c3e5a}
+.nav-category-panel .nav-all-categories{display:block!important;padding:11px 12px 3px!important;margin-top:11px;border-top:1px solid #e6ecf2;font-weight:850!important;color:#204b70}
+.footer-grid .footer-affiliate-disclosure{font-size:13px;line-height:1.65;margin:13px 0 0;color:#e0eaf4;max-width:390px}
+@media(max-width:1080px){.nav-categories-toggle{font-size:13px}}
+@media(max-width:760px){
+ .nav-bar{top:var(--cr-header-height)}
+ .nav-inner{position:static}
+ .nav-menu{position:absolute;left:0;right:0;top:100%;max-height:calc(100dvh - var(--cr-header-height) - 47px);overflow:auto;overscroll-behavior:contain;gap:7px;padding:16px max(20px,calc((100% - 1260px)/2));z-index:150}
+ .nav-menu .nav-categories{width:100%}
+ .nav-categories-toggle{justify-content:space-between;width:100%;padding:10px 4px;font-size:15px}
+ .nav-category-panel{position:static;display:none!important;width:100%;padding:7px 0 10px;border:0;box-shadow:none;border-radius:0}
+ .nav-categories.is-open .nav-category-panel{display:block!important}
+ .nav-category-grid{grid-template-columns:1fr;gap:2px}
+ .nav-category-grid a{padding:10px 13px!important}
+ .nav-menu.open>a{font-size:14px;padding:10px 4px}
+}
+@media(prefers-reduced-motion:reduce){.nav-categories-toggle span{transition:none}}
