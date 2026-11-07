@@ -67,7 +67,7 @@ const indexable=process.env.SITE_INDEXABLE==='true' && !!canonicalSite;
 const indexPaths=[
  '/', '/offerte/', '/confronti/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/',
  '/guide/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
- '/guide/lettura/', '/guide/cuffie/', '/esplora/ricorrenze/', '/esplora/gusti/',
+ '/guide/lettura/', '/guide/cuffie/', '/guide/cucina-poco-spazio/', '/guide/scrivania-pratica/', '/guide/giochi-creativi-bambini/', '/esplora/ricorrenze/', '/esplora/gusti/',
  '/esplora/sport/', '/esplora/cartoni/', '/esplora/stagioni/', '/tipologie/speaker-bluetooth/',
  '/tipologie/giochi-costruzioni/', '/tipologie/cofanetti-benessere/',
  '/tipologie/kit-trucchi/', '/tipologie/cuffie-wireless/', '/tipologie/e-reader/',
@@ -109,7 +109,7 @@ async function staticFile(req,res,pathname){
   let relative;
   if(parts[0]==='assets'){
     // Public CSS, JavaScript and images: assets are restricted to known extensions.
-    if(parts.length<2||parts.some(part=>part.startsWith('.'))||!['.css','.js','.svg','.webp','.png','.jpg','.jpeg','.ico'].includes(extname(parts.at(-1)).toLowerCase()))return reply(res,404,{error:'NOT_FOUND'});
+    if(parts.length<2||parts.some(part=>part.startsWith('.'))||!['.css','.js','.json','.svg','.webp','.png','.jpg','.jpeg','.ico'].includes(extname(parts.at(-1)).toLowerCase()))return reply(res,404,{error:'NOT_FOUND'});
     relative=parts.join('/');
   }else{
     // Both /guide/ and /guide/index.html must resolve to guide/index.html.
@@ -252,7 +252,7 @@ async function staticFile(req,res,pathname){
     res.statusCode=200;
     res.setHeader('Content-Type',mime[extname(file).toLowerCase()]||'application/octet-stream');
     res.setHeader('X-Content-Type-Options','nosniff');
-    res.setHeader('Cache-Control',parts[0]==='assets' ? (/\.(css|js)$/i.test(relative)?'no-cache, must-revalidate':'public, max-age=3600') : (indexable?'no-cache, must-revalidate':'no-store'));
+    res.setHeader('Cache-Control',parts[0]==='assets' ? (/\.(css|js|json)$/i.test(relative)?'no-cache, must-revalidate':'public, max-age=3600') : (indexable?'no-cache, must-revalidate':'no-store'));
     if(req.method==='HEAD')res.end();else res.end(bytes);
   }catch{return reply(res,404,{error:'NOT_FOUND'});}
 }
