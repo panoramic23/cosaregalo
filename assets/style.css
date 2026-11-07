@@ -443,11 +443,11 @@ h1,h2,.hero h1,.page-head h1,.section-title h2,.home-category-header h2,
 h1{line-height:1.08}
 h2{line-height:1.13}
 /* H3–H6 deliberately use Baloo 2 Medium, never synthetic bold. */
-h3,h4,h5,h6{font-family:var(--title);font-weight:500!important;line-height:1.25;-webkit-text-stroke:0!important;paint-order:normal}
+h3,h4,h5,h6{font-family:var(--title);font-weight:600!important;line-height:1.25;-webkit-text-stroke:0!important;paint-order:normal}
 h3,.type-card-info h3,.amazon-product-desc h3,.reading-copy h3,.guide-copy h3,
 .product-info h3,.compare-feature-copy h3,.model-row h3,.faq-editorial h3,
 .faq-editorial .faq-entry h3,.compare-pane h3,.compare-col h3,.aside-sticky h3{
- font-family:var(--title);font-weight:500;letter-spacing:-.012em;
+ font-family:var(--title);font-weight:600;letter-spacing:-.012em;
  line-height:1.23;-webkit-text-stroke:0
 }
 .home-category-label,.cr-discovery-card-title,.home-discovery-name{
@@ -929,7 +929,7 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
 .bf-pick-index{font:800 39px/1 var(--title);color:#b18818;letter-spacing:-.03em}
 .bf-pick-content h2,.bf-pick-content h3{font-family:var(--title);line-height:1.19;margin:0 0 9px;color:#29455e}
 .bf-pick-content h2{font-size:clamp(25px,2.7vw,30px)}
-.bf-pick-content h3{font-size:clamp(23px,2.4vw,27px);font-weight:500}
+.bf-pick-content h3{font-size:clamp(23px,2.4vw,27px);font-weight:600}
 .bf-pick-content p{font-size:15px;line-height:1.78;color:#40586b;margin:0 0 10px}
 .bf-pick-check{font-size:13px!important;line-height:1.65!important;color:#536a7e!important}
 .bf-pick-check strong{color:#29455c;font-weight:800}
@@ -946,7 +946,7 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
 .bf-refresh-guide .reading-copy>.lede{font-size:18px;line-height:1.7}
 .bf-refresh-guide .article-hero{gap:30px}
 .bf-refresh-guide .article-hero>img{height:290px}
-.bf-refresh-guide .reading-copy .bf-guide-pick h3{font-size:clamp(23px,2.4vw,27px);margin:0 0 10px;font-weight:500!important}
+.bf-refresh-guide .reading-copy .bf-guide-pick h3{font-size:clamp(23px,2.4vw,27px);margin:0 0 10px;font-weight:600!important}
 
 /* One restrained sidebar card: contents, related articles, editorial note. */
 .bf-aside{min-width:0}
@@ -989,9 +989,11 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
 /* Shopping guide product/category cards: image + direct Amazon search special link.
    Images are clearly editorial illustrations until official product media is available. */
 .bf-pick-shop{
+ grid-column:2 / -1; /* do not auto-flow into the 52px number column */
  display:grid;grid-template-columns:112px minmax(0,1fr);align-items:center;
- gap:17px;margin-top:16px;padding-top:15px;
- border-top:1px solid #e4ebf1
+ width:100%;min-width:0;gap:18px;margin-top:14px;padding:15px;
+ border:1px solid #e5ebf0;border-radius:10px;background:#f7fafc;
+ box-sizing:border-box
 }
 .bf-pick-media{position:relative;width:112px;height:95px;border-radius:9px;overflow:hidden;background:#eaf1f5}
 .bf-pick-media img{width:100%;height:100%;object-fit:cover}
@@ -1034,22 +1036,20 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
  .bf-type-aside .bf-aside-sticky{position:static}
  .bf-type-aside{order:2}
 }
+@media(max-width:760px){
+ /* Use the full article width, not the narrow text cell beside the number. */
+ .bf-pick-shop{grid-column:1 / -1;margin-top:10px;padding:13px}
+}
 @media(max-width:460px){
- .bf-pick-shop{grid-template-columns:90px minmax(0,1fr);gap:12px}
- .bf-pick-media{width:90px;height:89px}
+ .bf-pick-shop{grid-template-columns:96px minmax(0,1fr);gap:13px;padding:11px}
+ .bf-pick-media{width:96px;height:90px}
  .bf-pick-retail .bf-shop-cta{padding:10px 11px;font-size:12px}
 }
 
-/* Guide: numbers in CosaRegalo yellow with a subtle shaded underline for legibility. */
+/* Numbering: the brand yellow without drop shadows or decorative underlines. */
 .bf-pick-index{
- position:relative;isolation:isolate;display:inline-block;width:max-content;
  color:#FFD43D!important;
- text-shadow:0 1px 1px rgba(32,52,73,.62),0 2px 7px rgba(32,52,73,.18);
+ text-shadow:none!important;
  -webkit-text-stroke:0!important;
 }
-.bf-pick-index::after{
- content:"";position:absolute;left:5%;right:5%;bottom:-2px;height:9px;z-index:-1;
- background:radial-gradient(ellipse at center,rgba(38,61,82,.22) 0%,rgba(38,61,82,0) 76%);
- pointer-events:none;
-}
-@media(prefers-contrast:more){.bf-pick-index{text-shadow:0 1px 0 #263f55,0 0 3px #263f55}}
+.bf-pick-index::after{content:none!important;display:none!important}
