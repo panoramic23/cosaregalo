@@ -717,7 +717,7 @@ h1,h2,h3,
  .nav-menu>a,.nav-menu>.nav-categories>.nav-categories-toggle{font-size:13px!important;padding-inline:10px!important}
  .nav-menu .nav-icon{width:16px;height:16px;min-width:16px}
 }
-@media(max-width:1040px){
+@media(max-width:1200px){
  :root{--cr-nav-height:54px}
  .nav-inner{min-height:var(--cr-nav-height);position:static}
  .mobile-menu{
@@ -755,3 +755,22 @@ h1,h2,h3,
 /* Prevent internal anchor targets and search headings from hiding behind sticky navigation. */
 html{scroll-padding-top:calc(var(--cr-header-height) + var(--cr-nav-height) + 18px)}
 [id]{scroll-margin-top:calc(var(--cr-header-height) + var(--cr-nav-height) + 18px)}
+
+/* v6.13 — first-level menu labels: never wrap or flip, uniform font size. */
+@media(min-width:1201px){
+ .nav-menu{flex-wrap:nowrap!important;white-space:nowrap;align-items:center;justify-content:space-between}
+ .nav-menu>a,.nav-menu>.nav-categories{flex:0 0 auto;min-width:max-content}
+ .nav-menu>a,.nav-menu>.nav-categories>.nav-categories-toggle{
+  font-family:var(--text)!important;font-size:14px!important;font-weight:800!important;
+  line-height:1.2!important;white-space:nowrap!important;flex-wrap:nowrap!important
+ }
+ .nav-menu .nav-label{white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important}
+}
+@media(max-width:1200px){
+ .nav-menu>a,.nav-menu>.nav-categories>.nav-categories-toggle{
+  font-family:var(--text)!important;font-size:15px!important;font-weight:800!important;
+  line-height:1.2!important;white-space:nowrap!important;flex-wrap:nowrap!important
+ }
+ .nav-menu .nav-label{white-space:nowrap!important;word-break:normal!important}
+}
+.nav-menu>.nav-categories.is-open>.nav-categories-toggle .nav-chevron{transform:none!important}
