@@ -10,7 +10,7 @@ async function pages(dir){
   if(entry.name.startsWith('.')||entry.name==='node_modules')continue;
   const file=dir+'/'+entry.name;
   if(entry.isDirectory())out.push(...await pages(file));
-  else if(entry.name==='index.html'||file.endsWith('.html'))out.push(file);
+  else if(entry.name==='index.html')out.push(file);
  }
  return out;
 }
