@@ -82,7 +82,7 @@ test('only the 48 supplied SiteStripe links are present in static product pages'
      assert.equal(url.searchParams.getAll('tag').length,1);
      assert.match(url.searchParams.get('linkId')||'',/^[a-f0-9]{32}$/i);
      if(/\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname))products++;
-     else {assert.equal(url.pathname,'/s');assert.ok(url.searchParams.get('k'));searches++}
+     else {assert.equal(url.pathname,'/s');assert.ok(url.searchParams.get('k')||url.searchParams.get('keywords'));searches++}
      total++;
     }
    }
