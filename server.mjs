@@ -214,6 +214,24 @@ async function staticFile(req,res,pathname){
           +'<script defer src="/assets/google-cmp.js"></script>';
         html=html.replace('</head>',headTags+'</head>');
       }
+      // Google Tag Manager: installed once for all public pages.
+      // Consent Mode v2 defaults to denied; existing cookie preferences update it.
+      if(parts[0]!=='admin' && !html.includes('GTM-WDH837GD')){
+        const gtmHead='<script>'
+          +'window.dataLayer=window.dataLayer||[];'
+          +'function gtag(){dataLayer.push(arguments);}'
+          +"gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500});"
+          +"gtag('js',new Date());"
+          +'(function(){'
+          +'function crConsent(p){if(!p)return;gtag("consent","update",{analytics_storage:p.statistics===true?"granted":"denied",ad_storage:p.marketing===true?"granted":"denied",ad_user_data:p.marketing===true?"granted":"denied",ad_personalization:p.marketing===true?"granted":"denied"});}'
+          +'try{crConsent(JSON.parse(localStorage.getItem("cosaregalo-consent-v2")||"null"));}catch(e){}'
+          +'window.addEventListener("cr:consentchange",function(e){crConsent(e.detail);});'
+          +'})();'
+          +'</script>'
+          +'<script async src="https://www.googletagmanager.com/gtm.js?id=GTM-WDH837GD"></script>';
+        const gtmBody='<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDH837GD" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>';
+        html=html.replace('</head>',gtmHead+'</head>').replace(/<body([^>]*)>/i,'<body$1>'+gtmBody);
+      }
       // Search metadata on the verified production domain only, not staging.
       const route='/'+parts.join('/')+(parts.length?'/':'');
       if(publicIndexable&&indexPaths.includes(route)){
