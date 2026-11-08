@@ -64,8 +64,13 @@ const publicAdsJson=JSON.stringify(publicAds).replace(/</g,'\\u003c').replace(/>
 const publicSiteUrl=String(process.env.SITE_PUBLIC_URL||'').trim().replace(/\/$/,'');
 const canonicalSite=/^https:\/\/(?:www\.)?cosa-regalo\.it$/i.test(publicSiteUrl)?publicSiteUrl:'';
 const indexable=process.env.SITE_INDEXABLE==='true' && !!canonicalSite;
+// Never expose staging/temporary hostnames to crawlers even when production SEO is enabled.
+function productionRequest(req){
+ const host=String(req.headers.host||'').toLowerCase().replace(/:\d+$/,'');
+ return indexable&&(host==='cosa-regalo.it'||host==='www.cosa-regalo.it');
+}
 const indexPaths=[
- '/', '/offerte/', '/confronti/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/',
+ '/', '/offerte/', '/confronti/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/', '/privacy-policy/', '/cookie-policy/',
  '/guide/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
  '/guide/lettura/', '/guide/cuffie/', '/guide/cucina-poco-spazio/', '/guide/scrivania-pratica/', '/guide/giochi-creativi-bambini/', '/esplora/ricorrenze/', '/esplora/gusti/',
  '/esplora/sport/', '/esplora/cartoni/', '/esplora/stagioni/', '/tipologie/speaker-bluetooth/',
@@ -99,6 +104,7 @@ async function api(req,res,pathname,searchParams){
   catch(e){if(!res.writableEnded)reply(res,500,{error:'INTERNAL_ERROR'});console.error('API failure:',pathname,e?.message);}
 }
 async function staticFile(req,res,pathname){
+  const publicIndexable=productionRequest(req);
   if(!['GET','HEAD'].includes(req.method))return reply(res,405,{error:'METHOD_NOT_ALLOWED'});
   if(pathname==='/outlet'||pathname==='/outlet/'){res.writeHead(308,{Location:'/offerte/'});res.end();return;}
   let decoded;
@@ -190,7 +196,7 @@ async function staticFile(req,res,pathname){
       }
       // Affiliate disclosure belongs with the brand description in footer column one.
       const disclosure='In qualità di Affiliato Amazon, possiamo ricevere una commissione sugli acquisti idonei.';
-      if(html.includes('class="footer-grid"')&&html.includes(disclosure)){
+      if(html.includes('class="footer-grid"')&&html.includes(disclosure)&&!html.includes('class="footer-affiliate-disclosure"')){
         html=html.replace(/<p>\s*In qualità di Affiliato Amazon, possiamo ricevere una commissione sugli acquisti idonei\.\s*<\/p>/g,'');
         html=html.replace(/(<div class="container footer-grid"><div>[\s\S]*?<\/p>)(<\/div>)/,
           '$1<p class="footer-affiliate-disclosure">'+disclosure+'</p>$2');
@@ -210,7 +216,7 @@ async function staticFile(req,res,pathname){
       }
       // Search metadata on the verified production domain only, not staging.
       const route='/'+parts.join('/')+(parts.length?'/':'');
-      if(indexable&&indexPaths.includes(route)){
+      if(publicIndexable&&indexPaths.includes(route)){
         const canonical=canonicalSite+route;
         const pageTitle=(html.match(/<title>([^<]*)<\/title>/i)||[])[1]||'CosaRegalo';
         const metaTag=(html.match(/<meta[^>]*name="description"[^>]*>/i)||[])[0]||'';
@@ -259,7 +265,7 @@ async function staticFile(req,res,pathname){
     res.statusCode=200;
     res.setHeader('Content-Type',mime[extname(file).toLowerCase()]||'application/octet-stream');
     res.setHeader('X-Content-Type-Options','nosniff');
-    res.setHeader('Cache-Control',parts[0]==='assets' ? (/\.(css|js|json)$/i.test(relative)?'no-cache, must-revalidate':'public, max-age=3600') : (indexable?'no-cache, must-revalidate':'no-store'));
+    res.setHeader('Cache-Control',parts[0]==='assets' ? (/\.(css|js|json)$/i.test(relative)?'no-cache, must-revalidate':'public, max-age=3600') : (publicIndexable?'no-cache, must-revalidate':'no-store'));
     if(req.method==='HEAD')res.end();else res.end(bytes);
   }catch{return reply(res,404,{error:'NOT_FOUND'});}
 }
@@ -267,23 +273,33 @@ const server=http.createServer(async(req,res)=>{
   let url;
   try{url=new URL(req.url||'/', 'http://localhost');}catch{return reply(res,400,{error:'INVALID_URL'});}
   const pathname=url.pathname.replace(/\/$/,'')||'/';
+  const host=String(req.headers.host||'').toLowerCase().replace(/:\d+$/,'');
+  const publicIndexable=productionRequest(req);
+  // Consolidate the preferred non-www domain only when the production canonical is configured.
+  if(canonicalSite==='https://cosa-regalo.it'&&host==='www.cosa-regalo.it'&&['GET','HEAD'].includes(req.method)){
+    res.writeHead(308,{Location:'https://cosa-regalo.it'+url.pathname+url.search});res.end();return;
+  }
+  // /index.html and /guide/index.html must resolve to one clean URL, on all hosts.
+  if(['GET','HEAD'].includes(req.method)&&/\/index\.html$/i.test(url.pathname)){
+    res.writeHead(308,{Location:(url.pathname.slice(0,-10)||'/')+url.search});res.end();return;
+  }
   // Staging stays out of search indexes until the official domain is ready.
-  if(!indexable||pathname.startsWith('/admin')||pathname.startsWith('/calendario')){
+  if(!publicIndexable||pathname.startsWith('/admin')||pathname.startsWith('/calendario')||pathname.startsWith('/api/')||pathname==='/health'){
     res.setHeader('X-Robots-Tag','noindex, nofollow');
   }
   if(pathname==='/robots.txt'){
-    return serveText(res,indexable
+    return serveText(res,publicIndexable
       ?'User-agent: *\nDisallow: /admin/\nDisallow: /api/\nDisallow: /calendario/\nSitemap: '+canonicalSite+'/sitemap.xml\n'
       :'User-agent: *\nDisallow: /\n');
   }
   if(pathname==='/sitemap.xml'){
-    if(!indexable)return reply(res,404,{error:'SITEMAP_NOT_PUBLISHED'});
+    if(!publicIndexable)return reply(res,404,{error:'SITEMAP_NOT_PUBLISHED'});
     const locations=indexPaths.map(p=>'  <url><loc>'+canonicalSite+p+'</loc></url>').join('\n');
     return serveText(res,'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+locations+'\n</urlset>\n','application/xml; charset=utf-8');
   }
   if(pathname==='/ads.txt'){
     const id=/^ca-pub-(\d{8,22})$/.exec(process.env.ADSENSE_CLIENT||'');
-    if(!indexable||process.env.ADS_MODE!=='adsense'||!id)return reply(res,404,{error:'ADS_TXT_NOT_CONFIGURED'});
+    if(!publicIndexable||process.env.ADS_MODE!=='adsense'||!id)return reply(res,404,{error:'ADS_TXT_NOT_CONFIGURED'});
     return serveText(res,'google.com, pub-'+id[1]+', DIRECT, f08c47fec0942fa0\n');
   }
   if(pathname==='/health')return reply(res,200,{ok:true,service:'cosaregalo',environment:process.env.NODE_ENV||'development',uiRelease:'css-debug-20261107',assetRevision});
