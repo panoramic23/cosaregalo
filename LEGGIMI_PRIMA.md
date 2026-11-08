@@ -1,3 +1,9 @@
+<!-- DOCUMENTAZIONE STORICA: conservata come archivio delle prime versioni, non per il deploy attuale. -->
+
+> **ARCHIVIO V5 — NON USARE PER DEPLOY O CONFIGURAZIONE ATTUALE.** CosaRegalo ora è un progetto Node.js su SiteGround, dominio `cosa-regalo.it`. Per istruzioni aggiornate usa [README.md](README.md), [SITESTRIPE.md](SITESTRIPE.md) e [GO_LIVE_COSAREGALO.md](GO_LIVE_COSAREGALO.md).
+
+---
+
 # CosaRegalo — Versione 5 (anteprima, NON pubblicata)
 
 Questa è la revisione del **progetto HTML originale fornito il 6 novembre 2026**, senza importazioni da Base44.
