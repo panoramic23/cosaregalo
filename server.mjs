@@ -222,26 +222,85 @@ async function staticFile(req,res,pathname){
         const metaTag=(html.match(/<meta[^>]*name="description"[^>]*>/i)||[])[0]||'';
         const metaDescription=(metaTag.match(/content="([^"]*)"/)||[])[1]||'Guide e idee regalo CosaRegalo';
         const encode=v=>String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+        // Use only real, crawlable ancestor pages in breadcrumb markup.
         const crumbs=[{name:'Home',item:canonicalSite+'/'}];
         let path='';
         for(const part of parts){
           path+='/'+part;
-          const name=({'tipologie':'Tipologie','guide':'Guide','offerte':'Super offerte','confronti':'Confronti','occasioni':'Occasioni','trova-regalo':'Trova un regalo','metodo':'Il nostro metodo'})[part]||part.replace(/-/g,' ').replace(/^./,c=>c.toUpperCase());
-          crumbs.push({name,item:canonicalSite+path+'/'});
+          const crumbRoute=path+'/';
+          if(!indexPaths.includes(crumbRoute))continue;
+          const name=({
+            'tipologie':'Categorie regalo','guide':'Guide agli acquisti','offerte':'Offerte Amazon',
+            'confronti':'Confronti prodotti','occasioni':'Idee per occasione',
+            'trova-regalo':'Trova un regalo','metodo':'Metodo editoriale',
+            'privacy-policy':'Privacy policy','cookie-policy':'Cookie policy',
+            'natale':'Regali di Natale','benessere':'Regali benessere',
+            'sotto-30':'Regali sotto 30 euro','tech':'Regali tecnologici',
+            'lettura':'Regali per chi ama leggere','cuffie':'Cuffie wireless',
+            'cucina-poco-spazio':'Idee per chi ama cucinare',
+            'scrivania-pratica':'Accessori da scrivania',
+            'giochi-creativi-bambini':'Giochi creativi per bambini'
+          })[part]||part.replace(/-/g,' ').replace(/^./,c=>c.toUpperCase());
+          crumbs.push({name,item:canonicalSite+crumbRoute});
         }
+        const isArticle=/^\/guide\/[^/]+\/$/.test(route);
+        const isCollection=route==='/guide/'||route==='/tipologie/'||
+          /^\/tipologie\/[^/]+\/$/.test(route)||route==='/offerte/'||
+          route==='/confronti/';
+        // Public imagery from this site only; never claim an editorial image is an Amazon product photo.
+        const foundImage=(html.match(/(?:bf-story-hero|article-hero|type-page-cover|hero-right)[\s\S]{0,4000}?<img\b[^>]*src="([^"]+)"/i)||[])[1]||'';
+        let imageUrl=canonicalSite+'/assets/cover.webp';
+        try{
+          const candidate=new URL(foundImage,canonical);
+          if(candidate.origin===canonicalSite&&/^\/assets\/[a-z0-9-]+\.(webp|png|jpg|jpeg)$/i.test(candidate.pathname))imageUrl=candidate.href;
+        }catch{}
+        const organizationId=canonicalSite+'/#organization',websiteId=canonicalSite+'/#website';
         const graph=[
-          {'@type':'WebSite','@id':canonicalSite+'/#website',url:canonicalSite+'/',name:'CosaRegalo',inLanguage:'it-IT'},
-          {'@type':'WebPage','@id':canonical+'#webpage',url:canonical,name:pageTitle,description:metaDescription,inLanguage:'it-IT',isPartOf:{'@id':canonicalSite+'/#website'}}
+          {'@type':'Organization','@id':organizationId,name:'CosaRegalo',url:canonicalSite+'/',
+            logo:{'@type':'ImageObject',url:canonicalSite+'/assets/logo.webp'}},
+          {'@type':'WebSite','@id':websiteId,url:canonicalSite+'/',name:'CosaRegalo',
+            inLanguage:'it-IT',publisher:{'@id':organizationId}},
+          {'@type':isCollection?'CollectionPage':'WebPage','@id':canonical+'#webpage',
+            url:canonical,name:pageTitle,description:metaDescription,inLanguage:'it-IT',
+            isPartOf:{'@id':websiteId},primaryImageOfPage:{'@type':'ImageObject',url:imageUrl}}
         ];
-        if(crumbs.length>1)graph.push({'@type':'BreadcrumbList',itemListElement:crumbs.map((b,i)=>({'@type':'ListItem',position:i+1,name:b.name,item:b.item}))});
+        if(crumbs.length>1){
+          const crumbId=canonical+'#breadcrumb';
+          graph.push({'@type':'BreadcrumbList','@id':crumbId,
+            itemListElement:crumbs.map((b,i)=>({'@type':'ListItem',position:i+1,name:b.name,item:b.item}))});
+          graph[2].breadcrumb={'@id':crumbId};
+        }
+        if(isArticle){
+          const article={
+            '@type':'BlogPosting','@id':canonical+'#article',headline:pageTitle,
+            description:metaDescription,inLanguage:'it-IT',image:imageUrl,
+            mainEntityOfPage:{'@id':canonical+'#webpage'},
+            author:{'@type':'Organization',name:'Redazione CosaRegalo',url:canonicalSite+'/metodo/'},
+            publisher:{'@id':organizationId},isAccessibleForFree:true
+          };
+          // Only publish dates supported by the original editorial feed; never invent dates.
+          const dates={
+            '/guide/cucina-poco-spazio/':'2026-11-07',
+            '/guide/scrivania-pratica/':'2026-11-07',
+            '/guide/giochi-creativi-bambini/':'2026-11-07'
+          };
+          if(dates[route])article.datePublished=dates[route];
+          graph.push(article);
+          graph[2].mainEntity={'@id':canonical+'#article'};
+        }
         const json=JSON.stringify({'@context':'https://schema.org','@graph':graph}).replace(/</g,'\\u003c');
         const cards='<link rel="canonical" href="'+encode(canonical)+'"/>'
-          +'<meta property="og:type" content="website"/><meta property="og:locale" content="it_IT"/>'
+          +'<meta property="og:type" content="'+(isArticle?'article':'website')+'"/>'
+          +'<meta property="og:locale" content="it_IT"/>'
           +'<meta property="og:site_name" content="CosaRegalo"/>'
           +'<meta property="og:title" content="'+encode(pageTitle)+'"/>'
           +'<meta property="og:description" content="'+encode(metaDescription)+'"/>'
           +'<meta property="og:url" content="'+encode(canonical)+'"/>'
-          +'<meta name="twitter:card" content="summary"/>'
+          +'<meta property="og:image" content="'+encode(imageUrl)+'"/>'
+          +'<meta name="twitter:card" content="summary_large_image"/>'
+          +'<meta name="twitter:title" content="'+encode(pageTitle)+'"/>'
+          +'<meta name="twitter:description" content="'+encode(metaDescription)+'"/>'
+          +'<meta name="twitter:image" content="'+encode(imageUrl)+'"/>'
           +'<script type="application/ld+json">'+json+'</script>';
         html=html.replace('</head>',cards+'</head>');
       }
