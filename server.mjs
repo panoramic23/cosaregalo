@@ -315,6 +315,17 @@ async function staticFile(req,res,pathname){
       if(/^[a-zA-Z0-9-]{5,60}$/.test(associateTag)){
         html=html.replace('</head>','<meta name="cr-amazon-tag" content="'+associateTag+'"/></head>');
       }
+      // Link internally to the same clean trailing-slash URLs listed in the sitemap.
+      // Keep external links, mailto, anchors and query strings untouched.
+      html=html.replace(/href="([^"]*?)index\.html(\?[^"]*)?"/gi,(whole,before,query='')=>{
+        if(/^(https?:|\/\/|mailto:|tel:|#)/i.test(before))return whole;
+        if(!/^(?:\/|(?:\.\.\/|\.\/)*[a-z0-9/_-]*)$/i.test(before))return whole;
+        return 'href="'+(before||'./')+query+'"';
+      });
+      if(html.includes('assets/style.css')&&!html.includes('rel="preconnect"')){
+        html=html.replace('</head>','<link rel="preconnect" href="https://fonts.googleapis.com"/>'
+          +'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/></head>');
+      }
       // HTML is revalidated; its CSS/JS references must point to the same deployment.
       // This prevents old cached styles from rendering newly generated menu markup.
       html=html.replace(/(\b(?:href|src)=")([^"]*?assets\/(?:style\.css|site\.js|admin\.js|analytics\.js|deals\.js|ads\.js|google-cmp\.js))"/g,
