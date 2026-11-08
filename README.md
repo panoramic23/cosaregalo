@@ -1,41 +1,42 @@
-# CosaRegalo — versione V6
+# CosaRegalo — progetto attuale
 
-Sito editoriale per idee regalo e super offerte Amazon. Origine: pacchetto HTML V6 approvato il 6 novembre 2026.
+Sito editoriale italiano per idee regalo, guide shopping e confronti, su **SiteGround Node.js**, dominio primario **https://cosa-regalo.it**. Repository: `panoramic23/cosaregalo`, ramo `main`. Runtime Node >=20, comando `npm start`. La versione del package è `6.1.0`; gli aggiornamenti grafici e editoriali sono successivi alla versione HTML originale. **Le guide storiche V5 e V6 non descrivono l'attuale sito.**
 
-## Cartelle
-- `index.html`, pagine in sottocartelle: frontend statico (24 pagine)
-- `assets/`: CSS, JS, immagini
-- `content/`: piano editoriale e cataloghi
-- `admin/`: pannello gestionale, da proteggere prima della pubblicazione
-- `api/`, `lib/`: handler Node esposti dall’adapter HTTP `server.mjs` su SiteGround
+## Struttura attuale
+- `index.html`, `guide/`, `tipologie/`, `esplora/`, `occasioni/`, `confronti/`, `trova-regalo/`, `offerte/`, `metodo/`: frontend statico servito da `server.mjs`
+- `assets/style.css`: foglio di stile consolidato con sezioni legacy ancora necessarie e CSS editoriale v7. Baloo 2 peso 800 su H1/H2 e peso 600 su H3–H6
+- `assets/site.js`: interazioni navigazione, carosello ultime guide e ricerca di prodotti Amazon nelle guide
+- `assets/latest-news.json`: registro delle guide effettivamente pubblicate, distinto dal calendario interno
+- `api/`, `lib/`, `content/`: API catalogo, SiteStripe, offerte, tracciamenti e dati editoriali
+- `admin/`: pannello protetto da `ADMIN_DASHBOARD_TOKEN`, con alcune funzioni che richiedono Redis REST
+- `tests/`: regressioni CSS, accessibilità strutturale HTML, SiteStripe e SEO
 
-## Hosting previsto
-SiteGround GoGeek, dominio `cosa-regalo.it`. Il deposito del codice GitHub **non pubblica il sito**. Prima di andare online configurare deploy, Node runtime, HTTPS, accesso admin, Redis e credenziali Amazon.
+## Stato Amazon e affiliazione
+Le **otto pagine di tipologia** contengono **48 link SiteStripe forniti dal titolare** (40 verso prodotti con ASIN, 8 verso risultati di ricerca Amazon.it), tracking ID `230b7-21`. Sono link inseriti **nell'HTML**; non sono automaticamente collegati al registro API Redis/JSON. Per revocarli o sostituirli si modifica la pagina sorgente e si ridistribuisce. **L'editor SiteStripe dell'admin controlla il catalogo API, non i 48 link HTML statici.** Vedi [SITESTRIPE.md](SITESTRIPE.md).
 
-## Modalità provvisoria SiteStripe
+Le nove guide editoriali contengono consigli collegati a categorie o ricerche Amazon: diventano link di ricerca affiliati quando `AMAZON_PARTNER_TAG` è presente nell'ambiente server; le immagini restano illustrative e non devono essere presentate come fotografie ufficiali dei prodotti.
 
-Catalogo predefinito senza chiamate Amazon e senza link non verificati. Configurazione da admin con Redis oppure da `content/sitestripe.json`; istruzioni, verifica manuale e ritorno alla futura API in [SITESTRIPE.md](SITESTRIPE.md). Eseguire `npm test` per il collaudo automatico.
+La Creators API può non essere idonea. **Nessun prezzo, disponibilità, recensione, test o sconto va inventato.** Le super offerte richiedono verifiche prima della pubblicazione.
 
-## Amazon
-Creators API (EU) con ID/Secret/Version; partner tag `230b7-21`. Keepa o fonte storica verificabile richiesta per dichiarare sconti >=50%; non pubblicare offerte fittizie. I report Amazon Associates non sono esposti da Creators API.
+## Deploy e indicizzazione
+Il commit GitHub **non aggiorna** da solo l'applicazione SiteGround: serve il deploy/riavvio del progetto Node. Le variabili da controllare sul provider, senza inserire segreti nel repository, sono:
+
+```ini
+NODE_ENV=production
+SITE_PUBLIC_URL=https://cosa-regalo.it
+SITE_INDEXABLE=false
+AMAZON_PARTNER_TAG=230b7-21
+ADS_MODE=off
+```
+
+`SITE_INDEXABLE=false` è intenzionale **solo durante i controlli pre-lancio**. Quando HTTPS, homepage, guide, SiteStripe, privacy e cookie sono verificati sul dominio definitivo, impostare `SITE_INDEXABLE=true` e ridistribuire/riavviare; verificare `/health` (`seoReady:true`), `/robots.txt`, `/sitemap.xml` e i canonical nel sorgente HTML. Le richieste al vecchio dominio di staging restano `noindex`.
+
+Per il checklist e il controllo del dominio: [GO_LIVE_COSAREGALO.md](GO_LIVE_COSAREGALO.md).
+
+Per il test automatico eseguire `npm test` nel progetto Node >=20. I test creati nel repository non equivalgono a un collaudo live su SiteGround.
 
 ## Privacy e sicurezza
-I segreti vanno nelle variabili di ambiente sul server, non nei file Git. Non pubblicare l'admin senza autenticazione robusta. Vedi `LEGGIMI_PRIMA.md` per limitazioni note.
+Le credenziali di Amazon, token di admin e Redis devono rimanere nelle variabili server. Non pubblicarle mai su GitHub. L'interfaccia admin e il calendario editoriale non devono essere indicizzati. Il banner cookie e le opzioni pubblicitarie richiedono verifica funzionale prima di attivare annunci.
 
-## Deploy su SiteGround GoGeek
-
-Il sito usa il runtime Node.js nativo e **non richiede Vercel**. Il server HTTP `server.mjs` espone i documenti HTML e le API `/api/products`, `/api/deals`, `/api/track`, `/api/admin`.
-
-1. In Area Cliente SiteGround, aprire **Siti Web → Progetti Node.js → Nuovo progetto**.
-2. Collegare il repository privato `panoramic23/cosaregalo`, branch `main`.
-3. Impostare il comando di avvio `npm start` se il wizard lo richiede. Nessun comando build necessario; versione Node >=20.
-4. Provare il dominio temporaneo e `/health` (risponde `ok:true`). Non collegare il dominio principale prima del collaudo.
-5. Inserire le variabili in `.env.example` **nel pannello dell'ambiente SiteGround**, mai nel repository. `PORT` è gestita dal provider quando assegnata.
-
-### Limitazioni prima del lancio
-- API prodotti richiede credenziali Amazon Creators API valide e una prova reale del protocollo: non ancora verificata con Amazon.
-- Statistiche, deals e salvataggio report richiedono un endpoint Redis REST compatibile; **la disponibilità di MySQL/PostgreSQL SiteGround non sostituisce automaticamente questo adapter**.
-- La dashboard usa un token server-side: configurare un token casuale robusto, accesso HTTPS e ulteriori protezioni prima della produzione.
-- Nessuna offerta viene pubblicata senza verifica di prezzo, evidenza storica e soglia minima −50%.
-- Test end-to-end di deploy e API non ancora eseguiti sul runtime SiteGround.
-
+## Documenti storici
+`LEGGIMI_PRIMA.md` si riferisce a una versione V5 locale con hosting Vercel: **solo archivio, non usare per il deploy attuale**. `DEBUG_CSS_2026-11-07.md` documenta la migrazione e i problemi storici del CSS, non necessariamente lo stato di oggi.
