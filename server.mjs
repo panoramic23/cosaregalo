@@ -232,6 +232,10 @@ async function staticFile(req,res,pathname){
         const gtmBody='<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WDH837GD" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>';
         html=html.replace('</head>',gtmHead+'</head>').replace(/<body([^>]*)>/i,'<body$1>'+gtmBody);
       }
+      // Branded favicon is shared across all HTML routes, including nested guides.
+      if(!html.includes('rel="icon"')){
+        html=html.replace('</head>','<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"/></head>');
+      }
       // Search metadata on the verified production domain only, not staging.
       const route='/'+parts.join('/')+(parts.length?'/':'');
       if(publicIndexable&&indexPaths.includes(route)){
