@@ -55,13 +55,47 @@ test('Redis round-trip, revoked links, API failure fallback and storage outage f
   globalThis.fetch=async()=>{throw Error('offline')};assert.deepEqual(await readConfig(),{mode:'editorial',links:[]});
  }finally{globalThis.fetch=original;delete process.env.KV_REST_API_URL;delete process.env.KV_REST_API_TOKEN;delete process.env.AMAZON_CREATORS_CLIENT_ID;delete process.env.AMAZON_CREATORS_CLIENT_SECRET;}
 });
-test('all static HTML and source catalog lack unverified Amazon URLs',async()=>{
- async function walk(dir){for(const x of await readdir(dir,{withFileTypes:true})){if(x.name.startsWith('.'))continue;const path=dir+'/'+x.name;if(x.isDirectory())await walk(path);else if(path.endsWith('.html'))assert.doesNotMatch(await readFile(path,'utf8'),/href="https:\/\/(?:www\.)?amazon\.it\//);}}
- await walk(new URL('..',import.meta.url).pathname);
+test('only the 48 supplied SiteStripe links are present in static product pages',async()=>{
+ const types=['speaker-bluetooth','microfoni-karaoke','kit-trucchi','giochi-costruzioni',
+  'cuffie-wireless','e-reader','cofanetti-benessere','accessori-scrivania'];
+ const source=new URL('..',import.meta.url);
+ let total=0,products=0,searches=0;
+ const allowed=new Set(types.map(x=>'/tipologie/'+x+'/index.html'));
+ async function walk(dir){
+  for(const x of await readdir(dir,{withFileTypes:true})){
+   if(x.name.startsWith('.')||x.name==='node_modules')continue;
+   const path=dir+'/'+x.name;
+   if(x.isDirectory())await walk(path);
+   else if(path.endsWith('.html')){
+    const html=await readFile(path,'utf8');
+    const rel='/'+path.slice(source.pathname.length).replace(/^\//,'');
+    const links=[...html.matchAll(/data-affiliate-source="sitestripe" href="([^"]+)"/g)];
+    if(!allowed.has(rel))assert.equal(links.length,0,'Unexpected SiteStripe button in '+rel);
+    else assert.equal(links.length,6,'Each supported product category has 6 approved links: '+rel);
+    const allAmazon=[...html.matchAll(/href="(https:\/\/(?:www\.)?amazon\.it\/[^"]+)"/g)];
+    assert.equal(allAmazon.length,links.length,'Unapproved Amazon URL found in '+rel);
+    for(const [,raw] of links){
+     const url=new URL(raw.replace(/&amp;/g,'&'));
+     assert.equal(url.protocol,'https:');
+     assert.equal(url.hostname,'www.amazon.it');
+     assert.equal(url.searchParams.get('tag'),'230b7-21');
+     assert.equal(url.searchParams.getAll('tag').length,1);
+     assert.match(url.searchParams.get('linkId')||'',/^[a-f0-9]{32}$/i);
+     if(/\/dp\/[A-Z0-9]{10}(?:\/|$)/i.test(url.pathname))products++;
+     else {assert.equal(url.pathname,'/s');assert.ok(url.searchParams.get('k'));searches++}
+     total++;
+    }
+   }
+  }
+ }
+ await walk(source.pathname);
+ assert.equal(total,48);
+ assert.equal(products,40);
+ assert.equal(searches,8);
  assert.doesNotMatch(await readFile(new URL('../content/tipologie.json',import.meta.url),'utf8'),/amazon\.it\//);
 });
 test('SiteGround Node adapter serves default mode, protected admin and static fallback',async()=>{
- const server=spawn(process.execPath,['server.mjs'],{cwd:new URL('..',import.meta.url),env:{...process.env,PORT:'31987'},stdio:['ignore','pipe','pipe']});
+ const server=spawn(process.execPath,['server.mjs'],{cwd:new URL('..',import.meta.url),env:{...process.env,PORT:'31987',SITE_INDEXABLE:'false',SITE_PUBLIC_URL:'https://cosa-regalo.it'},stdio:['ignore','pipe','pipe']});
  try{await Promise.race([once(server.stdout,'data'),once(server,'exit').then(()=>{throw Error('server exited')}),new Promise((_,reject)=>setTimeout(()=>reject(Error('startup timeout')),5000).unref())]);
  const base='http://127.0.0.1:31987';
  assert.equal((await (await fetch(base+'/health')).json()).ok,true);
@@ -69,7 +103,7 @@ test('SiteGround Node adapter serves default mode, protected admin and static fa
  assert.equal((await fetch(base+'/api/admin?mode=sitestripe')).status,401);
  assert.equal((await fetch(base+'/api/products',{method:'POST',headers:{'content-type':'application/json'},body:'{'})).status,400);
  assert.equal((await fetch(base+'/content/sitestripe.json')).status,404);
- const html=await (await fetch(base+'/tipologie/speaker-bluetooth/')).text();assert.match(html,/ESEMPIO EDITORIALE/);assert.doesNotMatch(html,/href="https:\/\/www.amazon.it/);
+ const html=await (await fetch(base+'/tipologie/speaker-bluetooth/')).text();assert.match(html,/data-affiliate-source="sitestripe"/);assert.match(html,/tag=230b7-21/);
  assert.deepEqual((await (await fetch(base+'/api/deals')).json()).items,[]);
  }finally{if(server.exitCode===null){server.kill();await once(server,'exit');}}
 });
