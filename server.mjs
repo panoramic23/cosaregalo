@@ -61,9 +61,10 @@ const publicAds={
 };
 const publicAdsJson=JSON.stringify(publicAds).replace(/</g,'\\u003c').replace(/>/g,'\\u003e').replace(/&/g,'\\u0026');
 
-const publicSiteUrl=String(process.env.SITE_PUBLIC_URL||'').trim().replace(/\/$/,'');
+const publicSiteUrl='https://cosa-regalo.it';
 const canonicalSite=/^https:\/\/(?:www\.)?cosa-regalo\.it$/i.test(publicSiteUrl)?publicSiteUrl:'';
-const indexable=process.env.SITE_INDEXABLE==='true' && !!canonicalSite;
+// The official public domain is now published; productionRequest still excludes staging hosts.
+const indexable=!!canonicalSite;
 // Never expose staging/temporary hostnames to crawlers even when production SEO is enabled.
 function productionRequest(req){
  const host=String(req.headers.host||'').toLowerCase().replace(/:\d+$/,'');
