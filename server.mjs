@@ -30,7 +30,7 @@ function safeSocialUrl(value,domain){
 const escapeAttr=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 function socialBlock(){
  const links=socialProfiles.map(([id,label,env,domain,svg])=>{
-  const url=safeSocialUrl(process.env[env]||'',domain);
+  const url=safeSocialUrl(process.env[env]||(id==='instagram'?'https://www.instagram.com/regalocosa/':''),domain);
   const image='<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+svg+'</svg>';
   return url?'<a class="cr-social-link" href="'+escapeAttr(url)+'" aria-label="'+label+'" target="_blank" rel="noopener noreferrer">'+image+'</a>':
    '<span class="cr-social-link is-inactive" role="img" aria-label="'+label+' (profilo da collegare)" title="'+label+' — profilo da collegare">'+image+'</span>';
