@@ -215,3 +215,24 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initGuideShopping);
  else initGuideShopping();
 })();
+
+
+/* Keep the existing social links in the sticky navigation on phones only. */
+(function(){
+ function setupMobileSocials(){
+  const socials=document.querySelector('.announcement .cr-socials');
+  const bar=document.querySelector('.nav-inner');
+  if(!socials||!bar)return;
+  const marker=document.createComment('social links desktop position');
+  socials.before(marker);
+  const mobile=window.matchMedia('(max-width:760px)');
+  function place(){
+   if(mobile.matches){bar.append(socials);socials.classList.add('cr-mobile-socials');}
+   else{marker.after(socials);socials.classList.remove('cr-mobile-socials');}
+  }
+  mobile.addEventListener('change',place);
+  place();
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setupMobileSocials);
+ else setupMobileSocials();
+})();
