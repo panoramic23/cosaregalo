@@ -1059,3 +1059,19 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
  -webkit-text-stroke:0!important;
 }
 .bf-pick-index::after{content:none!important;display:none!important}
+
+
+/* Phone navigation: persistent social shortcuts outside the expandable menu. */
+@media(max-width:760px){
+ .nav-inner{justify-content:space-between;gap:12px}
+ .nav-inner>.cr-mobile-socials{display:inline-flex;align-items:center;gap:8px;margin-left:auto;flex-shrink:0}
+ .cr-mobile-socials .cr-social-label{display:none}
+ .cr-mobile-socials .cr-social-link{
+  width:44px;height:44px;color:#294d6a;
+  border:1px solid #dbe5ed;border-radius:9px;background:#f1f5f8
+ }
+ .cr-mobile-socials .cr-social-link[href]:hover{background:#e4edf4;border-color:#afc6d6}
+ .cr-mobile-socials .cr-social-link:focus-visible{outline-color:#236b9c}
+ .cr-mobile-socials .cr-social-link svg{width:19px;height:19px}
+ .nav-inner>.mobile-menu{flex-shrink:0;gap:8px}
+}
