@@ -1160,3 +1160,10 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
  width:25px;height:25px;margin-left:5px;border-radius:50%;
  background:var(--yellow);color:#263e54;vertical-align:middle
 }
+
+/* Four social icons fit beside Menu even on compact phones. */
+@media(max-width:380px){
+ .nav-inner{gap:8px}
+ .nav-inner>.cr-mobile-socials{gap:4px}
+ .nav-inner>.mobile-menu{padding:10px 8px;font-size:14px}
+}
