@@ -79,3 +79,32 @@
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);else setup();
 })();
+
+
+/* Metricool website pixel — once per page, after statistics consent. */
+(function(){
+ if(location.protocol!=='https:'||!['cosa-regalo.it','www.cosa-regalo.it'].includes(location.hostname)||location.pathname.startsWith('/admin'))return;
+ let sent=false;
+ function track(allowed){
+  if(!allowed||sent)return;
+  const source='https://tracker.metricool.com/c3po.jpg?hash=6931e61610df5071f85d6cfbe9dfcb6a';
+  if(document.querySelector('img[data-cr-metricool]')){sent=true;return;}
+  sent=true;
+  const pixel=document.createElement('img');
+  pixel.setAttribute('data-cr-metricool','');
+  pixel.alt='';pixel.width=1;pixel.height=1;pixel.style.display='none';
+  pixel.src=source;
+  document.body.appendChild(pixel);
+ }
+ function custom(preferences){
+  if(window.CR_CMP_PROVIDER!=='google')track(preferences?.statistics===true);
+ }
+ function setup(){
+  try{custom(JSON.parse(localStorage.getItem('cosaregalo-consent-v2')||'null'));}catch{}
+  window.addEventListener('cr:consentchange',event=>custom(event.detail));
+  // Reserved for an explicit statistics consent signal from a certified CMP.
+  window.addEventListener('cr:statistics-consent',event=>track(event.detail?.granted===true));
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setup);
+ else setup();
+})();
