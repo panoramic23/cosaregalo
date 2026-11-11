@@ -17,6 +17,7 @@ const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8',
 const blocked=new Set(['api','lib','content','node_modules','.git']);
 
 const socialProfiles=[
+ ['facebook','Facebook','SOCIAL_FACEBOOK_URL','facebook.com','<path d="M14 21v-8h3l.5-4H14V7c0-1 .3-2 2-2h2V1.5A25 25 0 0 0 15 1c-3 0-5 1.8-5 5v3H7v4h3v8"/>'],
  ['instagram','Instagram','SOCIAL_INSTAGRAM_URL','instagram.com','<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".9" fill="currentColor" stroke="none"/>'],
  ['tiktok','TikTok','SOCIAL_TIKTOK_URL','tiktok.com','<path d="M14 3c.4 3.1 1.8 4.7 5 5v3.2c-2.1-.1-3.7-.8-5-1.9V16a5 5 0 1 1-5-5h1v3.3a2 2 0 1 0 1 1.7V3z"/>'],
  ['pinterest','Pinterest','SOCIAL_PINTEREST_URL','pinterest.com','<circle cx="12" cy="12" r="9"/><path d="M9 20l2-8c-.5-1.6 0-4 2.4-4 3.8 0 2.7 5.5-.3 5.5-.7 0-1.2-.3-1.5-.9M9.3 10a4.8 4.8 0 0 1 4-3"/>']
@@ -30,7 +31,7 @@ function safeSocialUrl(value,domain){
 const escapeAttr=s=>String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
 function socialBlock(){
  const links=socialProfiles.map(([id,label,env,domain,svg])=>{
-  const url=safeSocialUrl(process.env[env]||(id==='instagram'?'https://www.instagram.com/regalocosa/':''),domain);
+  const url=safeSocialUrl(process.env[env]||({instagram:'https://www.instagram.com/regalocosa/',facebook:'https://www.facebook.com/profile.php?id=61596280358647',pinterest:'https://www.pinterest.com/regalocosa/'}[id]||''),domain);
   const image='<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+svg+'</svg>';
   return url?'<a class="cr-social-link" href="'+escapeAttr(url)+'" aria-label="'+label+'" target="_blank" rel="noopener noreferrer">'+image+'</a>':
    '<span class="cr-social-link is-inactive" role="img" aria-label="'+label+' (profilo da collegare)" title="'+label+' — profilo da collegare">'+image+'</span>';
