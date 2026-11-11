@@ -45,7 +45,7 @@
  let scriptPending=null;
  function loadGoogle(){
   // Official Google CMP mode loads this exact AdSense tag in <head>.
-  if(googleCmp)return Promise.resolve();
+  if(googleCmp||document.querySelector('script[src^="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"]'))return Promise.resolve();
   if(scriptPending)return scriptPending;
   const client=String(cfg.adsense?.client||'');
   if(!/^ca-pub-\d{8,22}$/.test(client))return Promise.reject(new Error('Invalid AdSense client ID'));
