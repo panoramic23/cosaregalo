@@ -220,6 +220,11 @@ async function staticFile(req,res,pathname){
       if(publicIndexable && parts[0]!=='admin' && !html.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')){
         html=html.replace('</head>','<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+adsenseClient+'" crossorigin="anonymous"></script></head>');
       }
+      // Pinterest base tag: public pages only, once, gated by marketing consent.
+      // Enhanced match is omitted: the site has no verified visitor email source.
+      if(publicIndexable && parts[0]!=='admin' && !html.includes('CR_PINTEREST_INSTALLED')){
+        html=html.replace('</head>','<!-- Pinterest Tag --><script>'+"(function(){\nif(window.CR_PINTEREST_INSTALLED)return;\nwindow.CR_PINTEREST_INSTALLED=true;\nvar started=false;\nfunction apply(allowed){\n if(!allowed){if(started&&window.pintrk)window.pintrk('setconsent',false);return;}\n if(started){window.pintrk('setconsent',true);return;}\n started=true;\n !function(e){if(!window.pintrk){window.pintrk=function(){window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var n=window.pintrk;n.queue=[],n.version=\"3.0\";var t=document.createElement(\"script\");t.async=true;t.src=e;var r=document.getElementsByTagName(\"script\")[0];r.parentNode.insertBefore(t,r)}}(\"https://s.pinimg.com/ct/core.js\");\n window.pintrk('load','2614009177229');\n window.pintrk('setconsent',true);\n window.pintrk('page');\n}\nfunction custom(p){if(window.CR_CMP_PROVIDER!=='google')apply(!!p&&p.marketing===true);}\ntry{custom(JSON.parse(localStorage.getItem('cosaregalo-consent-v2')||'null'));}catch(e){}\nwindow.addEventListener('cr:consentchange',function(e){custom(e.detail);});\n// A certified CMP may pass a Pinterest-specific consent decision through this bridge.\nwindow.addEventListener('cr:pinterest-consent',function(e){apply(!!e.detail&&e.detail.granted===true);});\n})();"+'</script><!-- end Pinterest Tag --></head>');
+      }
       // Google Tag Manager: installed once for all public pages.
       // Consent Mode v2 defaults to denied; existing cookie preferences update it.
       if(parts[0]!=='admin' && !html.includes('GTM-WDH837GD')){
