@@ -37,17 +37,18 @@ function socialBlock(){
  }).join('');
  return '<div class="cr-socials" aria-label="Seguici sui social"><span class="cr-social-label">Seguici</span>'+links+'</div>';
 }
+const adsenseClient='ca-pub-3418117440633690';
 // The Google CMP is supplied/certified by Google's AdSense Privacy & Messaging.
 // It must be published in the matching AdSense account before enabling this switch.
 const googleCmpEnabled=process.env.CMP_PROVIDER==='google'
  && process.env.GOOGLE_CMP_PUBLISHED==='true'
- && /^ca-pub-\d{8,22}$/.test(process.env.ADSENSE_CLIENT||'');
+ && /^ca-pub-\d{8,22}$/.test(adsenseClient);
 
 const publicAds={
  cmpProvider:googleCmpEnabled?'google':'custom',
  mode:['adsense','cj'].includes(process.env.ADS_MODE)?process.env.ADS_MODE:'off',
  adsense:{
-  client:/^ca-pub-\d{8,22}$/.test(process.env.ADSENSE_CLIENT||'')?process.env.ADSENSE_CLIENT:'',
+  client:/^ca-pub-\d{8,22}$/.test(adsenseClient)?process.env.ADSENSE_CLIENT:'',
   slots:Object.fromEntries([
    ['home-top','ADSENSE_SLOT_HOME_TOP'],['home-middle','ADSENSE_SLOT_HOME_MIDDLE'],
    ['article-inline','ADSENSE_SLOT_ARTICLE_INLINE'],['site-bottom','ADSENSE_SLOT_SITE_BOTTOM']
@@ -209,11 +210,15 @@ async function staticFile(req,res,pathname){
       // Google's certified CMP owns the EU consent dialogue. The AdSense tag
       // loads the published message; ad slots remain separately disabled by default.
       if(googleCmpEnabled&&!html.includes('/assets/google-cmp.js')){
-        const client=process.env.ADSENSE_CLIENT;
+        const client=adsenseClient;
         const headTags='<script>window.CR_CMP_PROVIDER="google";window.googlefc=window.googlefc||{};window.googlefc.callbackQueue=window.googlefc.callbackQueue||[];</script>'
           +'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+encodeURIComponent(client)+'" crossorigin="anonymous"></script>'
           +'<script defer src="/assets/google-cmp.js"></script>';
         html=html.replace('</head>',headTags+'</head>');
+      }
+      // Publisher-supplied AdSense site tag, once on public production pages.
+      if(publicIndexable && parts[0]!=='admin' && !html.includes('pagead2.googlesyndication.com/pagead/js/adsbygoogle.js')){
+        html=html.replace('</head>','<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='+adsenseClient+'" crossorigin="anonymous"></script></head>');
       }
       // Google Tag Manager: installed once for all public pages.
       // Consent Mode v2 defaults to denied; existing cookie preferences update it.
@@ -391,7 +396,7 @@ const server=http.createServer(async(req,res)=>{
     return serveText(res,'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+locations+'\n</urlset>\n','application/xml; charset=utf-8');
   }
   if(pathname==='/ads.txt'){
-    const id=/^ca-pub-(\d{8,22})$/.exec(process.env.ADSENSE_CLIENT||'');
+    const id=/^ca-pub-(\d{8,22})$/.exec(adsenseClient);
     if(!publicIndexable||process.env.ADS_MODE!=='adsense'||!id)return reply(res,404,{error:'ADS_TXT_NOT_CONFIGURED'});
     return serveText(res,'google.com, pub-'+id[1]+', DIRECT, f08c47fec0942fa0\n');
   }
