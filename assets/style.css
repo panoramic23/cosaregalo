@@ -1154,7 +1154,7 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
 
 
 /* Home news: stronger titles and a restrained brand-yellow link accent. */
-.home-news-card-body h3{font-weight:700}
+.home-news-card-body h3{font-weight:700!important}
 .home-news-card-action>span{
  display:inline-flex;align-items:center;justify-content:center;
  width:25px;height:25px;margin-left:5px;border-radius:50%;
