@@ -169,7 +169,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    card.append(frame,info,buy);list.append(card);
   });if(list.children.length){root.replaceChildren(list);return true}return false;
  }
- async function hydrate(){if(location.protocol==='file:'||window.COSAREGALO_OFFLINE)return;
+ async function hydrate(){if(location.protocol==='file:'||window.COSAREGALO_OFFLINE||document.querySelector('.bf-type-page'))return;
   await Promise.all(Array.from(document.querySelectorAll('.amazon-group')).map(async sec=>{
    const root=sec.querySelector('.amazon-products'),status=sec.querySelector('.amazon-api-note');if(!root)return;
    if(!root.dataset.editorial)root.dataset.editorial=root.innerHTML;
@@ -341,4 +341,56 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',updateLatestHero);
  else updateLatestHero();
+})();
+
+/* Curated type-page product cards. Never replace an editorial selection with keyword SearchItems. */
+(function(){
+ function validMedia(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&/(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
+ function validAffiliate(url){try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='www.amazon.it'&&u.searchParams.get('tag')==='230b7-21'}catch{return false}}
+ async function hydrateCuratedCategories(){
+  const sections=[...document.querySelectorAll('.bf-type-page .amazon-group[data-slug]')];
+  if(!sections.length||location.protocol==='file:'||window.COSAREGALO_OFFLINE)return;
+  const slug=sections[0].dataset.slug;
+  if(!slug||sections.some(s=>s.dataset.slug!==slug))return;
+  const cards=[...document.querySelectorAll('.bf-type-page .amazon-product')];
+  try{
+   const response=await fetch('/api/category-products?slug='+encodeURIComponent(slug),{cache:'no-store',headers:{Accept:'application/json'}});
+   if(!response.ok)return;
+   const data=await response.json();
+   if(data.source!=='amazon-creators-api'||!Array.isArray(data.items))return;
+   const products=new Map(data.items.map(p=>[p.asin,p]));
+   cards.forEach(card=>{
+    const found=(card.querySelector('.product-origin')?.textContent||'').match(/ASIN\s+([A-Z0-9]{10})/);
+    if(!found)return;
+    const p=products.get(found[1]);
+    if(!p)return;
+    const frame=card.querySelector('.amazon-product-image');
+    if(frame&&validMedia(p.image)){
+      const img=document.createElement('img');img.src=p.image;img.loading='lazy';
+      img.decoding='async';img.alt='Foto ufficiale Amazon del prodotto '+(p.shortTitle||p.title);
+      frame.replaceChildren(img);
+    }
+    const desc=card.querySelector('.amazon-product-desc');
+    const specs=Array.isArray(p.features)?p.features.filter(x=>typeof x==='string'&&x.trim()):[];
+    if(desc&&specs.length&&!desc.querySelector('.cr-amazon-spec')){
+      const technical=document.createElement('p');technical.className='cr-amazon-spec';
+      const summary=specs[0].trim().replace(/\s+/g,' ');
+      technical.textContent='Dalla scheda Amazon: '+(summary.length>170?summary.slice(0,166).replace(/\s+\S*$/,'')+'…':summary);
+      desc.append(technical);
+    }
+    const buy=card.querySelector('.amazon-product-buy');
+    const price=buy?.querySelector('.amazon-price');
+    if(price&&p.price){price.textContent=p.price;price.classList.remove('not-live')}
+    const stamp=buy?.querySelector('.amazon-timestamp');
+    if(stamp&&p.price)stamp.textContent='Prezzo verificato '+new Date(data.checkedAt).toLocaleString('it-IT')+'; ricontrolla su Amazon';
+    const link=buy?.querySelector('.amazon-btn');
+    if(link&&validAffiliate(p.url)){link.href=p.url;link.rel='sponsored nofollow noopener noreferrer';}
+   });
+   sections.forEach(s=>{
+    const note=s.querySelector('.amazon-api-note');
+    if(note)note.textContent='Selezione editoriale CosaRegalo; fotografie e prezzi ufficiali soltanto quando disponibili tramite Amazon. Prezzi e disponibilità possono cambiare.';
+   });
+  }catch{/* Preserve the original editorial text and verified SiteStripe links. */}
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hydrateCuratedCategories);else hydrateCuratedCategories();
 })();
