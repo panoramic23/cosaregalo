@@ -108,7 +108,7 @@ async function api(req,res,pathname,searchParams){
   try{await handlers.get(pathname)(req,adapt(res));if(!res.writableEnded)reply(res,500,{error:'EMPTY_API_RESPONSE'});}
   catch(e){if(!res.writableEnded)reply(res,500,{error:'INTERNAL_ERROR'});console.error('API failure:',pathname,e?.message);}
 }
-async function staticFile(req,res,pathname){
+async function staticFile(req,res,pathname,overrideHtml=null){
   const publicIndexable=productionRequest(req);
   if(!['GET','HEAD'].includes(req.method))return reply(res,405,{error:'METHOD_NOT_ALLOWED'});
   if(pathname==='/outlet'||pathname==='/outlet/'){res.writeHead(308,{Location:'/offerte/'});res.end();return;}
@@ -132,9 +132,9 @@ async function staticFile(req,res,pathname){
   const file=resolve(root,relative||'index.html');
   if(!file.startsWith(root+sep))return reply(res,403,{error:'FORBIDDEN'});
   try{
-    const info=await stat(file);
-    if(!info.isFile())return reply(res,404,{error:'NOT_FOUND'});
-    let bytes=await readFile(file);
+    let bytes;
+    if(overrideHtml!==null){bytes=Buffer.from(overrideHtml,'utf8');}
+    else {const info=await stat(file);if(!info.isFile())return reply(res,404,{error:'NOT_FOUND'});bytes=await readFile(file);}
     // Shared header text is removed from every HTML page at the server level.
     // Keep the informative affiliate notice in the footer and dedicated pages.
     if(extname(file).toLowerCase()==='.html'){
@@ -384,8 +384,7 @@ async function handleEditorial(req,res,pathname){
   if(article){
    if(article.status!=='published'){res.statusCode=404;res.end('Articolo non disponibile');return true;}
    const html=await renderArticle(article);
-   res.statusCode=200;res.setHeader('Content-Type','text/html; charset=utf-8');
-   res.setHeader('Cache-Control','no-store');if(req.method==='HEAD')res.end();else res.end(html);
+   await staticFile(req,res,pathname,html);
    return true;
   }
  }
