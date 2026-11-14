@@ -254,10 +254,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   'benessere':[['cofanetti-benessere','casa'],['cofanetti-benessere','senza-profumo']]
  };
  function validAmazon(url){try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='www.amazon.it'&&!u.username&&!u.password}catch{return false}}
- function validImage(url){try{const u=new URL(url);return u.protocol==='https:'&&/(^|\\.)(media-amazon\\.com|images-amazon\\.com|ssl-images-amazon\\.com)$/.test(u.hostname)}catch{return false}}
+ function validImage(url){try{const u=new URL(url);return u.protocol==='https:'&&/(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
  function el(tag,cls,txt){const node=document.createElement(tag);if(cls)node.className=cls;if(txt!==undefined)node.textContent=txt;return node}
  async function load(){
-  const match=location.pathname.match(/\\/guide\\/([a-z0-9-]+)\\/(?:index\\.html)?$/);
+  const match=location.pathname.match(/\/guide\/([a-z0-9-]+)\/(?:index\.html)?$/);
   if(!match||!Object.hasOwn(guideGroups,match[1]))return;
   const root=document.querySelector('.bf-story-body');
   if(!root||document.getElementById('cr-editorial-products'))return;
