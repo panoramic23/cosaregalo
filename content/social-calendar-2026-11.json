@@ -1,0 +1,422 @@
+{
+  "brandId": 2236117,
+  "brandLabel": "Cosa Regalo",
+  "timezone": "Europe/Rome",
+  "createdOn": "2026-11-14",
+  "policy": "Only verified live guides, approved assets and verified destination accounts. Never publish posts with fake product photos, invented prices or reviews.",
+  "notes": [
+    "Calendar entries are ideas, not scheduled Metricool posts.",
+    "Instagram images must be accessible through a real public media URL.",
+    "TikTok account remains lakelecco; do not schedule until rebrand confirmed.",
+    "Check Pinterest board before any Pinterest pin.",
+    "Cross-posting to Facebook/Pinterest requires verified profiles and media."
+  ],
+  "items": [
+    {
+      "date": "2026-11-15",
+      "slug": "scrivania-pratica",
+      "category": "Casa e lavoro",
+      "caption": "Una scrivania più comoda non richiede dieci gadget: scegli un supporto stabile, una luce adatta e accessori che risolvano un bisogno reale. Leggi la guida su https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/scrivania-pratica/",
+      "illustrative_asset": "assets/tech.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "13:00"
+      },
+      "facebook": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": true,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-16",
+      "slug": "giochi-creativi-bambini",
+      "category": "Giochi",
+      "caption": "Il regalo creativo funziona quando lascia spazio all'immaginazione. Meglio partire dall'età del bambino, non dalla scatola più grande. Leggi la guida su https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/",
+      "illustrative_asset": "assets/building.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "20:00"
+      },
+      "facebook": {
+        "planned": false,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-17",
+      "slug": "cuffie",
+      "category": "Tecnologia",
+      "caption": "Cuffie wireless da regalare? Prima di guardare i numeri, chiediti se chi le userà preferisce un modello on-ear oppure over-ear. Leggi la guida su https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/cuffie/",
+      "illustrative_asset": "assets/tech.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "12:00"
+      },
+      "facebook": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-18",
+      "slug": "sotto-30",
+      "category": "Budget",
+      "caption": "Con 30 euro si può scegliere bene: la differenza sta nell'utilità del prodotto, non in un prezzo barrato. Leggi la guida su https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/sotto-30/",
+      "illustrative_asset": "assets/budget.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "13:00"
+      },
+      "facebook": {
+        "planned": false,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": true,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-19",
+      "slug": "lettura",
+      "category": "Lettura",
+      "caption": "Per chi ama leggere, a volte il regalo migliore non è un altro libro. Custodie e supporti hanno senso soltanto se compatibili con il lettore. Leggi la guida su https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/lettura/",
+      "illustrative_asset": "assets/reader.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "20:00"
+      },
+      "facebook": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-20",
+      "slug": "benessere",
+      "category": "Benessere",
+      "caption": "Un cofanetto benessere non è universale: fragranze, ingredienti e abitudini personali contano più del numero di prodotti. Leggi la guida su https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/benessere/",
+      "illustrative_asset": "assets/beauty.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "12:00"
+      },
+      "facebook": {
+        "planned": false,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-21",
+      "slug": "tech",
+      "category": "Tecnologia",
+      "caption": "La tecnologia da regalare è quella che semplifica qualcosa. Uno speaker portatile serve a qualcuno; una docking station a qualcun altro. Leggi la guida su https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/tech/",
+      "illustrative_asset": "assets/tech.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "13:00"
+      },
+      "facebook": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": true,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-22",
+      "slug": "cucina-poco-spazio",
+      "category": "Casa e cucina",
+      "caption": "Una cucina piccola insegna a scegliere meglio: accessori compatti e funzionali sono spesso più apprezzati dei gadget. Leggi la guida su https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/cucina-poco-spazio/",
+      "illustrative_asset": "assets/cover.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "20:00"
+      },
+      "facebook": {
+        "planned": false,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-23",
+      "slug": "scrivania-pratica",
+      "category": "Casa e lavoro",
+      "caption": "Prima di regalare un accessorio da scrivania, chiediti dove verrà messo: ingombro e compatibilità possono fare tutta la differenza. Leggi la guida su https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/scrivania-pratica/",
+      "illustrative_asset": "assets/tech.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "12:00"
+      },
+      "facebook": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-24",
+      "slug": "giochi-creativi-bambini",
+      "category": "Giochi",
+      "caption": "Costruzioni e giochi creativi hanno un punto in comune: invitano a riprovare. L'età consigliata resta il primo filtro. Leggi la guida su https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/",
+      "illustrative_asset": "assets/building.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "13:00"
+      },
+      "facebook": {
+        "planned": false,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": true,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-25",
+      "slug": "sotto-30",
+      "category": "Budget",
+      "caption": "Un piccolo budget non significa scegliere a caso. Abbiamo raccolto idee da valutare per destinatario e utilità quotidiana. Leggi la guida su https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/sotto-30/",
+      "illustrative_asset": "assets/budget.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "20:00"
+      },
+      "facebook": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-26",
+      "slug": "cuffie",
+      "category": "Tecnologia",
+      "caption": "ANC, vestibilità e autonomia: per regalare cuffie conta soprattutto l'uso reale, non una lista infinita di parole tecniche. Leggi la guida su https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/cuffie/",
+      "illustrative_asset": "assets/tech.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "12:00"
+      },
+      "facebook": {
+        "planned": false,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-27",
+      "slug": "lettura",
+      "category": "Lettura",
+      "caption": "Un e-reader va regalato con attenzione alla compatibilità; anche una semplice custodia può essere un regalo azzeccato se è quella giusta. Leggi la guida su https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/lettura/",
+      "illustrative_asset": "assets/reader.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "13:00"
+      },
+      "facebook": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": true,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    },
+    {
+      "date": "2026-11-28",
+      "slug": "benessere",
+      "category": "Benessere",
+      "caption": "Per scegliere un regalo relax, parti dal destinatario: usa la vasca? Ama i profumi? Preferisce accessori senza fragranze? Leggi la guida su https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/benessere/",
+      "illustrative_asset": "assets/beauty.webp",
+      "status": "planned_pending_verified_media_and_live_page",
+      "media_url": null,
+      "instagram": {
+        "planned": true,
+        "format": "POST",
+        "suggested_hour": "20:00"
+      },
+      "facebook": {
+        "planned": false,
+        "format": "POST",
+        "suggested_hour": "10:00"
+      },
+      "pinterest": {
+        "planned": false,
+        "format": "PIN",
+        "board_required": true
+      },
+      "tiktok": {
+        "planned": true,
+        "blocked_until_identity_change": true
+      }
+    }
+  ]
+}
