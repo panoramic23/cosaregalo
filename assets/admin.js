@@ -2,7 +2,7 @@
 async function request(mode='dashboard',body){const r=await fetch('/api/admin'+(mode==='dashboard'?'':'?mode='+encodeURIComponent(mode)),{method:body?'POST':'GET',headers:{Authorization:'Bearer '+token,'Content-Type':'application/json'},body:body?JSON.stringify(body):undefined,cache:'no-store'});const data=await r.json();if(!r.ok)throw new Error(data.message||data.error||'Accesso non riuscito');return data;}
 function renderRows(selector,rows){const out=$(selector);out.textContent='';if(!rows?.length){const tr=document.createElement('tr');td(tr,'Dati non ancora disponibili');td(tr,'—');out.append(tr);return;}rows.forEach(x=>{const tr=document.createElement('tr');td(tr,x.name);td(tr,x.count.toLocaleString('it-IT'));out.append(tr);});}
 function renderCalendar(calendar){const out=$('#adminCalendar');out.textContent='';const table=document.createElement('table');const head=document.createElement('thead');const tr=document.createElement('tr');['Data','Ora','Titolo','Formato','Stato'].forEach(x=>{const th=document.createElement('th');th.textContent=x;tr.append(th)});head.append(tr);table.append(head);const body=document.createElement('tbody');calendar.forEach(row=>{const tr=document.createElement('tr');[row.data,row.ora,row.titolo,row.formato,row.stato].forEach(x=>td(tr,x||'—'));body.append(tr)});table.append(body);out.append(table);}
-async function load(){const data=await request();$('#loginCard').hidden=true;$('#adminContent').hidden=false;$('#logout').hidden=false;const stats=[['Pagine viste',data.views.reduce((a,b)=>a+b.count,0)],['Click Amazon',data.clicks.reduce((a,b)=>a+b.count,0)],['Creatori API',data.status.amazonCreatorsApi?'Configurata':'Da collegare'],['Statistiche',data.status.analytics==='connected'?'Attive':'Da collegare']];$('#adminStats').textContent='';stats.forEach(([name,value])=>{const card=document.createElement('div');card.className='admin-stat';const strong=document.createElement('strong');strong.textContent=typeof value==='number'?value.toLocaleString('it-IT'):value;const label=document.createElement('span');label.textContent=name;card.append(strong,label);$('#adminStats').append(card)});renderRows('#views',data.views);renderRows('#clicks',data.clicks);renderRows('#productViews',data.productViews);renderCalendar(data.editorial);await loadSiteStripe();$('#amazonReport').textContent=data.affiliate?`Ultimo report (${data.affiliate.period}): ${data.affiliate.clicks} clic · ${data.affiliate.orderedItems} ordinati · ${data.affiliate.earnings.toLocaleString('it-IT',{style:'currency',currency:'EUR'})} di commissioni. Inserito ${new Date(data.affiliate.updatedAt).toLocaleString('it-IT')}.`:'Nessun report Amazon Associates importato.';}
+async function load(){const data=await request();$('#loginCard').hidden=true;$('#adminContent').hidden=false;$('#logout').hidden=false;const stats=[['Pagine viste',data.views.reduce((a,b)=>a+b.count,0)],['Click Amazon',data.clicks.reduce((a,b)=>a+b.count,0)],['Creatori API',data.status.amazonCreatorsApi?'Configurata':'Da collegare'],['Statistiche',data.status.analytics==='connected'?'Attive':'Da collegare']];$('#adminStats').textContent='';stats.forEach(([name,value])=>{const card=document.createElement('div');card.className='admin-stat';const strong=document.createElement('strong');strong.textContent=typeof value==='number'?value.toLocaleString('it-IT'):value;const label=document.createElement('span');label.textContent=name;card.append(strong,label);$('#adminStats').append(card)});renderRows('#views',data.views);renderRows('#clicks',data.clicks);renderRows('#productViews',data.productViews);renderCalendar(data.editorial);await loadSiteStripe();await loadEditorial();$('#amazonReport').textContent=data.affiliate?`Ultimo report (${data.affiliate.period}): ${data.affiliate.clicks} clic · ${data.affiliate.orderedItems} ordinati · ${data.affiliate.earnings.toLocaleString('it-IT',{style:'currency',currency:'EUR'})} di commissioni. Inserito ${new Date(data.affiliate.updatedAt).toLocaleString('it-IT')}.`:'Nessun report Amazon Associates importato.';}
 async function loadSiteStripe(){
  let panel=$('#sitestripePanel');
  if(!panel){panel=document.createElement('section');panel.id='sitestripePanel';panel.className='admin-card';
@@ -37,6 +37,79 @@ if(apiTestButton)apiTestButton.onclick=async()=>{
  }catch(err){output.textContent='Test non riuscito: '+err.message}
  finally{apiTestButton.disabled=false}
 };
+
+let editorialData=[],editorialWritable=false,basePublished=[];
+function articleMessage(msg,error=false){const x=$('#editorialResult');if(x){x.textContent=msg;x.className='admin-status '+(error?'admin-error':'admin-good');}}
+async function loadEditorial(){
+ const result=await request('articles');
+ editorialData=result.articles||[];editorialWritable=!!result.writable;
+ const feed=await fetch('/assets/latest-news.json',{cache:'no-store'}).then(r=>r.ok?r.json():{items:[]}).catch(()=>({items:[]}));
+ basePublished=(feed.items||[]).filter(x=>x.status==='published');
+ const entries=new Map(basePublished.map(a=>[a.slug,{slug:a.slug,title:a.title,category:a.category,status:'published',legacy:true,updatedAt:a.date||''}]));
+ editorialData.forEach(a=>entries.set(a.slug,{...a,legacy:false}));
+ const tbody=$('#editorialArticles');tbody.replaceChildren();
+ if(!entries.size){const tr=document.createElement('tr');const cell=document.createElement('td');cell.colSpan=5;cell.textContent='Non sono presenti articoli.';tr.append(cell);tbody.append(tr);}
+ for(const a of entries.values()){
+  const tr=document.createElement('tr');
+  for(const value of [a.title,a.category,a.status,a.updatedAt?.slice(0,10)||'—'])td(tr,value||'—');
+  const actions=document.createElement('td'),edit=document.createElement('button');
+  edit.type='button';edit.textContent='Modifica';edit.onclick=()=>openEditor(a);actions.append(edit);
+  if(a.status!=='archived'){
+   const archive=document.createElement('button');archive.type='button';archive.textContent='Archivia';
+   archive.onclick=()=>archiveArticle(a);actions.append(archive);
+  }
+  tr.append(actions);tbody.append(tr);
+ }
+ $('#newArticleButton').disabled=!editorialWritable;
+ if(!editorialWritable)articleMessage('Archivio editoriale non scrivibile: configura Redis REST sul server.',true);
+}
+function formValue(form,name,value){const input=form.elements.namedItem(name);if(input)input.value=String(value??'');}
+async function openEditor(article){
+ const form=$('#editorialArticleForm');form.hidden=false;
+ const a={...article};
+ if(a.legacy){
+  try{
+   const response=await fetch('/guide/'+encodeURIComponent(a.slug)+'/',{cache:'no-store'});
+   if(!response.ok)throw Error('Impossibile leggere la pagina');
+   const html=await response.text();
+   const doc=new DOMParser().parseFromString(html,'text/html');
+   const main=doc.querySelector('.bf-story-body,.reading-copy');
+   let nodes=[...(main?.querySelectorAll('p.lede,p.bf-story-lede,.reading-copy > p,.bf-story-body > p,.reading-copy > section[id^="criterio-"] h2,.reading-copy > section[id^="criterio-"] p')||[])];
+   if(nodes.length<2)nodes=[...(main?.querySelectorAll('p')||[])].filter(n=>!n.closest('.bf-pick,.bf-aside'));
+   a.body=nodes.map(n=>n.tagName==='H2'?'## '+n.textContent:n.textContent).join('\n\n');
+   a.summary=doc.querySelector('meta[name="description"]')?.content||a.title;
+   a.asins=[...doc.querySelectorAll('[data-asin]')].map(x=>x.getAttribute('data-asin')).join(', ');
+   a.revision=0;
+   if(a.body.length<50)a.body='## Introduzione\n\n'+(doc.querySelector('.lede,.bf-story-lede')?.textContent||a.summary)+'\n\n## Consigli di acquisto\n\nControlla modello, compatibilità e disponibilità prima di scegliere il regalo.';
+  }catch(e){articleMessage('Impossibile importare il testo originale: '+e.message,true);return;}
+ }
+ $('#editorialFormHeading').textContent=(a.slug?'Modifica articolo: '+a.slug:'Nuovo articolo');
+ for(const field of ['slug','category','title','summary','body','status','revision'])formValue(form,field,a[field]);
+ formValue(form,'asins',Array.isArray(a.asins)?a.asins.join(', '):(a.asins||''));
+ form.elements.namedItem('slug').readOnly=!!a.slug;
+ form.scrollIntoView({block:'start',behavior:'smooth'});
+}
+async function archiveArticle(a){
+ if(!editorialWritable){articleMessage('Archivio Redis non disponibile.',true);return;}
+ if(!confirm('Archiviare "'+a.title+'"? La pagina non sarà più accessibile al pubblico.'))return;
+ if(a.legacy){await openEditor(a);const form=$('#editorialArticleForm');form.elements.namedItem('status').value='archived';await saveArticleForm(form);return;}
+ try{await request('article-save',{...a,asins:Array.isArray(a.asins)?a.asins.join(', '):'',status:'archived'});articleMessage('Articolo archiviato.');await loadEditorial();}
+ catch(e){articleMessage('Archiviazione non riuscita: '+e.message,true);}
+}
+async function saveArticleForm(form){
+ if(!editorialWritable){articleMessage('Archivio Redis non disponibile.',true);return;}
+ const data=Object.fromEntries(new FormData(form).entries());
+ data.revision=Number(data.revision||0);
+ try{
+  const result=await request('article-save',data);
+  articleMessage('Articolo '+(result.article.status==='published'?'pubblicato':'salvato')+' correttamente. URL: /guide/'+result.article.slug+'/');
+  form.hidden=true;await loadEditorial();
+ }catch(e){articleMessage('Salvataggio non riuscito: '+e.message,true);}
+}
+$('#newArticleButton').onclick=()=>{const form=$('#editorialArticleForm');form.reset();form.elements.namedItem('slug').readOnly=false;formValue(form,'revision',0);formValue(form,'status','draft');form.hidden=false;$('#editorialFormHeading').textContent='Nuovo articolo';form.scrollIntoView({block:'start',behavior:'smooth'});};
+$('#editorialCancelButton').onclick=()=>{$('#editorialArticleForm').hidden=true;};
+$('#editorialArticleForm').onsubmit=async e=>{e.preventDefault();await saveArticleForm(e.target);};
+
 $('#loginForm').onsubmit=async e=>{e.preventDefault();token=$('#secret').value;try{await load();sessionStorage.setItem('cr-admin-token',token);$('#secret').value='';$('#loginMessage').textContent='';}catch(err){$('#loginMessage').textContent=err.message;token='';}};
 $('#logout').onclick=()=>{sessionStorage.removeItem('cr-admin-token');token='';$('#loginCard').hidden=false;$('#adminContent').hidden=true;$('#logout').hidden=true;};
 $('#reportForm').onsubmit=async e=>{e.preventDefault();const form=new FormData(e.target);const data=Object.fromEntries(form.entries());try{await request('amazon-report',data);await load();alert('Riepilogo Amazon salvato');}catch(err){alert(err.message)}};
