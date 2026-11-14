@@ -8,6 +8,7 @@ import guideProducts from './api/guide-products.mjs';
 import deals from './api/deals.mjs';
 import track from './api/track.mjs';
 import admin from './api/admin.mjs';
+import {readArticles,visibleArticles,renderArticle} from './lib/article-cms.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
 const port=Number(process.env.PORT||3000);
@@ -374,6 +375,34 @@ async function staticFile(req,res,pathname){
     if(req.method==='HEAD')res.end();else res.end(bytes);
   }catch{return reply(res,404,{error:'NOT_FOUND'});}
 }
+async function editorialState(){try{return (await readArticles()).items}catch{return {}}}
+async function handleEditorial(req,res,pathname){
+ if(!['GET','HEAD'].includes(req.method))return false;
+ const slug=/^\/guide\/([a-z0-9-]+)\/?$/.exec(pathname)?.[1];
+ if(slug){
+  const articles=await editorialState(),article=articles[slug];
+  if(article){
+   if(article.status!=='published'){res.statusCode=404;res.end('Articolo non disponibile');return true;}
+   const html=await renderArticle(article);
+   res.statusCode=200;res.setHeader('Content-Type','text/html; charset=utf-8');
+   res.setHeader('Cache-Control','no-store');if(req.method==='HEAD')res.end();else res.end(html);
+   return true;
+  }
+ }
+ if(pathname==='/assets/latest-news.json'){
+  const articles=visibleArticles(await editorialState());
+  if(!articles.length)return false;
+  const base=JSON.parse(await readFile(resolve(root,'assets/latest-news.json'),'utf8'));
+  const bySlug=new Map(base.items.map(x=>[x.slug,x]));
+  for(const a of Object.values(await editorialState())){
+   if(a.status!=='published'){bySlug.delete(a.slug);continue;}
+   bySlug.set(a.slug,{title:a.title,slug:a.slug,path:'guide/'+a.slug+'/index.html',category:a.category,summary:a.summary,image:'assets/cover.webp',date:a.publishedAt?.slice(0,10),status:'published'});
+  }
+  const result={version:base.version||1,items:[...bySlug.values()].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')))};
+  return serveText(res,JSON.stringify(result),'application/json; charset=utf-8'),true;
+ }
+ return false;
+}
 const server=http.createServer(async(req,res)=>{
   let url;
   try{url=new URL(req.url||'/', 'http://localhost');}catch{return reply(res,400,{error:'INVALID_URL'});}
@@ -399,7 +428,10 @@ const server=http.createServer(async(req,res)=>{
   }
   if(pathname==='/sitemap.xml'){
     if(!publicIndexable)return reply(res,404,{error:'SITEMAP_NOT_PUBLISHED'});
-    const locations=indexPaths.map(p=>'  <url><loc>'+canonicalSite+p+'</loc></url>').join('\n');
+    const changes=await editorialState();
+    const paths=new Set(indexPaths);
+    for(const a of Object.values(changes)){const path='/guide/'+a.slug+'/';if(a.status==='published')paths.add(path);else paths.delete(path);}
+    const locations=[...paths].map(p=>'  <url><loc>'+canonicalSite+p+'</loc></url>').join('\n');
     return serveText(res,'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+locations+'\n</urlset>\n','application/xml; charset=utf-8');
   }
   if(pathname==='/ads.txt'){
@@ -409,6 +441,7 @@ const server=http.createServer(async(req,res)=>{
   }
   if(pathname==='/health')return reply(res,200,{ok:true,service:'cosaregalo',environment:process.env.NODE_ENV||'development',uiRelease:'css-debug-20261107',seoRelease:'seo-20261108',seoReady:publicIndexable,publicUrl:canonicalSite||null,assetRevision});
   if(handlers.has(pathname))return api(req,res,pathname,url.searchParams);
+  if(await handleEditorial(req,res,url.pathname))return;
   if(pathname.startsWith('/api/'))return reply(res,404,{error:'UNKNOWN_API'});
   return staticFile(req,res,url.pathname);
 });
