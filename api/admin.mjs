@@ -1,3 +1,4 @@
+import {readFile} from 'node:fs/promises';
 import {readConfig,validateConfig,storageKey} from '../lib/sitestripe.mjs';
 import {testCreatorsAccess,testCreatorsGetItems} from './products.mjs';
 import {passesDeal, GIFT_CATEGORIES} from '../lib/deals-policy.mjs';
@@ -12,6 +13,7 @@ try{
   if(mode==='amazon-api-test')return respond(res,200,{test:await testCreatorsAccess(),catalogMode:(await readConfig()).mode});
   if(mode==='amazon-getitems-test')return respond(res,200,{test:await testCreatorsGetItems(),catalogMode:(await readConfig()).mode});
   if(mode==='sitestripe')return respond(res,200,{config:await readConfig(),writable:configured()});
+  if(mode==='social-plan'){const plan=JSON.parse(await readFile(new URL('../content/social-calendar-2026-11.json',import.meta.url),'utf8'));return respond(res,200,{brandId:plan.brandId,timezone:plan.timezone,notes:plan.notes,items:plan.items});}
   if(mode==='articles') {const data=await readArticles();return respond(res,200,{articles:Object.values(data.items).sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))),writable:data.writable});}
   let views=[],clicks=[],productViews=[],affiliate=null;
   if(configured()){const [v,c,pv,a]=await Promise.all([redis(['HGETALL','cr:views']),redis(['HGETALL','cr:clicks']),redis(['HGETALL','cr:product-views']),redis(['GET','cr:amazon-report'])]);views=rows(v);clicks=rows(c);productViews=rows(pv);if(a){try{affiliate=JSON.parse(a)}catch{}}}
