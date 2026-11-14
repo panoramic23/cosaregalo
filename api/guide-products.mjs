@@ -29,7 +29,7 @@ export default async function guideProducts(req,res){
    const response=await fetch('https://creatorsapi.amazon/catalog/v1/getItems',{
     method:'POST',headers,signal:AbortSignal.timeout(15000),
     body:JSON.stringify({marketplace,partnerTag,itemIds:requested.slice(i,i+10),itemIdType:'ASIN',
-     resources:['images.primary.large','images.primary.medium','itemInfo.title','offersV2.listings.price','offersV2.listings.availability']})
+     resources:['images.primary.large','images.primary.medium','itemInfo.title','itemInfo.features','offersV2.listings.price','offersV2.listings.availability']})
    });
    if(!response.ok)return res.status(200).json({source:'editorial',items:[],reason:'AMAZON_API_UNAVAILABLE'});
    const json=await response.json();
