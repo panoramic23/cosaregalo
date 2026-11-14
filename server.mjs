@@ -390,16 +390,16 @@ async function handleEditorial(req,res,pathname){
   }
  }
  if(pathname==='/assets/latest-news.json'){
-  const articles=visibleArticles(await editorialState());
-  if(!articles.length)return false;
+  const state=await editorialState();
+  if(!Object.keys(state).length)return false;
   const base=JSON.parse(await readFile(resolve(root,'assets/latest-news.json'),'utf8'));
   const bySlug=new Map(base.items.map(x=>[x.slug,x]));
-  for(const a of Object.values(await editorialState())){
+  for(const a of Object.values(state)){
    if(a.status!=='published'){bySlug.delete(a.slug);continue;}
    bySlug.set(a.slug,{title:a.title,slug:a.slug,path:'guide/'+a.slug+'/index.html',category:a.category,summary:a.summary,image:'assets/cover.webp',date:a.publishedAt?.slice(0,10),status:'published'});
   }
   const result={version:base.version||1,items:[...bySlug.values()].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')))};
-  return serveText(res,JSON.stringify(result),'application/json; charset=utf-8'),true;
+  res.statusCode=200;res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');if(req.method==='HEAD')res.end();else res.end(JSON.stringify(result));return true;
  }
  return false;
 }
