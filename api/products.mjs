@@ -38,6 +38,7 @@ export function normalizeCreatorItem(item){
  return {asin:item.asin, title:item.itemInfo?.title?.displayValue ||'Prodotto Amazon',
   image:img,price:money?.displayAmount||null,priceAmount:typeof money?.amount==='number'?money.amount:null,
   availability:listing?.availability?.message ||null,
+  features:Array.isArray(item.itemInfo?.features?.displayValues)?item.itemInfo.features.displayValues.filter(v=>typeof v==='string'&&v.trim()).slice(0,3).map(v=>v.replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim().slice(0,250)):[],
   url:link,observedAt:new Date().toISOString()};
 }
 // Admin-only diagnostic, invoked by /api/admin?mode=amazon-api-test.
@@ -77,7 +78,7 @@ export async function testCreatorsGetItems(){
    method:'POST',signal:AbortSignal.timeout(15000),
    headers:{Authorization:'Bearer '+token+(version.startsWith('2.')?', Version '+version:''),'Content-Type':'application/json','x-marketplace':MARKET},
    body:JSON.stringify({marketplace:MARKET,partnerTag:process.env.AMAZON_PARTNER_TAG,itemIds:[asin],itemIdType:'ASIN',
-    resources:['images.primary.large','images.primary.medium','itemInfo.title','offersV2.listings.price','offersV2.listings.availability']})
+    resources:['images.primary.large','images.primary.medium','itemInfo.title','itemInfo.features','offersV2.listings.price','offersV2.listings.availability']})
   });
   if(!resp.ok)return {ok:false,status:resp.status,reason:'GET_ITEMS_REJECTED',checkedAt};
   const json=await resp.json();
@@ -106,7 +107,7 @@ export default async function handler(req,res){
   const token=await getCreatorsToken();
   const version=process.env.AMAZON_CREATORS_VERSION||'3.2';
   const payload={marketplace:MARKET,partnerTag:PARTNER,keywords:spec.keywords,itemCount:spec.count,
-   searchIndex:'All',resources:['images.primary.large','images.primary.medium','itemInfo.title','offersV2.listings.price','offersV2.listings.availability']};
+   searchIndex:'All',resources:['images.primary.large','images.primary.medium','itemInfo.title','itemInfo.features','offersV2.listings.price','offersV2.listings.availability']};
   if(spec.maxPrice)payload.maxPrice=spec.maxPrice*100;
   const auth='Bearer '+token+(version.startsWith('2.')?', Version '+version:'');
   const response=await fetch('https://creatorsapi.amazon/catalog/v1/searchItems',{
