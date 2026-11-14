@@ -1,29 +1,28 @@
 {
   "site": "CosaRegalo",
-  "platform": "HTML statico, nessun WordPress",
+  "platform": "Node.js su SiteGround",
   "timezone": "Europe/Rome",
-  "daily_articles": 2,
+  "editorial_cadence_hours": 48,
+  "daily_articles": 0.5,
   "slots": [
-    "09:00",
-    "17:00"
+    "09:00"
   ],
   "publication_mode": "automatic_after_checks",
   "quality_gates": [
-    "query intent validated from source data",
-    "source evidence for factual claims",
-    "product ASIN and link verified through authorized feed",
-    "original value and duplicate check",
-    "correct affiliate disclosure",
-    "no expired offer claims",
-    "legal and image rights checks",
-    "metadata and structured data checks"
+    "verified unique user intent",
+    "original prose and specific recipient reasoning",
+    "validated Amazon.it ASIN, product model and accurate link",
+    "official API image and price when actually returned",
+    "no invented ratings, review summaries or offers",
+    "sponsored affiliate disclosure",
+    "metadata, responsive page, accessibility, internal links",
+    "live deployment check and no duplicate article"
   ],
   "affiliate_tag": "230b7-21",
   "ready_for_unattended_publication": false,
   "blockers": [
-    "no live product API credentials",
-    "no Trends/GSC data credentials",
-    "no publication hosting or repository configured",
-    "no approved production editorial model"
+    "live Amazon GetItems not confirmed",
+    "production media/API access periodically blocked by SiteGround challenge",
+    "automated deploy to existing SiteGround Node not verified"
   ]
 }
