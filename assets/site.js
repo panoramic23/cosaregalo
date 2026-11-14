@@ -258,6 +258,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     if(validImage(p.image)&&media){
      const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt='Foto ufficiale Amazon: '+p.title;img.src=p.image;media.replaceChildren(img);
     }
+    const heading=card.querySelector('.bf-pick-content h2,.bf-pick-content h3');
+    if(heading&&heading.textContent.startsWith('Prodotto Amazon '))heading.textContent=p.title;
     if(price)price.textContent=p.price||'Prezzo su Amazon';
     if(buy&&validAmazon(p.url))buy.href=p.url;
     if(note)note.textContent=p.price?'Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Verifica sul negozio.':'Prezzo e disponibilità da verificare su Amazon.';
