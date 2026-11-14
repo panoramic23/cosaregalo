@@ -1,5 +1,6 @@
 import {guideCatalog} from '../lib/guide-catalog.mjs';
 import {readConfig} from '../lib/sitestripe.mjs';
+import {readArticles} from '../lib/article-cms.mjs';
 import {getCreatorsToken, normalizeCreatorItem} from './products.mjs';
 
 const marketplace='www.amazon.it';
@@ -8,9 +9,11 @@ export default async function guideProducts(req,res){
  res.setHeader('Cache-Control','no-store');
  if(req.method!=='GET')return res.status(405).json({error:'METHOD_NOT_ALLOWED'});
  const slug=String(req.query?.slug||'');
- if(!Object.hasOwn(guideCatalog,slug))return res.status(404).json({error:'UNKNOWN_GUIDE'});
+ let curated=Object.hasOwn(guideCatalog,slug)?guideCatalog[slug]:null;
+ try{const entry=(await readArticles()).items[slug];if(entry?.status==='published'&&entry.asins?.length)curated=entry.asins.map(asin=>({asin,title:'',note:''}));}catch{}
+ if(!curated)return res.status(404).json({error:'UNKNOWN_GUIDE'});
  if((await readConfig()).mode!=='api')return res.status(200).json({source:'editorial',items:[],reason:'API_MODE_DISABLED'});
- const selected=guideCatalog[slug];
+ const selected=curated;
  const key=slug;
  const cached=responseCache.get(key);
  if(cached&&Date.now()-cached.time<30*60*1000)return res.status(200).json(cached.data);
