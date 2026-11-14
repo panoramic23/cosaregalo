@@ -269,8 +269,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     if(content&&features.length){
       let desc=content.querySelector('.cr-amazon-description');
       if(!desc){desc=document.createElement('p');desc.className='cr-amazon-description';content.querySelector('.bf-pick-check')?.before(desc);if(!desc.isConnected)content.append(desc);}
-      const feature=features[0].replace(/\\s+/g,' ').trim();
-      const cut=feature.length>160?feature.slice(0,157).replace(/\\s+\\S*$/,'')+'…':feature;
+      const feature=features[0].replace(/\s+/g,' ').trim();
+      const cut=feature.length>160?feature.slice(0,157).replace(/\s+\S*$/,'')+'…':feature;
       desc.textContent='Dalla scheda Amazon: '+cut;
     }
     if(price)price.textContent=p.price||'Prezzo su Amazon';
