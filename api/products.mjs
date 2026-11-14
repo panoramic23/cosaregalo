@@ -36,7 +36,7 @@ export function normalizeCreatorItem(item){
  const link=item.detailPageURL || null; // use original affiliate link as provided by API
  if(!item.asin || !link || !/^https:\/\/(www\.)?amazon\.it\//i.test(link))return null;
  return {asin:item.asin, title:item.itemInfo?.title?.displayValue ||'Prodotto Amazon',
-  image:img,price:money?.displayAmount||null,priceAmount:typeof money?.amount==='number'?money.amount:null,
+  image:img,price:money?.displayAmount||null,priceAmount:money?.amount!=null&&Number.isFinite(Number(money.amount))?Number(money.amount):null,
   availability:listing?.availability?.message ||null,
   features:Array.isArray(item.itemInfo?.features?.displayValues)?item.itemInfo.features.displayValues.filter(v=>typeof v==='string'&&v.trim()).slice(0,3).map(v=>v.replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim().slice(0,250)):[],
   url:link,observedAt:new Date().toISOString()};
