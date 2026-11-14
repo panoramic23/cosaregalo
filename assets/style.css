@@ -1231,3 +1231,28 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
 .nav-menu>.nav-categories.is-open>.nav-categories-toggle .nav-chevron{transform:rotate(180deg)!important}
 @media(max-width:760px){.nav-menu>.nav-categories>.nav-categories-toggle{width:100%;justify-content:flex-start!important}.nav-menu>.nav-categories>.nav-categories-toggle .nav-chevron{margin-left:auto!important;flex-shrink:0}}
 @media(prefers-reduced-motion:reduce){.nav-menu>.nav-categories>.nav-categories-toggle .nav-chevron{transition:none}}
+
+/* Editorial hierarchy and richer product photography, November 2026. */
+h1,h2,h3,h4,h5,h6{line-height:1.22;overflow-wrap:break-word}
+h1,h2{line-height:1.16}
+.bf-story-hero h1,.article-hero h1,.page-head h1{line-height:1.14}
+.home-news-card h3,.guide-copy h3,.type-card-info h3{line-height:1.28}
+.bf-story-body h2,.reading-copy h2,.bf-story-body h3,.reading-copy h3{line-height:1.24}
+.cr-exact-products .bf-pick-content h2,.cr-exact-products .bf-pick-content h3{line-height:1.28!important;letter-spacing:-.012em}
+.cr-exact-products .cr-amazon-description{font-size:14px;line-height:1.64;color:#43566a;border-left:3px solid #ffd43c;padding:4px 0 4px 12px;margin:10px 0 14px}
+.cr-exact-products .bf-pick-media{background:#fff!important}
+@media(min-width:901px){
+ .cr-exact-products .bf-pick{grid-template-columns:38px minmax(220px,290px) minmax(170px,1fr) minmax(150px,180px)!important;column-gap:20px}
+ .cr-exact-products .bf-pick-media{height:280px!important;min-height:260px;align-self:start}
+ .cr-exact-products .bf-pick-media img{object-fit:contain!important;max-height:100%;padding:8px}
+}
+@media(min-width:701px) and (max-width:900px){
+ .cr-exact-products .bf-pick-shop{grid-template-columns:minmax(220px,300px) minmax(160px,1fr)!important}
+ .cr-exact-products .bf-pick-media{height:260px!important}
+ .cr-exact-products .bf-pick-media img{object-fit:contain!important}
+}
+@media(max-width:700px){
+ .cr-exact-products .bf-pick-media{height:320px!important;min-height:260px}
+ .cr-exact-products .bf-pick-media img{object-fit:contain!important;padding:12px}
+ .cr-exact-products .bf-pick-content h2,.cr-exact-products .bf-pick-content h3{font-size:23px;line-height:1.25!important}
+}
