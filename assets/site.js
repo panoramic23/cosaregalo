@@ -312,3 +312,32 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refreshGuideHub);else refreshGuideHub();
 })();
+
+/* Homepage hero follows the actual publication feed, never a fixed product category. */
+(function(){
+ async function updateLatestHero(){
+  const hero=document.getElementById('latestHeroGuide');if(!hero||location.protocol==='file:')return;
+  try{
+   const response=await fetch(hero.dataset.feed||'/assets/latest-news.json',{cache:'no-store'});
+   if(!response.ok)return;
+   const data=await response.json(),items=Array.isArray(data.items)?data.items:[];
+   const validPath=/^guide\/[a-z0-9-]+\/index\.html$/;
+   const validImage=/^assets\/[a-z0-9-]+\.(webp|svg|png|jpg|jpeg)$/;
+   const candidates=items.filter(x=>x&&x.status==='published'&&validPath.test(x.path)&&validImage.test(x.image)
+    &&typeof x.title==='string'&&typeof x.summary==='string'&&typeof x.category==='string');
+   if(!candidates.length)return;
+   // Undated legacy entries do not outrank guides with a verified publication date.
+   const newest=candidates.map((item,index)=>({item,index}))
+    .sort((a,b)=>String(b.item.date||'').localeCompare(String(a.item.date||'')||0)||(a.index-b.index))[0].item;
+   const link=hero.querySelector('.hero-product'),image=hero.querySelector('.hero-image img');
+   if(!link||!image)return;
+   link.href='/'+newest.path;image.src='/'+newest.image;image.alt='Immagine editoriale: '+newest.title;
+   const name=hero.querySelector('.hero-product-text h2'),summary=hero.querySelector('.hero-product-text p'),category=hero.querySelector('.hero-product-text .micro');
+   if(name)name.textContent=newest.title;
+   if(summary)summary.textContent=newest.summary;
+   if(category)category.textContent=newest.category.toUpperCase();
+  }catch{/* Keep the newest verified guide from the static feed as fallback. */}
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',updateLatestHero);
+ else updateLatestHero();
+})();
