@@ -1184,3 +1184,24 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
 .cr-editorial-products-note{color:#536477;font-size:.8rem}
 @media(max-width:800px){.cr-editorial-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:550px){.cr-editorial-products{padding:1rem}.cr-editorial-product-grid{grid-template-columns:1fr}.cr-editorial-product-card img{height:190px}}
+
+/* BuzzFeed-inspired editorial product list: one precise product per numbered row. */
+.bf-picks.cr-exact-products{display:block}
+.cr-exact-products .bf-pick{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px 18px;padding:27px 0;border:0;border-bottom:1px solid #e4e8ed;background:transparent;box-shadow:none;border-radius:0}
+.cr-exact-products .bf-pick:last-child{border-bottom:0}
+.cr-exact-products .bf-pick-index{position:static;align-self:start;display:block;width:auto;height:auto;padding:0;margin:1px 0 0;background:none;border:0;border-radius:0;box-shadow:none;transform:none;color:#ffd43d;font-weight:800;font-size:clamp(24px,2.4vw,35px);line-height:1.1;letter-spacing:-.045em}
+.cr-exact-products .bf-pick-content{grid-column:2;min-width:0}
+.cr-exact-products .bf-pick-content h2,.cr-exact-products .bf-pick-content h3{margin:0 0 10px;font-size:clamp(20px,2.2vw,27px);line-height:1.25;color:#213950;font-weight:800}
+.cr-exact-products .bf-pick-content p{margin:0 0 10px}
+.cr-exact-products .bf-pick-shop{grid-column:2;display:grid;grid-template-columns:minmax(120px,205px) minmax(0,1fr);gap:20px;align-items:center;margin-top:6px;background:transparent;border:0;box-shadow:none;padding:0}
+.cr-exact-products .bf-pick-media{display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e9edf1;border-radius:9px;height:195px;min-width:0;overflow:hidden}
+.cr-exact-products .bf-pick-media img{width:100%;height:100%;object-fit:contain;display:block}
+.cr-exact-products .bf-pick-media span{padding:15px;text-align:center;color:#687687;font-size:12px}
+.cr-exact-products .bf-pick-retail{display:flex;flex-direction:column;align-items:flex-start;gap:11px;min-width:0}
+.cr-exact-products .bf-pick-market{font-weight:700;color:#536779;font-size:12px;letter-spacing:.02em;overflow-wrap:anywhere}
+.cr-exact-products .cr-asin-price{display:block;font-size:clamp(17px,1.8vw,23px);font-weight:800;color:#213950}
+.cr-exact-products .bf-shop-cta{display:inline-flex;align-items:center;justify-content:center;min-height:43px;border-radius:8px;background:#ffd43c;color:#213950;padding:10px 18px;text-decoration:none;font-weight:800}
+.cr-exact-products .bf-shop-cta:hover{background:#ffe26c;color:#152c42}
+.cr-exact-products .bf-shop-cta:focus-visible{outline:3px solid #213950;outline-offset:3px}
+.cr-exact-products .bf-pick-market-note,.cr-exact-products .cr-asin-availability{font-size:12px;line-height:1.45;color:#657587}
+@media(max-width:700px){.cr-exact-products .bf-pick{grid-template-columns:34px minmax(0,1fr);gap:10px;padding:23px 0}.cr-exact-products .bf-pick-shop{grid-template-columns:1fr;gap:14px}.cr-exact-products .bf-pick-media{height:230px}.cr-exact-products .bf-shop-cta{width:100%}.cr-exact-products .bf-pick-index{font-size:25px}}
