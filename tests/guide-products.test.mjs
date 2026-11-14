@@ -15,6 +15,7 @@ test('guide catalog has valid exact identifiers and editorial notes',()=>{
    seen.add(item.asin);
    assert.ok(item.title.length>10);
    assert.ok(item.note.length>20);
+   assert.ok(item.editorial.length>140,slug+' '+item.asin+' lacks a meaningful editorial explanation');
   }
  }
 });
@@ -24,6 +25,8 @@ test('all curated guides feature exact picks and not generic Amazon searches',as
   assert.match(html,/class="bf-picks cr-exact-products"/);
   assert.equal((html.match(/data-asin="/g)||[]).length,items.length,slug);
   assert.doesNotMatch(html,/data-amazon-search=/,slug);
+  assert.equal((html.match(/class="cr-editorial-rationale"/g)||[]).length,items.length,slug+' missing product commentary');
+  assert.equal((html.match(/Perché lo proponiamo:/g)||[]).length,items.length,slug+' missing editorial label');
   for(const {asin} of items)assert.ok(html.includes('data-asin="'+asin+'"'),slug+' '+asin);
  }
 });
