@@ -47,7 +47,7 @@ export default async function guideProducts(req,res){
     const money=product.priceAmount;
     if(typeof money!=='number'||money>30)return [];
    }
-   return [{...product,position:index+1,editorialNote:s.note}];
+   return [{...product,position:index+1,shortTitle:s.title||null,editorialNote:s.note||null,editorialText:s.editorial||null}];
   });
   const data={source:'amazon-creators-api',slug,items,checkedAt:new Date().toISOString()};
   responseCache.set(key,{time:Date.now(),data});
