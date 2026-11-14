@@ -238,62 +238,34 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 
 
-/* Editorial guide enrichment - official Amazon Creators API data only.
- * Existing editorial advice is preserved if the API is unavailable or falls back to SiteStripe.
- */
+/* Specific-model guide cards - official product photos and current prices via GetItems. */
 (function(){
- const guideGroups={
-  'scrivania-pratica':[['accessori-scrivania','studio'],['accessori-scrivania','tecnologia']],
-  'giochi-creativi-bambini':[['giochi-costruzioni','piccoli'],['giochi-costruzioni','creativi']],
-  'cucina-poco-spazio':[],
-  'sotto-30':[['accessori-scrivania','sotto-50'],['giochi-costruzioni','sotto-50']],
-  'tech':[['speaker-bluetooth','portatili'],['cuffie-wireless','quotidiano']],
-  'lettura':[['e-reader','essenziali'],['e-reader','accessori']],
-  'cuffie':[['cuffie-wireless','quotidiano'],['cuffie-wireless','anc']],
-  'natale':[['speaker-bluetooth','portatili'],['giochi-costruzioni','creativi']],
-  'benessere':[['cofanetti-benessere','casa'],['cofanetti-benessere','senza-profumo']]
- };
- function validAmazon(url){try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='www.amazon.it'&&!u.username&&!u.password}catch{return false}}
- function validImage(url){try{const u=new URL(url);return u.protocol==='https:'&&/(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
- function el(tag,cls,txt){const node=document.createElement(tag);if(cls)node.className=cls;if(txt!==undefined)node.textContent=txt;return node}
- async function load(){
-  const match=location.pathname.match(/\/guide\/([a-z0-9-]+)\/(?:index\.html)?$/);
-  if(!match||!Object.hasOwn(guideGroups,match[1]))return;
-  const root=document.querySelector('.bf-story-body');
-  if(!root||document.getElementById('cr-editorial-products'))return;
-  const groups=guideGroups[match[1]];
-  if(!groups.length)return; // no relevant vetted API catalog selection exists yet
-  const results=await Promise.all(groups.map(async ([type,group])=>{
-   try{const response=await fetch('/api/products?type='+encodeURIComponent(type)+'&group='+encodeURIComponent(group),{headers:{Accept:'application/json'}});
-    if(!response.ok)return [];
-    const data=await response.json();
-    // Never display SiteStripe placeholders or an HTTP-200 API fallback as verified products.
-    if(data.source!=='amazon-creators-api'||data.fallback||!Array.isArray(data.items))return [];
-    return data.items.filter(x=>x&&/^[A-Z0-9]{10}$/.test(x.asin||'')&&validAmazon(x.url)&&typeof x.title==='string'&&x.title.trim()).map(x=>({...x,checkedAt:data.checkedAt}));
-   }catch{return []}
-  }));
-  const seen=new Set(),items=results.flat().filter(x=>{if(seen.has(x.asin))return false;seen.add(x.asin);return true}).slice(0,6);
-  if(!items.length)return;
-  const section=el('section','cr-editorial-products');section.id='cr-editorial-products';
-  section.append(el('h2','', 'Prodotti Amazon da confrontare'));
-  section.append(el('p','', 'Proposte della categoria rilevate tramite Amazon. Verifica modello, prezzo e disponibilità prima di acquistare: non sono prodotti testati dalla redazione.'));
-  const grid=el('div','cr-editorial-product-grid');
-  items.forEach(p=>{
-   const card=el('article','cr-editorial-product-card');
-   if(validImage(p.image)){const img=el('img');img.loading='lazy';img.alt='Fotografia prodotto: '+p.title;img.src=p.image;card.append(img);}
-   card.append(el('h3','',p.title));
-   if(p.price)card.append(el('strong','cr-editorial-price',p.price));
-   else card.append(el('span','cr-editorial-price','Prezzo su Amazon'));
-   if(p.availability)card.append(el('p','cr-editorial-availability',p.availability));
-   const link=el('a','bf-shop-cta','Vedi su Amazon');
-   link.href=p.url;link.target='_blank';link.rel='sponsored nofollow noopener noreferrer';card.append(link);
-   grid.append(card);
-  });
-  section.append(grid);
-  const dates=items.map(x=>Date.parse(x.checkedAt)).filter(Number.isFinite);
-  if(dates.length){const freshest=new Date(Math.max(...dates));section.append(el('small','cr-editorial-products-note','Dati Amazon rilevati: '+freshest.toLocaleString('it-IT')+'. Prezzi e disponibilità possono cambiare.'));}
-  section.append(el('p','cr-editorial-products-note','In qualità di Affiliato Amazon, possiamo ricevere una commissione sugli acquisti idonei.'));
-  root.querySelector('.bf-story-conclusion')?.before(section);
+ function validImage(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&/(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
+ function validAmazon(url){try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='www.amazon.it'&&u.searchParams.has('tag')}catch{return false}}
+ async function hydrateExactGuide(){
+  const root=document.querySelector('.cr-exact-products[data-guide-slug]');
+  if(!root||root.dataset.hydrated==='1')return;
+  const slug=root.dataset.guideSlug;
+  try{
+   const resp=await fetch('/api/guide-products?slug='+encodeURIComponent(slug),{headers:{Accept:'application/json'},cache:'no-store'});
+   if(!resp.ok)return;
+   const data=await resp.json();
+   if(data.source!=='amazon-creators-api'||!Array.isArray(data.items))return;
+   const byAsin=new Map(data.items.map(p=>[p.asin,p]));
+   root.querySelectorAll('.cr-specific-pick[data-asin]').forEach(card=>{
+    const p=byAsin.get(card.dataset.asin),media=card.querySelector('.cr-asin-media'),price=card.querySelector('.cr-asin-price'),buy=card.querySelector('.cr-asin-buy'),note=card.querySelector('.bf-pick-market-note');
+    if(!p){if(slug==='sotto-30')card.hidden=true;return;}
+    if(validImage(p.image)&&media){
+     const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt='Foto ufficiale Amazon: '+p.title;img.src=p.image;media.replaceChildren(img);
+    }
+    if(price)price.textContent=p.price||'Prezzo su Amazon';
+    if(buy&&validAmazon(p.url))buy.href=p.url;
+    if(note)note.textContent=p.price?'Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Verifica sul negozio.':'Prezzo e disponibilità da verificare su Amazon.';
+    if(p.availability){let availability=card.querySelector('.cr-asin-availability');if(!availability){availability=document.createElement('small');availability.className='cr-asin-availability';note?.before(availability)}availability.textContent=p.availability;}
+   });
+   root.dataset.hydrated='1';
+  }catch{/* Existing exact product links remain available; never invent API prices or photos. */}
  }
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',load);else load();
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hydrateExactGuide);
+ else hydrateExactGuide();
 })();
