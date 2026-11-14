@@ -152,7 +152,7 @@ async function staticFile(req,res,pathname,overrideHtml=null){
         html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/, '$1<a href="'+prefix+'privacy-policy/index.html">Privacy policy</a><a href="'+prefix+'cookie-policy/index.html">Cookie policy</a><a href="#" data-cookie-settings>Preferenze cookie</a>');
       }
       // The obsolete Confronti section is no longer linked in public navigation.
-      html=html.replace(/<a\\b[^>]*href="[^"]*confronti\\/index\\.html"[^>]*>[^<]*<\\/a>/gi,'');
+      html=html.replace(/<a\b[^>]*href="[^"]*confronti\/index\.html"[^>]*>[^<]*<\/a>/gi,'');
       // Single footer navigation across original pages and new legal pages.
       // The editorial calendar is internal, not a public navigation item.
       html=html.replace(/<a href="[^"]*calendario\/index\.html">Piano editoriale<\/a>/g,'');
