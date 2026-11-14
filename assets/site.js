@@ -288,7 +288,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 /* Keep the public guide hub aligned with editorial CMS publications. */
 (function(){
  async function refreshGuideHub(){
-  const hub=document.querySelector('.cr-guide-hub .guide-grid');if(!hub||location.protocol==='file:')return;
+  if(!/^\/guide\/?$/.test(location.pathname)||location.protocol==='file:')return;
+  const hub=document.querySelector('.guide-grid');if(!hub)return;
   try{
    const resp=await fetch('/assets/latest-news.json',{cache:'no-store'});if(!resp.ok)return;
    const data=await resp.json();if(!Array.isArray(data.items))return;
