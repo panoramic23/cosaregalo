@@ -271,3 +271,31 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hydrateExactGuide);
  else hydrateExactGuide();
 })();
+
+/* Keep the public guide hub aligned with editorial CMS publications. */
+(function(){
+ async function refreshGuideHub(){
+  const hub=document.querySelector('.cr-guide-hub .guide-grid');if(!hub||location.protocol==='file:')return;
+  try{
+   const resp=await fetch('/assets/latest-news.json',{cache:'no-store'});if(!resp.ok)return;
+   const data=await resp.json();if(!Array.isArray(data.items))return;
+   const safePath=/^guide\/[a-z0-9-]+\/index\.html$/;
+   const safeImage=/^assets\/[a-z0-9-]+\.(webp|jpg|png)$/;
+   const cards=[];
+   data.items.filter(x=>x.status==='published'&&safePath.test(x.path)&&safeImage.test(x.image)).forEach(a=>{
+    const article=document.createElement('article');article.className='guide-card';
+    const media=document.createElement('a');media.className='guide-img';media.href='/'+a.path;
+    const image=document.createElement('img');image.loading='lazy';image.alt='Immagine editoriale per '+a.title;image.src='/'+a.image;media.append(image);
+    const copy=document.createElement('div');copy.className='guide-copy';
+    const category=document.createElement('span');category.className='eyebrow';category.textContent=a.category;
+    const title=document.createElement('h3'),link=document.createElement('a');link.href='/'+a.path;link.textContent=a.title;title.append(link);
+    const summary=document.createElement('p');summary.textContent=a.summary;
+    const action=document.createElement('a');action.href='/'+a.path;action.className='text-arrow';action.textContent='Leggi la guida →';
+    copy.append(category,title,summary,action);article.append(media,copy);cards.push(article);
+   });
+   // The feed is the publishing truth; legacy guides not in it remain accessible via other links.
+   if(cards.length)hub.replaceChildren(...cards);
+  }catch{}
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',refreshGuideHub);else refreshGuideHub();
+})();
