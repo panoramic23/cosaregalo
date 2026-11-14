@@ -29,6 +29,7 @@ test('photos are enlarged, headings have consistent line height, and home hero u
  assert.ok(home.includes('id="latestHeroGuide"'));
  assert.ok(!home.includes('LA GUIDA IN EVIDENZA / AUDIO'));
  assert.ok(js.includes('updateLatestHero'));
+ assert.ok(js.includes("document.querySelector('.guide-grid')"));
  assert.ok(js.includes('cr-amazon-description'));
 });
 test('official item features are requested, without inventing review summaries',async()=>{
