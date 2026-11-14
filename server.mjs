@@ -4,6 +4,7 @@ import {resolve, extname, sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {dirname} from 'node:path';
 import products from './api/products.mjs';
+import guideProducts from './api/guide-products.mjs';
 import deals from './api/deals.mjs';
 import track from './api/track.mjs';
 import admin from './api/admin.mjs';
@@ -12,7 +13,7 @@ const root=dirname(fileURLToPath(import.meta.url));
 const port=Number(process.env.PORT||3000);
 // Bump public asset URLs whenever the Node deployment restarts to avoid mixed HTML/CSS versions.
 const assetRevision=Date.now().toString(36);
-const handlers=new Map([['/api/products',products],['/api/deals',deals],['/api/track',track],['/api/admin',admin]]);
+const handlers=new Map([['/api/products',products],['/api/guide-products',guideProducts],['/api/deals',deals],['/api/track',track],['/api/admin',admin]]);
 const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.png':'image/png','.jpg':'image/jpeg','.jpeg':'image/jpeg','.ico':'image/x-icon','.txt':'text/plain; charset=utf-8','.xml':'application/xml; charset=utf-8','.csv':'text/csv; charset=utf-8'};
 const blocked=new Set(['api','lib','content','node_modules','.git']);
 
