@@ -86,6 +86,8 @@ async function openEditor(article){
  $('#editorialFormHeading').textContent=(a.slug?'Modifica articolo: '+a.slug:'Nuovo articolo');
  for(const field of ['slug','category','title','summary','body','status','revision'])formValue(form,field,a[field]);
  formValue(form,'asins',Array.isArray(a.asins)?a.asins.join(', '):(a.asins||''));
+ const noteLines=Object.entries(a.productNotes||{}).map(([asin,n])=>[asin,n.title,n.note].join(' | ')).join('\n');
+ formValue(form,'productNotes',noteLines);
  form.elements.namedItem('slug').readOnly=!!a.slug;
  form.scrollIntoView({block:'start',behavior:'smooth'});
 }
