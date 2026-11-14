@@ -1205,3 +1205,19 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
 .cr-exact-products .bf-shop-cta:focus-visible{outline:3px solid #213950;outline-offset:3px}
 .cr-exact-products .bf-pick-market-note,.cr-exact-products .cr-asin-availability{font-size:12px;line-height:1.45;color:#657587}
 @media(max-width:700px){.cr-exact-products .bf-pick{grid-template-columns:34px minmax(0,1fr);gap:10px;padding:23px 0}.cr-exact-products .bf-pick-shop{grid-template-columns:1fr;gap:14px}.cr-exact-products .bf-pick-media{height:230px}.cr-exact-products .bf-shop-cta{width:100%}.cr-exact-products .bf-pick-index{font-size:25px}}
+
+/* Editorial product card final alignment: photo left, text middle, purchase right. */
+@media(min-width:901px){
+ .cr-exact-products .bf-pick{grid-template-columns:36px minmax(130px,190px) minmax(220px,1fr) minmax(155px,190px);column-gap:17px;align-items:start}
+ .cr-exact-products .bf-pick-index{grid-column:1;grid-row:1}
+ .cr-exact-products .bf-pick-content{grid-column:3;grid-row:1}
+ .cr-exact-products .bf-pick-shop{display:contents}
+ .cr-exact-products .bf-pick-media{grid-column:2;grid-row:1;width:100%;height:190px;margin:0}
+ .cr-exact-products .bf-pick-retail{grid-column:4;grid-row:1;min-width:0}
+ .cr-exact-products .bf-shop-cta{width:100%;padding:10px}
+}
+@media(min-width:701px) and (max-width:900px){
+ .cr-exact-products .bf-pick{grid-template-columns:36px minmax(0,1fr)}
+ .cr-exact-products .bf-pick-shop{grid-column:2;grid-template-columns:160px minmax(0,1fr)}
+ .cr-exact-products .bf-pick-media{width:100%;height:180px}
+}
