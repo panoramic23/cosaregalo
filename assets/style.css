@@ -1167,3 +1167,20 @@ html{scroll-padding-top:calc(var(--cr-nav-height) + 16px)}
  .nav-inner>.cr-mobile-socials{gap:4px}
  .nav-inner>.mobile-menu{padding:10px 8px;font-size:14px}
 }
+
+
+/* Official Amazon products in existing editorial guides: hidden until verified API response. */
+.cr-editorial-products{margin:2.5rem 0;padding:1.5rem;border:1px solid #e2e6eb;border-radius:14px;background:#fff}
+.cr-editorial-products>h2{margin:0 0 .6rem}
+.cr-editorial-products>p{max-width:70ch}
+.cr-editorial-product-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin:1.4rem 0}
+.cr-editorial-product-card{min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:.65rem;border:1px solid #e1e5e9;border-radius:12px;padding:1rem;background:#fff}
+.cr-editorial-product-card img{width:100%;height:155px;object-fit:contain;background:#fff}
+.cr-editorial-product-card h3{font-size:1rem;line-height:1.4;margin:.2rem 0;overflow-wrap:anywhere}
+.cr-editorial-price{font-size:1.1rem;font-weight:800;color:#213950}
+.cr-editorial-availability{font-size:.85rem;margin:0}
+.cr-editorial-product-card .bf-shop-cta{display:inline-block;margin-top:auto;padding:.65rem .85rem;background:#ffd43c;color:#213950;text-decoration:none;border-radius:8px;font-weight:800}
+.cr-editorial-product-card .bf-shop-cta:focus-visible{outline:3px solid #213950;outline-offset:3px}
+.cr-editorial-products-note{color:#536477;font-size:.8rem}
+@media(max-width:800px){.cr-editorial-product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:550px){.cr-editorial-products{padding:1rem}.cr-editorial-product-grid{grid-template-columns:1fr}.cr-editorial-product-card img{height:190px}}
