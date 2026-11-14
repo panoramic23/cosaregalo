@@ -75,7 +75,7 @@ function productionRequest(req){
  return indexable&&(host==='cosa-regalo.it'||host==='www.cosa-regalo.it');
 }
 const indexPaths=[
- '/', '/offerte/', '/confronti/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/', '/privacy-policy/', '/cookie-policy/',
+ '/', '/offerte/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/', '/privacy-policy/', '/cookie-policy/',
  '/guide/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
  '/guide/lettura/', '/guide/cuffie/', '/guide/cucina-poco-spazio/', '/guide/scrivania-pratica/', '/guide/giochi-creativi-bambini/', '/esplora/ricorrenze/', '/esplora/gusti/',
  '/esplora/sport/', '/esplora/cartoni/', '/esplora/stagioni/', '/tipologie/speaker-bluetooth/',
@@ -151,6 +151,8 @@ async function staticFile(req,res,pathname,overrideHtml=null){
       if(!html.includes('href="'+prefix+'privacy-policy/index.html"') && !html.includes('href="/privacy-policy/"')){
         html=html.replace(/(<div><b>INFORMAZIONI<\/b>)/, '$1<a href="'+prefix+'privacy-policy/index.html">Privacy policy</a><a href="'+prefix+'cookie-policy/index.html">Cookie policy</a><a href="#" data-cookie-settings>Preferenze cookie</a>');
       }
+      // The obsolete Confronti section is no longer linked in public navigation.
+      html=html.replace(/<a\\b[^>]*href="[^"]*confronti\\/index\\.html"[^>]*>[^<]*<\\/a>/gi,'');
       // Single footer navigation across original pages and new legal pages.
       // The editorial calendar is internal, not a public navigation item.
       html=html.replace(/<a href="[^"]*calendario\/index\.html">Piano editoriale<\/a>/g,'');
@@ -192,7 +194,7 @@ async function staticFile(req,res,pathname,overrideHtml=null){
         const nav=navLink('Home','index.html','home')+categoriesNav+exploreNav
           +navLink('Trova un regalo','trova-regalo/index.html','search')
           +navLink('Guide','guide/index.html','book')
-          +navLink('Confronti','confronti/index.html','compare')
+
           +navLink('Super offerte','offerte/index.html','tag');
         html=html.replace(/<nav class="nav-menu"[^>]*>[\s\S]*?<\/nav>/,
           '<nav class="nav-menu" id="navMenu" aria-label="Navigazione principale">'+nav+'</nav>');
@@ -267,7 +269,7 @@ async function staticFile(req,res,pathname,overrideHtml=null){
           if(!indexPaths.includes(crumbRoute))continue;
           const name=({
             'tipologie':'Categorie regalo','guide':'Guide agli acquisti','offerte':'Offerte Amazon',
-            'confronti':'Confronti prodotti','occasioni':'Idee per occasione',
+            'occasioni':'Idee per occasione',
             'trova-regalo':'Trova un regalo','metodo':'Metodo editoriale',
             'privacy-policy':'Privacy policy','cookie-policy':'Cookie policy',
             'natale':'Regali di Natale','benessere':'Regali benessere',
@@ -420,6 +422,7 @@ const server=http.createServer(async(req,res)=>{
   if(!publicIndexable||pathname.startsWith('/admin')||pathname.startsWith('/calendario')||pathname.startsWith('/api/')||pathname==='/health'){
     res.setHeader('X-Robots-Tag','noindex, nofollow');
   }
+  if(pathname==='/confronti'){res.writeHead(308,{Location:'/guide/'});res.end();return;}
   if(pathname==='/robots.txt'){
     return serveText(res,publicIndexable
       ?'User-agent: *\nDisallow: /admin/\nDisallow: /api/\nDisallow: /calendario/\nSitemap: '+canonicalSite+'/sitemap.xml\n'
