@@ -110,6 +110,20 @@ $('#newArticleButton').onclick=()=>{const form=$('#editorialArticleForm');form.r
 $('#editorialCancelButton').onclick=()=>{$('#editorialArticleForm').hidden=true;};
 $('#editorialArticleForm').onsubmit=async e=>{e.preventDefault();await saveArticleForm(e.target);};
 
+
+const getItemsTestButton=$('#amazonGetItemsTest');
+if(getItemsTestButton)getItemsTestButton.onclick=async()=>{
+ const output=$('#amazonGetItemsResult');getItemsTestButton.disabled=true;
+ output.textContent='Controllo GetItems in corso…';
+ try{
+  const response=await request('amazon-getitems-test'),test=response.test||{};
+  output.textContent=test.ok?
+   '✓ GetItems autorizzata · HTTP '+test.status+' · foto ufficiale: '+(test.hasOfficialImage?'disponibile':'non restituita')+' · prezzo: '+(test.hasPrice?'disponibile':'non restituito')+' · disponibilità: '+(test.hasAvailability?'indicata':'non restituita')+'.':
+   '✕ GetItems non verificata: '+(test.reason||'Errore')+(test.status?' · HTTP '+test.status:'')+'.';
+ }catch(e){output.textContent='Test non eseguito: '+e.message}
+ finally{getItemsTestButton.disabled=false;}
+};
+
 $('#loginForm').onsubmit=async e=>{e.preventDefault();token=$('#secret').value;try{await load();sessionStorage.setItem('cr-admin-token',token);$('#secret').value='';$('#loginMessage').textContent='';}catch(err){$('#loginMessage').textContent=err.message;token='';}};
 $('#logout').onclick=()=>{sessionStorage.removeItem('cr-admin-token');token='';$('#loginCard').hidden=false;$('#adminContent').hidden=true;$('#logout').hidden=true;};
 $('#reportForm').onsubmit=async e=>{e.preventDefault();const form=new FormData(e.target);const data=Object.fromEntries(form.entries());try{await request('amazon-report',data);await load();alert('Riepilogo Amazon salvato');}catch(err){alert(err.message)}};
