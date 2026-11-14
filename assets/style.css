@@ -1291,3 +1291,10 @@ h1,h2{line-height:1.16}
  .bf-type-page .amazon-product-buy{display:flex!important;flex-direction:column!important;align-items:stretch!important}
  .bf-type-page .amazon-product-desc h3{font-size:24px!important;line-height:1.27!important}
 }
+
+/* An editorial research section is not a fake product card. */
+.bf-type-page .cr-category-research{padding:23px 24px;border-left:3px solid #ffd43c;background:#fffdf6;border-radius:0 9px 9px 0}
+.bf-type-page .cr-category-research h3{font:800 clamp(20px,2vw,25px)/1.26 var(--title);color:#213950;margin:8px 0}
+.bf-type-page .cr-category-research p{max-width:780px;font-size:15px;line-height:1.7;color:#364e62}
+.bf-type-page .cr-category-research-note{font-size:12px!important;color:#667788!important}
+.bf-type-page .cr-category-research .cr-category-search-link{display:inline-flex;margin-top:7px;text-decoration:none;padding:11px 16px}
