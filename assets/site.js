@@ -259,7 +259,20 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
      const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt='Foto ufficiale Amazon: '+p.title;img.src=p.image;media.replaceChildren(img);
     }
     const heading=card.querySelector('.bf-pick-content h2,.bf-pick-content h3');
-    if(heading&&heading.textContent.startsWith('Prodotto Amazon '))heading.textContent=p.title;
+    // Names are curated in the guide. Never replace them with keyword-heavy marketplace titles.
+    if(heading&&heading.textContent.startsWith('Prodotto Amazon ')){
+      const concise=String(p.title||'').split(/[,|]/)[0].trim().slice(0,78);
+      if(concise)heading.textContent=concise;
+    }
+    const content=card.querySelector('.bf-pick-content');
+    const features=Array.isArray(p.features)?p.features.filter(x=>typeof x==='string'&&x.trim()):[];
+    if(content&&features.length){
+      let desc=content.querySelector('.cr-amazon-description');
+      if(!desc){desc=document.createElement('p');desc.className='cr-amazon-description';content.querySelector('.bf-pick-check')?.before(desc);if(!desc.isConnected)content.append(desc);}
+      const feature=features[0].replace(/\\s+/g,' ').trim();
+      const cut=feature.length>160?feature.slice(0,157).replace(/\\s+\\S*$/,'')+'…':feature;
+      desc.textContent='Dalla scheda Amazon: '+cut;
+    }
     if(price)price.textContent=p.price||'Prezzo su Amazon';
     if(buy&&validAmazon(p.url))buy.href=p.url;
     if(note)note.textContent=p.price?'Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Verifica sul negozio.':'Prezzo e disponibilità da verificare su Amazon.';
