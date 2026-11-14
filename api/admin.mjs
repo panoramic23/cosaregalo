@@ -1,5 +1,5 @@
 import {readConfig,validateConfig,storageKey} from '../lib/sitestripe.mjs';
-import {testCreatorsAccess} from './products.mjs';
+import {testCreatorsAccess,testCreatorsGetItems} from './products.mjs';
 import {passesDeal, GIFT_CATEGORIES} from '../lib/deals-policy.mjs';
 import {calendar,settings} from '../lib/editorial.mjs';
 import {readArticles,saveArticle} from '../lib/article-cms.mjs';
@@ -10,6 +10,7 @@ const mode=String(req.query?.mode||'dashboard');
 try{
  if(req.method==='GET'){
   if(mode==='amazon-api-test')return respond(res,200,{test:await testCreatorsAccess(),catalogMode:(await readConfig()).mode});
+  if(mode==='amazon-getitems-test')return respond(res,200,{test:await testCreatorsGetItems(),catalogMode:(await readConfig()).mode});
   if(mode==='sitestripe')return respond(res,200,{config:await readConfig(),writable:configured()});
   if(mode==='articles') {const data=await readArticles();return respond(res,200,{articles:Object.values(data.items).sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))),writable:data.writable});}
   let views=[],clicks=[],productViews=[],affiliate=null;
