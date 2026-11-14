@@ -1262,3 +1262,32 @@ h1,h2{line-height:1.16}
 .cr-exact-products .cr-editorial-rationale strong{display:block;color:#213950;font-size:13px;letter-spacing:.025em;margin-bottom:4px}
 .cr-exact-products .bf-pick-check{font-size:13px;line-height:1.65;color:#596d7d}
 .cr-exact-products .bf-pick-content{align-self:start}
+
+/* Uniform editorial product listing for all eight category detail pages. */
+.bf-type-page .amazon-list{display:flex!important;flex-direction:column;gap:0!important}
+.bf-type-page .amazon-product{position:relative;display:grid!important;grid-template-columns:minmax(210px,285px) minmax(220px,1fr) minmax(150px,184px)!important;gap:24px!important;align-items:start!important;border:0!important;border-bottom:1px solid #e1e6ec!important;border-radius:0!important;box-shadow:none!important;background:transparent!important;padding:25px 0!important;min-height:0!important}
+.bf-type-page .amazon-product:last-child{border-bottom:0!important}
+.bf-type-page .amazon-product:before{content:none!important;display:none!important}
+.bf-type-page .amazon-product-image{height:278px!important;min-height:260px;width:100%;background:#fff!important;border:1px solid #edf0f3;border-radius:10px!important;overflow:hidden;align-items:center;justify-content:center}
+.bf-type-page .amazon-product-image img{height:100%!important;width:100%!important;object-fit:contain!important;object-position:center!important;padding:9px!important}
+.bf-type-page .amazon-product-desc{align-self:start!important;min-width:0}
+.bf-type-page .amazon-product-desc .product-origin{font-size:10px;color:#697d8d}
+.bf-type-page .amazon-product-desc h3{font:800 clamp(21px,2vw,27px)/1.27 var(--title)!important;color:#213950!important;margin:9px 0 14px!important;letter-spacing:-.012em!important}
+.bf-type-page .amazon-product-desc p{font-size:14px!important;line-height:1.66!important;color:#354b5e!important;margin:0 0 13px!important}
+.bf-type-page .amazon-product-desc p strong{color:#213950;font-weight:800}
+.bf-type-page .amazon-product-desc p.cr-category-audience,.bf-type-page .amazon-product-desc p.cr-category-caveat{font-size:13px!important;line-height:1.6!important}
+.bf-type-page .amazon-product-desc p.cr-amazon-spec{border-left:3px solid #ffd43c;padding:5px 0 5px 12px;color:#556a7d!important}
+.bf-type-page .amazon-product-buy{border-left:0!important;padding:0!important;margin:0!important;align-items:stretch!important;gap:10px!important}
+.bf-type-page .amazon-btn{background:#ffd43c!important;color:#213950!important;border-radius:8px!important;text-align:center;font-weight:800}
+@media(max-width:1000px) and (min-width:721px){
+ .bf-type-page .amazon-product{grid-template-columns:minmax(210px,270px) minmax(0,1fr)!important}
+ .bf-type-page .amazon-product-buy{grid-column:2;align-self:start}
+ .bf-type-page .amazon-product-image{grid-row:1 / span 2;height:260px!important}
+}
+@media(max-width:720px){
+ .bf-type-page .amazon-product{grid-template-columns:1fr!important;gap:13px!important;padding:24px 0!important}
+ .bf-type-page .amazon-product-image{height:310px!important;min-height:250px}
+ .bf-type-page .amazon-product-desc,.bf-type-page .amazon-product-buy{grid-column:1!important}
+ .bf-type-page .amazon-product-buy{display:flex!important;flex-direction:column!important;align-items:stretch!important}
+ .bf-type-page .amazon-product-desc h3{font-size:24px!important;line-height:1.27!important}
+}
