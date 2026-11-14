@@ -64,6 +64,31 @@ export async function testCreatorsAccess(){
   return {ok:false,status:response.status,reason:reasons.has(error?.reason)?error.reason:'REMOTE_REJECTED',requestedAt};
  }catch{return {ok:false,status:0,reason:'NETWORK_UNAVAILABLE',requestedAt};}
 }
+
+/** Protected read-only diagnostic for the exact-ASIN endpoint used by editorial guides. */
+export async function testCreatorsGetItems(){
+ const checkedAt=new Date().toISOString();
+ if(!process.env.AMAZON_PARTNER_TAG||!process.env.AMAZON_CREATORS_CLIENT_ID||!process.env.AMAZON_CREATORS_CLIENT_SECRET)
+  return {ok:false,reason:'API_NOT_CONFIGURED',checkedAt};
+ try{
+  const token=await getCreatorsToken(),version=process.env.AMAZON_CREATORS_VERSION||'3.2';
+  const asin='B0BTJ9WHL9';
+  const resp=await fetch('https://creatorsapi.amazon/catalog/v1/getItems',{
+   method:'POST',signal:AbortSignal.timeout(15000),
+   headers:{Authorization:'Bearer '+token+(version.startsWith('2.')?', Version '+version:''),'Content-Type':'application/json','x-marketplace':MARKET},
+   body:JSON.stringify({marketplace:MARKET,partnerTag:process.env.AMAZON_PARTNER_TAG,itemIds:[asin],itemIdType:'ASIN',
+    resources:['images.primary.large','images.primary.medium','itemInfo.title','offersV2.listings.price','offersV2.listings.availability']})
+  });
+  if(!resp.ok)return {ok:false,status:resp.status,reason:'GET_ITEMS_REJECTED',checkedAt};
+  const json=await resp.json();
+  const item=(json.itemResults?.items||[]).find(x=>x.asin===asin);
+  const normalized=item?normalizeCreatorItem(item):null;
+  if(!normalized)return {ok:false,status:200,reason:'ITEM_NOT_AVAILABLE',checkedAt};
+  return {ok:true,status:200,reason:'GET_ITEMS_AUTHORIZED',checkedAt,asin,
+   hasOfficialImage:!!normalized.image,hasPrice:!!normalized.price,hasAvailability:!!normalized.availability};
+ }catch{return {ok:false,reason:'GET_ITEMS_UNAVAILABLE',checkedAt};}
+}
+
 export default async function handler(req,res){
  if(req.method!=='GET')return res.status(405).json({error:'METHOD_NOT_ALLOWED'});
  const {type,group}=req.query||{};
