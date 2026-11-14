@@ -1256,3 +1256,9 @@ h1,h2{line-height:1.16}
  .cr-exact-products .bf-pick-media img{object-fit:contain!important;padding:12px}
  .cr-exact-products .bf-pick-content h2,.cr-exact-products .bf-pick-content h3{font-size:23px;line-height:1.25!important}
 }
+
+/* Editorial rationale: the reader sees a reason to consider each product before the purchase CTA. */
+.cr-exact-products .cr-editorial-rationale{font-size:15px;line-height:1.7;color:#31475b;margin:8px 0 14px}
+.cr-exact-products .cr-editorial-rationale strong{display:block;color:#213950;font-size:13px;letter-spacing:.025em;margin-bottom:4px}
+.cr-exact-products .bf-pick-check{font-size:13px;line-height:1.65;color:#596d7d}
+.cr-exact-products .bf-pick-content{align-self:start}
