@@ -6,7 +6,7 @@ const MARKET='www.amazon.it';
 let cachedToken=null,tokenExpiry=0;
 const cache=new Map();
 const time=()=>Date.now();
-async function getToken(){
+export async function getCreatorsToken(){
  if(cachedToken && time()<tokenExpiry-60000) return cachedToken;
  const client_id=process.env.AMAZON_CREATORS_CLIENT_ID;
  const client_secret=process.env.AMAZON_CREATORS_CLIENT_SECRET;
@@ -29,14 +29,14 @@ async function getToken(){
  cachedToken=data.access_token;tokenExpiry=time()+1000*(Number(data.expires_in)||3600);
  return cachedToken;
 }
-function normalize(item){
+export function normalizeCreatorItem(item){
  const listing=(item.offersV2?.listings||[]).find(l=>l?.isBuyBoxWinner) || item.offersV2?.listings?.[0];
  const money=listing?.price?.money;
  const img=item.images?.primary?.large?.url ||item.images?.primary?.medium?.url || null;
  const link=item.detailPageURL || null; // use original affiliate link as provided by API
  if(!item.asin || !link || !/^https:\/\/(www\.)?amazon\.it\//i.test(link))return null;
  return {asin:item.asin, title:item.itemInfo?.title?.displayValue ||'Prodotto Amazon',
-  image:img,price:money?.displayAmount||null,
+  image:img,price:money?.displayAmount||null,priceAmount:typeof money?.amount==='number'?money.amount:null,
   availability:listing?.availability?.message ||null,
   url:link,observedAt:new Date().toISOString()};
 }
@@ -47,7 +47,7 @@ export async function testCreatorsAccess(){
  if(!process.env.AMAZON_CREATORS_CLIENT_ID||!process.env.AMAZON_CREATORS_CLIENT_SECRET||!process.env.AMAZON_PARTNER_TAG)
   return {ok:false,status:0,reason:'API_NOT_CONFIGURED',requestedAt};
  let token;
- try{token=await getToken();}
+ try{token=await getCreatorsToken();}
  catch(err){const e=String(err?.message||'');return {ok:false,status:0,reason:/^AUTH_FAILED_\d+$/.test(e)?'AUTH_FAILED':'AUTH_UNAVAILABLE',requestedAt};}
  const spec=catalog['speaker-bluetooth']?.portatili;
  if(!spec)return {ok:false,status:0,reason:'CATALOG_NOT_CONFIGURED',requestedAt};
@@ -78,7 +78,7 @@ export default async function handler(req,res){
  const key=String(type)+':'+String(group),prev=cache.get(key);
  if(prev&&time()-prev.time<30*60*1000)return res.status(200).setHeader('Cache-Control','public, s-maxage=1800').json(prev.data);
  try{
-  const token=await getToken();
+  const token=await getCreatorsToken();
   const version=process.env.AMAZON_CREATORS_VERSION||'3.2';
   const payload={marketplace:MARKET,partnerTag:PARTNER,keywords:spec.keywords,itemCount:spec.count,
    searchIndex:'All',resources:['images.primary.large','images.primary.medium','itemInfo.title','offersV2.listings.price','offersV2.listings.availability']};
@@ -106,7 +106,7 @@ export default async function handler(req,res){
    return res.status(200).json({...selection({...config,mode:'sitestripe'},type,group),fallback:true,reason});
   }
   const json=await response.json();
-  const items=(json.searchResult?.items ||json.searchItemsResult?.items ||[]).map(normalize).filter(Boolean);
+  const items=(json.searchResult?.items ||json.searchItemsResult?.items ||[]).map(normalizeCreatorItem).filter(Boolean);
   const data={source:'amazon-creators-api',type,group,items,checkedAt:new Date().toISOString()};
   cache.set(key,{time:time(),data});
   return res.status(200).setHeader('Cache-Control','public, s-maxage=1800').json(data);
