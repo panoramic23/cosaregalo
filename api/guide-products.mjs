@@ -3,6 +3,8 @@ import {readConfig} from '../lib/sitestripe.mjs';
 import {readArticles} from '../lib/article-cms.mjs';
 import {getCreatorsToken, normalizeCreatorItem,amazonFreshness,AMAZON_CACHE_TTL_MS,cacheAmazonResult} from './products.mjs';
 
+import {matchesEditorialProduct} from '../lib/product-identity.mjs';
+
 const marketplace='www.amazon.it';
 const responseCache=new Map();
 export default async function guideProducts(req,res){
@@ -10,7 +12,7 @@ export default async function guideProducts(req,res){
  if(req.method!=='GET')return res.status(405).json({error:'METHOD_NOT_ALLOWED'});
  const slug=String(req.query?.slug||'');
  let curated=Object.hasOwn(guideCatalog,slug)?guideCatalog[slug]:null;
- try{const entry=(await readArticles()).items[slug];if(entry?.status==='published'&&entry.asins?.length)curated=entry.asins.map(asin=>({asin,title:'',note:''}));}catch{}
+ try{const entry=(await readArticles()).items[slug];if(entry?.status==='published'&&entry.asins?.length)curated=entry.asins.map(asin=>({asin,title:entry.productNotes?.[asin]?.title||(guideCatalog[slug]||[]).find(x=>x.asin===asin)?.title||'',note:entry.productNotes?.[asin]?.note||''}));}catch{}
  if(!curated)return res.status(404).json({error:'UNKNOWN_GUIDE'});
  if((await readConfig()).mode!=='api')return res.status(200).json({source:'editorial',items:[],reason:'API_MODE_DISABLED'});
  const selected=curated;
@@ -42,6 +44,9 @@ export default async function guideProducts(req,res){
   const items=selected.flatMap((s,index)=>{
    const product=map.get(s.asin);
    if(!product)return [];
+   if(s.title&&!matchesEditorialProduct(s.title,product.title))return [];
+   // CMS publications require their own product names; do not enrich an unnamed ASIN.
+   if(!s.title)return [];
    // A guide about gifts under 30 euros must not display products without confirmed matching prices.
    if(slug==='sotto-30'){
     const money=product.priceAmount;
@@ -55,3 +60,4 @@ export default async function guideProducts(req,res){
   return res.status(200).json(data);
  }catch{return res.status(200).json({source:'editorial',items:[],reason:'AMAZON_UNAVAILABLE'});}
 }
+

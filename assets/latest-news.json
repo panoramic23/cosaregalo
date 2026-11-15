@@ -2,50 +2,50 @@
   "version": 1,
   "items": [
     {
-      "title": "12 idee per chi ama cucinare, anche con poco spazio",
+      "title": "12 idee utili per chi ama cucinare (anche con poco spazio)",
       "slug": "cucina-poco-spazio",
       "path": "guide/cucina-poco-spazio/index.html",
       "category": "Casa e cucina",
       "summary": "Accessori quotidiani che meritano posto nei cassetti, senza gadget superflui.",
-      "image": "assets/cover.webp",
+      "image": "assets/guide-cucina.webp",
       "date": "2026-11-07",
       "status": "published"
     },
     {
-      "title": "6 prodotti regalo per rendere migliore la scrivania",
+      "title": "6 prodotti regalo per chi lavora alla scrivania, senza gadget inutili",
       "slug": "scrivania-pratica",
       "path": "guide/scrivania-pratica/index.html",
       "category": "Casa e lavoro",
-      "summary": "Piccoli cambiamenti per studiare o lavorare con più ordine e comodità.",
+      "summary": "Supporti per notebook, luce e organizzazione: sei proposte da scegliere in base alla postazione e ai dispositivi già utilizzati.",
       "image": "assets/tech.webp",
       "date": "2026-11-07",
       "status": "published"
     },
     {
-      "title": "3 prodotti creativi per bambini che invitano a giocare",
+      "title": "3 regali creativi per bambini che invitano a giocare davvero",
       "slug": "giochi-creativi-bambini",
       "path": "guide/giochi-creativi-bambini/index.html",
       "category": "Giochi e bambini",
-      "summary": "Idee da valutare per età, spazio e tempo da condividere.",
+      "summary": "Tre proposte di costruzioni e percorsi da scegliere per età, interessi e spazio disponibile.",
       "image": "assets/building.webp",
       "date": "2026-11-07",
       "status": "published"
     },
     {
-      "title": "Cuffie wireless a confronto: cosa guardare",
+      "title": "Cuffie wireless a confronto: quali scegliere?",
       "slug": "cuffie",
       "path": "guide/cuffie/index.html",
       "category": "Tecnologia",
       "summary": "Comfort e utilizzo: da dove iniziare prima di scegliere il modello.",
-      "image": "assets/tech.webp",
+      "image": "assets/guide-cuffie.webp",
       "status": "published"
     },
     {
-      "title": "Regali sotto i 30 euro: idee ragionate",
+      "title": "Regali con un budget di 30 euro: cosa controllare",
       "slug": "sotto-30",
       "path": "guide/sotto-30/index.html",
       "category": "Budget",
-      "summary": "Un budget piccolo può portare a regali azzeccati: ecco come.",
+      "summary": "Idee da valutare con un tetto di spesa di 30 euro. Nella selezione con prezzo verificato compaiono solo i prodotti che rispettano il budget.",
       "image": "assets/budget.webp",
       "status": "published"
     },
@@ -54,12 +54,12 @@
       "slug": "lettura",
       "path": "guide/lettura/index.html",
       "category": "Lettura",
-      "summary": "Lettori digitali e accessori per chi legge tanto.",
+      "summary": "Custodia e supporto: due accessori da valutare conoscendo il dispositivo usato dal destinatario.",
       "image": "assets/reader.webp",
       "status": "published"
     },
     {
-      "title": "Idee regalo per il benessere quotidiano",
+      "title": "Regali benessere e cura di sé: la guida",
       "slug": "benessere",
       "path": "guide/benessere/index.html",
       "category": "Benessere",
@@ -68,12 +68,21 @@
       "status": "published"
     },
     {
-      "title": "Regali tecnologici davvero utili",
+      "title": "Regali tech: i prodotti utili, non soltanto curiosi",
       "slug": "tech",
       "path": "guide/tech/index.html",
       "category": "Tecnologia",
-      "summary": "Gadget o soluzione concreta? Le domande giuste.",
+      "summary": "Speaker Bluetooth, cuffie e una docking station: cinque proposte da valutare in base all’uso e alla compatibilità.",
       "image": "assets/tech.webp",
+      "status": "published"
+    },
+    {
+      "title": "Regali di Natale: come non sbagliare",
+      "slug": "natale",
+      "path": "guide/natale/index.html",
+      "category": "Natale",
+      "summary": "Sei proposte e consigli per scegliere in base a destinatario, budget e abitudini.",
+      "image": "assets/cover.webp",
       "status": "published"
     }
   ]

@@ -274,7 +274,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     if(!p){if(slug==='sotto-30')card.hidden=true;return;}
     card.hidden=false;
     if(validImage(p.image)&&media){
-     const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt='Foto ufficiale Amazon: '+p.title;img.src=p.image;media.replaceChildren(img);
+     const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt='Foto ufficiale Amazon: '+p.title;img.addEventListener('error',()=>media.replaceChildren(),{once:true});img.src=p.image;media.replaceChildren(img);
     }
     const heading=card.querySelector('.bf-pick-content h2,.bf-pick-content h3');
     // Names are curated in the guide. Never replace them with keyword-heavy marketplace titles.
@@ -297,6 +297,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     if(note)note.textContent=p.price?'Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Prezzo e disponibilità al momento dell’acquisto su Amazon prevalgono.':'Prezzo e disponibilità da verificare su Amazon.';
     if(p.availability){let availability=card.querySelector('.cr-asin-availability');if(!availability){availability=document.createElement('small');availability.className='cr-asin-availability';note?.before(availability)}availability.textContent=p.availability;}
    });
+   const budgetNote=root.querySelector('.cr-budget-status');if(budgetNote&&data.items.length)budgetNote.hidden=true;
    root.dataset.hydrated='1';
   }catch{/* Internal editorial fallback remains available; never invent API prices or photos. */}
  }
@@ -414,3 +415,4 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hydrateCuratedCategories);else hydrateCuratedCategories();
 })();
+

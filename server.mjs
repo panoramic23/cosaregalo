@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {editorialImage} from './lib/editorial-images.mjs';
 import {readFile, stat} from 'node:fs/promises';
 import {resolve, extname, sep} from 'node:path';
 import {fileURLToPath} from 'node:url';
@@ -398,7 +399,7 @@ async function handleEditorial(req,res,pathname){
   const bySlug=new Map(base.items.map(x=>[x.slug,x]));
   for(const a of Object.values(state)){
    if(a.status!=='published'){bySlug.delete(a.slug);continue;}
-   bySlug.set(a.slug,{title:a.title,slug:a.slug,path:'guide/'+a.slug+'/index.html',category:a.category,summary:a.summary,image:'assets/cover.webp',date:a.publishedAt?.slice(0,10),status:'published'});
+   bySlug.set(a.slug,{title:a.title,slug:a.slug,path:'guide/'+a.slug+'/index.html',category:a.category,summary:a.summary,image:editorialImage(a.slug),date:a.publishedAt?.slice(0,10),status:'published'});
   }
   const result={version:base.version||1,items:[...bySlug.values()].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')))};
   res.statusCode=200;res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');if(req.method==='HEAD')res.end();else res.end(JSON.stringify(result));return true;
@@ -449,3 +450,4 @@ const server=http.createServer(async(req,res)=>{
   return staticFile(req,res,url.pathname);
 });
 server.listen(port,'0.0.0.0',()=>console.log('CosaRegalo listening on '+port));
+

@@ -9,7 +9,7 @@ process.env.AMAZON_PARTNER_TAG='230b7-21';
 process.env.AMAZON_CREATORS_CLIENT_ID='fixture';
 process.env.AMAZON_CREATORS_CLIENT_SECRET='fixture';
 const asin='B0BTJ9WHL9';
-const item=()=>({asin,detailPageURL:'https://www.amazon.it/dp/'+asin+'?tag=230b7-21',itemInfo:{title:{displayValue:'Fixture Sony model'}},images:{primary:{large:{url:'https://m.media-amazon.com/images/I/fixture.jpg'}}},offersV2:{listings:[{price:{money:{amount:25,currency:'EUR',displayAmount:'25,00 €'}},availability:{message:'Fixture only'}}]}});
+const item=()=>({asin,detailPageURL:'https://www.amazon.it/dp/'+asin+'?tag=230b7-21',itemInfo:{title:{displayValue:'Sony WH-CH520 fixture model'}},images:{primary:{large:{url:'https://m.media-amazon.com/images/I/fixture.jpg'}}},offersV2:{listings:[{price:{money:{amount:25,currency:'EUR',displayAmount:'25,00 €'}},availability:{message:'Fixture only'}}]}});
 const response=()=>({statusCode:200,headers:{},status(c){this.statusCode=c;return this},setHeader(k,v){this.headers[k]=v;return this},json(data){this.data=data;return this}});
 
 test('normalizer binds ASIN, Italian destination and unchanged partner tag; only valid EUR offers and approved images',()=>{
@@ -71,3 +71,4 @@ test('browser removes API-derived display data on expiry and tab resume; rejects
  assert.equal(vm.runInContext('scheduleAmazonExpiry(root,expiry)',ctx),false);
  assert.equal(Date.parse(amazonFreshness(0).expiresAt),1800000);
 });
+
