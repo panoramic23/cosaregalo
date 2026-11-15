@@ -1,0 +1,374 @@
+{
+  "brandId": 2236117,
+  "brand": "Cosa Regalo",
+  "timezone": "Europe/Rome",
+  "createdOn": "2026-11-15",
+  "status": "SCHEDULED_READBACK_VERIFIED",
+  "dateRange": [
+    "2026-11-16",
+    "2026-11-22"
+  ],
+  "instagram": "regalocosa",
+  "tiktok": "lakelecco",
+  "format": "PHOTO_POST",
+  "notes": [
+    "14 post effettivamente programmati, 7 per canale; non duplicare questi slot.",
+    "TikTok autorizzato espressamente dall’utente il 15 novembre, anche prima del cambio nome/logo.",
+    "Sette guide verificate nel browser il 15 novembre; assente l’etichetta Perché lo proponiamo.",
+    "Sette grafiche ImageGen con logo e stile approvati, dicitura Immagine illustrativa e nessun prezzo o modello fittizio.",
+    "Media caricati direttamente tramite il parametro mediaFiles e ospitati da Metricool. I path locali non vanno inseriti in info.media.",
+    "Stato PENDING confermato: programmazione riuscita, pubblicazione futura non ancora avvenuta."
+  ],
+  "posts": [
+    {
+      "id": 429101747,
+      "uuid": "-1044851547973139583",
+      "publicationDate": {
+        "dateTime": "2026-11-16T18:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "tiktok",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Prima di regalare l’ennesimo gadget, guarda la sua scrivania 👀\nUn supporto o una lampada possono essere molto più utili. Controlla misure e abitudini, poi scegli.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/scrivania-pratica/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261116\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-4302947761569258796.png"
+      ],
+      "mediaAltText": [
+        null
+      ],
+      "tiktokData": {
+        "privacyOption": "PUBLIC_TO_EVERYONE",
+        "commercialContentOwnBrand": true,
+        "title": "Regali che fanno spazio",
+        "photoCoverIndex": 0
+      }
+    },
+    {
+      "id": 429102011,
+      "uuid": "-2355592286783651583",
+      "publicationDate": {
+        "dateTime": "2026-11-17T20:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "instagram",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Ama cucinare, ma i cassetti sono già pieni? 🍋\n\nPunta su qualcosa che userà spesso: misurini che si impilano, contenitori ordinati, utensili facili da riporre. Il regalo migliore trova posto nella sua cucina e nella sua routine.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261117\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-1567684030510891989.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Poco spazio, tante idee. Scena illustrativa."
+      ],
+      "instagramData": {
+        "autoPublish": true,
+        "type": "POST",
+        "showReelOnFeed": true,
+        "isAiGenerated": true
+      }
+    },
+    {
+      "id": 429102081,
+      "uuid": "3971851396987112441",
+      "publicationDate": {
+        "dateTime": "2026-11-17T10:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "tiktok",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "La cucina è piccola, la passione enorme 🍋\nPer il prossimo regalo pensa a oggetti che si impilano, si piegano o aiutano davvero ogni giorno. Prima misura lo spazio!\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261117\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-9359689995886225006.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Poco spazio, tante idee. Scena illustrativa."
+      ],
+      "tiktokData": {
+        "privacyOption": "PUBLIC_TO_EVERYONE",
+        "commercialContentOwnBrand": true,
+        "title": "Poco spazio, tante idee",
+        "photoCoverIndex": 0
+      }
+    },
+    {
+      "id": 429102134,
+      "uuid": "5090789616725213459",
+      "publicationDate": {
+        "dateTime": "2026-11-18T20:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "instagram",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Quel momento in cui apre il regalo e comincia subito a inventare. 🧱\n\nCostruzioni e percorsi creativi possono diventare un pomeriggio da condividere. Scegli in base all’età indicata, a quello che gli piace e allo spazio per giocare. E magari lascia che sia lui a decidere cosa costruire.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261118\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-9189259760895351890.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Regala voglia di creare. Scena illustrativa."
+      ],
+      "instagramData": {
+        "autoPublish": true,
+        "type": "POST",
+        "showReelOnFeed": true,
+        "isAiGenerated": true
+      }
+    },
+    {
+      "id": 429102188,
+      "uuid": "-4137423666811812467",
+      "publicationDate": {
+        "dateTime": "2026-11-18T10:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "tiktok",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Un regalo che non finisce quando si apre la scatola 🧱\nCostruire, smontare, ricominciare: parti dalla fantasia. Controlla sempre età consigliata e pezzi piccoli.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261118\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-9473698496268677491.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Regala voglia di creare. Scena illustrativa."
+      ],
+      "tiktokData": {
+        "privacyOption": "PUBLIC_TO_EVERYONE",
+        "commercialContentOwnBrand": true,
+        "title": "Regala voglia di creare",
+        "photoCoverIndex": 0
+      }
+    },
+    {
+      "id": 429102911,
+      "uuid": "1129404631943628763",
+      "publicationDate": {
+        "dateTime": "2026-11-16T20:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "instagram",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "La sua scrivania è un piccolo caos? Un regalo azzeccato può semplificargli la giornata. 💡\n\nSupporto per notebook, lampada o organizer: parti da quello che usa davvero. Prima di scegliere, controlla misure, stabilità e spazio disponibile.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261116\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-9551847490125957186.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Regali che fanno spazio. Scena illustrativa con scrivania, portatile, lampada e organizer."
+      ],
+      "instagramData": {
+        "autoPublish": true,
+        "type": "POST",
+        "showReelOnFeed": true,
+        "isAiGenerated": true
+      }
+    },
+    {
+      "id": 429103132,
+      "uuid": "4727021424147776334",
+      "publicationDate": {
+        "dateTime": "2026-11-19T13:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "instagram",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Hai un budget di 30 euro e vuoi evitare il regalo “tanto per”? 🎁\n\nParti da una passione precisa. Un piccolo oggetto scelto bene può dire “ti conosco” meglio di una confezione enorme. Ricorda di contare anche spedizione e accessori: il budget è quello finale.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261119\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-5294564945652876807.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Il pensiero conta. Scena illustrativa."
+      ],
+      "instagramData": {
+        "autoPublish": true,
+        "type": "POST",
+        "showReelOnFeed": true,
+        "isAiGenerated": true
+      }
+    },
+    {
+      "id": 429103199,
+      "uuid": "5444125031012977807",
+      "publicationDate": {
+        "dateTime": "2026-11-19T10:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "tiktok",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "30 euro di budget? Non partire dal prezzo: parti dalla persona 🎁\nChe cosa usa? Che cosa le piace? Un pensiero mirato batte il gadget a caso. Prezzi e spese si controllano prima di comprare.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261119\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-1278491433360144551.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Il pensiero conta. Scena illustrativa."
+      ],
+      "tiktokData": {
+        "privacyOption": "PUBLIC_TO_EVERYONE",
+        "commercialContentOwnBrand": true,
+        "title": "Il pensiero conta",
+        "photoCoverIndex": 0
+      }
+    },
+    {
+      "id": 429103262,
+      "uuid": "-2846291352722521548",
+      "publicationDate": {
+        "dateTime": "2026-11-21T12:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "instagram",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "“Finisco questo capitolo e arrivo.” Lo dice anche lui? 📖\n\nPer chi legge sempre, puoi pensare a un accessorio che accompagni i suoi momenti preferiti. Se scegli una custodia per e-reader, controlla il modello esatto: una misura simile non basta.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261121\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-12801174005064070035.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Ancora una pagina. Scena illustrativa."
+      ],
+      "instagramData": {
+        "autoPublish": true,
+        "type": "POST",
+        "showReelOnFeed": true,
+        "isAiGenerated": true
+      }
+    },
+    {
+      "id": 429103328,
+      "uuid": "-8334688075818644253",
+      "publicationDate": {
+        "dateTime": "2026-11-21T10:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "tiktok",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Per chi dice “ancora una pagina” da mezz’ora 📖\nUn accessorio per la lettura è un pensiero semplice, se conosci le sue abitudini. Custodia per e-reader? Controlla modello e generazione.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261121\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-2492958370874917818.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Ancora una pagina. Scena illustrativa."
+      ],
+      "tiktokData": {
+        "privacyOption": "PUBLIC_TO_EVERYONE",
+        "commercialContentOwnBrand": true,
+        "title": "Ancora una pagina",
+        "photoCoverIndex": 0
+      }
+    },
+    {
+      "id": 429103983,
+      "uuid": "-2655566096477959866",
+      "publicationDate": {
+        "dateTime": "2026-11-20T16:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "instagram",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Per chi ha sempre una canzone in testa. 🎧\n\nLe cuffie giuste dipendono da come le userà: in viaggio, mentre studia o nelle chiamate. Prima del colore, pensa a comfort, ingombro e collegamenti. Il regalo comincia da lì.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261120\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-8657402155037137590.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: La sua musica, il tuo pensiero. Scena illustrativa."
+      ],
+      "instagramData": {
+        "autoPublish": true,
+        "type": "POST",
+        "showReelOnFeed": true,
+        "isAiGenerated": true
+      }
+    },
+    {
+      "id": 429104097,
+      "uuid": "5512184299423155834",
+      "publicationDate": {
+        "dateTime": "2026-11-20T10:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "tiktok",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Vuoi regalarle delle cuffie? Prima del colore, chiediti questo 🎧\nLe userà sul treno, per studiare o in chiamata? Comfort e abitudini contano più del nome sulla scatola.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261120\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-9163521372772886768.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: La sua musica, il tuo pensiero. Scena illustrativa."
+      ],
+      "tiktokData": {
+        "privacyOption": "PUBLIC_TO_EVERYONE",
+        "commercialContentOwnBrand": true,
+        "title": "La sua musica, il tuo pensiero",
+        "photoCoverIndex": 0
+      }
+    },
+    {
+      "id": 429104815,
+      "uuid": "1763857192737132468",
+      "publicationDate": {
+        "dateTime": "2026-11-22T13:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "instagram",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Quest’anno, prima di fare la lista dei regali, fai la lista delle sue passioni. ✨\n\nMusica, costruzioni, piccoli rituali, serate insieme: il punto di partenza è quello che gli piace. Poi decidi il budget e controlla compatibilità, resi e tempi di consegna.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/natale/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261122\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-14417543177568066032.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Quest’anno, regala attenzione. Scena illustrativa natalizia."
+      ],
+      "instagramData": {
+        "autoPublish": true,
+        "type": "POST",
+        "showReelOnFeed": true,
+        "isAiGenerated": true
+      }
+    },
+    {
+      "id": 429104874,
+      "uuid": "4818751586919923812",
+      "publicationDate": {
+        "dateTime": "2026-11-22T10:00:00",
+        "timezone": "Europe/Rome"
+      },
+      "network": "tiktok",
+      "status": "PENDING",
+      "autoPublish": true,
+      "draft": false,
+      "text": "Il regalo di Natale parte molto prima del carrello ✨\nParti dalle sue passioni, scegli un budget e pensa a quando userà il regalo. Nella guida trovi spunti per cominciare.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/natale/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261122\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
+      "media": [
+        "https://static.metricool.com/planner/202611/2236117-file-4775455607892694050.png"
+      ],
+      "mediaAltText": [
+        "Grafica CosaRegalo: Quest’anno, regala attenzione. Scena illustrativa natalizia."
+      ],
+      "tiktokData": {
+        "privacyOption": "PUBLIC_TO_EVERYONE",
+        "commercialContentOwnBrand": true,
+        "title": "Quest’anno, regala attenzione",
+        "photoCoverIndex": 0
+      }
+    }
+  ]
+}

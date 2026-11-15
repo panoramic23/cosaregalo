@@ -12,7 +12,9 @@
     "Cross-posting to Facebook/Pinterest requires verified profiles and media.",
     "Aggiornamento 15 novembre: 14 testi Instagram e 14 TikTok distinti, 6 Facebook e 4 Pinterest. Nessuna voce è una pubblicazione Metricool.",
     "Il logo brand Metricool è CosaRegalo; descrizione residua non modificata. I singoli profili social richiedono comunque i controlli di identità pertinenti.",
-    "Non utilizzare il pacchetto scrivania precedente senza riesame: copertine con 10 idee non allineate alla guida attuale con 6 prodotti."
+    "Non utilizzare il pacchetto scrivania precedente senza riesame: copertine con 10 idee non allineate alla guida attuale con 6 prodotti.",
+    "16-22 novembre: Instagram e TikTok sono realmente programmati. Registro completo e fonte prioritaria: content/social-programmazione-2026-11-16_22.json. Non duplicare gli slot.",
+    "L’utente il 15 novembre ha autorizzato esplicitamente TikTok anche sul profilo lakelecco; le precedenti note di attesa rebranding sono superate per la programmazione."
   ],
   "items": [
     {
@@ -79,18 +81,22 @@
       "caption": "Un gioco creativo parte dall’età, non dalla scatola.\n\nValuta età consigliata, spazio e tipo di attività che piace al bambino.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/",
       "illustrative_asset": "assets/building.webp",
-      "status": "planned_pending_verified_media_and_live_page",
+      "status": "INSTAGRAM_TIKTOK_SCHEDULED",
       "media_url": null,
       "instagram": {
         "planned": true,
-        "format": "POST",
+        "format": "PHOTO_POST",
         "suggested_hour": "20:00",
-        "text": "Un gioco creativo parte dall’età, non dalla scatola.\n\nValuta età consigliata, spazio e tipo di attività che piace al bambino.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "text": "La sua scrivania è un piccolo caos? Un regalo azzeccato può semplificargli la giornata. 💡\n\nSupporto per notebook, lampada o organizer: parti da quello che usa davvero. Prima di scegliere, controlla misure, stabilità e spazio disponibile.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261116\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
         "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_instagram",
-        "media_url": null,
-        "status": "NOT_SCHEDULED",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-9551847490125957186.png",
+        "status": "SCHEDULED",
         "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
-        "time_verified": false
+        "time_verified": false,
+        "scheduled_at": "2026-11-16T20:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429102911,
+        "metricool_uuid": "1129404631943628763"
       },
       "facebook": {
         "planned": false,
@@ -119,12 +125,16 @@
       "tiktok": {
         "planned": true,
         "blocked_until_identity_change": true,
-        "text": "Prima di scegliere un regalo, fai questo controllo: Valuta età consigliata, spazio e tipo di attività che piace al bambino.\n\nUn gioco creativo parte dall’età, non dalla scatola. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "text": "Prima di regalare l’ennesimo gadget, guarda la sua scrivania 👀\nUn supporto o una lampada possono essere molto più utili. Controlla misure e abitudini, poi scegli.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/scrivania-pratica/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261116\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
         "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_tiktok",
-        "format": "PHOTO_CAROUSEL",
-        "media_url": null,
-        "status": "BLOCKED_IDENTITY",
-        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
+        "format": "PHOTO_POST",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-4302947761569258796.png",
+        "status": "SCHEDULED",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati.",
+        "scheduled_at": "2026-11-16T18:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429101747,
+        "metricool_uuid": "-1044851547973139583"
       }
     },
     {
@@ -134,18 +144,22 @@
       "caption": "Cuffie on-ear oppure over-ear?\n\nPrima di scegliere chiedi quale vestibilità preferisce chi le userà.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/cuffie/",
       "illustrative_asset": "assets/tech.webp",
-      "status": "planned_pending_verified_media_and_live_page",
+      "status": "INSTAGRAM_TIKTOK_SCHEDULED",
       "media_url": null,
       "instagram": {
         "planned": true,
-        "format": "POST",
+        "format": "PHOTO_POST",
         "suggested_hour": "12:00",
-        "text": "Cuffie on-ear oppure over-ear?\n\nPrima di scegliere chiedi quale vestibilità preferisce chi le userà.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "text": "Ama cucinare, ma i cassetti sono già pieni? 🍋\n\nPunta su qualcosa che userà spesso: misurini che si impilano, contenitori ordinati, utensili facili da riporre. Il regalo migliore trova posto nella sua cucina e nella sua routine.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261117\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
         "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_instagram",
-        "media_url": null,
-        "status": "NOT_SCHEDULED",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-1567684030510891989.png",
+        "status": "SCHEDULED",
         "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
-        "time_verified": false
+        "time_verified": false,
+        "scheduled_at": "2026-11-17T20:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429102011,
+        "metricool_uuid": "-2355592286783651583"
       },
       "facebook": {
         "planned": false,
@@ -174,12 +188,16 @@
       "tiktok": {
         "planned": true,
         "blocked_until_identity_change": true,
-        "text": "Prima di scegliere un regalo, fai questo controllo: Prima di scegliere chiedi quale vestibilità preferisce chi le userà.\n\nCuffie on-ear oppure over-ear? Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "text": "La cucina è piccola, la passione enorme 🍋\nPer il prossimo regalo pensa a oggetti che si impilano, si piegano o aiutano davvero ogni giorno. Prima misura lo spazio!\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261117\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
         "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_tiktok",
-        "format": "PHOTO_CAROUSEL",
-        "media_url": null,
-        "status": "BLOCKED_IDENTITY",
-        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
+        "format": "PHOTO_POST",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-9359689995886225006.png",
+        "status": "SCHEDULED",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati.",
+        "scheduled_at": "2026-11-17T10:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429102081,
+        "metricool_uuid": "3971851396987112441"
       }
     },
     {
@@ -189,18 +207,22 @@
       "caption": "Budget 30 euro: verifica il costo finale.\n\nParti dall’utilità e controlla il prezzo aggiornato e gli eventuali costi di consegna.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/sotto-30/",
       "illustrative_asset": "assets/budget.webp",
-      "status": "planned_pending_verified_media_and_live_page",
+      "status": "INSTAGRAM_TIKTOK_SCHEDULED",
       "media_url": null,
       "instagram": {
         "planned": true,
-        "format": "POST",
+        "format": "PHOTO_POST",
         "suggested_hour": "13:00",
-        "text": "Budget 30 euro: verifica il costo finale.\n\nParti dall’utilità e controlla il prezzo aggiornato e gli eventuali costi di consegna.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "text": "Quel momento in cui apre il regalo e comincia subito a inventare. 🧱\n\nCostruzioni e percorsi creativi possono diventare un pomeriggio da condividere. Scegli in base all’età indicata, a quello che gli piace e allo spazio per giocare. E magari lascia che sia lui a decidere cosa costruire.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261118\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
         "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_instagram",
-        "media_url": null,
-        "status": "NOT_SCHEDULED",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-9189259760895351890.png",
+        "status": "SCHEDULED",
         "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
-        "time_verified": false
+        "time_verified": false,
+        "scheduled_at": "2026-11-18T20:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429102134,
+        "metricool_uuid": "5090789616725213459"
       },
       "facebook": {
         "planned": true,
@@ -229,12 +251,16 @@
       "tiktok": {
         "planned": true,
         "blocked_until_identity_change": true,
-        "text": "Prima di scegliere un regalo, fai questo controllo: Parti dall’utilità e controlla il prezzo aggiornato e gli eventuali costi di consegna.\n\nBudget 30 euro: verifica il costo finale. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "text": "Un regalo che non finisce quando si apre la scatola 🧱\nCostruire, smontare, ricominciare: parti dalla fantasia. Controlla sempre età consigliata e pezzi piccoli.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261118\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
         "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_tiktok",
-        "format": "PHOTO_CAROUSEL",
-        "media_url": null,
-        "status": "BLOCKED_IDENTITY",
-        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
+        "format": "PHOTO_POST",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-9473698496268677491.png",
+        "status": "SCHEDULED",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati.",
+        "scheduled_at": "2026-11-18T10:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429102188,
+        "metricool_uuid": "-4137423666811812467"
       }
     },
     {
@@ -244,18 +270,22 @@
       "caption": "Una custodia per e-reader richiede il modello esatto.\n\nControlla generazione, misure e posizione dei pulsanti, non soltanto la diagonale.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/lettura/",
       "illustrative_asset": "assets/reader.webp",
-      "status": "planned_pending_verified_media_and_live_page",
+      "status": "INSTAGRAM_TIKTOK_SCHEDULED",
       "media_url": null,
       "instagram": {
         "planned": true,
-        "format": "POST",
+        "format": "PHOTO_POST",
         "suggested_hour": "20:00",
-        "text": "Una custodia per e-reader richiede il modello esatto.\n\nControlla generazione, misure e posizione dei pulsanti, non soltanto la diagonale.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "text": "Hai un budget di 30 euro e vuoi evitare il regalo “tanto per”? 🎁\n\nParti da una passione precisa. Un piccolo oggetto scelto bene può dire “ti conosco” meglio di una confezione enorme. Ricorda di contare anche spedizione e accessori: il budget è quello finale.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261119\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
         "url": "https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_instagram",
-        "media_url": null,
-        "status": "NOT_SCHEDULED",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-5294564945652876807.png",
+        "status": "SCHEDULED",
         "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
-        "time_verified": false
+        "time_verified": false,
+        "scheduled_at": "2026-11-19T13:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429103132,
+        "metricool_uuid": "4727021424147776334"
       },
       "facebook": {
         "planned": false,
@@ -284,12 +314,16 @@
       "tiktok": {
         "planned": true,
         "blocked_until_identity_change": true,
-        "text": "Prima di scegliere un regalo, fai questo controllo: Controlla generazione, misure e posizione dei pulsanti, non soltanto la diagonale.\n\nUna custodia per e-reader richiede il modello esatto. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "text": "30 euro di budget? Non partire dal prezzo: parti dalla persona 🎁\nChe cosa usa? Che cosa le piace? Un pensiero mirato batte il gadget a caso. Prezzi e spese si controllano prima di comprare.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261119\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
         "url": "https://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_tiktok",
-        "format": "PHOTO_CAROUSEL",
-        "media_url": null,
-        "status": "BLOCKED_IDENTITY",
-        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
+        "format": "PHOTO_POST",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-1278491433360144551.png",
+        "status": "SCHEDULED",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati.",
+        "scheduled_at": "2026-11-19T10:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429103199,
+        "metricool_uuid": "5444125031012977807"
       }
     },
     {
@@ -299,18 +333,22 @@
       "caption": "Il cofanetto benessere non è universale.\n\nFragranze, ingredienti e abitudini del destinatario contano più del numero di prodotti.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/benessere/",
       "illustrative_asset": "assets/beauty.webp",
-      "status": "planned_pending_verified_media_and_live_page",
+      "status": "INSTAGRAM_TIKTOK_SCHEDULED",
       "media_url": null,
       "instagram": {
         "planned": true,
-        "format": "POST",
+        "format": "PHOTO_POST",
         "suggested_hour": "12:00",
-        "text": "Il cofanetto benessere non è universale.\n\nFragranze, ingredienti e abitudini del destinatario contano più del numero di prodotti.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "text": "Per chi ha sempre una canzone in testa. 🎧\n\nLe cuffie giuste dipendono da come le userà: in viaggio, mentre studia o nelle chiamate. Prima del colore, pensa a comfort, ingombro e collegamenti. Il regalo comincia da lì.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261120\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
         "url": "https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_instagram",
-        "media_url": null,
-        "status": "NOT_SCHEDULED",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-8657402155037137590.png",
+        "status": "SCHEDULED",
         "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
-        "time_verified": false
+        "time_verified": false,
+        "scheduled_at": "2026-11-20T16:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429103983,
+        "metricool_uuid": "-2655566096477959866"
       },
       "facebook": {
         "planned": true,
@@ -339,12 +377,16 @@
       "tiktok": {
         "planned": true,
         "blocked_until_identity_change": true,
-        "text": "Prima di scegliere un regalo, fai questo controllo: Fragranze, ingredienti e abitudini del destinatario contano più del numero di prodotti.\n\nIl cofanetto benessere non è universale. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/benessere/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "text": "Vuoi regalarle delle cuffie? Prima del colore, chiediti questo 🎧\nLe userà sul treno, per studiare o in chiamata? Comfort e abitudini contano più del nome sulla scatola.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261120\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
         "url": "https://cosa-regalo.it/guide/benessere/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_tiktok",
-        "format": "PHOTO_CAROUSEL",
-        "media_url": null,
-        "status": "BLOCKED_IDENTITY",
-        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
+        "format": "PHOTO_POST",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-9163521372772886768.png",
+        "status": "SCHEDULED",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati.",
+        "scheduled_at": "2026-11-20T10:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429104097,
+        "metricool_uuid": "5512184299423155834"
       }
     },
     {
@@ -354,18 +396,22 @@
       "caption": "Il regalo tech parte da un bisogno concreto.\n\nUno speaker serve per ascoltare musica; una docking station per collegare periferiche. Chiedi prima quale problema risolvere.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/tech/",
       "illustrative_asset": "assets/tech.webp",
-      "status": "planned_pending_verified_media_and_live_page",
+      "status": "INSTAGRAM_TIKTOK_SCHEDULED",
       "media_url": null,
       "instagram": {
         "planned": true,
-        "format": "POST",
+        "format": "PHOTO_POST",
         "suggested_hour": "13:00",
-        "text": "Il regalo tech parte da un bisogno concreto.\n\nUno speaker serve per ascoltare musica; una docking station per collegare periferiche. Chiedi prima quale problema risolvere.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "text": "“Finisco questo capitolo e arrivo.” Lo dice anche lui? 📖\n\nPer chi legge sempre, puoi pensare a un accessorio che accompagni i suoi momenti preferiti. Se scegli una custodia per e-reader, controlla il modello esatto: una misura simile non basta.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261121\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
         "url": "https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_instagram",
-        "media_url": null,
-        "status": "NOT_SCHEDULED",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-12801174005064070035.png",
+        "status": "SCHEDULED",
         "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
-        "time_verified": false
+        "time_verified": false,
+        "scheduled_at": "2026-11-21T12:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429103262,
+        "metricool_uuid": "-2846291352722521548"
       },
       "facebook": {
         "planned": false,
@@ -394,12 +440,16 @@
       "tiktok": {
         "planned": true,
         "blocked_until_identity_change": true,
-        "text": "Prima di scegliere un regalo, fai questo controllo: Uno speaker serve per ascoltare musica; una docking station per collegare periferiche. Chiedi prima quale problema risolvere.\n\nIl regalo tech parte da un bisogno concreto. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/tech/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "text": "Per chi dice “ancora una pagina” da mezz’ora 📖\nUn accessorio per la lettura è un pensiero semplice, se conosci le sue abitudini. Custodia per e-reader? Controlla modello e generazione.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261121\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
         "url": "https://cosa-regalo.it/guide/tech/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_tiktok",
-        "format": "PHOTO_CAROUSEL",
-        "media_url": null,
-        "status": "BLOCKED_IDENTITY",
-        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
+        "format": "PHOTO_POST",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-2492958370874917818.png",
+        "status": "SCHEDULED",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati.",
+        "scheduled_at": "2026-11-21T10:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429103328,
+        "metricool_uuid": "-8334688075818644253"
       }
     },
     {
@@ -409,18 +459,22 @@
       "caption": "Cucina piccola? Conta anche dove riporre il regalo.\n\nPrima di scegliere un accessorio verifica ingombro, pulizia e frequenza d’uso.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/cucina-poco-spazio/",
       "illustrative_asset": "assets/cover.webp",
-      "status": "planned_pending_verified_media_and_live_page",
+      "status": "INSTAGRAM_TIKTOK_SCHEDULED",
       "media_url": null,
       "instagram": {
         "planned": true,
-        "format": "POST",
+        "format": "PHOTO_POST",
         "suggested_hour": "20:00",
-        "text": "Cucina piccola? Conta anche dove riporre il regalo.\n\nPrima di scegliere un accessorio verifica ingombro, pulizia e frequenza d’uso.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "text": "Quest’anno, prima di fare la lista dei regali, fai la lista delle sue passioni. ✨\n\nMusica, costruzioni, piccoli rituali, serate insieme: il punto di partenza è quello che gli piace. Poi decidi il budget e controlla compatibilità, resi e tempi di consegna.\n\nScopri la guida su cosa-regalo.it → Guide. Salva il post per il prossimo regalo.\nhttps://cosa-regalo.it/guide/natale/?utm_source=instagram&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261122\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #RegaliUtili",
         "url": "https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_instagram",
-        "media_url": null,
-        "status": "NOT_SCHEDULED",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-14417543177568066032.png",
+        "status": "SCHEDULED",
         "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
-        "time_verified": false
+        "time_verified": false,
+        "scheduled_at": "2026-11-22T13:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429104815,
+        "metricool_uuid": "1763857192737132468"
       },
       "facebook": {
         "planned": true,
@@ -449,12 +503,16 @@
       "tiktok": {
         "planned": true,
         "blocked_until_identity_change": true,
-        "text": "Prima di scegliere un regalo, fai questo controllo: Prima di scegliere un accessorio verifica ingombro, pulizia e frequenza d’uso.\n\nCucina piccola? Conta anche dove riporre il regalo. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "text": "Il regalo di Natale parte molto prima del carrello ✨\nParti dalle sue passioni, scegli un budget e pensa a quando userà il regalo. Nella guida trovi spunti per cominciare.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/natale/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261122\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
         "url": "https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_tiktok",
-        "format": "PHOTO_CAROUSEL",
-        "media_url": null,
-        "status": "BLOCKED_IDENTITY",
-        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
+        "format": "PHOTO_POST",
+        "media_url": "https://static.metricool.com/planner/202611/2236117-file-4775455607892694050.png",
+        "status": "SCHEDULED",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati.",
+        "scheduled_at": "2026-11-22T10:00:00",
+        "timezone": "Europe/Rome",
+        "metricool_id": 429104874,
+        "metricool_uuid": "4818751586919923812"
       }
     },
     {
