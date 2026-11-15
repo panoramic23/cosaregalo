@@ -14,7 +14,7 @@ test('every category model has a unique editorial rationale and associated real 
   assert.match(html,/class="bf-type-page"/);
   const productAsins=[...html.matchAll(/PRODOTTO AMAZON · ASIN ([A-Z0-9]{10})/g)].map(m=>m[1]);
   assert.ok(productAsins.length>=1);
-  assert.equal((html.match(/Perché lo proponiamo/g)||[]).length,productAsins.length);
+  assert.doesNotMatch(html,/Perché lo proponiamo/);
   assert.equal((html.match(/class="cr-category-audience"/g)||[]).length,productAsins.length);
   assert.equal((html.match(/class="cr-category-caveat"/g)||[]).length,productAsins.length);
   assert.doesNotMatch(html,/Link affiliato fornito per questo modello\. Verifica variante/);
@@ -52,3 +52,4 @@ test('editorial cadence and publication statuses are consistent',async()=>{
  const twoWeek=JSON.parse(await source('content/calendario_14_giorni.json'));
  assert.equal(twoWeek.length,7);
 });
+

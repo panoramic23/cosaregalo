@@ -26,7 +26,8 @@ test('all curated guides feature exact picks and not generic Amazon searches',as
   assert.equal((html.match(/data-asin="/g)||[]).length,items.length,slug);
   assert.doesNotMatch(html,/data-amazon-search=/,slug);
   assert.equal((html.match(/class="cr-editorial-rationale"/g)||[]).length,items.length,slug+' missing product commentary');
-  assert.equal((html.match(/Perché lo proponiamo:/g)||[]).length,items.length,slug+' missing editorial label');
+  assert.doesNotMatch(html,/Perché lo proponiamo/);
   for(const {asin} of items)assert.ok(html.includes('data-asin="'+asin+'"'),slug+' '+asin);
  }
 });
+
