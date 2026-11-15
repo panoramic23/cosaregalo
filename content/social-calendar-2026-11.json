@@ -9,14 +9,17 @@
     "Instagram images must be accessible through a real public media URL.",
     "TikTok account remains lakelecco; do not schedule until rebrand confirmed.",
     "Check Pinterest board before any Pinterest pin.",
-    "Cross-posting to Facebook/Pinterest requires verified profiles and media."
+    "Cross-posting to Facebook/Pinterest requires verified profiles and media.",
+    "Aggiornamento 15 novembre: 14 testi Instagram e 14 TikTok distinti, 6 Facebook e 4 Pinterest. Nessuna voce è una pubblicazione Metricool.",
+    "Il logo brand Metricool è CosaRegalo; descrizione residua non modificata. I singoli profili social richiedono comunque i controlli di identità pertinenti.",
+    "Non utilizzare il pacchetto scrivania precedente senza riesame: copertine con 10 idee non allineate alla guida attuale con 6 prodotti."
   ],
   "items": [
     {
       "date": "2026-11-15",
       "slug": "scrivania-pratica",
       "category": "Casa e lavoro",
-      "caption": "Una scrivania più comoda non richiede dieci gadget: scegli un supporto stabile, una luce adatta e accessori che risolvano un bisogno reale. Leggi la guida su https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Supporto per laptop: prima misura, poi scegli.\n\nControlla dimensioni del computer, stabilità e spazio per un’eventuale tastiera esterna.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261115_scrivania-pratica_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/scrivania-pratica/",
       "illustrative_asset": "assets/tech.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -24,28 +27,56 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "13:00"
+        "suggested_hour": "13:00",
+        "text": "Supporto per laptop: prima misura, poi scegli.\n\nControlla dimensioni del computer, stabilità e spazio per un’eventuale tastiera esterna.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261115_scrivania-pratica_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261115_scrivania-pratica_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": true,
+        "time_basis": "Metricool 2026-11-15, highest returned score 44; not scheduled"
       },
       "facebook": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "12:00",
+        "text": "Stai cercando un regalo utile? Controlla dimensioni del computer, stabilità e spazio per un’eventuale tastiera esterna.\n\nIl punto da cui partire: Supporto per laptop: prima misura, poi scegli.\nNella guida trovi i criteri da valutare: https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261115_scrivania-pratica_facebook\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261115_scrivania-pratica_facebook",
+        "status": "NOT_SCHEDULED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": true,
+        "time_basis": "Metricool 2026-11-15, highest remaining full hour score 6913; not scheduled"
       },
       "pinterest": {
         "planned": true,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "Supporto per laptop: prima misura, poi scegli.",
+        "description": "Controlla dimensioni del computer, stabilità e spazio per un’eventuale tastiera esterna. Consulta la guida per scegliere in base alle esigenze del destinatario. Immagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261115_scrivania-pratica_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "BLOCKED_BOARD_AND_MEDIA",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Controlla dimensioni del computer, stabilità e spazio per un’eventuale tastiera esterna.\n\nSupporto per laptop: prima misura, poi scegli. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261115_scrivania-pratica_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261115_scrivania-pratica_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-16",
       "slug": "giochi-creativi-bambini",
       "category": "Giochi",
-      "caption": "Il regalo creativo funziona quando lascia spazio all'immaginazione. Meglio partire dall'età del bambino, non dalla scatola più grande. Leggi la guida su https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Un gioco creativo parte dall’età, non dalla scatola.\n\nValuta età consigliata, spazio e tipo di attività che piace al bambino.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/",
       "illustrative_asset": "assets/building.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -53,28 +84,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "20:00"
+        "suggested_hour": "20:00",
+        "text": "Un gioco creativo parte dall’età, non dalla scatola.\n\nValuta età consigliata, spazio e tipo di attività che piace al bambino.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
         "planned": false,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "",
+        "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_facebook",
+        "status": "NOT_PLANNED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
         "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Valuta età consigliata, spazio e tipo di attività che piace al bambino.\n\nUn gioco creativo parte dall’età, non dalla scatola. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261116_giochi-creativi-bambini_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-17",
       "slug": "cuffie",
       "category": "Tecnologia",
-      "caption": "Cuffie wireless da regalare? Prima di guardare i numeri, chiediti se chi le userà preferisce un modello on-ear oppure over-ear. Leggi la guida su https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Cuffie on-ear oppure over-ear?\n\nPrima di scegliere chiedi quale vestibilità preferisce chi le userà.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/cuffie/",
       "illustrative_asset": "assets/tech.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -82,28 +139,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "12:00"
+        "suggested_hour": "12:00",
+        "text": "Cuffie on-ear oppure over-ear?\n\nPrima di scegliere chiedi quale vestibilità preferisce chi le userà.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
-        "planned": true,
+        "planned": false,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "",
+        "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_facebook",
+        "status": "NOT_PLANNED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
         "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Prima di scegliere chiedi quale vestibilità preferisce chi le userà.\n\nCuffie on-ear oppure over-ear? Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261117_cuffie_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-18",
       "slug": "sotto-30",
       "category": "Budget",
-      "caption": "Con 30 euro si può scegliere bene: la differenza sta nell'utilità del prodotto, non in un prezzo barrato. Leggi la guida su https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Budget 30 euro: verifica il costo finale.\n\nParti dall’utilità e controlla il prezzo aggiornato e gli eventuali costi di consegna.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/sotto-30/",
       "illustrative_asset": "assets/budget.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -111,28 +194,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "13:00"
+        "suggested_hour": "13:00",
+        "text": "Budget 30 euro: verifica il costo finale.\n\nParti dall’utilità e controlla il prezzo aggiornato e gli eventuali costi di consegna.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
-        "planned": false,
+        "planned": true,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "Stai cercando un regalo utile? Parti dall’utilità e controlla il prezzo aggiornato e gli eventuali costi di consegna.\n\nIl punto da cui partire: Budget 30 euro: verifica il costo finale.\nNella guida trovi i criteri da valutare: https://cosa-regalo.it/guide/sotto-30/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_facebook\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_facebook",
+        "status": "NOT_SCHEDULED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
-        "planned": true,
+        "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Parti dall’utilità e controlla il prezzo aggiornato e gli eventuali costi di consegna.\n\nBudget 30 euro: verifica il costo finale. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261118_sotto-30_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-19",
       "slug": "lettura",
       "category": "Lettura",
-      "caption": "Per chi ama leggere, a volte il regalo migliore non è un altro libro. Custodie e supporti hanno senso soltanto se compatibili con il lettore. Leggi la guida su https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Una custodia per e-reader richiede il modello esatto.\n\nControlla generazione, misure e posizione dei pulsanti, non soltanto la diagonale.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/lettura/",
       "illustrative_asset": "assets/reader.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -140,28 +249,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "20:00"
+        "suggested_hour": "20:00",
+        "text": "Una custodia per e-reader richiede il modello esatto.\n\nControlla generazione, misure e posizione dei pulsanti, non soltanto la diagonale.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
-        "planned": true,
+        "planned": false,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "",
+        "url": "https://cosa-regalo.it/guide/lettura/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_facebook",
+        "status": "NOT_PLANNED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
-        "planned": false,
+        "planned": true,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "Una custodia per e-reader richiede il modello esatto.",
+        "description": "Controlla generazione, misure e posizione dei pulsanti, non soltanto la diagonale. Consulta la guida per scegliere in base alle esigenze del destinatario. Immagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/lettura/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "BLOCKED_BOARD_AND_MEDIA",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Controlla generazione, misure e posizione dei pulsanti, non soltanto la diagonale.\n\nUna custodia per e-reader richiede il modello esatto. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261119_lettura_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-20",
       "slug": "benessere",
       "category": "Benessere",
-      "caption": "Un cofanetto benessere non è universale: fragranze, ingredienti e abitudini personali contano più del numero di prodotti. Leggi la guida su https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Il cofanetto benessere non è universale.\n\nFragranze, ingredienti e abitudini del destinatario contano più del numero di prodotti.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/benessere/",
       "illustrative_asset": "assets/beauty.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -169,28 +304,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "12:00"
+        "suggested_hour": "12:00",
+        "text": "Il cofanetto benessere non è universale.\n\nFragranze, ingredienti e abitudini del destinatario contano più del numero di prodotti.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
-        "planned": false,
+        "planned": true,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "Stai cercando un regalo utile? Fragranze, ingredienti e abitudini del destinatario contano più del numero di prodotti.\n\nIl punto da cui partire: Il cofanetto benessere non è universale.\nNella guida trovi i criteri da valutare: https://cosa-regalo.it/guide/benessere/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_facebook\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/benessere/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_facebook",
+        "status": "NOT_SCHEDULED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
         "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/benessere/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Fragranze, ingredienti e abitudini del destinatario contano più del numero di prodotti.\n\nIl cofanetto benessere non è universale. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/benessere/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/benessere/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261120_benessere_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-21",
       "slug": "tech",
       "category": "Tecnologia",
-      "caption": "La tecnologia da regalare è quella che semplifica qualcosa. Uno speaker portatile serve a qualcuno; una docking station a qualcun altro. Leggi la guida su https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Il regalo tech parte da un bisogno concreto.\n\nUno speaker serve per ascoltare musica; una docking station per collegare periferiche. Chiedi prima quale problema risolvere.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/tech/",
       "illustrative_asset": "assets/tech.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -198,57 +359,109 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "13:00"
+        "suggested_hour": "13:00",
+        "text": "Il regalo tech parte da un bisogno concreto.\n\nUno speaker serve per ascoltare musica; una docking station per collegare periferiche. Chiedi prima quale problema risolvere.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
-        "planned": true,
+        "planned": false,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "",
+        "url": "https://cosa-regalo.it/guide/tech/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_facebook",
+        "status": "NOT_PLANNED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
-        "planned": true,
+        "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/tech/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Uno speaker serve per ascoltare musica; una docking station per collegare periferiche. Chiedi prima quale problema risolvere.\n\nIl regalo tech parte da un bisogno concreto. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/tech/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/tech/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261121_tech_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-22",
-      "slug": "tech",
-      "category": "Tecnologia",
-      "caption": "Uno speaker compatto oppure una docking station? Il regalo tech funziona quando risponde a un'abitudine reale. Leggi la guida su https://cosa-regalo.it/guide/tech/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
-      "source_url": "https://cosa-regalo.it/guide/tech/",
-      "illustrative_asset": "assets/tech.webp",
+      "slug": "cucina-poco-spazio",
+      "category": "Casa e cucina",
+      "caption": "Cucina piccola? Conta anche dove riporre il regalo.\n\nPrima di scegliere un accessorio verifica ingombro, pulizia e frequenza d’uso.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+      "source_url": "https://cosa-regalo.it/guide/cucina-poco-spazio/",
+      "illustrative_asset": "assets/cover.webp",
       "status": "planned_pending_verified_media_and_live_page",
       "media_url": null,
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "20:00"
+        "suggested_hour": "20:00",
+        "text": "Cucina piccola? Conta anche dove riporre il regalo.\n\nPrima di scegliere un accessorio verifica ingombro, pulizia e frequenza d’uso.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
-        "planned": false,
+        "planned": true,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "Stai cercando un regalo utile? Prima di scegliere un accessorio verifica ingombro, pulizia e frequenza d’uso.\n\nIl punto da cui partire: Cucina piccola? Conta anche dove riporre il regalo.\nNella guida trovi i criteri da valutare: https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_facebook\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_facebook",
+        "status": "NOT_SCHEDULED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
         "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Prima di scegliere un accessorio verifica ingombro, pulizia e frequenza d’uso.\n\nCucina piccola? Conta anche dove riporre il regalo. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261122_cucina-poco-spazio_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-23",
       "slug": "scrivania-pratica",
       "category": "Casa e lavoro",
-      "caption": "Prima di regalare un accessorio da scrivania, chiediti dove verrà messo: ingombro e compatibilità possono fare tutta la differenza. Leggi la guida su https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Quanto spazio resta sulla scrivania?\n\nMisura la superficie libera prima di regalare accessori o lampade con basi ingombranti.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261123_scrivania-pratica_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/scrivania-pratica/",
       "illustrative_asset": "assets/tech.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -256,28 +469,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "12:00"
+        "suggested_hour": "12:00",
+        "text": "Quanto spazio resta sulla scrivania?\n\nMisura la superficie libera prima di regalare accessori o lampade con basi ingombranti.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261123_scrivania-pratica_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261123_scrivania-pratica_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
-        "planned": true,
+        "planned": false,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "",
+        "url": "https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261123_scrivania-pratica_facebook",
+        "status": "NOT_PLANNED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
-        "planned": false,
+        "planned": true,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "Quanto spazio resta sulla scrivania?",
+        "description": "Misura la superficie libera prima di regalare accessori o lampade con basi ingombranti. Consulta la guida per scegliere in base alle esigenze del destinatario. Immagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261123_scrivania-pratica_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "BLOCKED_BOARD_AND_MEDIA",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Misura la superficie libera prima di regalare accessori o lampade con basi ingombranti.\n\nQuanto spazio resta sulla scrivania? Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261123_scrivania-pratica_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/scrivania-pratica/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261123_scrivania-pratica_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-24",
       "slug": "giochi-creativi-bambini",
       "category": "Giochi",
-      "caption": "Costruzioni e giochi creativi hanno un punto in comune: invitano a riprovare. L'età consigliata resta il primo filtro. Leggi la guida su https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Costruire significa anche poter ricominciare.\n\nConsidera tipo di pezzi, età consigliata e spazio per lasciare il gioco montato.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261124_giochi-creativi-bambini_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/",
       "illustrative_asset": "assets/building.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -285,28 +524,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "13:00"
+        "suggested_hour": "13:00",
+        "text": "Costruire significa anche poter ricominciare.\n\nConsidera tipo di pezzi, età consigliata e spazio per lasciare il gioco montato.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261124_giochi-creativi-bambini_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261124_giochi-creativi-bambini_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
         "planned": false,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "",
+        "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261124_giochi-creativi-bambini_facebook",
+        "status": "NOT_PLANNED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
-        "planned": true,
+        "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261124_giochi-creativi-bambini_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Considera tipo di pezzi, età consigliata e spazio per lasciare il gioco montato.\n\nCostruire significa anche poter ricominciare. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261124_giochi-creativi-bambini_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261124_giochi-creativi-bambini_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-25",
       "slug": "sotto-30",
       "category": "Budget",
-      "caption": "Un piccolo budget non significa scegliere a caso. Abbiamo raccolto idee da valutare per destinatario e utilità quotidiana. Leggi la guida su https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Piccolo budget: si può usare subito?\n\nVerifica se il regalo richiede altri acquisti. Un accessorio semplice ma adatto può essere una scelta più utile.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261125_sotto-30_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/sotto-30/",
       "illustrative_asset": "assets/budget.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -314,28 +579,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "20:00"
+        "suggested_hour": "20:00",
+        "text": "Piccolo budget: si può usare subito?\n\nVerifica se il regalo richiede altri acquisti. Un accessorio semplice ma adatto può essere una scelta più utile.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261125_sotto-30_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261125_sotto-30_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "Stai cercando un regalo utile? Verifica se il regalo richiede altri acquisti. Un accessorio semplice ma adatto può essere una scelta più utile.\n\nIl punto da cui partire: Piccolo budget: si può usare subito?\nNella guida trovi i criteri da valutare: https://cosa-regalo.it/guide/sotto-30/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261125_sotto-30_facebook\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261125_sotto-30_facebook",
+        "status": "NOT_SCHEDULED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
         "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261125_sotto-30_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Verifica se il regalo richiede altri acquisti. Un accessorio semplice ma adatto può essere una scelta più utile.\n\nPiccolo budget: si può usare subito? Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261125_sotto-30_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261125_sotto-30_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-26",
       "slug": "cuffie",
       "category": "Tecnologia",
-      "caption": "ANC, vestibilità e autonomia: per regalare cuffie conta soprattutto l'uso reale, non una lista infinita di parole tecniche. Leggi la guida su https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "ANC non significa silenzio assoluto.\n\nPer scegliere cuffie considera ambiente d’uso, microfono e comfort personale.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261126_cuffie_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/cuffie/",
       "illustrative_asset": "assets/tech.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -343,28 +634,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "12:00"
+        "suggested_hour": "12:00",
+        "text": "ANC non significa silenzio assoluto.\n\nPer scegliere cuffie considera ambiente d’uso, microfono e comfort personale.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261126_cuffie_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261126_cuffie_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
         "planned": false,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "",
+        "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261126_cuffie_facebook",
+        "status": "NOT_PLANNED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
         "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261126_cuffie_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Per scegliere cuffie considera ambiente d’uso, microfono e comfort personale.\n\nANC non significa silenzio assoluto. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261126_cuffie_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261126_cuffie_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-27",
       "slug": "lettura",
       "category": "Lettura",
-      "caption": "Un e-reader va regalato con attenzione alla compatibilità; anche una semplice custodia può essere un regalo azzeccato se è quella giusta. Leggi la guida su https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Un regalo per lettori può andare oltre i libri.\n\nUn accessorio funziona soltanto se è compatibile con il dispositivo già posseduto.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261127_lettura_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/lettura/",
       "illustrative_asset": "assets/reader.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -372,28 +689,54 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "13:00"
+        "suggested_hour": "13:00",
+        "text": "Un regalo per lettori può andare oltre i libri.\n\nUn accessorio funziona soltanto se è compatibile con il dispositivo già posseduto.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261127_lettura_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/lettura/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261127_lettura_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "Stai cercando un regalo utile? Un accessorio funziona soltanto se è compatibile con il dispositivo già posseduto.\n\nIl punto da cui partire: Un regalo per lettori può andare oltre i libri.\nNella guida trovi i criteri da valutare: https://cosa-regalo.it/guide/lettura/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261127_lettura_facebook\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/lettura/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261127_lettura_facebook",
+        "status": "NOT_SCHEDULED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
         "planned": true,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "Un regalo per lettori può andare oltre i libri.",
+        "description": "Un accessorio funziona soltanto se è compatibile con il dispositivo già posseduto. Consulta la guida per scegliere in base alle esigenze del destinatario. Immagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.",
+        "url": "https://cosa-regalo.it/guide/lettura/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261127_lettura_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "BLOCKED_BOARD_AND_MEDIA",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Un accessorio funziona soltanto se è compatibile con il dispositivo già posseduto.\n\nUn regalo per lettori può andare oltre i libri. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261127_lettura_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261127_lettura_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     },
     {
       "date": "2026-11-28",
       "slug": "benessere",
       "category": "Benessere",
-      "caption": "Per scegliere un regalo relax, parti dal destinatario: usa la vasca? Ama i profumi? Preferisce accessori senza fragranze? Leggi la guida su https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026 #CosaRegalo #IdeeRegalo",
+      "caption": "Il regalo relax giusto parte dalle abitudini.\n\nVasca o doccia? Profumi oppure nessuna fragranza? Chiediti cosa userebbe davvero il destinatario.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261128_benessere_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
       "source_url": "https://cosa-regalo.it/guide/benessere/",
       "illustrative_asset": "assets/beauty.webp",
       "status": "planned_pending_verified_media_and_live_page",
@@ -401,22 +744,89 @@
       "instagram": {
         "planned": true,
         "format": "POST",
-        "suggested_hour": "20:00"
+        "suggested_hour": "20:00",
+        "text": "Il regalo relax giusto parte dalle abitudini.\n\nVasca o doccia? Profumi oppure nessuna fragranza? Chiediti cosa userebbe davvero il destinatario.\n\nLeggi i criteri nella guida: https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261128_benessere_instagram\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo",
+        "url": "https://cosa-regalo.it/guide/benessere/?utm_source=instagram&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261128_benessere_instagram",
+        "media_url": null,
+        "status": "NOT_SCHEDULED",
+        "creative_brief": "Carosello di consigli blu/giallo con titolo senza prezzi o conteggi non verificati; immagini illustrative.",
+        "time_verified": false
       },
       "facebook": {
         "planned": false,
         "format": "POST",
-        "suggested_hour": "10:00"
+        "suggested_hour": "10:00",
+        "text": "",
+        "url": "https://cosa-regalo.it/guide/benessere/?utm_source=facebook&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261128_benessere_facebook",
+        "status": "NOT_PLANNED",
+        "media_url": null,
+        "creative_brief": "Immagine editoriale dedicata con URL cliccabile e testo contestuale; non duplicare la caption Instagram.",
+        "time_verified": false
       },
       "pinterest": {
         "planned": false,
         "format": "PIN",
-        "board_required": true
+        "board_required": true,
+        "title": "",
+        "description": "",
+        "url": "https://cosa-regalo.it/guide/benessere/?utm_source=pinterest&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261128_benessere_pinterest",
+        "board_id": null,
+        "board_verified": false,
+        "media_url": null,
+        "status": "NOT_PLANNED",
+        "creative_brief": "Pin 1000x1500 con titolo leggibile orientato alla ricerca e CTA alla guida, senza prezzo o conteggi non verificati."
       },
       "tiktok": {
         "planned": true,
-        "blocked_until_identity_change": true
+        "blocked_until_identity_change": true,
+        "text": "Prima di scegliere un regalo, fai questo controllo: Vasca o doccia? Profumi oppure nessuna fragranza? Chiediti cosa userebbe davvero il destinatario.\n\nIl regalo relax giusto parte dalle abitudini. Salva il promemoria.\nGuida: https://cosa-regalo.it/guide/benessere/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261128_benessere_tiktok\n\nImmagini illustrative. Il sito può contenere link affiliati: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #ConsigliRegalo",
+        "url": "https://cosa-regalo.it/guide/benessere/?utm_source=tiktok&utm_medium=social&utm_campaign=novembre_2026&utm_content=20261128_benessere_tiktok",
+        "format": "PHOTO_CAROUSEL",
+        "media_url": null,
+        "status": "BLOCKED_IDENTITY",
+        "creative_brief": "Sequenza verticale: domanda, controllo pratico, CTA guida. Escludere copertine con conteggi superati."
       }
     }
-  ]
+  ],
+  "updatedOn": "2026-11-15",
+  "cadence": {
+    "instagram": "1 proposta al giorno",
+    "tiktok": "1 proposta al giorno; nessuna programmazione finché lakelecco non cambia identità",
+    "facebook": "3 proposte per ciascun blocco di sette giorni del piano",
+    "pinterest": "massimo 2 proposte per ciascun blocco di sette giorni del piano"
+  },
+  "verification": {
+    "checked_on": "2026-11-15",
+    "brand_id": 2236117,
+    "instagram": "regalocosa",
+    "facebook_id": "1462088656983226",
+    "pinterest": "regalocosa",
+    "tiktok": "lakelecco",
+    "metricool_brand_logo": "visually_verified_CosaRegalo",
+    "brand_description": "Migliora la qualità dell’aria",
+    "description_requires_owner_update": true,
+    "live_feed": "HTTP_202_SiteGround_challenge",
+    "public_media_verified": false,
+    "pinterest_board_verified": false,
+    "scheduled_posts_returned_15_to_28": 0,
+    "logo_check_does_not_verify_all_social_profile_branding": true
+  },
+  "asset_review": {
+    "reviewed_on": "2026-11-15",
+    "library_archive": "CosaRegalo_Social_Guide_Vol2.zip",
+    "library_file_id": "libfile_f5388631dd9481919ef5b5be6a2d2606",
+    "rejected_for_current_scrivania_guide": [
+      "Instagram/02_scrivania/01_cover.jpg",
+      "TikTok_Stories/02_scrivania.jpg",
+      "TikTok_Stories/02_scrivania_video.mp4",
+      "Pinterest/02_scrivania.jpg"
+    ],
+    "reason": "Old title claims 10 gifts; current GitHub guide/feed show 6. Vertical cover inspected; video excluded until every frame is revalidated.",
+    "candidate_only": [
+      "Instagram/02_scrivania/02_idea.jpg",
+      "Instagram/02_scrivania/03_idea.jpg",
+      "Instagram/02_scrivania/04_idea.jpg"
+    ],
+    "candidate_status": "02_idea visually inspected; full sequence still needs visual/current-source checks, public URL validation and live-guide verification. Not scheduled."
+  }
 }
