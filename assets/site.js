@@ -1,3 +1,20 @@
+/* Expire Amazon-derived display data even when a tab stays open or resumes. */
+const amazonContentSnapshots=new WeakMap();
+function scheduleAmazonExpiry(root,expiresAt){
+ const expiry=Date.parse(expiresAt),remaining=expiry-Date.now();
+ if(!Number.isFinite(remaining)||remaining<=0||remaining>30*60*1000+5000)return false;
+ const old=amazonContentSnapshots.get(root);if(old)old();
+ const fallback=root.innerHTML;
+ let timer;
+ const cleanup=()=>{clearTimeout(timer);document.removeEventListener('visibilitychange',check);window.removeEventListener('pageshow',check);amazonContentSnapshots.delete(root);};
+ const expire=()=>{root.innerHTML=fallback;root.removeAttribute('data-hydrated');cleanup();};
+ const check=()=>{if(Date.now()>=expiry)expire();};
+ timer=setTimeout(expire,remaining);
+ document.addEventListener('visibilitychange',check);window.addEventListener('pageshow',check);
+ amazonContentSnapshots.set(root,()=>{root.innerHTML=fallback;cleanup();});
+ return true;
+}
+
 
 // CosaRegalo product-type navigation and filters. Works in local HTML and offline preview.
 (function(){
@@ -164,7 +181,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    if(validUrl(p.image,'image')){const img=e('img');img.src=p.image;img.loading='lazy';img.alt=p.title;frame.append(img)}else frame.append(e('span','product-origin','Immagine non disponibile'));
    const info=e('div','amazon-product-desc');info.append(e('span','product-origin',(p.source==='sitestripe'?'LINK SITESTRIPE · ASIN ':'PRODOTTO AMAZON · ASIN ')+p.asin));info.append(e('h3','',p.title));
    const buy=e('div','amazon-product-buy');buy.append(e('strong','amazon-price'+(p.price?'':' not-live'),p.price||'Prezzo su Amazon'));
-   const time=e('span','amazon-timestamp',p.price?'Prezzo rilevato '+new Date(checkedAt).toLocaleString('it-IT'):'Prezzo consultabile su Amazon');buy.append(time);
+   const time=e('span','amazon-timestamp',p.price?'Prezzo rilevato '+new Date(checkedAt).toLocaleString('it-IT')+'. Prezzo e disponibilità al momento dell’acquisto su Amazon prevalgono.':'Prezzo consultabile su Amazon');buy.append(time);
    const a=e('a','amazon-btn','Acquista su Amazon ↗');a.href=p.url;a.target='_blank';a.rel='sponsored nofollow noopener';buy.append(a);
    card.append(frame,info,buy);list.append(card);
   });if(list.children.length){root.replaceChildren(list);return true}return false;
@@ -177,7 +194,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    try{const url='/api/products?type='+encodeURIComponent(sec.dataset.slug)+'&group='+encodeURIComponent(sec.dataset.group);
     const resp=await fetch(url,{headers:{Accept:'application/json'}});
     if(!resp.ok)return;
-    const data=await resp.json();sec.querySelector('[data-sitestripe-group]')?.remove();if(data.groupLink&&validUrl(data.groupLink,'link')){const a=e('a','amazon-btn','Esplora la selezione su Amazon ↗');a.dataset.sitestripeGroup='1';a.href=data.groupLink;a.target='_blank';a.rel='sponsored nofollow noopener';sec.append(a);}if(Array.isArray(data.items)&&paint(root,data.items,data.checkedAt)){
+    const data=await resp.json();if(data.source==='amazon-creators-api'&&!scheduleAmazonExpiry(sec,data.expiresAt))return;sec.querySelector('[data-sitestripe-group]')?.remove();if(data.groupLink&&validUrl(data.groupLink,'link')){const a=e('a','amazon-btn','Esplora la selezione su Amazon ↗');a.dataset.sitestripeGroup='1';a.href=data.groupLink;a.target='_blank';a.rel='sponsored nofollow noopener';sec.append(a);}if(Array.isArray(data.items)&&paint(root,data.items,data.checkedAt)){
      if(status)status.textContent=data.source==='sitestripe'?'Link affiliati SiteStripe verificati manualmente. Prezzo e disponibilità da consultare su Amazon.':'Prezzi e immagini provengono da Amazon; verifica l’offerta al momento dell’acquisto.';
     }else if(status)status.textContent=root.querySelector('a[data-affiliate-source="sitestripe"]')?'Link SiteStripe inseriti dal gestore. Prezzi e disponibilità da verificare su Amazon.':'Selezione editoriale: nessun link prodotto verificato. Fasce di budget indicative, non prezzi o disponibilità attuali.';
    }catch{/* Present clear editorial fallback; never fabricate price. */}
@@ -241,7 +258,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 /* Specific-model guide cards - official product photos and current prices via GetItems. */
 (function(){
  function validImage(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&/(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
- function validAmazon(url){try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='www.amazon.it'&&u.searchParams.has('tag')}catch{return false}}
+ function validAmazon(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&u.hostname==='www.amazon.it'&&u.searchParams.getAll('tag').length===1&&u.searchParams.get('tag')==='230b7-21'}catch{return false}}
  async function hydrateExactGuide(){
   const root=document.querySelector('.cr-exact-products[data-guide-slug]');
   if(!root||root.dataset.hydrated==='1')return;
@@ -250,11 +267,12 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    const resp=await fetch('/api/guide-products?slug='+encodeURIComponent(slug),{headers:{Accept:'application/json'},cache:'no-store'});
    if(!resp.ok)return;
    const data=await resp.json();
-   if(data.source!=='amazon-creators-api'||!Array.isArray(data.items))return;
+   if(data.source!=='amazon-creators-api'||!Array.isArray(data.items)||!scheduleAmazonExpiry(root,data.expiresAt))return;
    const byAsin=new Map(data.items.map(p=>[p.asin,p]));
    root.querySelectorAll('.cr-specific-pick[data-asin]').forEach(card=>{
     const p=byAsin.get(card.dataset.asin),media=card.querySelector('.cr-asin-media'),price=card.querySelector('.cr-asin-price'),buy=card.querySelector('.cr-asin-buy'),note=card.querySelector('.bf-pick-market-note');
     if(!p){if(slug==='sotto-30')card.hidden=true;return;}
+    card.hidden=false;
     if(validImage(p.image)&&media){
      const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt='Foto ufficiale Amazon: '+p.title;img.src=p.image;media.replaceChildren(img);
     }
@@ -274,12 +292,13 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
       desc.textContent='Dalla scheda Amazon: '+cut;
     }
     if(price)price.textContent=p.price||'Prezzo su Amazon';
-    if(buy&&validAmazon(p.url))buy.href=p.url;
-    if(note)note.textContent=p.price?'Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Verifica sul negozio.':'Prezzo e disponibilità da verificare su Amazon.';
+    if(buy&&validAmazon(p.url)){buy.href=p.url;buy.textContent='Vedi su Amazon';buy.rel='sponsored nofollow noopener noreferrer';}
+    if(content){let model=content.querySelector('.cr-api-model');if(!model){model=document.createElement('p');model.className='cr-api-model';content.append(model);}model.textContent='Modello Amazon: '+p.title;}
+    if(note)note.textContent=p.price?'Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Prezzo e disponibilità al momento dell’acquisto su Amazon prevalgono.':'Prezzo e disponibilità da verificare su Amazon.';
     if(p.availability){let availability=card.querySelector('.cr-asin-availability');if(!availability){availability=document.createElement('small');availability.className='cr-asin-availability';note?.before(availability)}availability.textContent=p.availability;}
    });
    root.dataset.hydrated='1';
-  }catch{/* Existing exact product links remain available; never invent API prices or photos. */}
+  }catch{/* Internal editorial fallback remains available; never invent API prices or photos. */}
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hydrateExactGuide);
  else hydrateExactGuide();
@@ -357,7 +376,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    const response=await fetch('/api/category-products?slug='+encodeURIComponent(slug),{cache:'no-store',headers:{Accept:'application/json'}});
    if(!response.ok)return;
    const data=await response.json();
-   if(data.source!=='amazon-creators-api'||!Array.isArray(data.items))return;
+   if(data.source!=='amazon-creators-api'||!Array.isArray(data.items)||!Number.isFinite(Date.parse(data.expiresAt))||Date.parse(data.expiresAt)<=Date.now())return;
+   if(!sections.every(section=>scheduleAmazonExpiry(section,data.expiresAt)))return;
    const products=new Map(data.items.map(p=>[p.asin,p]));
    cards.forEach(card=>{
     const found=(card.querySelector('.product-origin')?.textContent||'').match(/ASIN\s+([A-Z0-9]{10})/);
@@ -382,7 +402,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     const price=buy?.querySelector('.amazon-price');
     if(price&&p.price){price.textContent=p.price;price.classList.remove('not-live')}
     const stamp=buy?.querySelector('.amazon-timestamp');
-    if(stamp&&p.price)stamp.textContent='Prezzo verificato '+new Date(data.checkedAt).toLocaleString('it-IT')+'; ricontrolla su Amazon';
+    if(stamp&&p.price)stamp.textContent='Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Prezzo e disponibilità al momento dell’acquisto su Amazon prevalgono.';
     const link=buy?.querySelector('.amazon-btn');
     if(link&&validAffiliate(p.url)){link.href=p.url;link.rel='sponsored nofollow noopener noreferrer';}
    });

@@ -1298,3 +1298,7 @@ h1,h2{line-height:1.16}
 .bf-type-page .cr-category-research p{max-width:780px;font-size:15px;line-height:1.7;color:#364e62}
 .bf-type-page .cr-category-research-note{font-size:12px!important;color:#667788!important}
 .bf-type-page .cr-category-research .cr-category-search-link{display:inline-flex;margin-top:7px;text-decoration:none;padding:11px 16px}
+
+/* Respect budget availability and long exact model names from Amazon. */
+.cr-exact-products .bf-pick[hidden]{display:none}
+.cr-exact-products .cr-api-model{font-size:12px;line-height:1.5;color:#657587;overflow-wrap:anywhere}

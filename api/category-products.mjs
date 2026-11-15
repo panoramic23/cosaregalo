@@ -1,6 +1,6 @@
 import {categoryEditorial} from '../lib/category-editorial.mjs';
 import {readConfig} from '../lib/sitestripe.mjs';
-import {getCreatorsToken,normalizeCreatorItem} from './products.mjs';
+import {getCreatorsToken,normalizeCreatorItem,amazonFreshness,AMAZON_CACHE_TTL_MS,cacheAmazonResult} from './products.mjs';
 
 const market='www.amazon.it';
 const cache=new Map();
@@ -15,7 +15,7 @@ export default async function categoryProducts(req,res){
  if(!partnerTag||!process.env.AMAZON_CREATORS_CLIENT_ID||!process.env.AMAZON_CREATORS_CLIENT_SECRET)
   return res.status(200).json({source:'editorial',items:[],reason:'API_NOT_CONFIGURED'});
  const previous=cache.get(slug);
- if(previous&&Date.now()-previous.time<30*60*1000)return res.status(200).json(previous.data);
+ if(previous&&Date.now()-previous.time<AMAZON_CACHE_TTL_MS)return res.status(200).json(previous.data);
  try{
   const token=await getCreatorsToken();
   const version=process.env.AMAZON_CREATORS_VERSION||'3.2';
@@ -37,8 +37,9 @@ export default async function categoryProducts(req,res){
   }
   const map=new Map(results.map(product=>[product.asin,product]));
   const items=asinList.filter(asin=>map.has(asin)).map(asin=>map.get(asin));
-  const data={source:'amazon-creators-api',slug,items,checkedAt:new Date().toISOString()};
-  cache.set(slug,{time:Date.now(),data});
+  if(!items.length)return res.status(200).json({source:'editorial',items:[],reason:'NO_USABLE_ITEMS'});
+  const data={source:'amazon-creators-api',slug,items,...amazonFreshness()};
+  cacheAmazonResult(cache,slug,data);
   return res.status(200).json(data);
  }catch{return res.status(200).json({source:'editorial',items:[],reason:'AMAZON_UNAVAILABLE'});}
 }

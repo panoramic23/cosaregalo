@@ -1,4 +1,4 @@
-/** Amazon Creators API product data (server-side only). Vercel Node function. */
+/** Amazon Creators API product data (server-side only). SiteGround Node runtime. */
 import { catalog } from './catalog.mjs';
 import {readConfig,selection} from '../lib/sitestripe.mjs';
 const MARKET='www.amazon.it';
@@ -6,6 +6,12 @@ const MARKET='www.amazon.it';
 let cachedToken=null,tokenExpiry=0;
 const cache=new Map();
 const time=()=>Date.now();
+export const AMAZON_CACHE_TTL_MS=30*60*1000;
+export function amazonFreshness(now=Date.now()){return {checkedAt:new Date(now).toISOString(),expiresAt:new Date(now+AMAZON_CACHE_TTL_MS).toISOString()};}
+export function cacheAmazonResult(store,key,data){
+ const entry={time:Date.now(),data};store.set(key,entry);
+ setTimeout(()=>{if(store.get(key)===entry)store.delete(key);},AMAZON_CACHE_TTL_MS).unref?.();
+}
 export async function getCreatorsToken(){
  if(cachedToken && time()<tokenExpiry-60000) return cachedToken;
  const client_id=process.env.AMAZON_CREATORS_CLIENT_ID;
@@ -25,19 +31,26 @@ export async function getCreatorsToken(){
  const response=await fetch(url,{method:'POST',headers,body,signal:AbortSignal.timeout(12000)});
  if(!response.ok) throw new Error('AUTH_FAILED_'+response.status);
  const data=await response.json();
- if(!data.access_token)throw new Error('AUTH_RESPONSE_INVALID');
+ if(typeof data.access_token!=='string'||!data.access_token.trim())throw new Error('AUTH_RESPONSE_INVALID');
  cachedToken=data.access_token;tokenExpiry=time()+1000*(Number(data.expires_in)||3600);
  return cachedToken;
 }
 export function normalizeCreatorItem(item){
+ if(!item||typeof item!=='object'||!/^[A-Z0-9]{10}$/.test(item.asin))return null;
  const listing=(item.offersV2?.listings||[]).find(l=>l?.isBuyBoxWinner) || item.offersV2?.listings?.[0];
  const money=listing?.price?.money;
  const img=item.images?.primary?.large?.url ||item.images?.primary?.medium?.url || null;
- const link=item.detailPageURL || null; // use original affiliate link as provided by API
- if(!item.asin || !link || !/^https:\/\/(www\.)?amazon\.it\//i.test(link))return null;
- return {asin:item.asin, title:item.itemInfo?.title?.displayValue ||'Prodotto Amazon',
-  image:img,price:money?.displayAmount||null,priceAmount:money?.amount!=null&&Number.isFinite(Number(money.amount))?Number(money.amount):null,
-  availability:listing?.availability?.message ||null,
+ const link=item.detailPageURL || null; // preserve the exact affiliate URL returned by Amazon
+ let u;try{u=new URL(link)}catch{return null;}
+ const tag=process.env.AMAZON_PARTNER_TAG;
+ const title=item.itemInfo?.title?.displayValue;
+ if(!tag||u.protocol!=='https:'||!['amazon.it','www.amazon.it'].includes(u.hostname)||u.username||u.password||u.port||u.hash||u.searchParams.getAll('tag').length!==1||u.searchParams.get('tag')!==tag||!new RegExp('^/(?:[^/]+/)?(?:dp|gp/product)/'+item.asin+'(?:/|$)').test(u.pathname)||typeof title!=='string'||!title.trim())return null;
+ let image=null;try{const url=new URL(img);if(url.protocol==='https:'&&!url.username&&!url.password&&!url.port&&/(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(url.hostname))image=img;}catch{}
+ const hasMoney=money?.currency==='EUR'&&typeof money.amount==='number'&&Number.isFinite(money.amount)&&money.amount>0;
+
+ return {asin:item.asin, title:title.trim(),
+  image,price:hasMoney&&typeof money.displayAmount==='string'?money.displayAmount:null,priceAmount:hasMoney?money.amount:null,
+  availability:typeof listing?.availability?.message==='string'?listing.availability.message:null,
   features:Array.isArray(item.itemInfo?.features?.displayValues)?item.itemInfo.features.displayValues.filter(v=>typeof v==='string'&&v.trim()).slice(0,3).map(v=>v.replace(/<[^>]*>/g,'').replace(/\s+/g,' ').trim().slice(0,250)):[],
   url:link,observedAt:new Date().toISOString()};
 }
@@ -60,9 +73,14 @@ export async function testCreatorsAccess(){
   const response=await fetch('https://creatorsapi.amazon/catalog/v1/searchItems',{
    method:'POST',headers:{Authorization:'Bearer '+token+(version.startsWith('2.')?', Version '+version:''),'Content-Type':'application/json','x-marketplace':MARKET},
    body:JSON.stringify(payload),signal:AbortSignal.timeout(15000)});
-  if(response.ok)return {ok:true,status:response.status,reason:'AUTHORIZED',requestedAt};
+  if(response.ok){
+   let data;try{data=await response.json()}catch{return {ok:false,status:response.status,reason:'INVALID_API_RESPONSE',tokenObtained:true,searchItemsAuthorized:false,requestedAt};}
+   const rows=data.searchResult?.items||data.searchItemsResult?.items;
+   const items=Array.isArray(rows)?rows.map(normalizeCreatorItem).filter(Boolean):[];
+   return {ok:items.length>0,status:response.status,reason:items.length?'AUTHORIZED':'NO_USABLE_ITEMS',tokenObtained:true,searchItemsAuthorized:items.length>0,itemCount:items.length,requestedAt};
+  }
   let error={};try{error=await response.json()}catch{}
-  return {ok:false,status:response.status,reason:reasons.has(error?.reason)?error.reason:'REMOTE_REJECTED',requestedAt};
+  return {ok:false,tokenObtained:true,searchItemsAuthorized:false,status:response.status,reason:reasons.has(error?.reason)?error.reason:'REMOTE_REJECTED',requestedAt};
  }catch{return {ok:false,status:0,reason:'NETWORK_UNAVAILABLE',requestedAt};}
 }
 
@@ -102,7 +120,7 @@ export default async function handler(req,res){
  if(!PARTNER||!process.env.AMAZON_CREATORS_CLIENT_ID||!process.env.AMAZON_CREATORS_CLIENT_SECRET)
   return res.status(200).json({...selection({...config,mode:'sitestripe'},type,group),fallback:true,reason:'API_NOT_CONFIGURED'});
  const key=String(type)+':'+String(group),prev=cache.get(key);
- if(prev&&time()-prev.time<30*60*1000)return res.status(200).setHeader('Cache-Control','public, s-maxage=1800').json(prev.data);
+ if(prev&&time()-prev.time<AMAZON_CACHE_TTL_MS)return res.status(200).setHeader('Cache-Control','no-store').json(prev.data);
  try{
   const token=await getCreatorsToken();
   const version=process.env.AMAZON_CREATORS_VERSION||'3.2';
@@ -133,9 +151,9 @@ export default async function handler(req,res){
   }
   const json=await response.json();
   const items=(json.searchResult?.items ||json.searchItemsResult?.items ||[]).map(normalizeCreatorItem).filter(Boolean);
-  const data={source:'amazon-creators-api',type,group,items,checkedAt:new Date().toISOString()};
-  cache.set(key,{time:time(),data});
-  return res.status(200).setHeader('Cache-Control','public, s-maxage=1800').json(data);
+  const data={source:'amazon-creators-api',type,group,items,...amazonFreshness()};
+  cacheAmazonResult(cache,key,data);
+  return res.status(200).setHeader('Cache-Control','no-store').json(data);
  }catch(err){
   const status=err.message==='API_NOT_CONFIGURED'?503:502;
   return res.status(200).json({...selection({...config,mode:'sitestripe'},type,group),fallback:true,reason:'AMAZON_UNAVAILABLE'});

@@ -40,3 +40,14 @@ Le credenziali di Amazon, token di admin e Redis devono rimanere nelle variabili
 
 ## Documenti storici
 `LEGGIMI_PRIMA.md` si riferisce a una versione V5 locale con hosting Vercel: **solo archivio, non usare per il deploy attuale**. `DEBUG_CSS_2026-11-07.md` documenta la migrazione e i problemi storici del CSS, non necessariamente lo stato di oggi.
+
+## Migrazione schede Amazon — controllo del 15 novembre 2026
+
+- Le 8 guide con ASIN usano `/api/guide-products?slug=`; le 8 tipologie usano `/api/category-products?slug=`. Entrambi recuperano gli ASIN curati con GetItems, senza sostituirli con SearchItems. Cucina resta editoriale in attesa di ASIN pertinenti verificati.
+- Le guide statiche e quelle CMS rimandano alle categorie interne quando mancano dati Amazon validi. I 48 URL SiteStripe originali nelle tipologie restano conservati.
+- `content/sitestripe.json` parte in modalità `sitestripe`: non attiva accessi Amazon non confermati. Redis, se configurato, continua a prevalere sul file. Il POST protetto per `mode=api` verifica sia SearchItems con prodotti utilizzabili sia GetItems dell'ASIN diagnostico; non basta HTTP 200.
+- Un `ok:true` del diagnostico prova soltanto l'operazione verificata. Non garantisce che tutti i modelli del catalogo siano acquistabili o che ogni risposta includa offerte, foto e varianti. Il pannello distingue credenziali presenti da accesso verificato.
+- Le risposte normalizzate richiedono ASIN/link coerenti, marketplace Amazon.it e il tag configurato, conservando il link restituito da Amazon. Solo offerte EUR valide producono prezzi; le immagini devono avere un URL HTTPS Amazon autorizzato.
+- Cache dei dati di prodotto di 30 minuti, con cancellazione in memoria e `expiresAt` inviato al browser. Il browser ripristina il fallback alla scadenza e controlla anche il ritorno su una scheda sospesa. Nessun download/cache dei file immagine Amazon. Budget sotto 30: prodotti visibili soltanto con un prezzo verificato entro il limite.
+- `npm test`: 30 test superati nel runtime locale. Le risposte Amazon dei test sono fixture, non una verifica delle credenziali reali.
+- Diagnostico live non confermato: il controllo esterno ha ricevuto HTTP 202 con captcha SiteGround e il token amministrativo non era disponibile. Modalità Redis, GetItems reale, fotografie/prezzi live e deployment restano da verificare nel progetto Node esistente.

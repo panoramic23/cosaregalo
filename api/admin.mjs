@@ -24,6 +24,12 @@ try{
 
  if(mode==='sitestripe'){
   let config;try{config=validateConfig(req.body)}catch(e){return respond(res,400,{error:e.message});}
+  if(config.mode==='api'){
+   const search=await testCreatorsAccess();
+   if(!search.ok)return respond(res,409,{error:'AMAZON_API_NOT_VERIFIED',test:search});
+   const exact=await testCreatorsGetItems();
+   if(!exact.ok)return respond(res,409,{error:'AMAZON_GETITEMS_NOT_VERIFIED',test:exact});
+  }
   await redis(['SET',storageKey,JSON.stringify(config)]);
   return respond(res,200,{ok:true,config});
  }
