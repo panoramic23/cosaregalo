@@ -1,5 +1,6 @@
 import {categoryEditorial} from '../lib/category-editorial.mjs';
 import {readConfig} from '../lib/sitestripe.mjs';
+import {matchesEditorialProduct} from '../lib/product-identity.mjs';
 import {getCreatorsToken,normalizeCreatorItem,amazonFreshness,AMAZON_CACHE_TTL_MS,cacheAmazonResult} from './products.mjs';
 
 const market='www.amazon.it';
@@ -32,7 +33,7 @@ export default async function categoryProducts(req,res){
    const body=await response.json();
    for(const item of body.itemResults?.items||[]){
     const product=normalizeCreatorItem(item);
-    if(product&&Object.hasOwn(selected,product.asin))results.push({...product,shortTitle:selected[product.asin].title});
+    if(product&&Object.hasOwn(selected,product.asin)&&matchesEditorialProduct(selected[product.asin].title,product.title))results.push({...product,shortTitle:selected[product.asin].title});
    }
   }
   const map=new Map(results.map(product=>[product.asin,product]));
@@ -43,3 +44,4 @@ export default async function categoryProducts(req,res){
   return res.status(200).json(data);
  }catch{return res.status(200).json({source:'editorial',items:[],reason:'AMAZON_UNAVAILABLE'});}
 }
+

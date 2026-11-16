@@ -1,6 +1,7 @@
 /** Amazon Creators API product data (server-side only). SiteGround Node runtime. */
 import { catalog } from './catalog.mjs';
 import {readConfig,selection} from '../lib/sitestripe.mjs';
+import {matchesEditorialProduct} from '../lib/product-identity.mjs';
 const MARKET='www.amazon.it';
 
 let cachedToken=null,tokenExpiry=0;
@@ -103,6 +104,7 @@ export async function testCreatorsGetItems(){
   const item=(json.itemResults?.items||[]).find(x=>x.asin===asin);
   const normalized=item?normalizeCreatorItem(item):null;
   if(!normalized)return {ok:false,status:200,reason:'ITEM_NOT_AVAILABLE',checkedAt};
+  if(!matchesEditorialProduct('Sony WH-CH520',normalized.title))return {ok:false,status:200,reason:'ITEM_MODEL_MISMATCH',checkedAt};
   return {ok:true,status:200,reason:'GET_ITEMS_AUTHORIZED',checkedAt,asin,
    hasOfficialImage:!!normalized.image,hasPrice:!!normalized.price,hasAvailability:!!normalized.availability};
  }catch{return {ok:false,reason:'GET_ITEMS_UNAVAILABLE',checkedAt};}
@@ -159,4 +161,5 @@ export default async function handler(req,res){
   return res.status(200).json({...selection({...config,mode:'sitestripe'},type,group),fallback:true,reason:'AMAZON_UNAVAILABLE'});
  }
 }
+
 

@@ -16,7 +16,8 @@ export default async function guideProducts(req,res){
  if(!curated)return res.status(404).json({error:'UNKNOWN_GUIDE'});
  if((await readConfig()).mode!=='api')return res.status(200).json({source:'editorial',items:[],reason:'API_MODE_DISABLED'});
  const selected=curated;
- const key=slug+':'+selected.map(item=>item.asin).join(',');
+ // A CMS edit to names or notes must not reuse data approved for an older selection.
+ const key=slug+':'+JSON.stringify(selected);
  const cached=responseCache.get(key);
  if(cached&&Date.now()-cached.time<AMAZON_CACHE_TTL_MS)return res.status(200).json(cached.data);
  try{
@@ -60,4 +61,5 @@ export default async function guideProducts(req,res){
   return res.status(200).json(data);
  }catch{return res.status(200).json({source:'editorial',items:[],reason:'AMAZON_UNAVAILABLE'});}
 }
+
 

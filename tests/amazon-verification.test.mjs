@@ -5,6 +5,7 @@ import vm from 'node:vm';
 import {normalizeCreatorItem,testCreatorsAccess,testCreatorsGetItems,amazonFreshness} from '../api/products.mjs';
 import admin from '../api/admin.mjs';
 import guideProducts from '../api/guide-products.mjs';
+import categoryProducts from '../api/category-products.mjs';
 process.env.AMAZON_PARTNER_TAG='230b7-21';
 process.env.AMAZON_CREATORS_CLIENT_ID='fixture';
 process.env.AMAZON_CREATORS_CLIENT_SECRET='fixture';
@@ -30,7 +31,26 @@ test('diagnostics reject HTTP 200 without usable Amazon data, distinguish token 
   assert.equal((await testCreatorsGetItems()).ok,false);
   globalThis.fetch=async()=>({ok:true,status:200,json:async()=>({itemResults:{items:[item()]}})});
   const exact=await testCreatorsGetItems();assert.equal(exact.ok,true);assert.equal(exact.hasOfficialImage,true);assert.equal(exact.hasPrice,true);
+  const wrong=item();wrong.itemInfo.title.displayValue='Sony WH-CH720N';
+  globalThis.fetch=async()=>({ok:true,status:200,json:async()=>({itemResults:{items:[wrong]}})});
+  const mismatch=await testCreatorsGetItems();assert.equal(mismatch.ok,false);assert.equal(mismatch.reason,'ITEM_MODEL_MISMATCH');
  }finally{globalThis.fetch=saved;}
+});
+
+test('category GetItems rejects a changed model even when ASIN and affiliate link match',async()=>{
+ const saved=globalThis.fetch;let allowMatch=false;
+ process.env.KV_REST_API_URL='https://redis.invalid';process.env.KV_REST_API_TOKEN='fixture';
+ globalThis.fetch=async url=>{
+  if(url==='https://redis.invalid')return {ok:true,json:async()=>({result:JSON.stringify({mode:'api',links:[]})})};
+  const p=item();p.itemInfo.title.displayValue=allowMatch?'Sony WH-CH520 cuffie Bluetooth':'Sony WH-CH720N cuffie Bluetooth';
+  return {ok:true,status:200,json:async()=>({itemResults:{items:[p]}})};
+ };
+ try{
+  let res=response();await categoryProducts({method:'GET',query:{slug:'cuffie-wireless'}},res);
+  assert.equal(res.data.source,'editorial');assert.equal(res.data.reason,'NO_USABLE_ITEMS');assert.equal(res.data.items.length,0);
+  allowMatch=true;res=response();await categoryProducts({method:'GET',query:{slug:'cuffie-wireless'}},res);
+  assert.equal(res.data.source,'amazon-creators-api');assert.equal(res.data.items[0].asin,asin);
+ }finally{globalThis.fetch=saved;delete process.env.KV_REST_API_URL;delete process.env.KV_REST_API_TOKEN;}
 });
 
 test('enabling Redis API mode requires verified SearchItems AND GetItems, and denial leaves storage unchanged',async()=>{
@@ -71,4 +91,5 @@ test('browser removes API-derived display data on expiry and tab resume; rejects
  assert.equal(vm.runInContext('scheduleAmazonExpiry(root,expiry)',ctx),false);
  assert.equal(Date.parse(amazonFreshness(0).expiresAt),1800000);
 });
+
 
