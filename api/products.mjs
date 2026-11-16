@@ -101,7 +101,7 @@ export async function testCreatorsGetItems(){
   });
   if(!resp.ok)return {ok:false,status:resp.status,reason:'GET_ITEMS_REJECTED',checkedAt};
   const json=await resp.json();
-  const item=(json.itemResults?.items||[]).find(x=>x.asin===asin);
+  const item=(json.itemsResult?.items||json.itemResults?.items||[]).find(x=>x.asin===asin);
   const normalized=item?normalizeCreatorItem(item):null;
   if(!normalized)return {ok:false,status:200,reason:'ITEM_NOT_AVAILABLE',checkedAt};
   if(!matchesEditorialProduct('Sony WH-CH520',normalized.title))return {ok:false,status:200,reason:'ITEM_MODEL_MISMATCH',checkedAt};
