@@ -31,6 +31,8 @@ test('diagnostics reject HTTP 200 without usable Amazon data, distinguish token 
   assert.equal((await testCreatorsGetItems()).ok,false);
   globalThis.fetch=async()=>({ok:true,status:200,json:async()=>({itemResults:{items:[item()]}})});
   const exact=await testCreatorsGetItems();assert.equal(exact.ok,true);assert.equal(exact.hasOfficialImage,true);assert.equal(exact.hasPrice,true);
+  globalThis.fetch=async()=>({ok:true,status:200,json:async()=>({itemsResult:{items:[item()]}})});
+  assert.equal((await testCreatorsGetItems()).ok,true);
   const wrong=item();wrong.itemInfo.title.displayValue='Sony WH-CH720N';
   globalThis.fetch=async()=>({ok:true,status:200,json:async()=>({itemResults:{items:[wrong]}})});
   const mismatch=await testCreatorsGetItems();assert.equal(mismatch.ok,false);assert.equal(mismatch.reason,'ITEM_MODEL_MISMATCH');
@@ -43,7 +45,7 @@ test('category GetItems rejects a changed model even when ASIN and affiliate lin
  globalThis.fetch=async url=>{
   if(url==='https://redis.invalid')return {ok:true,json:async()=>({result:JSON.stringify({mode:'api',links:[]})})};
   const p=item();p.itemInfo.title.displayValue=allowMatch?'Sony WH-CH520 cuffie Bluetooth':'Sony WH-CH720N cuffie Bluetooth';
-  return {ok:true,status:200,json:async()=>({itemResults:{items:[p]}})};
+  return {ok:true,status:200,json:async()=>({itemsResult:{items:[p]}})};
  };
  try{
   let res=response();await categoryProducts({method:'GET',query:{slug:'cuffie-wireless'}},res);
@@ -73,7 +75,7 @@ test('exact guide API rejects unrelated products and enforces EUR budget with ex
  globalThis.fetch=async(url,opt)=>{
   if(url==='https://redis.invalid')return {ok:true,json:async()=>({result:JSON.parse(opt.body)[1]==='cr:sitestripe:v1'?JSON.stringify({mode:'api',links:[]}):null})};
   const unrelated={...item(),asin:'B000000000',detailPageURL:'https://www.amazon.it/dp/B000000000?tag=230b7-21'};
-  return {ok:true,status:200,json:async()=>({itemResults:{items:[item(),unrelated]}})};
+  return {ok:true,status:200,json:async()=>({itemsResult:{items:[item(),unrelated]}})};
  };
  try{const res=response();await guideProducts({method:'GET',query:{slug:'sotto-30'}},res);assert.equal(res.data.items.length,1);assert.equal(res.data.items[0].asin,asin);assert.equal(Date.parse(res.data.expiresAt)-Date.parse(res.data.checkedAt),1800000);assert.equal(res.headers['Cache-Control'],'no-store');}
  finally{globalThis.fetch=saved;delete process.env.KV_REST_API_URL;delete process.env.KV_REST_API_TOKEN;}
