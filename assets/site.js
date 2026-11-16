@@ -258,48 +258,64 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 /* Specific-model guide cards - official product photos and current prices via GetItems. */
 (function(){
  function validImage(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&/(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
- function validAmazon(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&u.hostname==='www.amazon.it'&&u.searchParams.getAll('tag').length===1&&u.searchParams.get('tag')==='230b7-21'}catch{return false}}
+ function validAmazon(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&!u.port&&['amazon.it','www.amazon.it'].includes(u.hostname)&&u.searchParams.getAll('tag').length===1&&u.searchParams.get('tag')==='230b7-21'}catch{return false}}
+ function setGuideMediaStatus(root,state){
+  root.dataset.mediaState=state;
+  const note=root.querySelector('.cr-guide-media-note');if(!note)return;
+  note.hidden=state==='ready';
+  note.textContent=state==='loading'?'Stiamo caricando le foto dei prodotti.':state==='partial'?'Alcune foto non sono disponibili al momento.':'Le foto dei prodotti non sono disponibili al momento. Puoi comunque leggere le idee e i consigli qui sotto.';
+ }
  async function hydrateExactGuide(){
   const root=document.querySelector('.cr-exact-products[data-guide-slug]');
   if(!root||root.dataset.hydrated==='1')return;
   const slug=root.dataset.guideSlug;
+  setGuideMediaStatus(root,'loading');
   try{
-   const resp=await fetch('/api/guide-products?slug='+encodeURIComponent(slug),{headers:{Accept:'application/json'},cache:'no-store'});
-   if(!resp.ok)return;
+   const resp=await fetch('/api/guide-products?slug='+encodeURIComponent(slug),{headers:{Accept:'application/json'},cache:'no-store',signal:AbortSignal.timeout(20000)});
+   if(!resp.ok){setGuideMediaStatus(root,'unavailable');return;}
    const data=await resp.json();
-   if(data.source!=='amazon-creators-api'||!Array.isArray(data.items)||!scheduleAmazonExpiry(root,data.expiresAt))return;
+   if(data.source!=='amazon-creators-api'||!Array.isArray(data.items)){setGuideMediaStatus(root,'unavailable');return;}
+   // Expiry restores the honest editorial state, not an endless loading message.
+   setGuideMediaStatus(root,'unavailable');
+   if(!scheduleAmazonExpiry(root,data.expiresAt))return;
    const byAsin=new Map(data.items.map(p=>[p.asin,p]));
-   root.querySelectorAll('.cr-specific-pick[data-asin]').forEach(card=>{
+   const cards=[...root.querySelectorAll('.cr-specific-pick[data-asin]')];
+   let loaded=0,pending=0;
+   const update=()=>{
+    const visible=cards.filter(card=>!card.hidden).length;
+    setGuideMediaStatus(root,pending?'loading':loaded===visible&&visible>0?'ready':loaded?'partial':'unavailable');
+   };
+   cards.forEach(card=>{
     const p=byAsin.get(card.dataset.asin),media=card.querySelector('.cr-asin-media'),price=card.querySelector('.cr-asin-price'),buy=card.querySelector('.cr-asin-buy'),note=card.querySelector('.bf-pick-market-note');
     if(!p){if(slug==='sotto-30')card.hidden=true;return;}
     card.hidden=false;
     if(validImage(p.image)&&media){
-     const img=document.createElement('img');img.loading='lazy';img.decoding='async';img.alt='Foto ufficiale Amazon: '+p.title;img.addEventListener('error',()=>media.replaceChildren(),{once:true});img.src=p.image;media.replaceChildren(img);
+     pending++;
+     const img=document.createElement('img');img.loading='eager';img.decoding='async';img.alt='Foto del prodotto: '+p.title;
+     img.addEventListener('load',()=>{if(root.contains(img)){pending--;loaded++;update();}},{once:true});
+     img.addEventListener('error',()=>{if(root.contains(img)){pending--;media.replaceChildren();update();}},{once:true});
+     media.replaceChildren(img);img.src=p.image;
     }
-    const heading=card.querySelector('.bf-pick-content h2,.bf-pick-content h3');
-    // Names are curated in the guide. Never replace them with keyword-heavy marketplace titles.
+    const heading=card.querySelector('.cr-pick-heading h2,.cr-pick-heading h3,.bf-pick-content h2,.bf-pick-content h3');
     if(heading&&heading.textContent.startsWith('Prodotto Amazon ')){
-      const concise=String(p.title||'').split(/[,|]/)[0].trim().slice(0,78);
-      if(concise)heading.textContent=concise;
+     const concise=String(p.title||'').split(/[,|]/)[0].trim().slice(0,78);if(concise)heading.textContent=concise;
     }
     const content=card.querySelector('.bf-pick-content');
     const features=Array.isArray(p.features)?p.features.filter(x=>typeof x==='string'&&x.trim()):[];
     if(content&&features.length){
-      let desc=content.querySelector('.cr-amazon-description');
-      if(!desc){desc=document.createElement('p');desc.className='cr-amazon-description';content.querySelector('.bf-pick-check')?.before(desc);if(!desc.isConnected)content.append(desc);}
-      const feature=features[0].replace(/\s+/g,' ').trim();
-      const cut=feature.length>160?feature.slice(0,157).replace(/\s+\S*$/,'')+'…':feature;
-      desc.textContent='Dalla scheda Amazon: '+cut;
+     let desc=content.querySelector('.cr-amazon-description');
+     if(!desc){desc=document.createElement('p');desc.className='cr-amazon-description';content.querySelector('.bf-pick-check')?.before(desc);if(!desc.isConnected)content.append(desc);}
+     const feature=features[0].replace(/\s+/g,' ').trim();
+     desc.textContent=feature.length>160?feature.slice(0,157).replace(/\s+\S*$/,'')+'…':feature;
     }
-    if(price)price.textContent=p.price||'Prezzo su Amazon';
+    if(price)price.textContent=p.price||'';
     if(buy&&validAmazon(p.url)){buy.href=p.url;buy.textContent='Vedi su Amazon';buy.rel='sponsored nofollow noopener noreferrer';}
-    if(content){let model=content.querySelector('.cr-api-model');if(!model){model=document.createElement('p');model.className='cr-api-model';content.append(model);}model.textContent='Modello Amazon: '+p.title;}
-    if(note)note.textContent=p.price?'Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Prezzo e disponibilità al momento dell’acquisto su Amazon prevalgono.':'Prezzo e disponibilità da verificare su Amazon.';
+    if(note)note.textContent=p.price?'Prezzo rilevato '+new Date(data.checkedAt).toLocaleString('it-IT')+'. Controlla il prezzo finale su Amazon.':'Controlla variante, prezzo e disponibilità su Amazon.';
     if(p.availability){let availability=card.querySelector('.cr-asin-availability');if(!availability){availability=document.createElement('small');availability.className='cr-asin-availability';note?.before(availability)}availability.textContent=p.availability;}
    });
    const budgetNote=root.querySelector('.cr-budget-status');if(budgetNote&&data.items.length)budgetNote.hidden=true;
-   root.dataset.hydrated='1';
-  }catch{/* Internal editorial fallback remains available; never invent API prices or photos. */}
+   root.dataset.hydrated='1';update();
+  }catch{setGuideMediaStatus(root,'unavailable');}
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hydrateExactGuide);
  else hydrateExactGuide();
@@ -366,7 +382,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 /* Curated type-page product cards. Never replace an editorial selection with keyword SearchItems. */
 (function(){
  function validMedia(url){try{const u=new URL(url);return u.protocol==='https:'&&!u.username&&!u.password&&/(^|\.)(media-amazon\.com|images-amazon\.com|ssl-images-amazon\.com)$/.test(u.hostname)}catch{return false}}
- function validAffiliate(url){try{const u=new URL(url);return u.protocol==='https:'&&u.hostname==='www.amazon.it'&&u.searchParams.get('tag')==='230b7-21'}catch{return false}}
+ function validAffiliate(url){try{const u=new URL(url);return u.protocol==='https:'&&['amazon.it','www.amazon.it'].includes(u.hostname)&&u.searchParams.get('tag')==='230b7-21'}catch{return false}}
  async function hydrateCuratedCategories(){
   const sections=[...document.querySelectorAll('.bf-type-page .amazon-group[data-slug]')];
   if(!sections.length||location.protocol==='file:'||window.COSAREGALO_OFFLINE)return;

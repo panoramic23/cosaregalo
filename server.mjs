@@ -1,4 +1,5 @@
 import http from 'node:http';
+import {enforceGuidePresentation} from './lib/guide-presentation.mjs';
 import {editorialImage} from './lib/editorial-images.mjs';
 import {readFile, stat} from 'node:fs/promises';
 import {resolve, extname, sep} from 'node:path';
@@ -366,9 +367,10 @@ async function staticFile(req,res,pathname,overrideHtml=null){
         html=html.replace('</head>','<link rel="preconnect" href="https://fonts.googleapis.com"/>'
           +'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/></head>');
       }
+      if(parts[0]==='guide'&&parts.length===2)html=enforceGuidePresentation(html);
       // HTML is revalidated; its CSS/JS references must point to the same deployment.
       // This prevents old cached styles from rendering newly generated menu markup.
-      html=html.replace(/(\b(?:href|src)=")([^"]*?assets\/(?:style\.css|site\.js|admin\.js|analytics\.js|deals\.js|ads\.js|google-cmp\.js))"/g,
+      html=html.replace(/(\b(?:href|src)=")([^"]*?assets\/(?:style\.css|guide-editorial\.css|site\.js|admin\.js|analytics\.js|deals\.js|ads\.js|google-cmp\.js))"/g,
         (_match,attr,path)=>attr+path+'?v='+assetRevision+'"');
       bytes=Buffer.from(html,'utf8');
     }
