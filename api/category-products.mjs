@@ -31,7 +31,7 @@ export default async function categoryProducts(req,res){
    });
    if(!response.ok)return res.status(200).json({source:'editorial',items:[],reason:'GET_ITEMS_UNAVAILABLE'});
    const body=await response.json();
-   for(const item of body.itemResults?.items||[]){
+   for(const item of body.itemsResult?.items||body.itemResults?.items||[]){
     const product=normalizeCreatorItem(item);
     if(product&&Object.hasOwn(selected,product.asin)&&matchesEditorialProduct(selected[product.asin].title,product.title))results.push({...product,shortTitle:selected[product.asin].title});
    }
