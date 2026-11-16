@@ -1324,3 +1324,8 @@ h1,h2{line-height:1.16}
 .bf-aside-nav a{font-size:14px;line-height:1.45;overflow-wrap:anywhere}
 @media(max-width:1000px){.bf-story-layout{grid-template-columns:minmax(0,1fr)}.bf-aside{order:2}.bf-aside-sticky{position:static}}
 @media(max-width:700px){.cr-exact-products .bf-pick,.cr-editorial-ideas .bf-pick{grid-template-columns:28px minmax(0,1fr)!important;gap:12px}.cr-exact-products .bf-pick-media{height:240px!important}.cr-editorial-ideas .bf-shop-cta{width:100%;justify-content:center}.bf-story-hero h1{font-size:clamp(28px,7.6vw,42px)}}
+
+/* Affiliate CTA labels and arrows share the same vertical centre. */
+.amazon-btn,.bf-shop-cta{align-items:center;gap:9px}
+.amazon-btn .cr-cta-label,.bf-shop-cta .cr-cta-label{display:block;min-width:0;line-height:1.35}
+.amazon-btn .cr-cta-arrow,.bf-shop-cta .cr-cta-arrow{display:block;flex:0 0 auto;align-self:center;font:inherit;line-height:1}

@@ -412,7 +412,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     if(desc&&specs.length&&!desc.querySelector('.cr-amazon-spec')){
       const technical=document.createElement('p');technical.className='cr-amazon-spec';
       const summary=specs[0].trim().replace(/\s+/g,' ');
-      technical.textContent='Dalla scheda Amazon: '+(summary.length>170?summary.slice(0,166).replace(/\s+\S*$/,'')+'…':summary);
+      technical.textContent=(summary.length>170?summary.slice(0,166).replace(/\s+\S*$/,'')+'…':summary);
       desc.append(technical);
     }
     const buy=card.querySelector('.amazon-product-buy');
@@ -432,3 +432,16 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',hydrateCuratedCategories);else hydrateCuratedCategories();
 })();
 
+
+/* Keep CTA arrows aligned with the text, including wrapped mobile labels. */
+(function alignShoppingArrows(){
+ function align(){document.querySelectorAll('.amazon-btn,.bf-shop-cta').forEach(link=>{
+  if(link.children.length)return;
+  const match=link.textContent.trim().match(/^([\\s\\S]*?)\\s*([↗→])$/);
+  if(!match)return;
+  const label=document.createElement('span');label.className='cr-cta-label';label.textContent=match[1];
+  const arrow=document.createElement('span');arrow.className='cr-cta-arrow';arrow.textContent=match[2];arrow.setAttribute('aria-hidden','true');
+  link.replaceChildren(label,arrow);
+ });}
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',align);else align();
+})();

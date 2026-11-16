@@ -51,5 +51,17 @@
     ],
     "photos": "Foto ufficiali Amazon tramite API quando disponibili, oppure foto del produttore con fonte esplicita. Mai usare una scena illustrativa o una foto di categoria come fotografia del singolo modello.",
     "budget": "Nessun prezzo o disponibilità inventati; verificare varianti e costo sul negozio."
+  },
+  "growth_objective": {
+    "primary": "Aumentare pubblico qualificato e clic verso link affiliati Amazon attraverso contenuti originali, utili e verificati.",
+    "cadence": "Un nuovo articolo ogni circa 48 ore; un post al giorno per Instagram e TikTok, evitando duplicati con il calendario esistente.",
+    "content": "Titoli concreti, aperture brevi, descrizioni colloquiali, almeno 2-3 prodotti specifici per categorie, foto reali e CTA chiare.",
+    "measurement": "Visite, clic affiliati e CTR su periodi comparabili; copertura, salvataggi, condivisioni e referral social con UTM. Nessuna vendita dichiarata senza report Associates.",
+    "iteration": "Migliorare un elemento per volta sulla base di dati effettivi, preservando accessibilità, prestazioni e mobile.",
+    "avoid_labels": [
+      "Perché lo proponiamo:",
+      "Dalla scheda Amazon:"
+    ],
+    "updatedAt": "2026-11-16"
   }
 }
