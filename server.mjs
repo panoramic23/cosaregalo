@@ -367,7 +367,7 @@ async function staticFile(req,res,pathname,overrideHtml=null){
         html=html.replace('</head>','<link rel="preconnect" href="https://fonts.googleapis.com"/>'
           +'<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/></head>');
       }
-      if(parts[0]==='guide'&&parts.length===2)html=enforceGuidePresentation(html);
+      if(parts[0]==='guide'&&parts.length===2)html=enforceGuidePresentation(html,parts[1]);
       // HTML is revalidated; its CSS/JS references must point to the same deployment.
       // This prevents old cached styles from rendering newly generated menu markup.
       html=html.replace(/(\b(?:href|src)=")([^"]*?assets\/(?:style\.css|guide-editorial\.css|site\.js|admin\.js|analytics\.js|deals\.js|ads\.js|google-cmp\.js))"/g,

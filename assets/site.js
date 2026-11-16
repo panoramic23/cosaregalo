@@ -222,7 +222,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     link.href=url.toString();
     link.target='_blank';
     link.rel='sponsored nofollow noopener';
-    link.textContent='Cerca prodotti su Amazon ↗';
+    link.textContent=link.hasAttribute('data-amazon-model')?'Cerca questo modello su Amazon ↗':'Cerca prodotti su Amazon ↗';
     link.setAttribute('aria-label','Cerca '+query+' su Amazon tramite link affiliato');
     const note=link.closest('.bf-pick-retail')?.querySelector('.bf-pick-market-note');
     if(note)note.textContent='Link affiliato · risultati di ricerca Amazon. Prezzi e disponibilità sul negozio.';
