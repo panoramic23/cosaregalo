@@ -4,7 +4,7 @@ import {testCreatorsAccess,testCreatorsGetItems} from './products.mjs';
 import {passesDeal, GIFT_CATEGORIES} from '../lib/deals-policy.mjs';
 import {calendar,settings} from '../lib/editorial.mjs';
 import {readArticles,saveArticle} from '../lib/article-cms.mjs';
-import {redis,configured,authenticated,respond} from '../lib/store.mjs';
+import {redis,configured,storageBackend,authenticated,respond} from '../lib/store.mjs';
 function rows(a){const x=[];for(let i=0;i<(a||[]).length;i+=2)x.push({name:a[i],count:Number(a[i+1])||0});return x.sort((a,b)=>b.count-a.count).slice(0,20)}
 export default async function handler(req,res){if(!authenticated(req))return respond(res,401,{error:'UNAUTHORIZED'});if(!['GET','POST'].includes(req.method))return respond(res,405,{error:'METHOD_NOT_ALLOWED'});
 const mode=String(req.query?.mode||'dashboard');
@@ -17,7 +17,7 @@ try{
   if(mode==='articles') {const data=await readArticles();return respond(res,200,{articles:Object.values(data.items).sort((a,b)=>String(b.updatedAt).localeCompare(String(a.updatedAt))),writable:data.writable});}
   let views=[],clicks=[],productViews=[],affiliate=null;
   if(configured()){const [v,c,pv,a]=await Promise.all([redis(['HGETALL','cr:views']),redis(['HGETALL','cr:clicks']),redis(['HGETALL','cr:product-views']),redis(['GET','cr:amazon-report'])]);views=rows(v);clicks=rows(c);productViews=rows(pv);if(a){try{affiliate=JSON.parse(a)}catch{}}}
-  return respond(res,200,{status:{site:'static-export',analytics:configured()?'connected':'not-configured',amazonCreatorsApi:!!(process.env.AMAZON_CREATORS_CLIENT_ID&&process.env.AMAZON_CREATORS_CLIENT_SECRET),affiliateReport:affiliate?'imported':'not-imported',offerEngine:configured()?'manual-verified':'not-configured'},editorial:calendar,editorialSettings:settings,views,clicks,productViews,affiliate});
+  return respond(res,200,{status:{storage:storageBackend()||'not-configured',site:'static-export',analytics:configured()?'connected':'not-configured',amazonCreatorsApi:!!(process.env.AMAZON_CREATORS_CLIENT_ID&&process.env.AMAZON_CREATORS_CLIENT_SECRET),affiliateReport:affiliate?'imported':'not-imported',offerEngine:configured()?'manual-verified':'not-configured'},editorial:calendar,editorialSettings:settings,views,clicks,productViews,affiliate});
  }
  if(!configured())return respond(res,503,{error:'STORAGE_NOT_CONFIGURED'});
  if(mode==='article-save') {try {const article=await saveArticle(req.body);return respond(res,200,{ok:true,article});}catch(e){const code=e.message==='EDITORIAL_CONFLICT_REFRESH'?409:e.message==='EDITORIAL_BUSY_RETRY'?423:400;return respond(res,code,{error:e.message});}}

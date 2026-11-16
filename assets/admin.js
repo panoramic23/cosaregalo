@@ -30,7 +30,7 @@ async function loadSiteStripe(){
  button.onclick=async()=>{try{const config=JSON.parse(editor.value);await request('sitestripe',config);await loadSiteStripe();result.textContent='Configurazione salvata e riletta.';}catch(e){result.textContent='Non salvata: '+e.message;}};
  panel.append(h,note,editor,button,result);$('#adminContent').prepend(panel);}
  const data=await request('sitestripe');$('#sitestripeConfig').value=JSON.stringify(data.config,null,2);panel.querySelector('button').disabled=!data.writable;
- if(!data.writable)$('#sitestripeResult').textContent='Salvataggio admin richiede Redis REST. In alternativa aggiorna content/sitestripe.json nel repository.';
+ if(!data.writable)$('#sitestripeResult').textContent='Il salvataggio richiede il database MySQL configurato sul server. In alternativa aggiorna content/sitestripe.json nel repository.';
 }
 const apiTestButton=$('#amazonApiTest');
 if(apiTestButton)apiTestButton.onclick=async()=>{
@@ -79,7 +79,7 @@ async function loadEditorial(){
   tr.append(actions);tbody.append(tr);
  }
  $('#newArticleButton').disabled=!editorialWritable;
- if(!editorialWritable)articleMessage('Archivio editoriale non scrivibile: configura Redis REST sul server.',true);
+ if(!editorialWritable)articleMessage('Archivio editoriale non scrivibile: configura il database MySQL sul server.',true);
 }
 function formValue(form,name,value){const input=form.elements.namedItem(name);if(input)input.value=String(value??'');}
 async function openEditor(article){
@@ -110,14 +110,14 @@ async function openEditor(article){
  form.scrollIntoView({block:'start',behavior:'smooth'});
 }
 async function archiveArticle(a){
- if(!editorialWritable){articleMessage('Archivio Redis non disponibile.',true);return;}
+ if(!editorialWritable){articleMessage('Database del gestionale non disponibile.',true);return;}
  if(!confirm('Archiviare "'+a.title+'"? La pagina non sarà più accessibile al pubblico.'))return;
  if(a.legacy){await openEditor(a);const form=$('#editorialArticleForm');form.elements.namedItem('status').value='archived';await saveArticleForm(form);return;}
  try{await request('article-save',{...a,asins:Array.isArray(a.asins)?a.asins.join(', '):'',status:'archived'});articleMessage('Articolo archiviato.');await loadEditorial();}
  catch(e){articleMessage('Archiviazione non riuscita: '+e.message,true);}
 }
 async function saveArticleForm(form){
- if(!editorialWritable){articleMessage('Archivio Redis non disponibile.',true);return;}
+ if(!editorialWritable){articleMessage('Database del gestionale non disponibile.',true);return;}
  const data=Object.fromEntries(new FormData(form).entries());
  data.revision=Number(data.revision||0);
  try{
