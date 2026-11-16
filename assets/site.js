@@ -437,7 +437,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 (function alignShoppingArrows(){
  function align(){document.querySelectorAll('.amazon-btn,.bf-shop-cta').forEach(link=>{
   if(link.children.length)return;
-  const match=link.textContent.trim().match(/^([\\s\\S]*?)\\s*([↗→])$/);
+  const match=link.textContent.trim().match(/^([\s\S]*?)\s*([↗→])$/);
   if(!match)return;
   const label=document.createElement('span');label.className='cr-cta-label';label.textContent=match[1];
   const arrow=document.createElement('span');arrow.className='cr-cta-arrow';arrow.textContent=match[2];arrow.setAttribute('aria-hidden','true');
