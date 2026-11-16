@@ -17,14 +17,15 @@
     "Sette guide verificate nel browser il 15 novembre; assente l’etichetta Perché lo proponiamo.",
     "Sette grafiche ImageGen con logo e stile approvati, dicitura Immagine illustrativa e nessun prezzo o modello fittizio.",
     "Media caricati direttamente tramite il parametro mediaFiles e ospitati da Metricool. I path locali non vanno inseriti in info.media.",
-    "Stato PENDING confermato: programmazione riuscita, pubblicazione futura non ancora avvenuta."
+    "Stato PENDING confermato: programmazione riuscita, pubblicazione futura non ancora avvenuta.",
+    "Correzione 2026-11-16: tutti i 7 media TikTok sono veri JPEG RGB caricati nuovamente; gli UUID restano gli stessi e gli ID sono aggiornati. Il TikTok del 16, fallito per image/png, è stato riprogrammato alle 18:30. Rilettura calendario: tutti e 7 PENDING, nessun duplicato. Pubblicazione effettiva da verificare dopo l'orario."
   ],
   "posts": [
     {
-      "id": 429101747,
+      "id": 430385899,
       "uuid": "-1044851547973139583",
       "publicationDate": {
-        "dateTime": "2026-11-16T18:00:00",
+        "dateTime": "2026-11-16T18:30:00",
         "timezone": "Europe/Rome"
       },
       "network": "tiktok",
@@ -33,7 +34,7 @@
       "draft": false,
       "text": "Prima di regalare l’ennesimo gadget, guarda la sua scrivania 👀\nUn supporto o una lampada possono essere molto più utili. Controlla misure e abitudini, poi scegli.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/scrivania-pratica/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261116\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
       "media": [
-        "https://static.metricool.com/planner/202611/2236117-file-4302947761569258796.png"
+        "https://static.metricool.com/planner/202611/2236117-file-4216137824609498768.jpeg"
       ],
       "mediaAltText": [
         null
@@ -43,7 +44,8 @@
         "commercialContentOwnBrand": true,
         "title": "Regali che fanno spazio",
         "photoCoverIndex": 0
-      }
+      },
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=2236117&openWithPostUuid=-1044851547973139583"
     },
     {
       "id": 429102011,
@@ -71,7 +73,7 @@
       }
     },
     {
-      "id": 429102081,
+      "id": 430385619,
       "uuid": "3971851396987112441",
       "publicationDate": {
         "dateTime": "2026-11-17T10:00:00",
@@ -83,7 +85,7 @@
       "draft": false,
       "text": "La cucina è piccola, la passione enorme 🍋\nPer il prossimo regalo pensa a oggetti che si impilano, si piegano o aiutano davvero ogni giorno. Prima misura lo spazio!\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/cucina-poco-spazio/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261117\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
       "media": [
-        "https://static.metricool.com/planner/202611/2236117-file-9359689995886225006.png"
+        "https://static.metricool.com/planner/202611/2236117-file-3416352758760144377.jpeg"
       ],
       "mediaAltText": [
         "Grafica CosaRegalo: Poco spazio, tante idee. Scena illustrativa."
@@ -93,7 +95,8 @@
         "commercialContentOwnBrand": true,
         "title": "Poco spazio, tante idee",
         "photoCoverIndex": 0
-      }
+      },
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=2236117&openWithPostUuid=3971851396987112441"
     },
     {
       "id": 429102134,
@@ -121,7 +124,7 @@
       }
     },
     {
-      "id": 429102188,
+      "id": 430385958,
       "uuid": "-4137423666811812467",
       "publicationDate": {
         "dateTime": "2026-11-18T10:00:00",
@@ -133,7 +136,7 @@
       "draft": false,
       "text": "Un regalo che non finisce quando si apre la scatola 🧱\nCostruire, smontare, ricominciare: parti dalla fantasia. Controlla sempre età consigliata e pezzi piccoli.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/giochi-creativi-bambini/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261118\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
       "media": [
-        "https://static.metricool.com/planner/202611/2236117-file-9473698496268677491.png"
+        "https://static.metricool.com/planner/202611/2236117-file-6263766198609110032.jpeg"
       ],
       "mediaAltText": [
         "Grafica CosaRegalo: Regala voglia di creare. Scena illustrativa."
@@ -143,7 +146,8 @@
         "commercialContentOwnBrand": true,
         "title": "Regala voglia di creare",
         "photoCoverIndex": 0
-      }
+      },
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=2236117&openWithPostUuid=-4137423666811812467"
     },
     {
       "id": 429102911,
@@ -196,7 +200,7 @@
       }
     },
     {
-      "id": 429103199,
+      "id": 430386014,
       "uuid": "5444125031012977807",
       "publicationDate": {
         "dateTime": "2026-11-19T10:00:00",
@@ -208,7 +212,7 @@
       "draft": false,
       "text": "30 euro di budget? Non partire dal prezzo: parti dalla persona 🎁\nChe cosa usa? Che cosa le piace? Un pensiero mirato batte il gadget a caso. Prezzi e spese si controllano prima di comprare.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/sotto-30/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261119\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
       "media": [
-        "https://static.metricool.com/planner/202611/2236117-file-1278491433360144551.png"
+        "https://static.metricool.com/planner/202611/2236117-file-7689623701266915474.jpeg"
       ],
       "mediaAltText": [
         "Grafica CosaRegalo: Il pensiero conta. Scena illustrativa."
@@ -218,7 +222,8 @@
         "commercialContentOwnBrand": true,
         "title": "Il pensiero conta",
         "photoCoverIndex": 0
-      }
+      },
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=2236117&openWithPostUuid=5444125031012977807"
     },
     {
       "id": 429103262,
@@ -246,7 +251,7 @@
       }
     },
     {
-      "id": 429103328,
+      "id": 430386075,
       "uuid": "-8334688075818644253",
       "publicationDate": {
         "dateTime": "2026-11-21T10:00:00",
@@ -258,7 +263,7 @@
       "draft": false,
       "text": "Per chi dice “ancora una pagina” da mezz’ora 📖\nUn accessorio per la lettura è un pensiero semplice, se conosci le sue abitudini. Custodia per e-reader? Controlla modello e generazione.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/lettura/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261121\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
       "media": [
-        "https://static.metricool.com/planner/202611/2236117-file-2492958370874917818.png"
+        "https://static.metricool.com/planner/202611/2236117-file-16061843859452078181.jpeg"
       ],
       "mediaAltText": [
         "Grafica CosaRegalo: Ancora una pagina. Scena illustrativa."
@@ -268,7 +273,8 @@
         "commercialContentOwnBrand": true,
         "title": "Ancora una pagina",
         "photoCoverIndex": 0
-      }
+      },
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=2236117&openWithPostUuid=-8334688075818644253"
     },
     {
       "id": 429103983,
@@ -296,7 +302,7 @@
       }
     },
     {
-      "id": 429104097,
+      "id": 430386146,
       "uuid": "5512184299423155834",
       "publicationDate": {
         "dateTime": "2026-11-20T10:00:00",
@@ -308,7 +314,7 @@
       "draft": false,
       "text": "Vuoi regalarle delle cuffie? Prima del colore, chiediti questo 🎧\nLe userà sul treno, per studiare o in chiamata? Comfort e abitudini contano più del nome sulla scatola.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/cuffie/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261120\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
       "media": [
-        "https://static.metricool.com/planner/202611/2236117-file-9163521372772886768.png"
+        "https://static.metricool.com/planner/202611/2236117-file-11982788691224930079.jpeg"
       ],
       "mediaAltText": [
         "Grafica CosaRegalo: La sua musica, il tuo pensiero. Scena illustrativa."
@@ -318,7 +324,8 @@
         "commercialContentOwnBrand": true,
         "title": "La sua musica, il tuo pensiero",
         "photoCoverIndex": 0
-      }
+      },
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=2236117&openWithPostUuid=5512184299423155834"
     },
     {
       "id": 429104815,
@@ -346,7 +353,7 @@
       }
     },
     {
-      "id": 429104874,
+      "id": 430386249,
       "uuid": "4818751586919923812",
       "publicationDate": {
         "dateTime": "2026-11-22T10:00:00",
@@ -358,7 +365,7 @@
       "draft": false,
       "text": "Il regalo di Natale parte molto prima del carrello ✨\nParti dalle sue passioni, scegli un budget e pensa a quando userà il regalo. Nella guida trovi spunti per cominciare.\n\nTutti i consigli su cosa-regalo.it → Guide.\nhttps://cosa-regalo.it/guide/natale/?utm_source=tiktok&utm_medium=organic_social&utm_campaign=blocco01_novembre2026&utm_content=20261122\n\nImmagine illustrativa. La guida contiene link affiliati Amazon: possiamo ricevere una commissione sugli acquisti idonei.\n#CosaRegalo #IdeeRegalo #Regali",
       "media": [
-        "https://static.metricool.com/planner/202611/2236117-file-4775455607892694050.png"
+        "https://static.metricool.com/planner/202611/2236117-file-6966184635129658852.jpeg"
       ],
       "mediaAltText": [
         "Grafica CosaRegalo: Quest’anno, regala attenzione. Scena illustrativa natalizia."
@@ -368,7 +375,8 @@
         "commercialContentOwnBrand": true,
         "title": "Quest’anno, regala attenzione",
         "photoCoverIndex": 0
-      }
+      },
+      "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=2236117&openWithPostUuid=4818751586919923812"
     }
   ]
 }
