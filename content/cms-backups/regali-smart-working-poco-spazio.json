@@ -1,0 +1,35 @@
+{
+  "slug": "regali-smart-working-poco-spazio",
+  "title": "3 regali per chi lavora da casa e la sera vuole ritrovare il tavolo",
+  "summary": "Dal supporto pieghevole alla lampada orientabile: tre idee regalo per una postazione di lavoro che deve convivere con il resto della casa.",
+  "body": "Alle nove è una scrivania. Alle otto di sera dovrebbe tornare un tavolo da pranzo. Se conosci qualcuno che lavora così, il regalo giusto non è per forza un altro oggetto da lasciare in giro: è qualcosa che si sistema in un attimo, si usa davvero e poi trova posto in un cassetto.\n\nAbbiamo scelto tre modelli per tre piccoli problemi diversi: il portatile troppo basso, la luce che arriva dalla parte sbagliata e il telefono tenuto in equilibrio contro la tazza. Non serve comprarli tutti. Parti dalla seccatura che senti nominare più spesso e scegli da lì.\n\n## Prima del regalo, guarda dove lavora\n\nLa domanda utile non è “che accessorio gli manca?”, ma “che cosa deve spostare ogni sera?”. Un tavolo condiviso ha bisogno di oggetti facili da riporre; una scrivania fissa può ospitare anche una lampada con una base più ampia. Se puoi, misura il piano e chiedi quale computer usa. Cinque minuti di attenzione valgono più di dieci funzioni sulla confezione.\n\n## Il supporto per chi apre il portatile ovunque\n\nIl Babacom pieghevole in alluminio è il candidato da guardare se il notebook passa spesso dal tavolo al ripiano della camera. Il vantaggio del formato pieghevole è semplice: quando hai finito, lo richiudi e lo metti via insieme al computer. Prima di regalarlo controlla le dimensioni del notebook e quanto spazio resta davanti per scrivere.\n\nUn rialzo non trasforma da solo un tavolo in una postazione perfetta. Se la persona digita a lungo, chiedile se usa una tastiera e un mouse esterni: alzare il computer cambia anche la posizione delle mani. Sceglilo per l'abitudine giusta, senza promettere miracoli sul comfort.\n\n## La lampada per chi rincorre la luce\n\nLa Ylatoial a doppia testa può avere senso se sul tavolo si alternano schermo, quaderno e fogli. L'idea interessante è poter orientare la luce sull'area che stai usando, invece di affidarti soltanto al lampadario della stanza. Prima dell'acquisto guarda l'ingombro della base e dove passa il cavo USB: nelle case piccole sono dettagli che decidono se un oggetto verrà usato o finirà su uno scaffale.\n\nQuesto è il regalo da scegliere quando manca davvero una luce dedicata. Se la scrivania ha già una buona lampada, passa oltre: aggiungere una seconda base non aiuta a liberare il tavolo.\n\n## Il porta-telefono per chi improvvisa ogni videochiamata\n\nIl supporto GRIFEMA regolabile e pieghevole è un pensiero piccolo per chi consulta il telefono mentre prende appunti o lo usa nelle chiamate. Puoi regolare la posizione e tenere il dispositivo sul suo appoggio, invece di appoggiarlo a libri e tazze.\n\nControlla le misure indicate per il dispositivo e lo spessore della custodia. E ricorda che è un supporto: non sostituisce un caricatore e non è una docking station. Proprio questa semplicità può renderlo un regalo azzeccato per chi vuole una soluzione immediata.\n\n## Quale sceglierei, in pratica?\n\nSe deve smontare tutto ogni sera, partirei dal supporto pieghevole per notebook. Se lavora spesso su carta con poca luce, guarderei la lampada. Se il problema sono le chiamate dal telefono, sceglierei il porta-cellulare. Il criterio è uno: risolvere un fastidio che esiste già, senza inventarne uno per giustificare il regalo.\n\nQui sotto trovi i tre modelli con le fotografie e i collegamenti alle rispettive schede Amazon.it. Prezzi e disponibilità sono mostrati solo quando l'API restituisce dati validi e possono cambiare. La selezione è redazionale: non è una prova pratica dei prodotti.",
+  "asins": "B096KHQWMF,B0GYY8VZNT,B0G3H3QQPF",
+  "productNotes": "B096KHQWMF | Babacom - supporto pieghevole per notebook | Per chi a fine giornata deve liberare il tavolo: si ripiega e si ripone insieme al portatile. Controlla dimensioni del computer e spazio per tastiera e mouse esterni.\nB0GYY8VZNT | Ylatoial - lampada da scrivania a doppia testa | Un'idea per chi alterna schermo e appunti e vuole orientare la luce sul piano. Prima di sceglierla misura la base e controlla il percorso del cavo USB.\nB0G3H3QQPF | GRIFEMA - supporto pieghevole per smartphone | Per tenere il telefono nella posizione giusta durante chiamate e consultazioni. Verifica misure e custodia: è un appoggio regolabile, senza funzione di ricarica.",
+  "category": "Casa e lavoro",
+  "status": "published",
+  "verifiedDate": "2026-11-16",
+  "liveUrl": "https://cosa-regalo.it/guide/regali-smart-working-poco-spazio/",
+  "checks": {
+    "cmsMysqlSaveReloadArchive": true,
+    "live": true,
+    "allThreeImagesLoaded": true,
+    "inFeed": true,
+    "inSitemap": true
+  },
+  "research": {
+    "themeSources": [
+      "https://www.buzzfeed.com/dayshavedewi/get-it-together-work-from-home-an",
+      "https://www.buzzfeed.com/mana_faye/functional-workspace-finds"
+    ],
+    "popularity": "Non disponibili conteggi di commenti verificabili. Nessuna graduatoria di popolarità dichiarata.",
+    "productSource": "Amazon Creators API, GetItems live tramite /api/guide-products?slug=scrivania-pratica; tre ASIN restituiti con immagini e disponibilità."
+  },
+  "social": {
+    "network": "facebook",
+    "scheduledFor": "2026-11-16T19:15:00+01:00",
+    "id": 430380246,
+    "plannerUrl": "https://app.metricool.com/planner/calendar?blogId=2236117&openWithPostUuid=-452592649033464940",
+    "status": "PENDING verified in Metricool"
+  },
+  "notes": "Il CMS MySQL è la versione pubblica corrente. Backup editoriale nel repository per continuità. Nessun acquisto o ricavo verificato."
+}
