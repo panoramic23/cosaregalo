@@ -36,7 +36,7 @@ export default async function guideProducts(req,res){
    });
    if(!response.ok)return res.status(200).json({source:'editorial',items:[],reason:'AMAZON_API_UNAVAILABLE'});
    const json=await response.json();
-   for(const item of (json.itemResults?.items||[])){
+   for(const item of (json.itemsResult?.items||json.itemResults?.items||[])){
     const normalized=normalizeCreatorItem(item);
     if(normalized&&requested.includes(normalized.asin))results.push(normalized);
    }
