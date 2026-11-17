@@ -1352,3 +1352,6 @@ h1,h2{line-height:1.16}
  .cr-exact-products .bf-pick-shop,.cr-editorial-ideas .bf-pick-shop{grid-column:1/-1}
  .bf-story-hero-copy>p{font-size:17px}
 }
+
+/* Lightweight directional chevron. */
+.cr-brand-arrow{width:7px!important;height:7px!important;flex:0 0 7px;background:none;clip-path:none;border-top:1.5px solid currentColor;border-right:1.5px solid currentColor;transform:rotate(45deg);vertical-align:1px;margin-inline-start:.5em;margin-inline-end:3px}
