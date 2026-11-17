@@ -1329,3 +1329,26 @@ h1,h2{line-height:1.16}
 .amazon-btn,.bf-shop-cta{align-items:center;gap:9px}
 .amazon-btn .cr-cta-label,.bf-shop-cta .cr-cta-label{display:block;min-width:0;line-height:1.35}
 .amazon-btn .cr-cta-arrow,.bf-shop-cta .cr-cta-arrow{display:block;flex:0 0 auto;align-self:center;font:inherit;line-height:1}
+
+
+/* CosaRegalo block arrow and editorial reading rhythm. */
+.cr-brand-arrow{display:inline-block!important;width:16px!important;height:14px!important;flex:0 0 16px;vertical-align:-2px;background:currentColor;clip-path:polygon(0 35%,56% 35%,56% 0,100% 50%,56% 100%,56% 65%,0 65%);margin-inline-start:.35em}
+.amazon-btn,.bf-shop-cta{display:inline-flex;align-items:center;justify-content:center;gap:8px;line-height:1.45}
+.amazon-btn .cr-brand-arrow,.bf-shop-cta .cr-brand-arrow{margin-inline-start:0}
+.bf-story-body>p,.reading-copy>p,.bf-pick-content p,.cr-exact-products .cr-editorial-rationale{font-size:17px!important;line-height:1.8!important;color:#30485c;max-width:68ch;margin-bottom:18px}
+.bf-story-hero-copy>p{font-size:18px;line-height:1.7;max-width:62ch}
+.bf-story-body h2,.reading-copy h2{margin-top:1.5em;margin-bottom:.65em;text-wrap:balance}
+.bf-pick-content h2,.bf-pick-content h3{max-width:32ch;text-wrap:balance}
+.cr-exact-products .bf-pick,.cr-editorial-ideas .bf-pick{padding:36px 0;row-gap:20px}
+.bf-story-body li,.reading-copy li{font-size:16px;line-height:1.75;margin-bottom:8px}
+.guide-copy p,.home-news-card-body p,.type-card-info p{font-size:15px;line-height:1.7;color:#40586b}
+.guide-copy,.home-news-card-body{padding:24px}
+.bf-pick-market-note,.amazon-timestamp{line-height:1.6!important}
+.bf-story-body a:focus-visible,.guide-card a:focus-visible,.amazon-btn:focus-visible,.bf-shop-cta:focus-visible{outline:3px solid #285d80;outline-offset:4px}
+@media(max-width:700px){
+ .bf-story-body>p,.reading-copy>p,.bf-pick-content p,.cr-exact-products .cr-editorial-rationale{font-size:16px!important;line-height:1.75!important}
+ .guide-copy,.home-news-card-body{padding:20px}
+ .cr-exact-products .bf-pick,.cr-editorial-ideas .bf-pick{padding:28px 0;column-gap:10px}
+ .cr-exact-products .bf-pick-shop,.cr-editorial-ideas .bf-pick-shop{grid-column:1/-1}
+ .bf-story-hero-copy>p{font-size:17px}
+}
