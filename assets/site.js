@@ -440,15 +440,38 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 
 
-/* Keep CTA arrows aligned with the text, including wrapped mobile labels. */
-(function alignShoppingArrows(){
- function align(){document.querySelectorAll('.amazon-btn,.bf-shop-cta').forEach(link=>{
-  if(link.children.length)return;
-  const match=link.textContent.trim().match(/^([\s\S]*?)\s*([↗→])$/);
-  if(!match)return;
-  const label=document.createElement('span');label.className='cr-cta-label';label.textContent=match[1];
-  const arrow=document.createElement('span');arrow.className='cr-cta-arrow';arrow.textContent=match[2];arrow.setAttribute('aria-hidden','true');
-  link.replaceChildren(label,arrow);
- });}
- if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',align);else align();
+/* Branded block arrows; also decorate content loaded asynchronously. */
+(function brandedArrows(){
+ function decorate(root){
+  const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);
+  const nodes=[];let node;
+  while((node=walker.nextNode())){
+   if(!/[↗→]/.test(node.nodeValue)||!node.parentElement?.closest('a,button,.home-category-arrow'))continue;
+   if(node.parentElement.closest('script,style,textarea,.cr-brand-arrow'))continue;
+   nodes.push(node);
+  }
+  for(const text of nodes){
+   const fragment=document.createDocumentFragment();
+   const parts=text.nodeValue.split(/([↗→])/);
+   for(const part of parts){
+    if(part==='↗'||part==='→'){
+     const icon=document.createElement('span');icon.className='cr-brand-arrow';icon.setAttribute('aria-hidden','true');fragment.append(icon);
+    }else if(part)fragment.append(document.createTextNode(part));
+   }
+   text.replaceWith(fragment);
+  }
+ }
+ function start(){
+  decorate(document.body);
+  const observer=new MutationObserver(records=>{
+   const roots=new Set();
+   for(const record of records){
+    if(record.type==='characterData')roots.add(record.target.parentElement);
+    for(const node of record.addedNodes)if(node.nodeType===1)roots.add(node);else if(node.nodeType===3)roots.add(node.parentElement);
+   }
+   for(const root of roots)if(root?.isConnected&&!root.closest('.cr-brand-arrow'))decorate(root);
+  });
+  observer.observe(document.body,{childList:true,subtree:true,characterData:true});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
