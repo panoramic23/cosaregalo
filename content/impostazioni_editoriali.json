@@ -21,9 +21,9 @@
   "affiliate_tag": "230b7-21",
   "ready_for_unattended_publication": false,
   "blockers": [
-    "live Amazon GetItems not confirmed",
-    "production media/API access periodically blocked by SiteGround challenge",
-    "automated deploy to existing SiteGround Node not verified"
+    "protected Amazon diagnostics and production metrics require unavailable admin authentication",
+    "SiteGround external HTTP requests can receive a challenge; browser live checks are required",
+    "some curated ASINs are not returned; kitchen exact-ASIN migration remains unverified"
   ],
   "voice": {
     "tone": "Italiano colloquiale, caldo e diretto. Dare del tu, frasi brevi e descrizioni concrete. Evitare formule ripetitive come Perché lo proponiamo, gergo tecnico e tono da relazione.",
@@ -63,5 +63,14 @@
       "Dalla scheda Amazon:"
     ],
     "updatedAt": "2026-11-16"
+  },
+  "verification_status": {
+    "checkedOn": "2026-11-17",
+    "liveGetItems": "verified for nine guide selections",
+    "protectedSearchItems": "not verified in this run - admin authentication unavailable",
+    "oauthRenewal": "not separately verified",
+    "latestLivePublicationDate": "2026-11-16",
+    "livePublishedGuides": 10,
+    "storage": "mysql - prior configuration confirmed by user; SQL not retested in this run"
   }
 }

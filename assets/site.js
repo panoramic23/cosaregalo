@@ -301,6 +301,13 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
      const concise=String(p.title||'').split(/[,|]/)[0].trim().slice(0,78);if(concise)heading.textContent=concise;
     }
     const content=card.querySelector('.bf-pick-content');
+    // Preserve the exact returned model/variant alongside the shorter editorial heading.
+    // It shares the root's expiry snapshot with the photo, offer and affiliate CTA.
+    if(content&&typeof p.title==='string'&&p.title.trim()){
+     let identity=content.querySelector('.cr-product-variant');
+     if(!identity){identity=document.createElement('p');identity.className='cr-product-variant';content.prepend(identity);}
+     identity.textContent=p.title.trim();
+    }
     const features=Array.isArray(p.features)?p.features.filter(x=>typeof x==='string'&&x.trim()):[];
     if(content&&features.length){
      let desc=content.querySelector('.cr-amazon-description');
