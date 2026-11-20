@@ -65,12 +65,13 @@
     "updatedAt": "2026-11-16"
   },
   "verification_status": {
-    "checkedOn": "2026-11-17",
-    "liveGetItems": "verified for nine guide selections",
+    "checkedOn": "2026-11-20",
+    "liveGetItems": "two travel organizer models verified with photos, EUR offers and availability on 2026-11-20; nine prior selections recorded separately on 2026-11-17",
     "protectedSearchItems": "not verified in this run - admin authentication unavailable",
     "oauthRenewal": "not separately verified",
-    "latestLivePublicationDate": "2026-11-16",
-    "livePublishedGuides": 10,
-    "storage": "mysql - prior configuration confirmed by user; SQL not retested in this run"
+    "latestLivePublicationDate": "2026-11-20",
+    "livePublishedGuides": 11,
+    "storage": "mysql - prior configuration confirmed by user; SQL not retested in this run",
+    "latestLivePublicationVerifiedAt": "2026-11-20T07:17:03Z"
   }
 }
