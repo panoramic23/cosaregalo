@@ -1,4 +1,4 @@
-import {guideCatalog,pendingGuideCatalog} from '../lib/guide-catalog.mjs';
+import {guideCatalog} from '../lib/guide-catalog.mjs';
 import {readConfig} from '../lib/sitestripe.mjs';
 import {readArticles} from '../lib/article-cms.mjs';
 import {getCreatorsToken, normalizeCreatorItem,amazonFreshness,AMAZON_CACHE_TTL_MS,cacheAmazonResult} from './products.mjs';
@@ -11,7 +11,7 @@ export default async function guideProducts(req,res){
  res.setHeader('Cache-Control','no-store');
  if(req.method!=='GET')return res.status(405).json({error:'METHOD_NOT_ALLOWED'});
  const slug=String(req.query?.slug||'');
- let curated=Object.hasOwn(guideCatalog,slug)?guideCatalog[slug]:(Object.hasOwn(pendingGuideCatalog,slug)?pendingGuideCatalog[slug]:null);
+ let curated=Object.hasOwn(guideCatalog,slug)?guideCatalog[slug]:null;
  try{const entry=(await readArticles()).items[slug];if(entry?.status==='published'&&entry.asins?.length)curated=entry.asins.map(asin=>({asin,title:entry.productNotes?.[asin]?.title||(guideCatalog[slug]||[]).find(x=>x.asin===asin)?.title||'',note:entry.productNotes?.[asin]?.note||''}));}catch{}
  if(!curated)return res.status(404).json({error:'UNKNOWN_GUIDE'});
  if((await readConfig()).mode!=='api')return res.status(200).json({source:'editorial',items:[],reason:'API_MODE_DISABLED'});

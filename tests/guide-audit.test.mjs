@@ -5,9 +5,9 @@ import {resolve,dirname} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {matchesEditorialProduct} from '../lib/product-identity.mjs';
 const root=fileURLToPath(new URL('..',import.meta.url));
-test('all nine guides use one layout, real indices and no demonstration copy or repeated product imagery',async()=>{
+test('all ten guides use one layout, real indices and no demonstration copy or repeated product imagery',async()=>{
  const dirs=(await readdir(resolve(root,'guide'),{withFileTypes:true})).filter(x=>x.isDirectory());
- assert.equal(dirs.length,9);
+ assert.equal(dirs.length,10);
  for(const {name} of dirs){
   const html=await readFile(resolve(root,'guide',name,'index.html'),'utf8');
   assert.ok(html.includes('bf-story-layout'),name);
@@ -21,7 +21,7 @@ test('all nine guides use one layout, real indices and no demonstration copy or 
 });
 test('publication feed and HTML agree on guide titles and all local references resolve',async()=>{
  const feed=JSON.parse(await readFile(resolve(root,'assets/latest-news.json'),'utf8'));
- assert.equal(feed.items.length,9);
+ assert.equal(feed.items.length,10);
  for(const a of feed.items){
   const path=resolve(root,a.path),html=await readFile(path,'utf8');
   assert.equal(html.match(/<h1[^>]*>([^<]+)<\/h1>/)?.[1],a.title,a.slug);

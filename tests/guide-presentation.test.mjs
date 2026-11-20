@@ -28,7 +28,7 @@ test('CMS publications inherit the same presentation and safe media fallback as 
  assert.ok(html.includes('data-asin="B0BTJ9WHL9"'));
  assert.doesNotMatch(html,/Perché lo proponiamo/);
 });
-test('all nine static guides already use the forced presentation before any browser script runs',async()=>{
+test('static guides already use the forced presentation before any browser script runs',async()=>{
  for(const slug of ['cucina-poco-spazio','cuffie','natale','benessere','lettura','sotto-30','tech','scrivania-pratica','giochi-creativi-bambini']){
   const html=await readFile(new URL('../guide/'+slug+'/index.html',import.meta.url),'utf8');
   assert.match(html,/cr-magazine-pick/,slug);

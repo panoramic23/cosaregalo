@@ -79,7 +79,7 @@ function productionRequest(req){
 }
 const indexPaths=[
  '/', '/offerte/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/', '/privacy-policy/', '/cookie-policy/',
- '/guide/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
+ '/guide/', '/guide/organizer-valigia-regalo/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
  '/guide/lettura/', '/guide/cuffie/', '/guide/cucina-poco-spazio/', '/guide/scrivania-pratica/', '/guide/giochi-creativi-bambini/', '/esplora/ricorrenze/', '/esplora/gusti/',
  '/esplora/sport/', '/esplora/cartoni/', '/esplora/stagioni/', '/tipologie/speaker-bluetooth/',
  '/tipologie/giochi-costruzioni/', '/tipologie/cofanetti-benessere/',
@@ -321,11 +321,13 @@ async function staticFile(req,res,pathname,overrideHtml=null){
           };
           // Only publish dates supported by the original editorial feed; never invent dates.
           const dates={
+            '/guide/organizer-valigia-regalo/':'2026-11-20',
             '/guide/cucina-poco-spazio/':'2026-11-07',
             '/guide/scrivania-pratica/':'2026-11-07',
             '/guide/giochi-creativi-bambini/':'2026-11-07'
           };
           if(dates[route])article.datePublished=dates[route];
+          if(route==='/guide/organizer-valigia-regalo/')article.dateModified=dates[route];
           graph.push(article);
           graph[2].mainEntity={'@id':canonical+'#article'};
         }
@@ -437,7 +439,7 @@ const server=http.createServer(async(req,res)=>{
     const changes=await editorialState();
     const paths=new Set(indexPaths);
     for(const a of Object.values(changes)){const path='/guide/'+a.slug+'/';if(a.status==='published')paths.add(path);else paths.delete(path);}
-    const locations=[...paths].map(p=>'  <url><loc>'+canonicalSite+p+'</loc></url>').join('\n');
+    const locations=[...paths].map(p=>'  <url><loc>'+canonicalSite+p+'</loc>'+(p==='/guide/organizer-valigia-regalo/'?'<lastmod>2026-11-20</lastmod>':'')+'</url>').join('\n');
     return serveText(res,'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+locations+'\n</urlset>\n','application/xml; charset=utf-8');
   }
   if(pathname==='/ads.txt'){

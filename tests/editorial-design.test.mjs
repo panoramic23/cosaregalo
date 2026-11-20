@@ -19,7 +19,7 @@ test('each curated Amazon product has a real editorial reason and concise name',
   assert.equal((html.match(/data-amazon-search=/g)||[]).length,0,slug+' has generic search CTA');
   total+=items.length;
  }
- assert.equal(total,38);
+ assert.equal(total,40);
 });
 test('photos are enlarged, headings have consistent line height, and home hero uses live publication feed',async()=>{
  const css=await file('assets/style.css'),js=await file('assets/site.js'),home=await file('index.html');
