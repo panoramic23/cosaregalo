@@ -332,7 +332,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 (function(){
  async function refreshGuideHub(){
   if(!/^\/guide\/?$/.test(location.pathname)||location.protocol==='file:')return;
-  const hub=document.querySelector('.guide-grid');if(!hub)return;
+  const hub=document.querySelector('.guide-grid');if(!hub||hub.hasAttribute('data-server-rendered'))return;
   try{
    const resp=await fetch('/assets/latest-news.json',{cache:'no-store'});if(!resp.ok)return;
    const data=await resp.json();if(!Array.isArray(data.items))return;

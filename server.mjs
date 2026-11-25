@@ -11,7 +11,7 @@ import categoryProducts from './api/category-products.mjs';
 import deals from './api/deals.mjs';
 import track from './api/track.mjs';
 import admin from './api/admin.mjs';
-import {readArticles,visibleArticles,renderArticle} from './lib/article-cms.mjs';
+import {readArticles,visibleArticles,renderArticle,escapeHtml} from './lib/article-cms.mjs';
 
 const root=dirname(fileURLToPath(import.meta.url));
 const port=Number(process.env.PORT||3000);
@@ -111,7 +111,7 @@ async function api(req,res,pathname,searchParams){
   try{await handlers.get(pathname)(req,adapt(res));if(!res.writableEnded)reply(res,500,{error:'EMPTY_API_RESPONSE'});}
   catch(e){if(!res.writableEnded)reply(res,500,{error:'INTERNAL_ERROR'});console.error('API failure:',pathname,e?.message);}
 }
-async function staticFile(req,res,pathname,overrideHtml=null){
+async function staticFile(req,res,pathname,overrideHtml=null,editorialArticle=null){
   const publicIndexable=productionRequest(req);
   if(!['GET','HEAD'].includes(req.method))return reply(res,405,{error:'METHOD_NOT_ALLOWED'});
   if(pathname==='/outlet'||pathname==='/outlet/'){res.writeHead(308,{Location:'/offerte/'});res.end();return;}
@@ -257,11 +257,11 @@ async function staticFile(req,res,pathname,overrideHtml=null){
       }
       // Search metadata on the verified production domain only, not staging.
       const route='/'+parts.join('/')+(parts.length?'/':'');
-      if(publicIndexable&&indexPaths.includes(route)){
+      if(publicIndexable&&(editorialArticle||indexPaths.includes(route))){
         const canonical=canonicalSite+route;
-        const pageTitle=(html.match(/<title>([^<]*)<\/title>/i)||[])[1]||'CosaRegalo';
+        const pageTitle=editorialArticle?.title||(html.match(/<title>([^<]*)<\/title>/i)||[])[1]||'CosaRegalo';
         const metaTag=(html.match(/<meta[^>]*name="description"[^>]*>/i)||[])[0]||'';
-        const metaDescription=(metaTag.match(/content="([^"]*)"/)||[])[1]||'Guide e idee regalo CosaRegalo';
+        const metaDescription=editorialArticle?.summary||(metaTag.match(/content="([^"]*)"/)||[])[1]||'Guide e idee regalo CosaRegalo';
         const encode=v=>String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
         // Use only real, crawlable ancestor pages in breadcrumb markup.
         const crumbs=[{name:'Home',item:canonicalSite+'/'}];
@@ -269,8 +269,8 @@ async function staticFile(req,res,pathname,overrideHtml=null){
         for(const part of parts){
           path+='/'+part;
           const crumbRoute=path+'/';
-          if(!indexPaths.includes(crumbRoute))continue;
-          const name=({
+          if(!indexPaths.includes(crumbRoute)&&!(editorialArticle&&crumbRoute===route))continue;
+          const name=(editorialArticle&&crumbRoute===route?editorialArticle.title:null)||({
             'tipologie':'Categorie regalo','guide':'Guide agli acquisti','offerte':'Offerte Amazon',
             'occasioni':'Idee per occasione',
             'trova-regalo':'Trova un regalo','metodo':'Metodo editoriale',
@@ -326,8 +326,9 @@ async function staticFile(req,res,pathname,overrideHtml=null){
             '/guide/scrivania-pratica/':'2026-11-07',
             '/guide/giochi-creativi-bambini/':'2026-11-07'
           };
-          if(dates[route])article.datePublished=dates[route];
-          if(route==='/guide/organizer-valigia-regalo/')article.dateModified=dates[route];
+          const published=editorialArticle?.publishedAt||dates[route];
+          if(published)article.datePublished=published;
+          if(editorialArticle?.updatedAt)article.dateModified=editorialArticle.updatedAt;
           graph.push(article);
           graph[2].mainEntity={'@id':canonical+'#article'};
         }
@@ -392,11 +393,14 @@ async function handleEditorial(req,res,pathname){
   if(article){
    if(article.status!=='published'){res.statusCode=404;res.end('Articolo non disponibile');return true;}
    const html=await renderArticle(article);
-   await staticFile(req,res,pathname,html);
+   if(!new URL(req.url,'http://localhost').pathname.endsWith('/')){
+    res.writeHead(308,{Location:pathname+'/'+new URL(req.url,'http://localhost').search});res.end();return true;
+   }
+   await staticFile(req,res,pathname,html,article);
    return true;
   }
  }
- if(pathname==='/assets/latest-news.json'){
+ if(pathname==='/assets/latest-news.json'||pathname==='/guide'){
   const state=await editorialState();
   if(!Object.keys(state).length)return false;
   const base=JSON.parse(await readFile(resolve(root,'assets/latest-news.json'),'utf8'));
@@ -405,7 +409,18 @@ async function handleEditorial(req,res,pathname){
    if(a.status!=='published'){bySlug.delete(a.slug);continue;}
    bySlug.set(a.slug,{title:a.title,slug:a.slug,path:'guide/'+a.slug+'/index.html',category:a.category,summary:a.summary,image:editorialImage(a.slug),date:a.publishedAt?.slice(0,10),status:'published'});
   }
-  const result={version:base.version||1,items:[...bySlug.values()].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')))};
+  const items=[...bySlug.values()].sort((a,b)=>String(b.date||'').localeCompare(String(a.date||'')));
+  if(pathname==='/guide'){
+   const cards=items.filter(a=>a.status==='published'&&/^guide\/[a-z0-9-]+\/index\.html$/.test(a.path)&&/^assets\/[a-z0-9-]+\.(webp|jpg|png)$/.test(a.image)).map(a=>{
+    const url='/'+a.path.replace(/index\.html$/,'');
+    const title=escapeHtml(a.title);
+    return '<article class="guide-card"><a class="guide-img" href="'+url+'"><img loading="lazy" alt="Immagine editoriale per '+title+'" src="/'+a.image+'"></a><div class="guide-copy"><span class="eyebrow">'+escapeHtml(a.category)+'</span><h3><a href="'+url+'">'+title+'</a></h3><p>'+escapeHtml(a.summary)+'</p><a class="text-arrow" href="'+url+'">Leggi la guida →</a></div></article>';
+   }).join('');
+   const template=await readFile(resolve(root,'guide/index.html'),'utf8');
+   const html=template.replace(/<div class="guide-grid">[\s\S]*?(?=<\/div><\/div><\/main>)/,()=>'<div class="guide-grid" data-server-rendered>'+cards);
+   await staticFile(req,res,pathname,html);return true;
+  }
+  const result={version:base.version||1,items};
   res.statusCode=200;res.setHeader('Content-Type','application/json; charset=utf-8');res.setHeader('Cache-Control','no-store');if(req.method==='HEAD')res.end();else res.end(JSON.stringify(result));return true;
  }
  return false;
@@ -424,6 +439,12 @@ const server=http.createServer(async(req,res)=>{
   if(['GET','HEAD'].includes(req.method)&&/\/index\.html$/i.test(url.pathname)){
     res.writeHead(308,{Location:(url.pathname.slice(0,-10)||'/')+url.search});res.end();return;
   }
+  if(['GET','HEAD'].includes(req.method)&&url.pathname!=='/'&&!url.pathname.endsWith('/')&&indexPaths.includes(pathname+'/')){
+    res.writeHead(308,{Location:pathname+'/'+url.search});res.end();return;
+  }
+  if(pathname==='/trova-regalo'&&['q','category','budget','age','festival','occasion'].some(key=>url.searchParams.has(key))){
+    res.setHeader('X-Robots-Tag','noindex, follow');
+  }
   // Staging stays out of search indexes until the official domain is ready.
   if(!publicIndexable||pathname.startsWith('/admin')||pathname.startsWith('/calendario')||pathname.startsWith('/api/')||pathname==='/health'){
     res.setHeader('X-Robots-Tag','noindex, nofollow');
@@ -439,7 +460,12 @@ const server=http.createServer(async(req,res)=>{
     const changes=await editorialState();
     const paths=new Set(indexPaths);
     for(const a of Object.values(changes)){const path='/guide/'+a.slug+'/';if(a.status==='published')paths.add(path);else paths.delete(path);}
-    const locations=[...paths].map(p=>'  <url><loc>'+canonicalSite+p+'</loc>'+(p==='/guide/organizer-valigia-regalo/'?'<lastmod>2026-11-20</lastmod>':'')+'</url>').join('\n');
+    const locations=[...paths].map(p=>{
+      const slug=/^\/guide\/([a-z0-9-]+)\/$/.exec(p)?.[1];
+      const date=changes[slug]?.updatedAt?.slice(0,10)||changes[slug]?.publishedAt?.slice(0,10);
+      const lastmod=/^\d{4}-\d{2}-\d{2}$/.test(date||'')?'<lastmod>'+date+'</lastmod>':'';
+      return '  <url><loc>'+canonicalSite+p+'</loc>'+lastmod+'</url>';
+    }).join('\n');
     return serveText(res,'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+locations+'\n</urlset>\n','application/xml; charset=utf-8');
   }
   if(pathname==='/ads.txt'){
@@ -447,9 +473,9 @@ const server=http.createServer(async(req,res)=>{
     if(!publicIndexable||process.env.ADS_MODE!=='adsense'||!id)return reply(res,404,{error:'ADS_TXT_NOT_CONFIGURED'});
     return serveText(res,'google.com, pub-'+id[1]+', DIRECT, f08c47fec0942fa0\n');
   }
-  if(pathname==='/health')return reply(res,200,{ok:true,service:'cosaregalo',environment:process.env.NODE_ENV||'development',uiRelease:'css-debug-20261107',seoRelease:'seo-20261108',seoReady:publicIndexable,publicUrl:canonicalSite||null,assetRevision});
+  if(pathname==='/health')return reply(res,200,{ok:true,service:'cosaregalo',environment:process.env.NODE_ENV||'development',uiRelease:'css-debug-20261107',seoRelease:'seo-20261125',seoReady:publicIndexable,publicUrl:canonicalSite||null,assetRevision});
   if(handlers.has(pathname))return api(req,res,pathname,url.searchParams);
-  if(await handleEditorial(req,res,url.pathname))return;
+  if(await handleEditorial(req,res,pathname))return;
   if(pathname.startsWith('/api/'))return reply(res,404,{error:'UNKNOWN_API'});
   return staticFile(req,res,url.pathname);
 });
