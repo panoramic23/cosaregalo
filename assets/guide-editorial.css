@@ -22,7 +22,7 @@
 .cr-magazine .bf-pick-content{display:block;max-width:730px;min-width:0}
 .cr-magazine .bf-pick-content .cr-product-variant{font-size:14px;line-height:1.6;color:#536779;margin:0 0 16px;overflow-wrap:anywhere}
 .cr-magazine .cr-exact-products .cr-editorial-rationale{font-size:17px;line-height:1.8;margin:0 0 16px;color:#31475b}
-.cr-magazine .cr-exact-products .bf-pick-shop,.cr-magazine .cr-editorial-ideas .bf-pick-shop{display:block!important;margin:22px 0 0;padding:0;border:0;background:transparent}
+.cr-magazine .cr-exact-products .bf-pick-shop,.cr-magazine .cr-editorial-ideas .bf-pick-shop{display:block!important;margin:0 0 20px;padding:0;border:0;background:transparent}
 .cr-magazine .bf-pick-retail{display:flex;flex-direction:column;align-items:flex-start;gap:10px;max-width:100%}
 .cr-magazine .bf-pick-market,.cr-magazine .cr-api-model{display:none}
 .cr-magazine .cr-asin-price:empty{display:none}
