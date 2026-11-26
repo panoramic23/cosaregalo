@@ -263,6 +263,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   root.dataset.mediaState=state;
   const note=root.querySelector('.cr-guide-media-note');if(!note)return;
   note.hidden=state==='ready';
+  if(root.dataset.guideSlug==='libri-attivita-bambini-gioca-impara'&&state!=='ready'){note.textContent=state==='loading'?'Aggiornamento delle copertine da Amazon…':'Copertine della collana. Controlla prezzo e disponibilità su Amazon.';return;}
   note.textContent=state==='loading'?'Stiamo caricando le foto dei prodotti.':state==='partial'?'Alcune foto non sono disponibili al momento.':'Le foto dei prodotti non sono disponibili al momento. Puoi comunque leggere le idee e i consigli qui sotto.';
  }
  async function hydrateExactGuide(){
@@ -291,9 +292,10 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     card.hidden=false;
     if(validImage(p.image)&&media){
      pending++;
+     const fallback=media.firstElementChild;
      const img=document.createElement('img');img.loading='eager';img.decoding='async';img.alt='Foto del prodotto: '+p.title;
      img.addEventListener('load',()=>{if(root.contains(img)){pending--;loaded++;update();}},{once:true});
-     img.addEventListener('error',()=>{if(root.contains(img)){pending--;media.replaceChildren();update();}},{once:true});
+     img.addEventListener('error',()=>{if(root.contains(img)){pending--;if(fallback)media.replaceChildren(fallback);else media.replaceChildren();update();}},{once:true});
      media.replaceChildren(img);img.src=p.image;
     }
     const heading=card.querySelector('.cr-pick-heading h2,.cr-pick-heading h3,.bf-pick-content h2,.bf-pick-content h3');

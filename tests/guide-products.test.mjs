@@ -5,7 +5,7 @@ import {guideCatalog} from '../lib/guide-catalog.mjs';
 
 test('guide catalog has valid exact identifiers and editorial notes',()=>{
  const names=Object.keys(guideCatalog);
- assert.equal(names.length,9);
+ assert.equal(names.length,10);
  for(const [slug,items] of Object.entries(guideCatalog)){
   assert.ok(items.length>=2,slug);
   const seen=new Set();
