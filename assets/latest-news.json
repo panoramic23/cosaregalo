@@ -2,6 +2,16 @@
   "version": 1,
   "items": [
     {
+      "title": "5 libri per bambini: giocare, imparare e divertirsi senza schermi",
+      "slug": "libri-attivita-bambini-gioca-impara",
+      "path": "guide/libri-attivita-bambini-gioca-impara/index.html",
+      "category": "Bambini e lettura",
+      "summary": "Dai labirinti ai puntini, dal pregrafismo a una fiaba in rima: scopri i cinque libri della collana Gioca & Impara di Michele Gallucci, da regalare ai bambini.",
+      "image": "assets/gioca-impara.webp",
+      "date": "2026-11-26",
+      "status": "published"
+    },
+    {
       "title": "Organizer da valigia da regalare: due set e come scegliere",
       "slug": "organizer-valigia-regalo",
       "path": "guide/organizer-valigia-regalo/index.html",

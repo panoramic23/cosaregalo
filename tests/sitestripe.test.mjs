@@ -73,7 +73,10 @@ test('only the 48 supplied SiteStripe links are present in static product pages'
     if(!allowed.has(rel))assert.equal(links.length,0,'Unexpected SiteStripe button in '+rel);
     else assert.equal(links.length,6,'Each supported product category has 6 approved links: '+rel);
     const allAmazon=[...html.matchAll(/href="(https:\/\/(?:www\.)?amazon\.it\/[^"]+)"/g)];
-    assert.equal(allAmazon.length,links.length,'Unapproved Amazon URL found in '+rel);
+    if(rel==='/guide/libri-attivita-bambini-gioca-impara/index.html'){
+     assert.equal(allAmazon.length,6);
+     for(const [,raw] of allAmazon)assert.equal(raw,'https://www.amazon.it/dp/B0HNGRCV3H?binding=paperback&amp;tag=230b7-21');
+    }else assert.equal(allAmazon.length,links.length,'Unapproved Amazon URL found in '+rel);
     for(const [,raw] of links){
      const url=new URL(raw.replace(/&amp;/g,'&'));
      assert.equal(url.protocol,'https:');

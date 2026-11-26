@@ -79,7 +79,7 @@ function productionRequest(req){
 }
 const indexPaths=[
  '/', '/offerte/', '/tipologie/', '/trova-regalo/', '/occasioni/', '/metodo/', '/privacy-policy/', '/cookie-policy/',
- '/guide/', '/guide/organizer-valigia-regalo/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
+ '/guide/', '/guide/libri-attivita-bambini-gioca-impara/', '/guide/organizer-valigia-regalo/', '/guide/natale/', '/guide/benessere/', '/guide/sotto-30/', '/guide/tech/',
  '/guide/lettura/', '/guide/cuffie/', '/guide/cucina-poco-spazio/', '/guide/scrivania-pratica/', '/guide/giochi-creativi-bambini/', '/esplora/ricorrenze/', '/esplora/gusti/',
  '/esplora/sport/', '/esplora/cartoni/', '/esplora/stagioni/', '/tipologie/speaker-bluetooth/',
  '/tipologie/giochi-costruzioni/', '/tipologie/cofanetti-benessere/',
@@ -321,6 +321,7 @@ async function staticFile(req,res,pathname,overrideHtml=null,editorialArticle=nu
           };
           // Only publish dates supported by the original editorial feed; never invent dates.
           const dates={
+            '/guide/libri-attivita-bambini-gioca-impara/':'2026-11-26',
             '/guide/organizer-valigia-regalo/':'2026-11-20',
             '/guide/cucina-poco-spazio/':'2026-11-07',
             '/guide/scrivania-pratica/':'2026-11-07',
